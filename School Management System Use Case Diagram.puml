@@ -25,117 +25,127 @@ S <|-- SP
 VP <|-- P
 
 rectangle "School Management System" {
-    U -- (Enter the Attendance Daily)
-    U -- (Login)
-    U -- (Communicate with Users)
-    U -- (Logout)
+    rectangle "User" {
+        U -- (Enter the Attendance Daily)
+        U -- (Login)
+        U -- (Communicate with Users)
+        U -- (Logout)
 
-    (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
-    (Login) ..> (Validate User) : <<include>>
+        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+        (Login) ..> (Validate User) : <<include>>
+    }
 
-    T -- (View Educational Content Dashboard)
-    T -- (Monitor Student Progress and Performance)
-    T -- (Provide Feedback and Assessments)
-    T -- (Submit Leave and Short Leaves)
-    T -- (View Student Information as a Teacher)
+    rectangle "Teachers" {
+        T -- (View Educational Content Dashboard)
+        T -- (Monitor Student Progress and Performance)
+        T -- (Provide Feedback and Assessments)
+        T -- (Submit Leave and Short Leaves)
+        T -- (View Student Information as a Teacher)
 
-    (View Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
-    (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
-    (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
-    (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
-    (View Student Information as a Teacher) <.. (Update Student Information) : <<extend>>
-    (View Student Information as a Teacher) <.. (Delete Student Information) : <<extend>>
-    (View Student Information as a Teacher) <.. (Create Student Information) : <<extend>>
+        (View Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
+        (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
+        (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
+        (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
+        (View Student Information as a Teacher) <.. (Update Student Information) : <<extend>>
+        (View Student Information as a Teacher) <.. (Delete Student Information) : <<extend>>
+        (View Student Information as a Teacher) <.. (Create Student Information) : <<extend>>
 
-    CT -- (Monitor Students Attendance)
-    CT -- (View Exam Results)
-    CT -- (Generate Student Reports)
+        CT -- (Monitor Students Attendance)
+        CT -- (View Exam Results)
+        CT -- (Generate Student Reports)
 
-    (View Exam Results) <.. (Enter Exam Results) : <<extend>>
-    (View Exam Results) <.. (Update Exam Results) : <<extend>>
-    (View Exam Results) <.. (Remove Exam Results) : <<extend>>
-    (View Exam Results) <.. (Sort Student Marks) : <<extend>>
-    (Generate Student Reports) ..> (Rank Students) : <<include>>
-    (Generate Student Reports) ..> (Inform Students) : <<include>>
+        (View Exam Results) <.. (Enter Exam Results) : <<extend>>
+        (View Exam Results) <.. (Update Exam Results) : <<extend>>
+        (View Exam Results) <.. (Remove Exam Results) : <<extend>>
+        (View Exam Results) <.. (Sort Student Marks) : <<extend>>
+        (Generate Student Reports) ..> (Rank Students) : <<include>>
+        (Generate Student Reports) ..> (Inform Students) : <<include>>
 
-    SH -- (Schedule Sectional Staff Meetings)
-    SH -- (Create Sectional Events)
+        SH -- (Schedule Sectional Staff Meetings)
+        SH -- (Create Sectional Events)
 
-    (Schedule Sectional Staff Meetings) ..> (Inform Sectional Teachers) : <<include>>
-    (Create Sectional Events) ..> (Inform Sectional Teachers) : <<include>>
-    (Create Sectional Events) ..> (Inform Sectional Students) : <<include>>
-    
-    TR -- (View School Financial Status)
-    TR -- (Generate Financial Reports)
-    TR -- (Withdraw Funds from School Account)
-    TR -- (Calculate School Budget)
-    TR -- (Keep Financial Records)
-    TR -- (Monitor Student Payments)
+        (Schedule Sectional Staff Meetings) ..> (Inform Sectional Teachers) : <<include>>
+        (Create Sectional Events) ..> (Inform Sectional Teachers) : <<include>>
+        (Create Sectional Events) ..> (Inform Sectional Students) : <<include>>
+        
+        TR -- (View School Financial Status)
+        TR -- (Withdraw Funds from School Account)
+        TR -- (Deposit Funds to School Account)
 
-    (Generate Financial Reports) ..> (Notify Vice Principal) : <<include>>
-    (Monitor Student Payments) <.. (Notify Students) : <<extend>>
-    (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
-    (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
+        (View School Financial Status) <.. (Generate Financial Reports) : <<extend>>
+        (View School Financial Status) <.. (Calculate School Budget) : <<extend>>
+        (View School Financial Status) <.. (Monitor Student Payment) : <<extend>>
+        (Generate Financial Reports) ..> (Notify Vice Principal) : <<include>>
+        (Monitor Student Payments) <.. (Notify Students) : <<extend>>
+        (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
+        (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
+        (Deposit Funds to School Account) ..> (Update Logs) : <<include>>
+        (Deposit Funds to School Account) ..> (Notify Vice Principal) : <<include>>
+    }
 
-    S -- (View Educational Content Dashboard as a Student)
-    S -- (Submit Assignments and Assessments)
-    S -- (Pay School Fees and Other Welfare Fees)
-    S -- (Submit Medicals for Sudden Leaves)
-    S -- (Enter Extracurricular Activity Information)
-    S -- (Create School Societies and Clubs)
+    rectangle "Students" {
+        S -- (View Educational Content Dashboard as a Student)
+        S -- (Submit Assignments and Assessments)
+        S -- (Pay School Fees and Other Welfare Fees)
+        S -- (Submit Medicals for Sudden Leaves)
+        S -- (Enter Extracurricular Activity Information)
+        S -- (Create School Societies and Clubs)
 
-    (View Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
-    (View Educational Content Dashboard as a Student) <.. (Upload Assessments) : <<extend>>
-    (View Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
-    (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
-    (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
-    (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
-    (Create School Societies and Clubs) <.. (Add Members) : <<extend>>
-    (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
-    (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
+        (View Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
+        (View Educational Content Dashboard as a Student) <.. (Upload Assessments) : <<extend>>
+        (View Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
+        (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
+        (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
+        (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
+        (Create School Societies and Clubs) <.. (Add Members) : <<extend>>
+        (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
+        (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
 
-    SP -- (Enter Student Information as a Prefect)
-    SP -- (Create Events for Students)
-    SP -- (Delete Events for Students)
-    SP -- (Update Events for Students)
+        SP -- (Enter Student Information as a Prefect)
+        SP -- (Create Events for Students)
+        SP -- (Delete Events for Students)
+        SP -- (Update Events for Students)
 
-    (Enter Student Information as a Prefect) <.. (Update Student Information as a Prefect)
-    (Create Events for Students) ..> (Inform Students as a Prefect) : <<include>>
-    (Delete Events for Students) ..> (Inform Students as a Prefect) : <<include>>
-    (Update Events for Students) ..> (Inform Students as a Prefect) : <<include>>
+        (Enter Student Information as a Prefect) <.. (Update Student Information as a Prefect)
+        (Create Events for Students) ..> (Inform Students as a Prefect) : <<include>>
+        (Delete Events for Students) ..> (Inform Students as a Prefect) : <<include>>
+        (Update Events for Students) ..> (Inform Students as a Prefect) : <<include>>
+    }  
 
-    P -- (Generate Reports)
-    P -- (Create Special School Events)
-    P -- (Send Notifications to Teachers)
+    rectangle "Management" {
+        P -- (Generate Reports)
+        P -- (Create Special School Events)
+        P -- (Send Notifications to Teachers)
 
-    (Generate Reports) <.. (User Engagement Reports) : <<extend>>
-    (Generate Reports) <.. (Performance Reports) : <<extend>>
-    (Generate Reports) <.. (System Utilization Reports) : <<extend>>
-    (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
-    (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
-    (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
-    (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
+        (Generate Reports) <.. (User Engagement Reports) : <<extend>>
+        (Generate Reports) <.. (Performance Reports) : <<extend>>
+        (Generate Reports) <.. (System Utilization Reports) : <<extend>>
+        (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
+        (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
+        (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
+        (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
 
-    VP -- (Supervise Student Enrollment)
-    VP -- (View Administrative Tasks)
+        VP -- (Supervise Student Enrollment)
+        VP -- (View Administrative Tasks)
 
-    (Supervise Student Enrollment) ..> (Review Enrollment Data) : <<include>>
-    (View Administrative Tasks) <.. (Edit Administrative Tasks) : <<extend>>
-    (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
-    (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
-    (View Administrative Tasks) <.. (Create Administrative Tasks) : <<extend>>
+        (Supervise Student Enrollment) ..> (Review Enrollment Data) : <<include>>
+        (View Administrative Tasks) <.. (Edit Administrative Tasks) : <<extend>>
+        (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
+        (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
+        (View Administrative Tasks) <.. (Create Administrative Tasks) : <<extend>>
 
-    A -- (Create User Accounts and Access Permissions)
-    A -- (Oversee Overall Functionality and Performance)
-    A -- (Ensure Security and Integrity of the Platform)
-    A -- (Schedule Staff Meetings)
+        A -- (Create User Accounts and Access Permissions)
+        A -- (Oversee Overall Functionality and Performance)
+        A -- (Ensure Security and Integrity of the Platform)
+        A -- (Schedule Staff Meetings)
 
-    (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
-    (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
-    (Create User Accounts and Access Permissions) <.. (Modify Permissions) : <<extend>>
-    (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
-    (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
-    (Schedule Staff Meetings) ..> (Inform Staff Members) : <<include>>
+        (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
+        (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
+        (Create User Accounts and Access Permissions) <.. (Modify Permissions) : <<extend>>
+        (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
+        (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
+        (Schedule Staff Meetings) ..> (Inform Staff Members) : <<include>>
+    }
 }
 
 @enduml
