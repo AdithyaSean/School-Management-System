@@ -26,6 +26,7 @@ VP <|-- P
 
 rectangle "School Management System" {
     U -- (Login)
+    U -- (Communicate with Users)
     U -- (Logout)
 
     (Login) ..> (Validate User) : <<include>>
@@ -45,15 +46,12 @@ rectangle "School Management System" {
     CT -- (Input Exam Results)
     CT -- (View Student Status)
     CT -- (Edit Student Status)
-    CT -- (Communicate with Class Students)
     CT -- (Generate Student Reports)
 
     (Input Exam Results) ..> (Update Student Status) : <<include>>
     (Input Exam Results) ..> (Sort Student Marks) : <<include>>
     (Generate Student Reports) ..> (Rank Students) : <<include>>
 
-    SH -- (Communicate with Sectional Teachers)
-    SH -- (Communicate with Sectional Students)
     SH -- (Schedule Sectional Staff Meetings)
     SH -- (Create Sectional Events)
 
@@ -68,7 +66,7 @@ rectangle "School Management System" {
     TR -- (Keep Financial Records)
     TR -- (Monitor Student Payments)
 
-    (Generate Financial Reports) ..> (VP) : <<include>>
+    (Generate Financial Reports) ..> (Notify Vice Principal) : <<include>>
     (Monitor Student Payments) <.. (Notify Students) : <<extend>>
     (Withdraw Funds from School Account) ..> (Validate User) : <<include>>
     (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
@@ -76,7 +74,6 @@ rectangle "School Management System" {
 
     S -- (Access and Engage with Learning Materials)
     S -- (Submit Assignments and Assessments)
-    S -- (Seek Assistance from Teachers)
     S -- (Pay School Fees and Other Welfare Fees)
     S -- (Enter Student Attendance Daily)
     S -- (Submit Medicals for Sudden Leaves)
@@ -84,22 +81,22 @@ rectangle "School Management System" {
     S -- (Create School Societies and Clubs)
 
     (Enter Student Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
-    (Seek Assistance from Teachers) ..> (Communicate with Teachers) : <<include>>
     (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
     (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
+    (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
     (Create School Societies and Clubs) <.. (Add Members) : <<extend>>
     (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
     (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
 
     SP -- (Edit Student Status)
-    SP -- (Create Student Events)
-    SP -- (Delete Student Events)
-    SP -- (Update Student Events)
+    SP -- (Create Events for Students)
+    SP -- (Delete Events for Students)
+    SP -- (Update Events for Students)
 
     (Edit Student Status) ..> (Inform Class Teachers) : <<include>>
-    (Create Student Events) ..> (Inform Students) : <<include>>
-    (Delete Student Events) ..> (Inform Students) : <<include>>
-    (Update Student Events) ..> (Inform Students) : <<include>>
+    (Create Student Events for Students) ..> (Inform Students) : <<include>>
+    (Delete Student Events for Students) ..> (Inform Students) : <<include>>
+    (Update Student Events for Students) ..> (Inform Students) : <<include>>
 
     P -- (Generate Reports)
     P -- (Create Special School Events)
@@ -113,14 +110,10 @@ rectangle "School Management System" {
     (Create Special School Events) ..> (Inform Teachers) : <<include>>
     (Create Special School Events) ..> (Inform Students) : <<include>>
 
-    VP -- (Communicate with the Principal)
     VP -- (Supervise Student Enrollment)
-    VP -- (Communicate with School Management)
     VP -- (View Administrative Tasks)
 
-    (Communicate with the Principal) ..> (Coordinate with Principal) : <<include>>
     (Supervise Student Enrollment) ..> (Review Enrollment Data) : <<include>>
-    (Communicate with School Management) ..> (Collaborate with Sectional Heads) : <<include>>
     (View Administrative Tasks) <.. (Edit Administrative Tasks) : <<extend>>
     (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
     (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
