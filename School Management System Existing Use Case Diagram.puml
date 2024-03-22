@@ -1,0 +1,82 @@
+@startuml SchoolManagementSystem
+
+left to right direction
+
+actor Teacher as T
+actor "Class Teacher" as CT
+actor "Sectional Head" as SH
+actor Treasurer as TR
+actor Student as S
+actor Prefects as SP
+actor Principal as P
+actor "Vice Principal" as VP
+
+T <|-- CT
+T <|-- SH
+T <|-- TR
+S <|-- SP
+VP <|-- P
+
+rectangle "School Management System" {
+    T --> (Report Duty)
+    T --> (View Schedule)
+    T --> (Prepare Exam Papers)
+    T --> (Record Lesson Progress)
+    T --> (Invigilate Exams)
+    T --> (Mark Exam Papers)
+    T --> (Supervise Clubs and Societies)
+    T --> (Request Leaves and Short Leaves)
+        (Report Duty) ..> (Verify Using Fingerprint) : <<include>>
+
+    CT --> (Mark Students Attendence)
+    CT --> (Collect School Fees)
+    CT --> (Collect Parents Letters)
+    CT --> (Sort Exam Results)
+        (Sort Exam Results) ..> (Grade Students) : <<include>>
+    CT --> (Enter Results to Student Reports)
+        (Enter Results to Student Reports) ..> (Rank Students) : <<include>>
+
+    SH --> (Coordinate Teachers)
+    SH --> (Coordinate Students)
+    SH --> (Organize Events)
+        (Organize Events) ..> (Inform Students and Teachers) : <<include>>
+    SH --> (Collaborate with the Management)
+        (Collaborate with the Management) ..> (Keep Records) : <<include>>
+
+    TR --> (Collect School Fees from Class Teachers)
+    TR --> (Deposit Funds to School Account)
+        (Deposit Funds to School Account) ..> (Generate Financial Reports) : <<include>>
+    TR --> (Keep Financial Records)
+
+    S --> (Create Clubs and Societies)
+        (Create Clubs and Societies) ..> (Add Members) : <<include>>
+        (Create Clubs and Societies) ..> (Inform Members) : <<include>>
+    S --> (Pay School Fees)
+
+    SP --> (Assist in Student Discipline)
+        (Assist in Student Discipline) ..> (Report Misconducts) : <<include>>
+    SP --> (Organize Student Events)
+        (Organize Student Events) ..> (Inform Students and Teachers) : <<include>>
+
+    P --> (Overall School Management)
+        (Overall School Management) ..> (Set School Policies) : <<include>>
+    P --> (Organize Special Events)
+        (Organize Special Events) ..> (Inform the School) : <<include>>
+    P --> (Take Important Decisions)
+        (Take Important Decisions) ..> (Collaborate with The Staff) : <<include>>
+    
+    VP --> (Assist Principal)
+        (Assist Principal) ..> (Handle Administrative Tasks) : <<include>>
+    VP --> (Coordinate School Management)
+        (Coordinate School Management) ..> (Keep Management Records) : <<include>>
+    VP --> (Issueing Checks)
+        (Issueing Checks) ..> (Collaborate with The Treasurer) : <<include>>
+    VP --> (Collect Funds for Development)
+        (Collect Funds for Development) ..> (Collaborate with Treasurer) : <<include>>
+    VP --> (Register New Students)
+        (Register New Students) ..> (Update Logs and Records) : <<include>>
+    VP --> (Generate Student Leaving Certificates)
+        (Generate Student Leaving Certificates) ..> (Update Logs and Records) : <<include>>
+}
+
+@enduml
