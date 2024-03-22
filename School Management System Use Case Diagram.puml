@@ -41,7 +41,7 @@ rectangle "School Management System" {
     (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
     (Mark Exam Papers) ..> (Grade the Students) : <<include>>
 
-    CT -- (Monitor Students Attendence)
+    CT -- (Monitor Students Attendance)
     CT -- (Input Exam Results)
     CT -- (View Student Status)
     CT -- (Edit Student Status)
@@ -68,7 +68,7 @@ rectangle "School Management System" {
     TR -- (Keep Financial Records)
     TR -- (Monitor Student Payments)
 
-    (Generate Financial Reports) ..> (Sends to the Vice Principle) <<include>>
+    (Generate Financial Reports) ..> (VP) : <<include>>
     (Monitor Student Payments) <.. (Notify Students) : <<extend>>
     (Withdraw Funds from School Account) ..> (Validate User) : <<include>>
     (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
@@ -85,14 +85,13 @@ rectangle "School Management System" {
 
     (Enter Student Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Seek Assistance from Teachers) ..> (Communicate with Teachers) : <<include>>
-    (Pay School Fees and Other Welfare Fees) ..> (Generate Recipts) : <<include>>
+    (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
     (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
     (Create School Societies and Clubs) <.. (Add Members) : <<extend>>
     (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
     (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
 
     SP -- (Edit Student Status)
-    SP -- (Create Student Events)
     SP -- (Create Student Events)
     SP -- (Delete Student Events)
     SP -- (Update Student Events)
@@ -102,17 +101,15 @@ rectangle "School Management System" {
     (Delete Student Events) ..> (Inform Students) : <<include>>
     (Update Student Events) ..> (Inform Students) : <<include>>
 
-    P -- (Generate Daily Reports)
-    P -- (Generate Monthly Reports)
-    P -- (Generate Annual Reports)
+    P -- (Generate Reports)
     P -- (Create Special School Events)
     P -- (Send Notifications to Teachers)
 
-    (Generate Daily Reports) ..> (User Engagement Reports) : <<extend>>
-    (Generate Daily Reports) ..> (Performance Reports) : <<extend>>
-    (Generate Daily Reports) <.. (System Utilization Reports) : <<extend>>
-    (Generate Daily Reports) <.. (Content Popularity Reports) : <<extend>>
-    (Generate Daily Reports) <.. (Monthly Attendance Reports) : <<extend>>
+    (Generate Reports) <.. (User Engagement Reports) : <<extend>>
+    (Generate Reports) <.. (Performance Reports) : <<extend>>
+    (Generate Reports) <.. (System Utilization Reports) : <<extend>>
+    (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
+    (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
     (Create Special School Events) ..> (Inform Teachers) : <<include>>
     (Create Special School Events) ..> (Inform Students) : <<include>>
 
