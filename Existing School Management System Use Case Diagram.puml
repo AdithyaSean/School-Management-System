@@ -1,14 +1,15 @@
 @startuml Existing School Management System
 
 left to right direction
+skinparam linetype polyline
 
-actor Teacher as T
+actor "Teacher" as T
 actor "Class Teacher" as CT
 actor "Sectional Head" as SH
-actor Treasurer as TR
-actor Student as S
-actor Prefects as SP
-actor Principal as P
+actor "Treasurer" as TR
+actor "Student" as S
+actor "Prefects" as SP
+actor "Principal" as P
 actor "Vice Principal" as VP
 
 T <|-- CT
@@ -17,7 +18,7 @@ T <|-- TR
 S <|-- SP
 VP <|-- P
 
-rectangle "School Management System" {
+rectangle "Existing School Management System" {
     T -- (Report Duty)
     T -- (View Schedule)
     T -- (Prepare Exam Papers)
@@ -55,8 +56,8 @@ rectangle "School Management System" {
     S -- (Create Clubs and Societies)
     S -- (Pay School Fees)
 
-    (Create Clubs and Societies) ..> (Add Members) : <<include>>
-    (Create Clubs and Societies) ..> (Inform Members) : <<include>>
+    (Create Clubs and Societies) <.. (Add Members) : <<extend>>
+    (Create Clubs and Societies) <.. (Inform Members) : <<extend>>
 
     SP -- (Assist in Student Discipline)
     SP -- (Organize Student Events)

@@ -1,6 +1,7 @@
 @startuml School Management System
 
 left to right direction
+skinparam linetype polyline
 
 actor "Teacher" as T
 actor "Class Teacher" as CT
@@ -16,7 +17,7 @@ actor "User" as U
 U <|-- T
 U <|-- S
 U <|-- VP
-U <|-- A
+A <|-- U
 T <|-- CT
 T <|-- SH
 T <|-- TR
@@ -31,44 +32,44 @@ rectangle "School Management System" {
 
     T -- (Create and Upload Educational Content)
     T -- (Monitor Student Progress and Performance)
-    T -- (Generate Student Reports)
     T -- (Provide Feedback and Assessments)
     T -- (Enter Attendance Daily)
     T -- (Submit Leave and Short Leaves)
     T -- (Mark Exam Papers)
 
-    (Generate Student Reports) ..> (Update Monthly) : <<include>>
     (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
     (Mark Exam Papers) ..> (Grade the Students) : <<include>>
 
-    CT -- (Mark Students Attendence)
-    CT -- (Collect School Fees from Students)
-    CT -- (Sort Exam Results)
-    CT -- (Enter Results to Student Reports)
+    CT -- (Monitor Students Attendence)
+    CT -- (Input Exam Results)
+    CT -- (View Student Status)
+    CT -- (Edit Student Status)
+    CT -- (Communicate with Class Students)
+    CT -- (Generate Student Reports)
 
-    (Collect School Fees from Students) ..> (Update Student Records) : <<include>>
-    (Sort Exam Results) ..> (Upload to the System) : <<include>>
-    (Enter Results to Student Reports) ..> (Rank Students) : <<include>>
+    (Input Exam Results) ..> (Update Student Status) : <<include>>
+    (Input Exam Results) ..> (Sort Student Marks) : <<include>>
+    (Generate Student Reports) ..> (Rank Students) : <<include>>
 
-    SH -- (Coordinate Teachers)
-    SH -- (Coordinate Students)
-    SH -- (Conduct Sectional Staff Meetings)
-    SH -- (Organize Sectional Events)
+    SH -- (Communicate with Sectional Teachers)
+    SH -- (Communicate with Sectional Students)
+    SH -- (Schedule Sectional Staff Meetings)
+    SH -- (Create Sectional Events)
 
-    (Conduct Sectional Staff Meetings) ..> (Evaluate Teacher Performance) : <<include>>
-    (Organize Sectional Events) ..> (Inform Teachers) : <<include>>
+    (Schedule Sectional Staff Meetings) ..> (Inform Sectional Teachers) : <<include>>
+    (Create Sectional Events) ..> (Inform Sectional Teachers) : <<include>>
+    (Create Sectional Events) ..> (Inform Sectional Students) : <<include>>
     
     TR -- (View School Financial Status)
-    TR -- (Deposit Funds to School Account)
+    TR -- (Generate Financial Reports)
     TR -- (Withdraw Funds from School Account)
     TR -- (Calculate School Budget)
     TR -- (Keep Financial Records)
-    TR -- (Collect School Fees from Teachers)
+    TR -- (Monitor Student Payments)
 
-    (Deposit Funds to School Account) ..> (Update Logs) <<include>>
-    (Collect School Fees from Teachers) ..> (Deposit Fees to School Account) : <<include>>
-    (Collect School Fees from Teachers) ..> (Update Logs) : <<include>>
+    (Generate Financial Reports) ..> (Sends to the Vice Principle) <<include>>
+    (Monitor Student Payments) <.. (Notify Students) : <<extend>>
     (Withdraw Funds from School Account) ..> (Validate User) : <<include>>
     (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
     (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
@@ -84,47 +85,61 @@ rectangle "School Management System" {
 
     (Enter Student Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Seek Assistance from Teachers) ..> (Communicate with Teachers) : <<include>>
+    (Pay School Fees and Other Welfare Fees) ..> (Generate Recipts) : <<include>>
     (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
-    (Create School Societies and Clubs) ..> (Add Members) : <<include>>
-    (Create School Societies and Clubs) ..> (Remove Members) : <<include>>
-    (Create School Societies and Clubs) ..> (Update Members) : <<include>>
+    (Create School Societies and Clubs) <.. (Add Members) : <<extend>>
+    (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
+    (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
 
-    SP -- (Assist in Student Discipline)
-    SP -- (Organize Student Events)
+    SP -- (Edit Student Status)
+    SP -- (Create Student Events)
+    SP -- (Create Student Events)
+    SP -- (Delete Student Events)
+    SP -- (Update Student Events)
+
+    (Edit Student Status) ..> (Inform Class Teachers) : <<include>>
+    (Create Student Events) ..> (Inform Students) : <<include>>
+    (Delete Student Events) ..> (Inform Students) : <<include>>
+    (Update Student Events) ..> (Inform Students) : <<include>>
 
     P -- (Generate Daily Reports)
     P -- (Generate Monthly Reports)
     P -- (Generate Annual Reports)
-    P -- (Organize School Events)
+    P -- (Create Special School Events)
     P -- (Send Notifications to Teachers)
 
-    (Generate Daily Reports) ..> (User Engagement Reports) : <<include>>
-    (Generate Daily Reports) ..> (Performance Reports) : <<include>>
-    (Generate Daily Reports) ..> (System Utilization Reports) : <<include>>
-    (Generate Daily Reports) ..> (Content Popularity Reports) : <<include>>
-    (Generate Daily Reports) ..> (Monthly Attendance Reports) : <<include>>
+    (Generate Daily Reports) ..> (User Engagement Reports) : <<extend>>
+    (Generate Daily Reports) ..> (Performance Reports) : <<extend>>
+    (Generate Daily Reports) <.. (System Utilization Reports) : <<extend>>
+    (Generate Daily Reports) <.. (Content Popularity Reports) : <<extend>>
+    (Generate Daily Reports) <.. (Monthly Attendance Reports) : <<extend>>
+    (Create Special School Events) ..> (Inform Teachers) : <<include>>
+    (Create Special School Events) ..> (Inform Students) : <<include>>
 
-    VP -- (Assist the Principal)
+    VP -- (Communicate with the Principal)
     VP -- (Supervise Student Enrollment)
-    VP -- (Coordinate School Management)
-    VP -- (Handle Administrative Tasks)
+    VP -- (Communicate with School Management)
+    VP -- (View Administrative Tasks)
 
-    (Assist the Principal) ..> (Coordinate with Principal) : <<include>>
+    (Communicate with the Principal) ..> (Coordinate with Principal) : <<include>>
     (Supervise Student Enrollment) ..> (Review Enrollment Data) : <<include>>
-    (Coordinate School Management) ..> (Collaborate with Sectional Heads) : <<include>>
-    (Handle Administrative Tasks) ..> (Manage Administrative Procedures) : <<include>>
+    (Communicate with School Management) ..> (Collaborate with Sectional Heads) : <<include>>
+    (View Administrative Tasks) <.. (Edit Administrative Tasks) : <<extend>>
+    (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
+    (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
+    (View Administrative Tasks) <.. (Create Administrative Tasks) : <<extend>>
 
     A -- (Create User Accounts and Access Permissions)
     A -- (Oversee Overall Functionality and Performance)
     A -- (Ensure Security and Integrity of the Platform)
-    A -- (Conduct Staff Meetings)
+    A -- (Schedule Staff Meetings)
 
-    (Create User Accounts and Access Permissions) ..> (Add User) : <<include>>
-    (Create User Accounts and Access Permissions) ..> (Delete User) : <<include>>
-    (Create User Accounts and Access Permissions) ..> (Modify Permissions) : <<include>>
-    (Ensure Security and Integrity of the Platform) ..> (Encrypt Data) : <<include>>
-    (Ensure Security and Integrity of the Platform) ..> (Regular Data Backups) : <<include>>
-    (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
+    (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
+    (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
+    (Create User Accounts and Access Permissions) <.. (Modify Permissions) : <<extend>>
+    (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
+    (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
+    (Schedule Staff Meetings) ..> (Inform Staff Members) : <<include>>
 }
 
 @enduml
