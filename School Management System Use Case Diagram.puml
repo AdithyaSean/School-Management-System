@@ -51,13 +51,15 @@ rectangle "School Management System" {
     SH --> (Coordinate Teachers)
     SH --> (Coordinate Students)
     SH --> (Organize Events)
-        (Organize Events) ..> (Evaluate Teacher Performance) : <<include>>
+
+    (Organize Events) ..> (Evaluate Teacher Performance) : <<include>>
 
     TR --> (Deposit Funds to School Account)
     TR --> (Calculate School Budget)
     TR --> (Keep Financial Records)
     TR --> (Collect School Fees from Teachers)
-        (Collect School Fees from Teachers) ..> (Deposit Fees to School Account) : <<include>>
+
+    (Collect School Fees from Teachers) ..> (Deposit Fees to School Account) : <<include>>
 
     S --> (Access and Engage with Learning Materials)
     S --> (Submit Assignments and Assessments)
@@ -78,7 +80,7 @@ rectangle "School Management System" {
     SP --> (Assist in Student Discipline)
     SP --> (Organize Student Events)
 
-    P --> (Overall School Management)
+    P --> (Overall School Supervision)
     P --> (Review and Approve School Policies)
     P --> (Organize Special Events)
     P --> (Take Important Decisions)
