@@ -1,0 +1,225 @@
+@startuml SchoolManagementSystemClassDiagram
+
+class User {
+    + username: string
+    + password: string
+    --
+    + enterAttendanceDaily()
+    + login()
+    + communicateWithUsers()
+    + logout()
+}
+
+class Teacher {
+    --
+    + viewEducationalContentDashboard()
+    + monitorStudentProgressAndPerformance()
+    + provideFeedbackAndAssessments()
+    + submitLeaveAndShortLeaves()
+    + viewStudentInformationAsTeacher()
+    --
+    + markExamPapers()
+}
+
+class ClassTeacher {
+    --
+    + monitorStudentsAttendance()
+    + viewExamResults()
+    + generateStudentReports()
+}
+
+class SectionalHead {
+    --
+    + scheduleSectionalStaffMeetings()
+    + createSectionalEvents()
+}
+
+class Treasurer {
+    --
+    + viewSchoolFinancialStatus()
+    + withdrawFundsFromSchoolAccount()
+    + depositFundsToSchoolAccount()
+}
+
+class Student {
+    --
+    + viewEducationalContentDashboardAsStudent()
+    + submitAssignmentsAndAssessments()
+    + paySchoolFeesAndOtherWelfareFees()
+    + submitMedicalsForSuddenLeaves()
+    + enterExtracurricularActivityInformation()
+    + createSchoolSocietiesAndClubs()
+}
+
+class Prefect {
+    --
+    + enterStudentInformationAsPrefect()
+    + createEventsForStudents()
+    + deleteEventsForStudents()
+    + updateEventsForStudents()
+}
+
+class Principal {
+    --
+    + generateReports()
+    + createSpecialSchoolEvents()
+    + sendNotificationsToTeachers()
+}
+
+class VicePrincipal {
+    --
+    + superviseStudentEnrollment()
+    + viewAdministrativeTasks()
+}
+
+class Administrator {
+    --
+    + createUserAccountsAndAccessPermissions()
+    + overseeOverallFunctionalityAndPerformance()
+    + ensureSecurityAndIntegrityOfPlatform()
+    + scheduleStaffMeetings()
+}
+
+User --|> Teacher
+User --|> Student
+User --|> VicePrincipal
+User --|> Administrator
+
+Teacher --|> ClassTeacher
+Teacher --|> SectionalHead
+Teacher --|> Treasurer
+
+Student --|> Prefect
+
+Principal --|> VicePrincipal
+Principal --|> Administrator
+
+class VerifyUsingFingerprint {
+    --
+    + verify()
+}
+
+class ValidateUser {
+    --
+    + validate()
+}
+
+class VerifyLeave {
+    --
+    + verify()
+}
+
+class RankStudents {
+    --
+    + rank()
+}
+
+class InformSectionalTeachers {
+    --
+    + inform()
+}
+
+class InformSectionalStudents {
+    --
+    + inform()
+}
+
+class NotifyVicePrincipal {
+    --
+    + notify()
+}
+
+class RequestPrincipalPermission {
+    --
+    + request()
+}
+
+class UpdateLogs {
+    --
+    + update()
+}
+
+class GenerateReceipts {
+    --
+    + generate()
+}
+
+class UpdateStudentInformation {
+    --
+    + update()
+}
+
+class DeleteStudentInformation {
+    --
+    + delete()
+}
+
+class CreateStudentInformation {
+    --
+    + create()
+}
+
+class EnterExamResults {
+    --
+    + enter()
+}
+
+class UpdateExamResults {
+    --
+    + update()
+}
+
+class RemoveExamResults {
+    --
+    + remove()
+}
+
+class SortStudentMarks {
+    --
+    + sort()
+}
+
+class InformStudents {
+    --
+    + inform()
+}
+
+class UpdateInformation {
+    --
+    + update()
+}
+
+class AddMembers {
+    --
+    + add()
+}
+
+class RemoveMembers {
+    --
+    + remove()
+}
+
+class UpdateMembers {
+    --
+    + update()
+}
+
+User --> ValidateUser : <<include>>
+User --> VerifyUsingFingerprint : <<include>>
+User --> VerifyLeave : <<include>>
+ClassTeacher --> RankStudents : <<include>>
+ClassTeacher --> InformStudents : <<include>>
+SectionalHead --> InformSectionalTeachers : <<include>>
+SectionalHead --> InformSectionalStudents : <<include>>
+Treasurer --> RequestPrincipalPermission : <<include>>
+Treasurer --> UpdateLogs : <<include>>
+Treasurer --> NotifyVicePrincipal : <<include>>
+Student --> GenerateReceipts : <<include>>
+Student --> UpdateInformation : <<include>>
+Student --> AddMembers : <<include>>
+Student --> RemoveMembers : <<include>>
+Student --> UpdateMembers : <<include>>
+Prefect --> InformStudents : <<include>>
+Principal --> NotifyVicePrincipal : <<include>>
+
+@enduml
