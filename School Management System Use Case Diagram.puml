@@ -25,41 +25,55 @@ VP <|-- P
 rectangle "School Management System" {
     U --> (Login)
     U --> (Logout)
-    
+
     A --> (Login)
     A --> (Logout)
 
-    T --> (Report Duty)
-    T --> (View Schedule)
-    T --> (Prepare Exam Papers)
-    T --> (Record Lesson Progress)
-    T --> (Invigilate Exams)
-    T --> (Mark Exam Papers)
-    T --> (Supervise Clubs and Societies)
-    T --> (Request Leaves and Short Leaves)
-    T --> (Provide Feedback on Student Performance)
-    T --> (View Student Grades)
+    T --> (Create and Upload Educational Content)
+    T --> (Monitor Student Progress and Performance)
+    T --> (Generate Student Reports)
+    T --> (Provide Feedback and Assessments)
+    T --> (Enter Attendance Daily)
+    T --> (Submit Leave and Short Leaves)
+
+    (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+    (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
 
     CT --> (Mark Students Attendance)
-    CT --> (Collect School Fees)
-    CT --> (Collect Parents Letters)
+    CT --> (Collect School Fees from Students)
     CT --> (Sort Exam Results)
     CT --> (Enter Results to Student Reports)
-    CT --> (Conduct Parent-Teacher Meetings)
+
+    (Collect School Fees from Students) ..> (Update Student Records) : <<include>>
+    (Sort Exam Resutls) ..> (Grade Students) : <<include>>
+    (Enter Results to Student Reports) ..> (Rank Students) : <<include>>
 
     SH --> (Coordinate Teachers)
     SH --> (Coordinate Students)
     SH --> (Organize Events)
-    SH --> (Evaluate Teacher Performance)
+        (Organize Events) ..> (Evaluate Teacher Performance) : <<include>>
 
-    TR --> (Collect School Fees from Class Teachers)
     TR --> (Deposit Funds to School Account)
-    TR --> (Manage School Budget)
+    TR --> (Calculate School Budget)
     TR --> (Keep Financial Records)
+    TR --> (Collect School Fees from Teachers)
+        (Collect School Fees from Teachers) ..> (Deposit Fees to School Account) : <<include>>
 
-    S --> (Create Clubs and Societies)
-    S --> (Apply for Scholarships or Financial Aid)
-    S --> (Pay School Fees)
+    S --> (Access and Engage with Learning Materials)
+    S --> (Submit Assignments and Assessments)
+    S --> (Seek Assistance from Teachers)
+    S --> (Pay School Fees and Other Welfare Fees)
+    S --> (Enter Attendance Daily)
+    S --> (Submit Medicals for Sudden Leaves)
+    S --> (Enter Extracurricular Activity Information)
+    S --> (Create School Societies and Clubs)
+
+    (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+    (Seek Assistance from Teachers) ..> (Communicate with Teachers) : <<include>>
+    (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
+    (Create School Societies and Clubs) ..> (Add Members) : <<include>>
+    (Create School Societies and Clubs) ..> (Remove Members) : <<include>>
+    (Create School Societies and Clubs) ..> (Update Members) : <<include>>
 
     SP --> (Assist in Student Discipline)
     SP --> (Organize Student Events)
@@ -74,9 +88,11 @@ rectangle "School Management System" {
     VP --> (Coordinate School Management)
     VP --> (Handle Administrative Tasks)
 
-    A --> (Manage School Facilities)
+    A --> (Supervise School Facilities)
     A --> (Conduct Staff Meetings)
     A --> (Coordinate External Partnerships)
+
+    (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
 }
 
 @enduml
