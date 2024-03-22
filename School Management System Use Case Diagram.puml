@@ -113,7 +113,6 @@ rectangle "School Management System" {
     (Manage User Accounts and Access Permissions) ..> (Modify Permissions) : <<include>>
     (Ensure Security and Integrity of the Platform) ..> (Encrypt Data) : <<include>>
     (Ensure Security and Integrity of the Platform) ..> (Regular Data Backups) : <<include>>
-
     (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
 }
 
