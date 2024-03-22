@@ -93,11 +93,11 @@ rectangle "School Management System" {
     P --> (Organize School Events)
     P --> (Send Notifications to Teachers)
 
-    (Generate Daily Reports) ..> (User Engagement Reports)
-    (Generate Daily Reports) ..> (Performance Reports)
-    (Generate Daily Reports) ..> (System Utilization Reports)
-    (Generate Daily Reports) ..> (Content Popularity Reports)
-    (Generate Daily Reports) ..> (Monthly Attendance Reports)
+    (Generate Daily Reports) ..> (User Engagement Reports) : <<include>>
+    (Generate Daily Reports) ..> (Performance Reports) : <<include>>
+    (Generate Daily Reports) ..> (System Utilization Reports) : <<include>>
+    (Generate Daily Reports) ..> (Content Popularity Reports) : <<include>>
+    (Generate Daily Reports) ..> (Monthly Attendance Reports) : <<include>>
 
     VP --> (Assist Principal)
     VP --> (Supervise Student Enrollment)
