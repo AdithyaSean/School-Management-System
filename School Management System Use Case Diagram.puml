@@ -15,7 +15,14 @@ actor "User" as U
 
 U <|-- T
 U <|-- S
-A <|-- P
+T <|-- A
+CT <|-- A
+SH <|-- A
+TR <|-- A
+VP <|-- A
+P <|-- A
+S <|-- A
+PS <|-- A
 T <|-- CT
 T <|-- SH
 T <|-- TR
@@ -90,9 +97,15 @@ rectangle "School Management System" {
     VP --> (Coordinate School Management)
     VP --> (Handle Administrative Tasks)
 
-    A --> (Supervise School Facilities)
-    A --> (Conduct Staff Meetings)
-    A --> (Coordinate External Partnerships)
+    A --> (Manage User Accounts and Access Permissions)
+    A --> (Oversee Overall Functionality and Performance)
+    A --> (Ensure Security and Integrity of the Platform)
+
+    (Manage User Accounts and Access Permissions) ..> (Add User) : <<include>>
+    (Manage User Accounts and Access Permissions) ..> (Delete User) : <<include>>
+    (Manage User Accounts and Access Permissions) ..> (Modify Permissions) : <<include>>
+    (Ensure Security and Integrity of the Platform) ..> (Encrypt Data) : <<include>>
+    (Ensure Security and Integrity of the Platform) ..> (Regular Data Backups) : <<include>>
 
     (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
 }
