@@ -1,7 +1,6 @@
 @startuml SchoolManagementSystem
 
 left to right direction
-skinparam PackageStyle rectangle
 
 actor "Teacher" as T
 actor "Class Teacher" as CT
@@ -35,9 +34,6 @@ VP <|-- P
 rectangle "School Management System" {
     U --> (Login)
     U --> (Logout)
-
-    A --> (Login)
-    A --> (Logout)
 
     T --> (Create and Upload Educational Content)
     T --> (Monitor Student Progress and Performance)
