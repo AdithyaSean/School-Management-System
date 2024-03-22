@@ -87,10 +87,17 @@ rectangle "School Management System" {
     SP --> (Assist in Student Discipline)
     SP --> (Organize Student Events)
 
-    P --> (Overall School Supervision)
-    P --> (Review and Approve School Policies)
-    P --> (Organize Special Events)
-    P --> (Take Important Decisions)
+    P --> (Generate Daily Reports)
+    P --> (Generate Monthly Reports)
+    P --> (Generate Annual Reports)
+    P --> (Organize School Events)
+    P --> (Send Notifications to Teachers)
+
+    (Generate Daily Reports) --> (User Engagement Reports)
+    (Generate Daily Reports) --> (Performance Reports)
+    (Generate Daily Reports) --> (System Utilization Reports)
+    (Generate Daily Reports) --> (Content Popularity Reports)
+    (Generate Daily Reports) --> (Monthly Attendance Reports)
 
     VP --> (Assist Principal)
     VP --> (Supervise Student Enrollment)
