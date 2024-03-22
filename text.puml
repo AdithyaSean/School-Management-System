@@ -1,0 +1,73 @@
+@startuml
+
+left to right direction
+
+actor "Teacher" as T
+actor "Class Teacher" as CT
+actor "Sectional Head" as SH
+actor "Treasurer" as TR
+actor "Student" as S
+actor "Prefects" as SP
+actor "Principal" as P
+actor "Vice Principal" as VP
+actor "Administrator" as A
+actor "User" as U
+actor "Auditor" as AU
+
+rectangle "School Management System" {
+    A --> (Login)
+    A --> (Logout)
+
+    U --> (Login)
+    U --> (Logout)
+
+    T --> (Report Duty)
+    T --> (View Schedule)
+    T --> (Prepare Exam Papers)
+    T --> (Record Lesson Progress)
+    T --> (Invigilate Exams)
+    T --> (Mark Exam Papers)
+    T --> (Supervise Clubs)
+    T --> (Request Leaves)
+    T --> (Provide Feedback)
+    T --> (View Student Grades)
+
+    CT --> (Mark Students Attendance)
+    CT --> (Collect School Fees)
+    CT --> (Collect Parents Letters)
+    CT --> (Sort Exam Results)
+    CT --> (Enter Results to Student Reports)
+    CT --> (Conduct Parent-Teacher Meetings)
+
+    SH --> (Coordinate Teachers)
+    SH --> (Coordinate Students)
+    SH --> (Organize Events)
+    SH --> (Evaluate Teacher Performance)
+
+    TR --> (Deposit Funds to School Account)
+    TR --> (Calculate School Budget)
+    TR --> (Keep Financial Records)
+    TR --> (Collect School Fees from Teachers)
+
+    S --> (Create Clubs and Societies)
+    S --> (Apply for Scholarships or Financial Aid)
+    S --> (Pay School Fees)
+
+    SP --> (Assist in Student Discipline)
+    SP --> (Organize Student Events)
+
+    P --> (Overall School Management)
+    P --> (Review and Approve School Policies)
+    P --> (Organize Special Events)
+    P --> (Take Important Decisions)
+
+    VP --> (Assist Principal)
+    VP --> (Supervise Student Enrollment)
+    VP --> (Coordinate School Management)
+    VP --> (Handle Administrative Tasks)
+    
+    AU --> (Use for Auditing Purposes)
+    AU --> (Manage School Financial Status)
+}
+
+@enduml

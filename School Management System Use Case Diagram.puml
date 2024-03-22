@@ -1,6 +1,7 @@
 @startuml SchoolManagementSystem
 
 left to right direction
+skinparam PackageStyle rectangle
 
 actor "Teacher" as T
 actor "Class Teacher" as CT
@@ -10,6 +11,7 @@ actor "Student" as S
 actor "Prefects" as SP
 actor "Principal" as P
 actor "Vice Principal" as VP
+actor "Auditor" as AU
 actor "Administrator" as A
 actor "User" as U
 
@@ -60,7 +62,8 @@ rectangle "School Management System" {
     SH --> (Organize Events)
 
     (Organize Events) ..> (Evaluate Teacher Performance) : <<include>>
-
+    
+    TR --> (View School Financial Status)
     TR --> (Deposit Funds to School Account)
     TR --> (Calculate School Budget)
     TR --> (Keep Financial Records)
@@ -93,11 +96,11 @@ rectangle "School Management System" {
     P --> (Organize School Events)
     P --> (Send Notifications to Teachers)
 
-    (Generate Daily Reports) --> (User Engagement Reports)
-    (Generate Daily Reports) --> (Performance Reports)
-    (Generate Daily Reports) --> (System Utilization Reports)
-    (Generate Daily Reports) --> (Content Popularity Reports)
-    (Generate Daily Reports) --> (Monthly Attendance Reports)
+    (Generate Daily Reports) ..> (User Engagement Reports)
+    (Generate Daily Reports) ..> (Performance Reports)
+    (Generate Daily Reports) ..> (System Utilization Reports)
+    (Generate Daily Reports) ..> (Content Popularity Reports)
+    (Generate Daily Reports) ..> (Monthly Attendance Reports)
 
     VP --> (Assist Principal)
     VP --> (Supervise Student Enrollment)
@@ -114,6 +117,8 @@ rectangle "School Management System" {
     (Ensure Security and Integrity of the Platform) ..> (Encrypt Data) : <<include>>
     (Ensure Security and Integrity of the Platform) ..> (Regular Data Backups) : <<include>>
     (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
+
+    (View School Financial Status) -- AU
 }
 
 @enduml
