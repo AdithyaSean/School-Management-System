@@ -17,6 +17,7 @@ actor "User" as U
 
 U <|-- T
 U <|-- S
+U <|-- A
 T <|-- A
 CT <|-- A
 SH <|-- A
