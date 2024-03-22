@@ -33,9 +33,12 @@ rectangle "School Management System" {
     T -- (Provide Feedback and Assessments)
     T -- (Enter Attendance Daily)
     T -- (Submit Leave and Short Leaves)
+    T -- (Mark Exam Papers)
 
+    (Generate Student Reports) ..> (Update Monthly) : <<include>>
     (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
+    (Mark Exam Papers) ..> (Grade the Students) : <<include>>
 
     CT -- (Mark Students Attendence)
     CT -- (Collect School Fees from Students)
@@ -43,7 +46,7 @@ rectangle "School Management System" {
     CT -- (Enter Results to Student Reports)
 
     (Collect School Fees from Students) ..> (Update Student Records) : <<include>>
-    (Sort Exam Resutls) ..> (Grade Students) : <<include>>
+    (Sort Exam Results) ..> (Upload to the System) : <<include>>
     (Enter Results to Student Reports) ..> (Rank Students) : <<include>>
 
     SH -- (Coordinate Teachers)
