@@ -118,7 +118,7 @@ rectangle "School Management System" {
     (Ensure Security and Integrity of the Platform) ..> (Regular Data Backups) : <<include>>
     (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
 
-    (View School Financial Status) -- AU
+    (View School Financial Status) --> AU
 }
 
 @enduml
