@@ -23,9 +23,6 @@ S <|-- SP
 VP <|-- P
 
 rectangle "School Management System" {
-    
-
-rectangle "School Management System" {
     U --> (Login)
     U --> (Logout)
     
