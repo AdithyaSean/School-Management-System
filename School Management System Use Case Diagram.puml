@@ -1,4 +1,4 @@
-@startuml SchoolManagementSystem
+@startuml School Management System
 
 left to right direction
 
@@ -10,21 +10,11 @@ actor "Student" as S
 actor "Prefect" as SP
 actor "Principal" as P
 actor "Vice Principal" as VP
-actor "Auditor" as AU
 actor "Administrator" as A
 actor "User" as U
 
 U <|-- T
 U <|-- S
-U <|-- A
-T <|-- A
-CT <|-- A
-SH <|-- A
-TR <|-- A
-VP <|-- A
-P <|-- A
-S <|-- A
-SP <|-- A
 T <|-- CT
 T <|-- SH
 T <|-- TR
@@ -32,50 +22,57 @@ S <|-- SP
 VP <|-- P
 
 rectangle "School Management System" {
-    U --> (Login)
-    U --> (Logout)
+    U -- (Login)
+    U -- (Logout)
 
-    T --> (Create and Upload Educational Content)
-    T --> (Monitor Student Progress and Performance)
-    T --> (Generate Student Reports)
-    T --> (Provide Feedback and Assessments)
-    T --> (Enter Attendance Daily)
-    T --> (Submit Leave and Short Leaves)
+    (Login) ..> (Validate User) : <<include>>
+
+    T -- (Create and Upload Educational Content)
+    T -- (Monitor Student Progress and Performance)
+    T -- (Generate Student Reports)
+    T -- (Provide Feedback and Assessments)
+    T -- (Enter Attendance Daily)
+    T -- (Submit Leave and Short Leaves)
 
     (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
 
-    CT --> (Mark Students Attendance)
-    CT --> (Collect School Fees from Students)
-    CT --> (Sort Exam Results)
-    CT --> (Enter Results to Student Reports)
+    CT -- (Mark Students Attendence)
+    CT -- (Collect School Fees from Students)
+    CT -- (Sort Exam Results)
+    CT -- (Enter Results to Student Reports)
 
     (Collect School Fees from Students) ..> (Update Student Records) : <<include>>
     (Sort Exam Resutls) ..> (Grade Students) : <<include>>
     (Enter Results to Student Reports) ..> (Rank Students) : <<include>>
 
-    SH --> (Coordinate Teachers)
-    SH --> (Coordinate Students)
-    SH --> (Organize Events)
+    SH -- (Coordinate Teachers)
+    SH -- (Coordinate Students)
+    SH -- (Organize Events)
 
     (Organize Events) ..> (Evaluate Teacher Performance) : <<include>>
     
-    TR --> (View School Financial Status)
-    TR --> (Deposit Funds to School Account)
-    TR --> (Calculate School Budget)
-    TR --> (Keep Financial Records)
-    TR --> (Collect School Fees from Teachers)
+    TR -- (View School Financial Status)
+    TR -- (Deposit Funds to School Account)
+    TR -- (Withdraw Funds from School Account)
+    TR -- (Calculate School Budget)
+    TR -- (Keep Financial Records)
+    TR -- (Collect School Fees from Teachers)
 
     (Collect School Fees from Teachers) ..> (Deposit Fees to School Account) : <<include>>
+    (Collect School Fees from Teachers) ..> (Update Logs) : <<include>>
+    (Withdraw Funds from School Account) ..> (Validate User) : <<include>>
+    (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
+    (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
 
-    S --> (Access and Engage with Learning Materials)
-    S --> (Submit Assignments and Assessments)
-    S --> (Seek Assistance from Teachers)
-    S --> (Pay School Fees and Other Welfare Fees)
-    S --> (Enter Attendance Daily)
-    S --> (Submit Medicals for Sudden Leaves)
-    S --> (Enter Extracurricular Activity Information)
-    S --> (Create School Societies and Clubs)
+    S -- (Access and Engage with Learning Materials)
+    S -- (Submit Assignments and Assessments)
+    S -- (Seek Assistance from Teachers)
+    S -- (Pay School Fees and Other Welfare Fees)
+    S -- (Enter Attendance Daily)
+    S -- (Submit Medicals for Sudden Leaves)
+    S -- (Enter Extracurricular Activity Information)
+    S -- (Create School Societies and Clubs)
 
     (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Seek Assistance from Teachers) ..> (Communicate with Teachers) : <<include>>
@@ -84,14 +81,14 @@ rectangle "School Management System" {
     (Create School Societies and Clubs) ..> (Remove Members) : <<include>>
     (Create School Societies and Clubs) ..> (Update Members) : <<include>>
 
-    SP --> (Assist in Student Discipline)
-    SP --> (Organize Student Events)
+    SP -- (Assist in Student Discipline)
+    SP -- (Organize Student Events)
 
-    P --> (Generate Daily Reports)
-    P --> (Generate Monthly Reports)
-    P --> (Generate Annual Reports)
-    P --> (Organize School Events)
-    P --> (Send Notifications to Teachers)
+    P -- (Generate Daily Reports)
+    P -- (Generate Monthly Reports)
+    P -- (Generate Annual Reports)
+    P -- (Organize School Events)
+    P -- (Send Notifications to Teachers)
 
     (Generate Daily Reports) ..> (User Engagement Reports) : <<include>>
     (Generate Daily Reports) ..> (Performance Reports) : <<include>>
@@ -99,24 +96,28 @@ rectangle "School Management System" {
     (Generate Daily Reports) ..> (Content Popularity Reports) : <<include>>
     (Generate Daily Reports) ..> (Monthly Attendance Reports) : <<include>>
 
-    VP --> (Assist Principal)
-    VP --> (Supervise Student Enrollment)
-    VP --> (Coordinate School Management)
-    VP --> (Handle Administrative Tasks)
+    VP -- (Assist the Principal)
+    VP -- (Supervise Student Enrollment)
+    VP -- (Coordinate School Management)
+    VP -- (Handle Administrative Tasks)
 
-    A --> (Manage User Accounts and Access Permissions)
-    A --> (Oversee Overall Functionality and Performance)
-    A --> (Ensure Security and Integrity of the Platform)
-    A --> (Conduct Staff Meetings)
+    (Assist the Principal) ..> (Coordinate with Principal) : <<include>>
+    (Supervise Student Enrollment) ..> (Review Enrollment Data) : <<include>>
+    (Coordinate School Management) ..> (Collaborate with Sectional Heads) : <<include>>
+    (Handle Administrative Tasks) ..> (Manage Administrative Procedures) : <<include>>
 
-    (Manage User Accounts and Access Permissions) ..> (Add User) : <<include>>
-    (Manage User Accounts and Access Permissions) ..> (Delete User) : <<include>>
-    (Manage User Accounts and Access Permissions) ..> (Modify Permissions) : <<include>>
+
+    A -- (Create User Accounts and Access Permissions)
+    A -- (Oversee Overall Functionality and Performance)
+    A -- (Ensure Security and Integrity of the Platform)
+    A -- (Conduct Staff Meetings)
+
+    (Create User Accounts and Access Permissions) ..> (Add User) : <<include>>
+    (Create User Accounts and Access Permissions) ..> (Delete User) : <<include>>
+    (Create User Accounts and Access Permissions) ..> (Modify Permissions) : <<include>>
     (Ensure Security and Integrity of the Platform) ..> (Encrypt Data) : <<include>>
     (Ensure Security and Integrity of the Platform) ..> (Regular Data Backups) : <<include>>
     (Conduct Staff Meetings) ..> (Inform Staff Members) : <<include>>
-
-    (View School Financial Status) --> AU
 }
 
 @enduml
