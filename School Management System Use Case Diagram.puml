@@ -15,6 +15,8 @@ actor "User" as U
 
 U <|-- T
 U <|-- S
+U <|-- VP
+U <|-- A
 T <|-- CT
 T <|-- SH
 T <|-- TR
@@ -75,12 +77,12 @@ rectangle "School Management System" {
     S -- (Submit Assignments and Assessments)
     S -- (Seek Assistance from Teachers)
     S -- (Pay School Fees and Other Welfare Fees)
-    S -- (Enter Attendance Daily)
+    S -- (Enter Student Attendance Daily)
     S -- (Submit Medicals for Sudden Leaves)
     S -- (Enter Extracurricular Activity Information)
     S -- (Create School Societies and Clubs)
 
-    (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+    (Enter Student Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Seek Assistance from Teachers) ..> (Communicate with Teachers) : <<include>>
     (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
     (Create School Societies and Clubs) ..> (Add Members) : <<include>>
