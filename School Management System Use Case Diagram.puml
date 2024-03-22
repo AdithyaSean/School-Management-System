@@ -7,7 +7,7 @@ actor "Class Teacher" as CT
 actor "Sectional Head" as SH
 actor "Treasurer" as TR
 actor "Student" as S
-actor "Prefects" as SP
+actor "Prefect" as SP
 actor "Principal" as P
 actor "Vice Principal" as VP
 actor "Auditor" as AU
@@ -24,7 +24,7 @@ TR <|-- A
 VP <|-- A
 P <|-- A
 S <|-- A
-PS <|-- A
+SP <|-- A
 T <|-- CT
 T <|-- SH
 T <|-- TR
@@ -107,6 +107,7 @@ rectangle "School Management System" {
     A --> (Manage User Accounts and Access Permissions)
     A --> (Oversee Overall Functionality and Performance)
     A --> (Ensure Security and Integrity of the Platform)
+    A --> (Conduct Staff Meetings)
 
     (Manage User Accounts and Access Permissions) ..> (Add User) : <<include>>
     (Manage User Accounts and Access Permissions) ..> (Delete User) : <<include>>
