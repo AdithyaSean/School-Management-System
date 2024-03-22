@@ -48,9 +48,11 @@ rectangle "School Management System" {
 
     SH -- (Coordinate Teachers)
     SH -- (Coordinate Students)
-    SH -- (Organize Events)
+    SH -- (Conduct Sectional Staff Meetings)
+    SH -- (Organize Sectional Events)
 
-    (Organize Events) ..> (Evaluate Teacher Performance) : <<include>>
+    (Conduct Sectional Staff Meetings) ..> (Evaluate Teacher Performance) : <<include>>
+    (Organize Sectional Events) ..> (Inform Teachers) : <<include>>
     
     TR -- (View School Financial Status)
     TR -- (Deposit Funds to School Account)
@@ -59,6 +61,7 @@ rectangle "School Management System" {
     TR -- (Keep Financial Records)
     TR -- (Collect School Fees from Teachers)
 
+    (Deposit Funds to School Account) ..> (Update Logs) <<include>>
     (Collect School Fees from Teachers) ..> (Deposit Fees to School Account) : <<include>>
     (Collect School Fees from Teachers) ..> (Update Logs) : <<include>>
     (Withdraw Funds from School Account) ..> (Validate User) : <<include>>
