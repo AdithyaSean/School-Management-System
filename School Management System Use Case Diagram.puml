@@ -94,9 +94,9 @@ rectangle "School Management System" {
     SP -- (Update Events for Students)
 
     (Edit Student Status) ..> (Inform Class Teachers) : <<include>>
-    (Create Student Events for Students) ..> (Inform Students) : <<include>>
-    (Delete Student Events for Students) ..> (Inform Students) : <<include>>
-    (Update Student Events for Students) ..> (Inform Students) : <<include>>
+    (Create Events for Students) ..> (Inform Students) : <<include>>
+    (Delete Events for Students) ..> (Inform Students) : <<include>>
+    (Update Events for Students) ..> (Inform Students) : <<include>>
 
     P -- (Generate Reports)
     P -- (Create Special School Events)
