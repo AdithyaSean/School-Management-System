@@ -25,32 +25,41 @@ S <|-- SP
 VP <|-- P
 
 rectangle "School Management System" {
+    U -- (Enter Teacher Attendance Daily)
     U -- (Login)
     U -- (Communicate with Users)
     U -- (Logout)
 
+    (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Login) ..> (Validate User) : <<include>>
 
-    T -- (Create and Upload Educational Content)
+    T -- (View Educational Content Dashboard)
     T -- (Monitor Student Progress and Performance)
     T -- (Provide Feedback and Assessments)
-    T -- (Enter Attendance Daily)
     T -- (Submit Leave and Short Leaves)
-    T -- (Mark Exam Papers)
+    T -- (View Student Information as a Teacher)
 
-    (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+    (View Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
+    (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
+    (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
     (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
-    (Mark Exam Papers) ..> (Grade the Students) : <<include>>
+    (View Student Information as a Teacher) <.. (Update Subject Marks) : <<extend>>
+    (View Student Information as a Teacher) <.. (Edit Subject Marks) : <<extend>>
 
     CT -- (Monitor Students Attendance)
-    CT -- (Input Exam Results)
-    CT -- (View Student Status)
-    CT -- (Edit Student Status)
+    CT -- (View Exam Results)
+    CT -- (View Student Information as a Teacher)
     CT -- (Generate Student Reports)
 
-    (Input Exam Results) ..> (Update Student Status) : <<include>>
-    (Input Exam Results) ..> (Sort Student Marks) : <<include>>
+    (View Student Information as a Teacher) <.. (Update Student Information) : <<extend>>
+    (View Student Information as a Teacher) <.. (Delete Student Information) : <<extend>>
+    (View Student Information as a Teacher) <.. (Create Student Information) : <<extend>>
+    (View Exam Results) <.. (Enter Exam Results) : <<extend>>
+    (View Exam Results) <.. (Update Exam Results) : <<extend>>
+    (View Exam Results) <.. (Remove Exam Results) : <<extend>>
+    (View Exam Results) <.. (Sort Student Marks) : <<extend>>
     (Generate Student Reports) ..> (Rank Students) : <<include>>
+    (Generate Student Reports) ..> (Inform Students) : <<include>>
 
     SH -- (Schedule Sectional Staff Meetings)
     SH -- (Create Sectional Events)
@@ -68,19 +77,16 @@ rectangle "School Management System" {
 
     (Generate Financial Reports) ..> (Notify Vice Principal) : <<include>>
     (Monitor Student Payments) <.. (Notify Students) : <<extend>>
-    (Withdraw Funds from School Account) ..> (Validate User) : <<include>>
     (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
     (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
 
     S -- (Access and Engage with Learning Materials)
     S -- (Submit Assignments and Assessments)
     S -- (Pay School Fees and Other Welfare Fees)
-    S -- (Enter Student Attendance Daily)
     S -- (Submit Medicals for Sudden Leaves)
     S -- (Enter Extracurricular Activity Information)
     S -- (Create School Societies and Clubs)
 
-    (Enter Student Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
     (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
     (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
@@ -88,15 +94,15 @@ rectangle "School Management System" {
     (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
     (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
 
-    SP -- (Edit Student Status)
+    SP -- (Enter Student Information as a Prefect)
     SP -- (Create Events for Students)
     SP -- (Delete Events for Students)
     SP -- (Update Events for Students)
 
-    (Edit Student Status) ..> (Inform Class Teachers) : <<include>>
-    (Create Events for Students) ..> (Inform Students) : <<include>>
-    (Delete Events for Students) ..> (Inform Students) : <<include>>
-    (Update Events for Students) ..> (Inform Students) : <<include>>
+    (Enter Student Information as a Prefect) <.. (Update Student Information as a Prefect)
+    (Create Events for Students) ..> (Inform Students as a Prefect) : <<include>>
+    (Delete Events for Students) ..> (Inform Students as a Prefect) : <<include>>
+    (Update Events for Students) ..> (Inform Students as a Prefect) : <<include>>
 
     P -- (Generate Reports)
     P -- (Create Special School Events)
@@ -107,8 +113,8 @@ rectangle "School Management System" {
     (Generate Reports) <.. (System Utilization Reports) : <<extend>>
     (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
     (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
-    (Create Special School Events) ..> (Inform Teachers) : <<include>>
-    (Create Special School Events) ..> (Inform Students) : <<include>>
+    (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
+    (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
 
     VP -- (Supervise Student Enrollment)
     VP -- (View Administrative Tasks)
