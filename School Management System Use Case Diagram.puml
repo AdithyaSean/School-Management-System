@@ -114,7 +114,6 @@ rectangle "School Management System" {
     (Coordinate School Management) ..> (Collaborate with Sectional Heads) : <<include>>
     (Handle Administrative Tasks) ..> (Manage Administrative Procedures) : <<include>>
 
-
     A -- (Create User Accounts and Access Permissions)
     A -- (Oversee Overall Functionality and Performance)
     A -- (Ensure Security and Integrity of the Platform)
