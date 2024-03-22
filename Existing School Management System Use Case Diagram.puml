@@ -75,7 +75,7 @@ rectangle "Existing School Management System" {
 
     VP -- (Assist Principal)
     VP -- (Coordinate School Management)
-    VP -- (Issueing Checks)
+    VP -- (Issueing Cheques)
     VP -- (Collect Funds for Development)
     VP -- (Register New Students)  
     VP -- (Generate Student Leaving Certificates)
