@@ -25,12 +25,12 @@ S <|-- SP
 VP <|-- P
 
 rectangle "School Management System" {
-    U -- (Enter Teacher Attendance Daily)
+    U -- (Enter the Attendance Daily)
     U -- (Login)
     U -- (Communicate with Users)
     U -- (Logout)
 
-    (Enter Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+    (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
     (Login) ..> (Validate User) : <<include>>
 
     T -- (View Educational Content Dashboard)
@@ -43,17 +43,14 @@ rectangle "School Management System" {
     (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
     (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
     (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
-    (View Student Information as a Teacher) <.. (Update Subject Marks) : <<extend>>
-    (View Student Information as a Teacher) <.. (Edit Subject Marks) : <<extend>>
-
-    CT -- (Monitor Students Attendance)
-    CT -- (View Exam Results)
-    CT -- (View Student Information as a Teacher)
-    CT -- (Generate Student Reports)
-
     (View Student Information as a Teacher) <.. (Update Student Information) : <<extend>>
     (View Student Information as a Teacher) <.. (Delete Student Information) : <<extend>>
     (View Student Information as a Teacher) <.. (Create Student Information) : <<extend>>
+
+    CT -- (Monitor Students Attendance)
+    CT -- (View Exam Results)
+    CT -- (Generate Student Reports)
+
     (View Exam Results) <.. (Enter Exam Results) : <<extend>>
     (View Exam Results) <.. (Update Exam Results) : <<extend>>
     (View Exam Results) <.. (Remove Exam Results) : <<extend>>
@@ -80,13 +77,16 @@ rectangle "School Management System" {
     (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
     (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
 
-    S -- (Access and Engage with Learning Materials)
+    S -- (View Educational Content Dashboard as a Student)
     S -- (Submit Assignments and Assessments)
     S -- (Pay School Fees and Other Welfare Fees)
     S -- (Submit Medicals for Sudden Leaves)
     S -- (Enter Extracurricular Activity Information)
     S -- (Create School Societies and Clubs)
 
+    (View Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
+    (View Educational Content Dashboard as a Student) <.. (Upload Assessments) : <<extend>>
+    (View Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
     (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
     (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
     (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
