@@ -168,10 +168,6 @@ rectangle "School Management System" {
 
         (Send Notifications to Vice Principal) -- VPR
 
-        P -- (Create Special School Events)
-        (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
-        (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
-
         P -- (Access Administrative Dashboard)
         (Access Administrative Dashboard) <.. (View Policies) : <<extend>>
         (Access Administrative Dashboard) <.. (Create Policies) : <<extend>>
