@@ -194,25 +194,25 @@ class UpdateMembers {
     + update()
 }
 
-User --- ValidateUser : <<include>>
-User --- VerifyUsingFingerprint : <<include>>
-User --- VerifyLeave : <<include>>
-Teacher --- EnterExamResults : <<include>>
-Teacher --- InformStudents : <<include>>
-Teacher --- EnterExamResults : <<include>>
-ClassTeacher --- RankStudents : <<include>>
-ClassTeacher --- InformStudents : <<include>>
-SectionalHead --- InformSectionalTeachers : <<include>>
-SectionalHead --- InformSectionalStudents : <<include>>
-Treasurer --- RequestPrincipalPermission : <<include>>
-Treasurer --- UpdateLogs : <<include>>
-Treasurer --- NotifyVicePrincipal : <<include>>
-Student --- GenerateReceipts : <<include>>
-Student --- UpdateInformation : <<include>>
-Student --- AddMembers : <<include>>
-Student --- RemoveMembers : <<include>>
-Student --- UpdateMembers : <<include>>
-Prefect --- InformStudents : <<include>>
-Principal --- NotifyVicePrincipal : <<include>>
+User --- ValidateUser <<include>>
+User --- VerifyUsingFingerprint <<include>>
+User --- VerifyLeave <<include>>
+Teacher --- EnterExamResults <<include>>
+Teacher --- InformStudents <<include>>
+Teacher --- EnterExamResults <<include>>
+ClassTeacher --- RankStudents <<include>>
+ClassTeacher --- InformStudents <<include>>
+SectionalHead --- InformSectionalTeachers <<include>>
+SectionalHead --- InformSectionalStudents <<include>>
+Treasurer --- RequestPrincipalPermission <<include>>
+Treasurer --- UpdateLogs <<include>>
+Treasurer --- NotifyVicePrincipal <<include>>
+Student --- GenerateReceipts <<include>>
+Student --- UpdateInformation <<include>>
+Student --- AddMembers <<include>>
+Student --- RemoveMembers <<include>>
+Student --- UpdateMembers <<include>>
+Prefect --- InformStudents <<include>>
+Principal --- NotifyVicePrincipal <<include>>
 
 @enduml
