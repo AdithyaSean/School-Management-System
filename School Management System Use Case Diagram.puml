@@ -12,13 +12,11 @@ actor "Sectional Head" as SHR
 actor "Student" as S
 actor "Student" as SR
 actor "Prefect" as SP
-actor "Prefect" as SPR
 actor "Principal" as P
 actor "Principal" as PR
 actor "Vice Principal" as VP
 actor "Vice Principal" as VPR
 actor "Administrator" as A
-actor "Administrator" as AR
 actor "User" as U
 actor "User" as UR
 
@@ -39,6 +37,7 @@ rectangle "School Management System" {
         (Access Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
         (Access Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
         (Access Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
+        (Access Educational Content Dashboard) <.. (View Time Table) : <<extend>>
 
         T -- (Access Extracurricular Content Dashboard)
         (Access Extracurricular Content Dashboard) <.. (Add Members) : <<extend>>
@@ -66,7 +65,7 @@ rectangle "School Management System" {
         
         T -- (Access Query Dashboard)
         (Access Query Dashboard) <.. (Submit Leaves and Short Leaves) : <<extend>>
-        (Submit Leaves and Short Leaves) ..> (Request Permission from Sectional Head) : <<include>>
+        (Submit Leaves and Short Leaves) ..> (Send Notifications to Students) : <<include>>
         (Access Query Dashboard) <.. (View Student Queries) : <<extend>>
         (Access Query Dashboard) <.. (Feedback Student Queries) : <<extend>>
         (Feedback Student Queries) ..> (Send Notifications to Students): <<include>>
@@ -75,13 +74,13 @@ rectangle "School Management System" {
 
         CT -- (Generate Student Reports)
         (Generate Student Reports) <.. (Student Attendance Reports) : <<extend>>
-        (Student Attendance Reports) ..> (Send Notifications to Students) : <<include>>
         (Student Attendance Reports) ..> (Send Notifications to Sectional Head) : <<include>>
         (Generate Student Reports) <.. (Student Performance Reports) : <<extend>>
         (Student Performance Reports) ..> (Send Notifications to Students) : <<include>>
         (Student Performance Reports) ..> (Send Notifications to Sectional Head) : <<include>>
 
         (Send Notifications to Class Teachers) -- CTR
+        (Generate Receipts) -- CTR
 
         SH -- (Access Exam Dashboard)
         (Access Exam Dashboard) <.. (Create Exams) : <<extend>>
@@ -91,9 +90,12 @@ rectangle "School Management System" {
         SH -- (Access Staff Management Dashboard as a Teacher)
         (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
         (Schedule Sectional Staff Meetings) ..> (Send Notifications to Teachers) : <<include>>
-
+        (Access Staff Management Dashboard as a Teacher) <.. (Create Time Tables) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Update Time Tables) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Delete Time Tables) : <<extend>>
+        (Update Time Tables) ..> (Send Notifications to Teachers) : <<include>>
+        
         (Send Notifications to Sectional Head) -- SHR
-        (Request Permission from Sectional Head) -- SHR
 
         S -- (Access Educational Content Dashboard as a Student)
         (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
@@ -122,12 +124,11 @@ rectangle "School Management System" {
         (Submit Student Queries) ..> (Send Notifications to Class Teachers) : <<include>>
 
         (Send Notifications to Students) -- SR
-        (Generate Receipts) -- SR
 
         SP -- (Access Student Management Dashboard as a Prefect)
         (Access Student Management Dashboard as a Prefect) <.. (Update disciplinary Status) : <<extend>>
         (Access Student Management Dashboard as a Prefect) <.. (Report Student Misconduct) : <<extend>>
-        (Report Student Misconduct) ..> (Send Notifications to Sectional Head) : <<include>>
+        (Report Student Misconduct) ..> (Send Notifications to Vice Principal) : <<include>>
 
         SP -- (Access Event Management Dashboard as a Prefect)
         (Access Event Management Dashboard as a Prefect) <.. (Create Events for Students) : <<extend>>
@@ -157,15 +158,15 @@ rectangle "School Management System" {
         (Update School Budget) ..> (Send Notifications to Principal) : <<include>>
         (Access Financial Management Dashboard) <.. (Generate Financial Reports) : <<extend>>
         (Access Financial Management Dashboard) <.. (Withdraw Funds from School Account) : <<extend>>
-        (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
         (Withdraw Funds from School Account) ..> (Send Notifications to Principal) : <<include>>
         (Access Financial Management Dashboard) <.. (Deposit Funds to School Account) : <<extend>>
-        (Deposit Funds to School Account) ..> (Request Principal Permission) : <<include>>
         (Deposit Funds to School Account) ..> (Send Notifications to Principal) : <<include>>
 
         VP -- (Broadcast Announcements)
         (Broadcast Announcements) <.. (Send Messages as the Principal) : <<include>>
         (Send Messages as the Principal) <.. (Send Notifications to Users) : <<include>>
+
+        (Send Notifications to Vice Principal) -- VPR
 
         P -- (Create Special School Events)
         (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
@@ -178,7 +179,6 @@ rectangle "School Management System" {
         (Access Administrative Dashboard) <.. (Delete Policies) : <<extend>>
 
         (Send Notifications to Principal) -- PR
-        (Request Principal Permission) -- PR
 
         A -- (Create User Accounts and Access Permissions)
         (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
