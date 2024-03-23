@@ -27,12 +27,12 @@ actor "User" as UR
 U <|-- T
 U <|-- S
 U <|-- VP
+U <|-- A
+S <|-- SP
 T <|-- CT
 T <|-- SH
 T <|-- TS
-S <|-- SP
 VP <|-- P
-VP <|-- A
 
 rectangle "School Management System" {
         U -- (Enter the Attendance Daily)
@@ -49,7 +49,6 @@ rectangle "School Management System" {
         (Comminication) <.. (Send Messages) : <<extend>>
         (Send Messages) ..> (Send Notifications) : <<include>>
         (Send Notifications) -- UR
-        
 
         U -- (Logout)
 
@@ -79,34 +78,27 @@ rectangle "School Management System" {
         (Access Students Information) <.. (Update Student Performance) : <<extend>>
         (Access Students Information) <.. (View Student Attendance) : <<extend>>
 
-        T -- (Access Exam Information)
-        (Access Exam Information) <.. (Enter Exam Results) : <<extend>>
-        (Access Exam Information) <.. (Update Exam Results) : <<extend>>
-        (Access Exam Information) <.. (Remove Exam Results) : <<extend>>
-        (Access Exam Information) <.. (Sort Student Marks) : <<extend>>
+        T -- (Access Exam Dashboard as a Teacher)
+        (Access Exam Dashboard as a Teacher) <.. (View Exam Results) : <<extend>>
+        (Access Exam Dashboard as a Teacher) <.. (Enter Exam Results) : <<extend>>
+        (Access Exam Dashboard as a Teacher) <.. (Update Exam Results) : <<extend>>
+        (Access Exam Dashboard as a Teacher) <.. (Delete Exams Results) : <<extend>>
         
         T -- (Submit Leaves and Short Leaves)
         (Submit Leaves and Short Leaves) ..> (Request Permission) : <<include>>
 
         CT -- (Generate Student Reports)
-        (Generate Student Reports) <.. (Attendance Reports) : <<extend>>
-        (Generate Student Reports) <.. (Performance Reports) : <<extend>>
-        (Generate Student Reports) <.. (Attendance Reports) : <<extend>>
+        (Generate Student Reports) <.. (Student Attendance Reports) : <<extend>>
+        (Generate Student Reports) <.. (Student Performance Reports) : <<extend>>
+        (Generate Student Reports) <.. (Student Attendance Reports) : <<extend>>
 
-        SH -- (Schedule Sectional Staff Meetings)
-        (Schedule Sectional Staff Meetings) ..> (Inform Sectional Teachers) : <<include>>
+        SH -- (Access Exam Dashboard)
+        (Access Exam Dashboard) <.. (Create Exams) : <<extend>>
+        (Access Exam Dashboard) <.. (Update Exams) : <<extend>>
+        (Access Exam Dashboard) <.. (Delete Exams) : <<extend>>
 
-        SH -- (Access Event Management Dashboard)
-        (Access Event Management Dashboard) <.. (Create Sectional Events) : <<extend>>
-        (Access Event Management Dashboard) <.. (Update Sectional Events) : <<extend>>
-        (Access Event Management Dashboard) <.. (Delete Sectional Events) : <<extend>>
-
-        SH -- (Generate Reports)
-        (Generate Reports) <.. (User Engagement Reports) : <<extend>>
-        (Generate Reports) <.. (Performance Reports) : <<extend>>
-        (Generate Reports) <.. (System Utilization Reports) : <<extend>>
-        (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
-        (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
+        SH -- (Access Staff Management Dashboard as a Teacher)
+        (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
         
         TS -- (Access Financial Management Dashboard)
         (Access Financial Management Dashboard) <.. (Generate Financial Reports) : <<extend>>
@@ -124,6 +116,10 @@ rectangle "School Management System" {
         S -- (Access Extracurricular Content Dashboard as a Student)
         (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
         (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
+
+        S -- (Access Exam Dashboard as a Student)
+        (Access Exam Dashboard as a Student) <.. (View Exams as a Student) : <<extend>>
+        (Access Exam Dashboard as a Student) <.. (View Exam Results as a Student) : <<extend>>
 
         S -- (Access Payment Dashboard)
         (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
@@ -143,6 +139,11 @@ rectangle "School Management System" {
         (Access Event Management Dashboard as a Prefect) <.. (Delete Events for Students) : <<extend>>
         (Access Event Management Dashboard as a Prefect) <.. (Update Events for Students) : <<extend>>
 
+        VP -- (Access Event Management Dashboard)
+        (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
+        (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
+        (Access Event Management Dashboard) <.. (Delete Events) : <<extend>>
+
         VP -- (Access Staff Management Dashboard)
         (Access Staff Management Dashboard) <.. (Schedule Staff Meetings) : <<extend>>
         (Access Staff Management Dashboard) <.. (Add Staff Members) : <<extend>>
@@ -153,11 +154,11 @@ rectangle "School Management System" {
         (Access Student Management Dashboard) <.. (Review Enrollment Information) : <<extend>>
         (Access Student Management Dashboard) <.. (Generate Enrollment Reports) : <<extend>>
 
-        VP -- (Access Administrative Management Dashboard)
-        (Access Administrative Management Dashboard) <.. (Edit Administrative Content) : <<extend>>
-        (Access Administrative Management Dashboard) <.. (Update Administrative Content) : <<extend>>
-        (Access Administrative Management Dashboard) <.. (Delete Administrative Content) : <<extend>>
-        (Access Administrative Management Dashboard) <.. (Create Administrative Content) : <<extend>>
+        VP -- (Access Administrative Dashboard)
+        (Access Administrative Dashboard) <.. (View Policies) : <<extend>>
+        (Access Administrative Dashboard) <.. (Create Policies) : <<extend>>
+        (Access Administrative Dashboard) <.. (Update Policies) : <<extend>>
+        (Access Administrative Dashboard) <.. (Delete Policies) : <<extend>>
 
         VP -- (Broadcast Announcements)
         (Broadcast Announcements) <.. (Send Messages as the Principal) : <<include>>
@@ -179,6 +180,13 @@ rectangle "School Management System" {
         A -- (Ensure Security and Integrity of the Platform)
         (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
         (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
+
+        A -- (Generate Reports)
+        (Generate Reports) <.. (User Engagement Reports) : <<extend>>
+        (Generate Reports) <.. (Performance Reports) : <<extend>>
+        (Generate Reports) <.. (System Utilization Reports) : <<extend>>
+        (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
+        (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
 }
 
 @enduml
