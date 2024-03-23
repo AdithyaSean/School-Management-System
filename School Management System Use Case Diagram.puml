@@ -45,9 +45,11 @@ rectangle "School Management System" {
         (Access User Profile) <.. (View User Information) : <<extend>>
         (Access User Profile) <.. (Update User Profile) : <<extend>>
 
-        U -- (Communicate with Users)
-        (Communicate with Users) ..> (Send Messages to Users) : <<include>>
-        (Send Messages to Users) -- UR
+        U -- (Comminication)
+        (Comminication) <.. (Send Messages) : <<extend>>
+        (Send Messages) ..> (Send Notifications) : <<include>>
+        (Send Notifications) -- UR
+        
 
         U -- (Logout)
 
@@ -60,7 +62,7 @@ rectangle "School Management System" {
         (Access Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
 
         T -- (Access Extracurricular Content Dashboard)
-         (Access Extracurricular Content Dashboard) <.. (Add Members) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Add Members) : <<extend>>
         (Access Extracurricular Content Dashboard) <.. (Remove Members) : <<extend>>
         (Access Extracurricular Content Dashboard) <.. (Update Members) : <<extend>>
         (Access Extracurricular Content Dashboard) <.. (Create Competitions) : <<extend>>
@@ -106,20 +108,12 @@ rectangle "School Management System" {
         (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
         (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
         
-        TS -- (View School Financial Status)
-        (View School Financial Status) <.. (Generate Financial Reports) : <<extend>>
-        (View School Financial Status) <.. (Calculate School Budget) : <<extend>>
-        (View School Financial Status) <.. (Monitor Student Payment) : <<extend>>
-
-        TS -- (Withdraw Funds from School Account)
-        (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
-        (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
-
-        TS -- (Deposit Funds to School Account)
-        (Deposit Funds to School Account) ..> (Update Logs) : <<include>>
-
-        TS -- (Monitor Student Payments)
-        (Monitor Student Payments) <.. (Notify Students) : <<extend>>
+        TS -- (Access Financial Management Dashboard)
+        (Access Financial Management Dashboard) <.. (Generate Financial Reports) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Calculate School Budget) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Monitor Student Payment) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Withdraw Funds from School Account) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Deposit Funds to School Account) : <<extend>>
 
         S -- (Access Educational Content Dashboard as a Student)
         (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
@@ -131,8 +125,11 @@ rectangle "School Management System" {
         (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
         (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
 
-        S -- (Pay School Fees and Other Welfare Fees)
-        (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
+        S -- (Access Payment Dashboard)
+        (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
+        (Pay School Fees) ..> (Generate Receipts) : <<include>>
+        (Access Payment Dashboard) <.. (Pay Welfare Fees) : <<extend>>
+        (Pay Welfare Fees) ..> (Generate Receipts) : <<include>>
 
         S -- (Submit Queries)
         (Submit Queries) <.. (Medicals for Sudden Leaves) : <<extend>>
@@ -163,8 +160,8 @@ rectangle "School Management System" {
         (Access Administrative Management Dashboard) <.. (Create Administrative Content) : <<extend>>
 
         VP -- (Broadcast Announcements)
-        (Broadcast Announcements) ..> (Send Notifications to Users) : <<include>>
-        (Send Notifications to Users) -- UR
+        (Broadcast Announcements) <.. (Send Messages as the Principal) : <<include>>
+        (Send Messages as the Principal) <.. (Send Notifications) : <<include>>
 
         P -- (Create Special School Events)
         (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
