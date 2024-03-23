@@ -1,4 +1,4 @@
-@startuml SchoolManagementSystemClassDiagram
+@startuml School Management System
 
 class User {
     + username: string
