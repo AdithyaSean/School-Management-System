@@ -164,16 +164,6 @@ class EnterExamResults {
     + enter()
 }
 
-class UpdateExamResults {
-    --
-    + update()
-}
-
-class RemoveExamResults {
-    --
-    + remove()
-}
-
 class SortStudentMarks {
     --
     + sort()
@@ -207,6 +197,9 @@ class UpdateMembers {
 User --> ValidateUser : <<include>>
 User --> VerifyUsingFingerprint : <<include>>
 User --> VerifyLeave : <<include>>
+Teacher --> EnterExamResults : <<include>>
+Teacher --> InformStudents : <<include>>
+Teacher --> EnterExamResults : <<include>>
 ClassTeacher --> RankStudents : <<include>>
 ClassTeacher --> InformStudents : <<include>>
 SectionalHead --> InformSectionalTeachers : <<include>>

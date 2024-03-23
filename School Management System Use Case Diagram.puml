@@ -17,12 +17,12 @@ actor "User" as U
 U <|-- T
 U <|-- S
 U <|-- VP
-U <|-- A
 T <|-- CT
 T <|-- SH
 T <|-- TR
 S <|-- SP
 VP <|-- P
+VP <|-- A
 
 rectangle "School Management System" {
     rectangle "User" {
@@ -37,7 +37,6 @@ rectangle "School Management System" {
 
     rectangle "Teachers" {
         T -- (View Educational Content Dashboard)
-        T -- (Monitor Student Progress and Performance)
         T -- (Provide Feedback and Assessments)
         T -- (Submit Leave and Short Leaves)
         T -- (View Student Information as a Teacher)
@@ -45,21 +44,23 @@ rectangle "School Management System" {
         (View Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
         (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
         (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
+        (Provide Feedback and Assessments) ..> (Inform Students) : <<include>>
         (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
         (View Student Information as a Teacher) <.. (Update Student Information) : <<extend>>
         (View Student Information as a Teacher) <.. (Delete Student Information) : <<extend>>
         (View Student Information as a Teacher) <.. (Create Student Information) : <<extend>>
+        (View Student Information as a Teacher) <.. (Monitor Student Progress and Performance) : <<extend>>
 
         CT -- (Monitor Students Attendance)
         CT -- (View Exam Results)
         CT -- (Generate Student Reports)
 
+        (Monitor Students Attendance) <.. (Notify Student) : <<extend>>
         (View Exam Results) <.. (Enter Exam Results) : <<extend>>
         (View Exam Results) <.. (Update Exam Results) : <<extend>>
         (View Exam Results) <.. (Remove Exam Results) : <<extend>>
         (View Exam Results) <.. (Sort Student Marks) : <<extend>>
-        (Generate Student Reports) ..> (Rank Students) : <<include>>
-        (Generate Student Reports) ..> (Inform Students) : <<include>>
+        (Generate Student Reports) ..> (Inform Class Students) : <<include>>
 
         SH -- (Schedule Sectional Staff Meetings)
         SH -- (Create Sectional Events)
@@ -71,16 +72,15 @@ rectangle "School Management System" {
         TR -- (View School Financial Status)
         TR -- (Withdraw Funds from School Account)
         TR -- (Deposit Funds to School Account)
+        TR -- (Monitor Student Payments)
 
         (View School Financial Status) <.. (Generate Financial Reports) : <<extend>>
         (View School Financial Status) <.. (Calculate School Budget) : <<extend>>
         (View School Financial Status) <.. (Monitor Student Payment) : <<extend>>
-        (Generate Financial Reports) ..> (Notify Vice Principal) : <<include>>
         (Monitor Student Payments) <.. (Notify Students) : <<extend>>
         (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
         (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
         (Deposit Funds to School Account) ..> (Update Logs) : <<include>>
-        (Deposit Funds to School Account) ..> (Notify Vice Principal) : <<include>>
     }
 
     rectangle "Students" {
@@ -94,6 +94,7 @@ rectangle "School Management System" {
         (View Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
         (View Educational Content Dashboard as a Student) <.. (Upload Assessments) : <<extend>>
         (View Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
+        (Submit Assignments and Assessments) ..> (Inform Subject Teachers) : <<include>>
         (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
         (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
         (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
@@ -125,10 +126,16 @@ rectangle "School Management System" {
         (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
         (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
 
-        VP -- (Supervise Student Enrollment)
+        VP -- (View Staff Members)
+        VP -- (View Student Enrollment)
         VP -- (View Administrative Tasks)
 
-        (Supervise Student Enrollment) ..> (Review Enrollment Data) : <<include>>
+        (View Staff Members) <.. (Schedule Staff Meetings) : <<extend>>
+        (View Staff Members) <.. (Add Staff Members) : <<extend>>
+        (View Staff Members) <.. (Remove Staff Members) : <<extend>>
+        (View Staff Members) <.. (Update Staff Members) : <<extend>>
+        (View Student Enrollment) <.. (Review Enrollment Data) : <<extend>>
+        (View Student Enrollment) <.. (Generate Enrollment Reports) : <<extend>>
         (View Administrative Tasks) <.. (Edit Administrative Tasks) : <<extend>>
         (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
         (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
@@ -137,14 +144,13 @@ rectangle "School Management System" {
         A -- (Create User Accounts and Access Permissions)
         A -- (Oversee Overall Functionality and Performance)
         A -- (Ensure Security and Integrity of the Platform)
-        A -- (Schedule Staff Meetings)
 
         (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
         (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
         (Create User Accounts and Access Permissions) <.. (Modify Permissions) : <<extend>>
+        (Oversee Overall Functionality and Performance) ..> (Oversee School Management) : <<include>>
         (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
         (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
-        (Schedule Staff Meetings) ..> (Inform Staff Members) : <<include>>
     }
 }
 
