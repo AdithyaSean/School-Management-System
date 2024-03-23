@@ -11,7 +11,6 @@ actor "Sectional Head" as SH
 actor "Sectional Head" as SHR
 actor "Student" as S
 actor "Student" as SR
-actor "Prefect" as SP
 actor "Principal" as P
 actor "Principal" as PR
 actor "Vice Principal" as VP
@@ -24,7 +23,6 @@ U <|-- T
 U <|-- S
 U <|-- VP
 U <|-- A
-S <|-- SP
 T <|-- CT
 T <|-- SH
 VP <|-- P
@@ -125,23 +123,14 @@ rectangle "School Management System" {
 
         (Send Notifications to Students) -- SR
 
-        SP -- (Access Student Management Dashboard as a Prefect)
-        (Access Student Management Dashboard as a Prefect) <.. (Update disciplinary Status) : <<extend>>
-        (Access Student Management Dashboard as a Prefect) <.. (Report Student Misconduct) : <<extend>>
-        (Report Student Misconduct) ..> (Send Notifications to Vice Principal) : <<include>>
-
-        SP -- (Access Event Management Dashboard as a Prefect)
-        (Access Event Management Dashboard as a Prefect) <.. (Create Events for Students) : <<extend>>
-        (Access Event Management Dashboard as a Prefect) <.. (Delete Events for Students) : <<extend>>
-        (Access Event Management Dashboard as a Prefect) <.. (Update Events for Students) : <<extend>>
-
         VP -- (Access Event Management Dashboard)
         (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Delete Events) : <<extend>>
 
         VP -- (Access Staff Management Dashboard)
-        (Access Staff Management Dashboard) <.. (Schedule Staff Meetings) : <<extend>>
+        (Access Staff Management Dashboard) <.. (Schedule Meetings) : <<extend>>
+        (Schedule Meetings) ..> (Send Notifications to Users) : <<include>>
         (Access Staff Management Dashboard) <.. (Add Staff Members) : <<extend>>
         (Access Staff Management Dashboard) <.. (Remove Staff Members) : <<extend>>
         (Access Staff Management Dashboard) <.. (Update Staff Members) : <<extend>>
@@ -184,6 +173,7 @@ rectangle "School Management System" {
         A -- (Oversee Overall Functionality and Performance)
         (Oversee Overall Functionality and Performance) <.. (Oversee School Management) : <<extend>>
         (Oversee Overall Functionality and Performance) <.. (View School Staticstics) : <<extend>>
+        (Oversee Overall Functionality and Performance) <.. (View System Staticstics) : <<extend>>
 
         A -- (Ensure Security and Integrity of the Platform)
         (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
@@ -212,6 +202,7 @@ rectangle "School Management System" {
         (Send Notifications to Users) -- UR
 
         U -- (Logout)
+        (Logout) ..> (Confirm) : <<include>>
 }
 
 @enduml
