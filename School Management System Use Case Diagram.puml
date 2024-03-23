@@ -35,7 +35,6 @@ VP <|-- P
 VP <|-- A
 
 rectangle "School Management System" {
-    rectangle "User" {
         U -- (Enter the Attendance Daily)
         U -- (Login)
         U -- (Communicate with Users)
@@ -43,31 +42,37 @@ rectangle "School Management System" {
 
         (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
         (Login) ..> (Validate User) : <<include>>
-    }
 
-    rectangle "Teachers" {
-        T -- (View Educational Content Dashboard)
-        T -- (Provide Feedback and Assessments)
+        T -- (Access Educational Content Dashboard)
+        T -- (Access Extracurricular Content Dashboard)
+        T -- (Access Students Information)
         T -- (Submit Leave and Short Leaves)
-        T -- (View Student Information as a Teacher)
 
-        (View Educational Content Dashboard) <.. (View Student Activity) : <<extend>>
-        (View Educational Content Dashboard) <.. (Grade Student Activity) : <<extend>>
-        (View Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
-        (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
-        (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
-        (Provide Feedback and Assessments) ..> (Inform Students) : <<include>>
+        (Access Educational Content Dashboard) <.. (View Student Activity) : <<extend>>
+        (Access Educational Content Dashboard) <.. (Grade Student Activity) : <<extend>>
+        (Access Educational Content Dashboard) <.. (Send Feedback and Assessments) : <<extend>>
+        (Access Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
+        (Access Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
+        (Access Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Add Members) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Remove Members) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Update Members) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Create Competitions) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Create Societies and Clubs) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Monitor Societies and Clubs) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Delete Societies and Clubs) : <<extend>>
+        (Access Extracurricular Content Dashboard) <.. (Update Societies and Clubs) : <<extend>>
+        (Access Students Information) <.. (Update Student Information) : <<extend>>
+        (Access Students Information) <.. (Delete Student Information) : <<extend>>
+        (Access Students Information) <.. (Create Student Information) : <<extend>>
+        (Access Students Information) <.. (View Student Progress and Performance) : <<extend>>
         (Submit Leave and Short Leaves) ..> (Verify Leave) : <<include>>
-        (View Student Information as a Teacher) <.. (Update Student Information) : <<extend>>
-        (View Student Information as a Teacher) <.. (Delete Student Information) : <<extend>>
-        (View Student Information as a Teacher) <.. (Create Student Information) : <<extend>>
-        (View Student Information as a Teacher) <.. (Monitor Student Progress and Performance) : <<extend>>
-
-        CT -- (Monitor Students Attendance)
+        
+        CT -- (View Students Attendance)
         CT -- (View Exam Results)
         CT -- (Generate Student Reports)
 
-        (Monitor Students Attendance) <.. (Notify Student) : <<extend>>
+        (View Students Attendance) <.. (Generate Student Attendence Reports) : <<extend>>
         (View Exam Results) <.. (Enter Exam Results) : <<extend>>
         (View Exam Results) <.. (Update Exam Results) : <<extend>>
         (View Exam Results) <.. (Remove Exam Results) : <<extend>>
@@ -76,7 +81,6 @@ rectangle "School Management System" {
 
         SH -- (Schedule Sectional Staff Meetings)
         SH -- (Create Sectional Events)
-        (Verify Leave) -- SHR
 
         (Schedule Sectional Staff Meetings) ..> (Inform Sectional Teachers) : <<include>>
         (Create Sectional Events) ..> (Inform Sectional Teachers) : <<include>>
@@ -94,38 +98,21 @@ rectangle "School Management System" {
         (Withdraw Funds from School Account) ..> (Request Principal Permission) : <<include>>
         (Withdraw Funds from School Account) ..> (Update Logs) : <<include>>
         (Deposit Funds to School Account) ..> (Update Logs) : <<include>>
-    }
 
-    rectangle "Students" {
-        S -- (View Educational Content Dashboard as a Student)
-        S -- (Submit Assignments and Assessments)
+        S -- (Access Educational Content Dashboard as a Student)
+        S -- (Access Extracurricular Content Dashboard as a Student)
         S -- (Pay School Fees and Other Welfare Fees)
         S -- (Submit Medicals for Sudden Leaves)
-        S -- (Enter Extracurricular Activity Information)
         S -- (Create School Societies and Clubs)
-        (Create Educational Content) -- SR
-        (Update Educational Content) -- SR
-        (Delete Educational Content) -- SR
-        (Inform Students) -- SR
-        (Inform Class Students) -- SR
-        (Inform Sectional Students) -- SR
-        (Inform Students as a Prefect) -- SR
-        (Notify Students) -- SR
-        (Notify Student) -- SR
-        (Enter Exam Results) -- SR
-        (Update Exam Results) -- SR
-        (Grade Student Activity) -- SR
 
-        (View Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
-        (View Educational Content Dashboard as a Student) <.. (Upload Assessments) : <<extend>>
-        (View Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
-        (Submit Assignments and Assessments) ..> (Inform Subject Teachers) : <<include>>
+        (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (Submit Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
+        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
+        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
         (Pay School Fees and Other Welfare Fees) ..> (Generate Receipts) : <<include>>
         (Submit Medicals for Sudden Leaves) ..> (Verify Medical Information) : <<include>>
-        (Enter Extracurricular Activity Information) <.. (Update Information) : <<extend>>
-        (Create School Societies and Clubs) <.. (Add Members) : <<extend>>
-        (Create School Societies and Clubs) <.. (Remove Members) : <<extend>>
-        (Create School Societies and Clubs) <.. (Update Members) : <<extend>>
 
         SP -- (Enter Student Information as a Prefect)
         SP -- (Create Events for Students)
@@ -135,15 +122,12 @@ rectangle "School Management System" {
         (Enter Student Information as a Prefect) <.. (Update Student Information as a Prefect)
         (Create Events for Students) ..> (Inform Students as a Prefect) : <<include>>
         (Delete Events for Students) ..> (Inform Students as a Prefect) : <<include>>
-        (Update Events for Students) ..> (Inform Students as a Prefect) : <<include>>
-    }  
+        (Update Events for Students) ..> (Inform Students as a Prefect) : <<include>> 
 
-    rectangle "Management" {
         VP -- (View Staff Members)
         VP -- (View Student Enrollment)
         VP -- (View Administrative Tasks)
-        (Generate Financial Reports) -- VPR
-        (Calculate School Budget) -- VPR
+        VP -- (Broadcast Announcements)
 
         (View Staff Members) <.. (Schedule Staff Meetings) : <<extend>>
         (View Staff Members) <.. (Add Staff Members) : <<extend>>
@@ -155,12 +139,9 @@ rectangle "School Management System" {
         (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
         (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
         (View Administrative Tasks) <.. (Create Administrative Tasks) : <<extend>>
-        (Generate Financial Reports) -- VPR
-        (Calculate School Budget) -- VPR
-
+        
         P -- (Generate Reports)
         P -- (Create Special School Events)
-        P -- (Send Notifications to Teachers)
 
         (Generate Reports) <.. (User Engagement Reports) : <<extend>>
         (Generate Reports) <.. (Performance Reports) : <<extend>>
@@ -169,12 +150,10 @@ rectangle "School Management System" {
         (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
         (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
         (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
-        (Request Principal Permission) -- PR
 
         A -- (Create User Accounts and Access Permissions)
         A -- (Oversee Overall Functionality and Performance)
         A -- (Ensure Security and Integrity of the Platform)
-        (Update Logs) -- AR
 
         (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
         (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
@@ -182,7 +161,6 @@ rectangle "School Management System" {
         (Oversee Overall Functionality and Performance) ..> (Oversee School Management) : <<include>>
         (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
         (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
-    }
 }
 
 @enduml
