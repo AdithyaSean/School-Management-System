@@ -119,7 +119,7 @@ rectangle "School Management System" {
         SP -- (Delete Events for Students)
         SP -- (Update Events for Students)
 
-        (Enter Student Information as a Prefect) <.. (Update Student Information as a Prefect)
+        (Enter Student Information as a Prefect) <.. (Update Student Information as a Prefect) <<extend>>
         (Create Events for Students) ..> (Inform Students as a Prefect) : <<include>>
         (Delete Events for Students) ..> (Inform Students as a Prefect) : <<include>>
         (Update Events for Students) ..> (Inform Students as a Prefect) : <<include>> 
