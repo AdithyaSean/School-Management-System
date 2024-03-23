@@ -156,6 +156,10 @@ rectangle "School Management System" {
         
         (Send Notifications to Students) -- SR
 
+        VP -- (Broadcast Announcements)
+        (Broadcast Announcements) ..> (Send Messages as the Principal) : <<include>>
+        (Send Messages as the Principal) ..> (Send Notifications to Users) : <<include>>
+
         VP -- (Access Event Management Dashboard)
         (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
@@ -178,7 +182,7 @@ rectangle "School Management System" {
         (Access Student Management Dashboard) <.. (view Enrollment Information) : <<extend>>
         (Access Student Management Dashboard) <.. (Generate Enrollment Reports) : <<extend>>
 
-        (Generate Enrollment Reports) ..> (Send Notifications to Users): <<include>>
+        (Generate Enrollment Reports) ..> (Send Notifications to Principal): <<include>>
 
         VP -- (Access Financial Management Dashboard)
         (Access Financial Management Dashboard) <.. (Monitor Student Payments) : <<extend>>
@@ -195,10 +199,6 @@ rectangle "School Management System" {
 
         (Withdraw Funds from School Account) ..> (Send Notifications to Principal) : <<include>>
         (Deposit Funds to School Account) ..> (Send Notifications to Principal) : <<include>>
-
-        VP -- (Broadcast Announcements)
-        (Broadcast Announcements) <.. (Send Messages as the Principal) : <<include>>
-        (Send Messages as the Principal) <.. (Send Notifications to Users) : <<include>>
 
         (Send Notifications to Vice Principal) -- VPR
 
