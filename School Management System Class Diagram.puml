@@ -1,69 +1,40 @@
-@startuml School Management System
+@startuml SchoolManagementSystem
 
 class User {
-    +username: String
-    +password: String
-    +login()
-    +logout()
+  + username: String
+  + password: String
+  + role: String (e.g., Teacher, Student, Admin)
+  + login()
+  + logout()
 }
 
-class Teacher {
-    +accessEducationalContentDashboard()
-    +accessExtracurricularContentDashboard()
-    +accessStudentsManagementDashboard()
-    +accessExamDashboard()
-    +accessQueryDashboard()
+abstract class Actor {
+  + interact(system: System)
 }
 
-class ClassTeacher {
-    +generateStudentReports()
-    +sendNotificationsToClassTeachers()
+class Teacher extends Actor {
+  // Specific functionalities for Teacher
 }
 
-class SectionalHead {
-    +accessExamDashboard()
-    +accessStaffManagementDashboardAsTeacher()
-    +sendNotificationsToSectionalHead()
+class Student extends Actor {
+  // Specific functionalities for Student
 }
 
-class Student {
-    +accessEducationalContentDashboard()
-    +accessExtracurricularContentDashboard()
-    +accessExamDashboard()
-    +accessPaymentDashboard()
-    +accessQueryDashboardAsStudent()
+class Administrator extends Actor {
+  // Specific functionalities for Administrator
 }
 
-class Principal {
-    +accessExamDashboard()
-    +accessQueryDashboard()
-    +accessAdministrativeDashboard()
+class SchoolManagementSystem {
+  + users: List<User>
+  + sendNotifications(message: String, recipients: List<User>)
+  // Methods for various functionalities based on use cases (e.g., createExam(), viewStudentPerformance())
 }
 
-class VicePrincipal {
-    +broadcastAnnouncements()
-    +accessEventManagementDashboard()
-    +accessStaffManagementDashboard()
-    +accessStudentManagementDashboard()
-    +accessFinancialManagementDashboard()
-}
+U <|-- User
+Teacher <|-- Actor
+Student <|-- Actor
+Administrator <|-- Actor
 
-class Administrator {
-    +createUserAccountsAndAccessPermissions()
-    +overseeOverallFunctionalityAndPerformance()
-    +ensureSecurityAndIntegrityOfThePlatform()
-    +generateReports()
-}
-
-User <|-- Teacher
-User <|-- Student
-User <|-- VicePrincipal
-User <|-- Administrator
-Teacher <|-- ClassTeacher
-Teacher <|-- SectionalHead
-Student <|-- ClassTeacher
-Student <|-- VicePrincipal
-Student <|-- Administrator
-Principal <|-- VicePrincipal
+System --> SchoolManagementSystem
 
 @enduml
