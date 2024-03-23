@@ -4,22 +4,32 @@ left to right direction
 skinparam linetype polyline
 
 actor "Teacher" as T
+actor "Teacher" as TR
 actor "Class Teacher" as CT
+actor "Class Teacher" as CTR
 actor "Sectional Head" as SH
-actor "Treasurer" as TR
+actor "Sectional Head" as SHR
+actor "Treasurer" as TS
+actor "Treasurer" as TSR
 actor "Student" as S
+actor "Student" as SR
 actor "Prefect" as SP
+actor "Prefect" as SPR
 actor "Principal" as P
+actor "Principal" as PR
 actor "Vice Principal" as VP
+actor "Vice Principal" as VPR
 actor "Administrator" as A
+actor "Administrator" as AR
 actor "User" as U
+actor "User" as UR
 
 U <|-- T
 U <|-- S
 U <|-- VP
 T <|-- CT
 T <|-- SH
-T <|-- TR
+T <|-- TS
 S <|-- SP
 VP <|-- P
 VP <|-- A
@@ -41,6 +51,8 @@ rectangle "School Management System" {
         T -- (Submit Leave and Short Leaves)
         T -- (View Student Information as a Teacher)
 
+        (View Educational Content Dashboard) <.. (View Student Activity) : <<extend>>
+        (View Educational Content Dashboard) <.. (Grade Student Activity) : <<extend>>
         (View Educational Content Dashboard) <.. (Create Educational Content) : <<extend>>
         (View Educational Content Dashboard) <.. (Update Educational Content) : <<extend>>
         (View Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
@@ -64,15 +76,16 @@ rectangle "School Management System" {
 
         SH -- (Schedule Sectional Staff Meetings)
         SH -- (Create Sectional Events)
+        (Verify Leave) -- SHR
 
         (Schedule Sectional Staff Meetings) ..> (Inform Sectional Teachers) : <<include>>
         (Create Sectional Events) ..> (Inform Sectional Teachers) : <<include>>
         (Create Sectional Events) ..> (Inform Sectional Students) : <<include>>
         
-        TR -- (View School Financial Status)
-        TR -- (Withdraw Funds from School Account)
-        TR -- (Deposit Funds to School Account)
-        TR -- (Monitor Student Payments)
+        TS -- (View School Financial Status)
+        TS -- (Withdraw Funds from School Account)
+        TS -- (Deposit Funds to School Account)
+        TS -- (Monitor Student Payments)
 
         (View School Financial Status) <.. (Generate Financial Reports) : <<extend>>
         (View School Financial Status) <.. (Calculate School Budget) : <<extend>>
@@ -90,6 +103,18 @@ rectangle "School Management System" {
         S -- (Submit Medicals for Sudden Leaves)
         S -- (Enter Extracurricular Activity Information)
         S -- (Create School Societies and Clubs)
+        (Create Educational Content) -- SR
+        (Update Educational Content) -- SR
+        (Delete Educational Content) -- SR
+        (Inform Students) -- SR
+        (Inform Class Students) -- SR
+        (Inform Sectional Students) -- SR
+        (Inform Students as a Prefect) -- SR
+        (Notify Students) -- SR
+        (Notify Student) -- SR
+        (Enter Exam Results) -- SR
+        (Update Exam Results) -- SR
+        (Grade Student Activity) -- SR
 
         (View Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
         (View Educational Content Dashboard as a Student) <.. (Upload Assessments) : <<extend>>
@@ -114,21 +139,11 @@ rectangle "School Management System" {
     }  
 
     rectangle "Management" {
-        P -- (Generate Reports)
-        P -- (Create Special School Events)
-        P -- (Send Notifications to Teachers)
-
-        (Generate Reports) <.. (User Engagement Reports) : <<extend>>
-        (Generate Reports) <.. (Performance Reports) : <<extend>>
-        (Generate Reports) <.. (System Utilization Reports) : <<extend>>
-        (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
-        (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
-        (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
-        (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
-
         VP -- (View Staff Members)
         VP -- (View Student Enrollment)
         VP -- (View Administrative Tasks)
+        (Generate Financial Reports) -- VPR
+        (Calculate School Budget) -- VPR
 
         (View Staff Members) <.. (Schedule Staff Meetings) : <<extend>>
         (View Staff Members) <.. (Add Staff Members) : <<extend>>
@@ -140,10 +155,26 @@ rectangle "School Management System" {
         (View Administrative Tasks) <.. (Update Administrative Tasks) : <<extend>>
         (View Administrative Tasks) <.. (Delete Administrative Tasks) : <<extend>>
         (View Administrative Tasks) <.. (Create Administrative Tasks) : <<extend>>
+        (Generate Financial Reports) -- VPR
+        (Calculate School Budget) -- VPR
+
+        P -- (Generate Reports)
+        P -- (Create Special School Events)
+        P -- (Send Notifications to Teachers)
+
+        (Generate Reports) <.. (User Engagement Reports) : <<extend>>
+        (Generate Reports) <.. (Performance Reports) : <<extend>>
+        (Generate Reports) <.. (System Utilization Reports) : <<extend>>
+        (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
+        (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
+        (Create Special School Events) ..> (Inform Teachers as the Principal) : <<include>>
+        (Create Special School Events) ..> (Inform Students as the Principal) : <<include>>
+        (Request Principal Permission) -- PR
 
         A -- (Create User Accounts and Access Permissions)
         A -- (Oversee Overall Functionality and Performance)
         A -- (Ensure Security and Integrity of the Platform)
+        (Update Logs) -- AR
 
         (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
         (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
