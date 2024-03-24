@@ -1,40 +1,41 @@
-@startuml SchoolManagementSystem
-
+@startuml School Management System
 class User {
-  + username: String
-  + password: String
-  + role: String (e.g., Teacher, Student, Admin)
-  + login()
-  + logout()
+  - id: int
+  - name: string
+  - role: string
 }
 
-abstract class Actor {
-  + interact(system: System)
+class Student {
+  - grade: int
+  - attendance: List<AttendanceRecord>
 }
 
-class Teacher extends Actor {
-  // Specific functionalities for Teacher
+Student --|> User
+
+class Teacher {
+  - subject: string
 }
 
-class Student extends Actor {
-  // Specific functionalities for Student
+Teacher --|> User
+
+class Course {
+  - name: string
+  - teacher: Teacher
+  - students: List<Student>
 }
 
-class Administrator extends Actor {
-  // Specific functionalities for Administrator
+class EducationalContent {
+  - title: string
+  - content: string
+  - course: Course
 }
 
-class SchoolManagementSystem {
-  + users: List<User>
-  + sendNotifications(message: String, recipients: List<User>)
-  // Methods for various functionalities based on use cases (e.g., createExam(), viewStudentPerformance())
+Course *-- EducationalContent
+
+class AttendanceRecord {
+  - date: Date
+  - status: string
 }
 
-U <|-- User
-Teacher <|-- Actor
-Student <|-- Actor
-Administrator <|-- Actor
-
-System --> SchoolManagementSystem
-
+Student *-- AttendanceRecord
 @enduml
