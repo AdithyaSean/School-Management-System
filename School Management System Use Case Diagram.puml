@@ -26,66 +26,117 @@ VP <|-- P
 P <|-- A
 
 rectangle "School Management System" {
-        U -- (Enter the Attendance Daily)
-        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
-
-        U -- (Login)
-        (Login) ..> (Validate User) : <<include>>
-
-        U -- (Access User Profile)
-        (Access User Profile) <.. (View User Information) : <<extend>>
-        (Access User Profile) <.. (Update User Profile) : <<extend>>
-
-        U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extend>>
-
-        (Send Messages) ..> (Inform Users) : <<include>>
-
-        U -- (Logout)
-        (Logout) ..> (Confirm) : <<include>>
-
-        (Inform Users) -- UR
-
-        S -- (Access Query Dashboard as a Student)
-        (Access Query Dashboard as a Student) <.. (Submit Queries as a Student) : <<extend>>
-        (Access Query Dashboard as a Student) <.. (Submit Queries as a Parent) : <<extend>>
-        (Access Query Dashboard as a Student) <.. (Submit Queries as a Guardian) : <<extend>>
-
-        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
-        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
-        (Submit Queries as a Guardian) ..> (Notify Teachers) : <<include>>
-
-        S -- (Access Educational Content Dashboard as a Student)
-        (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (Submit Assessments) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (View Time Tables) : <<extend>>
-
-        (Submit Assessments) ..> (Notify Teachers): <<include>>
-        (Update Assessments) ..> (Notify Teachers): <<include>>
-
-        S -- (Access Extracurricular Content Dashboard as a Student)
-        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
-        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
-
-        (Apply for Societies and Clubs) ..> (Notify Teachers): <<include>>
-        (Apply for Competitions) ..> (Notify Teachers): <<include>>
-
-        S -- (Access Exam Dashboard as a Student)
-        (Access Exam Dashboard as a Student) <.. (View Exams as a Student) : <<extend>>
-        (Access Exam Dashboard as a Student) <.. (View Exam Results as a Student) : <<extend>>
-
-        S -- (Access Payment Dashboard)
-        (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
-        (Access Payment Dashboard) <.. (Pay Welfare Fees) : <<extend>>
-        (Access Payment Dashboard) <.. (Donate to the School) : <<extend>>
-
-        (Pay School Fees) ..> (Update Financial Information) : <<include>>
-        (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
-        (Donate to the School) ..> (Update Financial Information) : <<include>>
+        A -- (Access User Management Dashboard)
+        (Access User Management Dashboard) <.. (Add User) : <<extend>>
+        (Access User Management Dashboard) <.. (Delete User) : <<extend>>
+        (Access User Management Dashboard) <.. (Modify Permissions) : <<extend>>
         
-        (Notify Students) -- SR
+        (Add User) ..> (Update Registration Records) : <<include>>
+        (Delete User) ..> (Update Registration Records) : <<include>>
+        (Modify Permissions) ..> (Update Registration Records) : <<include>>
+
+        A -- (Access System Monitor)
+        (Access System Monitor) <.. (View System Staticstics) : <<extend>>
+        (Access System Monitor) <.. (Generate User Engagement Reports) : <<extend>>
+        (Access System Monitor) <.. (Generate Performance Reports) : <<extend>>
+        (Access System Monitor) <.. (Generate System Utilization Reports) : <<extend>>
+        (Access System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
+        (Access System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
+        (Access System Monitor) <.. (Encrypt Data) : <<extend>>
+        (Access System Monitor) <.. (Regular Data Backups) : <<extend>>
+        
+        (Generate User Engagement Reports) ..> (Inform Vice Principal) : <<include>>
+        (Generate Performance Reports) ..> (Inform Vice Principal) : <<include>>
+        (Generate System Utilization Reports) ..> (Inform Vice Principal) : <<include>>
+        (Generate Content Popularity Reports) ..> (Inform Vice Principal) : <<include>>
+        (Generate Monthly Attendance Reports) ..> (Inform Vice Principal) : <<include>>
+
+        A -- (Access System Database)
+        (Access System Database) <.. (Create Tables) : <<extend>>
+        (Access System Database) <.. (Remove Tables) : <<extend>>
+        (Access System Database) <.. (Update Tables) : <<extend>>
+        (Access System Database) <.. (Delete Tables) : <<extend>>
+
+        P -- (Access Administrative Dashboard)
+        (Access Administrative Dashboard) <.. (View Policies) : <<extend>>
+        (Access Administrative Dashboard) <.. (Create Policies) : <<extend>>
+        (Access Administrative Dashboard) <.. (Update Policies) : <<extend>>
+        (Access Administrative Dashboard) <.. (Delete Policies) : <<extend>>
+
+        (Create Policies) ..> (Inform Vice Principal): <<include>>
+        (Create Policies) ..> (Inform Sectional Heads): <<include>>
+        (Update Policies) ..> (Inform Vice Principal): <<include>>
+        (Delete Policies) ..> (Inform Vice Principal): <<include>>
+
+        (Inform Principal) -- PR
+
+        VP -- (Broadcast Announcements)
+        (Broadcast Announcements) ..> (Send Messages as the Principal) : <<include>>
+        (Send Messages as the Principal) ..> (Inform Sectional Heads) : <<include>>
+
+        VP -- (Access Event Management Dashboard)
+        (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
+        (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
+        (Access Event Management Dashboard) <.. (Delete Events) : <<extend>>
+
+        (Create Events) ..> (Inform Sectional Heads): <<include>>
+        (Update Events) ..> (Inform Sectional Heads): <<include>>
+        (Delete Events) ..> (Inform Sectional Heads): <<include>>
+
+        VP -- (Access Staff Management Dashboard)
+        (Access Staff Management Dashboard) <.. (Schedule Meetings) : <<extend>>
+        (Access Staff Management Dashboard) <.. (Add Staff Members) : <<extend>>
+        (Access Staff Management Dashboard) <.. (Remove Staff Members) : <<extend>>
+        (Access Staff Management Dashboard) <.. (Update Staff Members) : <<extend>>
+
+        (Schedule Meetings) ..> (Inform Sectional Heads) : <<include>>
+        (Update Staff Members) ..> (Inform Sectional Heads): <<include>>
+
+        VP -- (Access Student Management Dashboard)
+        (Access Student Management Dashboard) <.. (view Enrollment Information) : <<extend>>
+        (Access Student Management Dashboard) <.. (Generate Enrollment Reports) : <<extend>>
+
+        (Generate Enrollment Reports) ..> (Inform Principal): <<include>>
+
+        VP -- (Access Financial Management Dashboard)
+        (Access Financial Management Dashboard) <.. (Monitor Student Payments) : <<extend>>
+        (Access Financial Management Dashboard) <.. (View School Budget) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Plan School Budget) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Update School Budget) : <<extend>>
+
+        (Plan School Budget) ..> (Inform Principal): <<include>>
+        (Update School Budget) ..> (Inform Principal): <<include>>
+        
+        (Access Financial Management Dashboard) <.. (Generate Financial Reports) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Withdraw Funds from School Account) : <<extend>>
+        (Access Financial Management Dashboard) <.. (Deposit Funds to School Account) : <<extend>>
+
+        (Withdraw Funds from School Account) ..> (Inform Principal) : <<include>>
+        (Deposit Funds to School Account) ..> (Inform Principal) : <<include>>
+
+        (Inform Vice Principal) -- VPR
+        (Update Registration Records) -- VPR
+
+        SH -- (Access Exams Management Dashboard)
+        (Access Exams Management Dashboard) <.. (Create Exams) : <<extend>>
+        (Access Exams Management Dashboard) <.. (Update Exams) : <<extend>>
+        (Access Exams Management Dashboard) <.. (Delete Exams) : <<extend>>
+
+        (Create Exams) ..> (Inform Teachers): <<include>>
+        (Update Exams) ..> (Inform Teachers): <<include>>
+        (Delete Exams) ..> (Inform Teachers): <<include>>
+
+        SH -- (Access Staff Management Dashboard as a Teacher)
+        (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Create Time Tables) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Update Time Tables) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Delete Time Tables) : <<extend>>
+        
+        (Schedule Sectional Staff Meetings) ..> (Inform Teachers) : <<include>>
+        (Create Time Tables) ..> (Inform Teachers): <<include>>
+        (Update Time Tables) ..> (Inform Teachers) : <<include>>
+        
+        (Inform Sectional Heads) -- SHR
 
         T -- (Access Educational Content Dashboard)
         (Access Educational Content Dashboard) <.. (View Student Activity) : <<extend>>
@@ -148,110 +199,74 @@ rectangle "School Management System" {
 
         (Submit Leaves and Short Leaves) ..> (Notify Students) : <<include>>
         (Feedback Student Queries) ..> (Notify Students): <<include>>
-
-        (Inform Teachers) -- TR
-        (Notify Teachers) -- TR2
-        (Update Financial Information) - TR2
-
-        SH -- (Access Exams Dashboard)
-        (Access Exams Dashboard) <.. (Create Exams) : <<extend>>
-        (Access Exams Dashboard) <.. (Update Exams) : <<extend>>
-        (Access Exams Dashboard) <.. (Delete Exams) : <<extend>>
-
-        (Create Exams) ..> (Inform Teachers): <<include>>
-        (Update Exams) ..> (Inform Teachers): <<include>>
-        (Delete Exams) ..> (Inform Teachers): <<include>>
-
-        SH -- (Access Staff Management Dashboard as a Teacher)
-        (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
-        (Access Staff Management Dashboard as a Teacher) <.. (Create Time Tables) : <<extend>>
-        (Access Staff Management Dashboard as a Teacher) <.. (Update Time Tables) : <<extend>>
-        (Access Staff Management Dashboard as a Teacher) <.. (Delete Time Tables) : <<extend>>
         
-        (Schedule Sectional Staff Meetings) ..> (Inform Teachers) : <<include>>
-        (Create Time Tables) ..> (Inform Teachers): <<include>>
-        (Update Time Tables) ..> (Inform Teachers) : <<include>>
+        (Update Financial Information) -- TR
+        (Update Logs) -- TR
+        (Notify Teachers) -- TR
+        (Inform Teachers) -- TR2
+
+        S -- (Access Query Dashboard as a Student)
+        (Access Query Dashboard as a Student) <.. (Submit Queries as a Student) : <<extend>>
+        (Access Query Dashboard as a Student) <.. (Submit Queries as a Parent) : <<extend>>
+        (Access Query Dashboard as a Student) <.. (Submit Queries as a Guardian) : <<extend>>
+
+        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
+        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
+        (Submit Queries as a Guardian) ..> (Notify Teachers) : <<include>>
+
+        S -- (Access Educational Content Dashboard as a Student)
+        (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (Submit Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (View Time Tables) : <<extend>>
+
+        (Submit Assessments) ..> (Notify Teachers): <<include>>
+        (Update Assessments) ..> (Notify Teachers): <<include>>
+
+        S -- (Access Extracurricular Content Dashboard as a Student)
+        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
+        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
+
+        (Apply for Societies and Clubs) ..> (Notify Teachers): <<include>>
+        (Apply for Competitions) ..> (Notify Teachers): <<include>>
+
+        S -- (Access Exam Dashboard as a Student)
+        (Access Exam Dashboard as a Student) <.. (View Exams as a Student) : <<extend>>
+        (Access Exam Dashboard as a Student) <.. (View Exam Results as a Student) : <<extend>>
+
+        S -- (Access Payment Dashboard)
+        (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
+        (Access Payment Dashboard) <.. (Pay Welfare Fees) : <<extend>>
+        (Access Payment Dashboard) <.. (Donate to the School) : <<extend>>
+
+        (Pay School Fees) ..> (Update Financial Information) : <<include>>
+        (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
+        (Donate to the School) ..> (Update Financial Information) : <<include>>
         
-        (Inform Sectional Heads) -- SHR
-        
-        VP -- (Broadcast Announcements)
-        (Broadcast Announcements) ..> (Send Messages as the Principal) : <<include>>
-        (Send Messages as the Principal) ..> (Inform Sectional Heads) : <<include>>
+        (Notify Students) -- SR
 
-        VP -- (Access Event Management Dashboard)
-        (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
-        (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
-        (Access Event Management Dashboard) <.. (Delete Events) : <<extend>>
+        U -- (Enter the Attendance Daily)
+        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
 
-        (Create Events) ..> (Inform Sectional Heads): <<include>>
-        (Update Events) ..> (Inform Sectional Heads): <<include>>
-        (Delete Events) ..> (Inform Sectional Heads): <<include>>
+        U -- (Login)
+        (Login) ..> (Validate User) : <<include>>
+        (Validate User)..> (Update Logs) : <<include>>
 
-        VP -- (Access Staff Management Dashboard)
-        (Access Staff Management Dashboard) <.. (Schedule Meetings) : <<extend>>
-        (Access Staff Management Dashboard) <.. (Add Staff Members) : <<extend>>
-        (Access Staff Management Dashboard) <.. (Remove Staff Members) : <<extend>>
-        (Access Staff Management Dashboard) <.. (Update Staff Members) : <<extend>>
 
-        (Schedule Meetings) ..> (Inform Sectional Heads) : <<include>>
-        (Update Staff Members) ..> (Inform Sectional Heads): <<include>>
+        U -- (Access User Profile)
+        (Access User Profile) <.. (View User Information) : <<extend>>
+        (Access User Profile) <.. (Update User Profile) : <<extend>>
 
-        VP -- (Access Student Management Dashboard)
-        (Access Student Management Dashboard) <.. (view Enrollment Information) : <<extend>>
-        (Access Student Management Dashboard) <.. (Generate Enrollment Reports) : <<extend>>
+        U -- (Comminication)
+        (Comminication) <.. (Send Messages) : <<extend>>
 
-        (Generate Enrollment Reports) ..> (Inform Principal): <<include>>
+        (Send Messages) ..> (Notify Users) : <<include>>
 
-        VP -- (Access Financial Management Dashboard)
-        (Access Financial Management Dashboard) <.. (Monitor Student Payments) : <<extend>>
-        (Access Financial Management Dashboard) <.. (View School Budget) : <<extend>>
-        (Access Financial Management Dashboard) <.. (Plan School Budget) : <<extend>>
-        (Access Financial Management Dashboard) <.. (Update School Budget) : <<extend>>
+        U -- (Logout)
+        (Logout) ..> (Confirm) : <<include>>
 
-        (Plan School Budget) ..> (Inform Principal): <<include>>
-        (Update School Budget) ..> (Inform Principal): <<include>>
-        
-        (Access Financial Management Dashboard) <.. (Generate Financial Reports) : <<extend>>
-        (Access Financial Management Dashboard) <.. (Withdraw Funds from School Account) : <<extend>>
-        (Access Financial Management Dashboard) <.. (Deposit Funds to School Account) : <<extend>>
-
-        (Withdraw Funds from School Account) ..> (Inform Principal) : <<include>>
-        (Deposit Funds to School Account) ..> (Inform Principal) : <<include>>
-
-        (Inform Vice Principal) -- VPR
-
-        P -- (Access Administrative Dashboard)
-        (Access Administrative Dashboard) <.. (View Policies) : <<extend>>
-        (Access Administrative Dashboard) <.. (Create Policies) : <<extend>>
-        (Access Administrative Dashboard) <.. (Update Policies) : <<extend>>
-        (Access Administrative Dashboard) <.. (Delete Policies) : <<extend>>
-
-        (Create Policies) ..> (Inform Vice Principal): <<include>>
-        (Update Policies) ..> (Inform Vice Principal): <<include>>
-        (Delete Policies) ..> (Inform Vice Principal): <<include>>
-
-        (Inform Principal) -- PR
-
-        A -- (Create User Accounts and Access Permissions)
-        (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
-        (Create User Accounts and Access Permissions) <.. (Delete User) : <<extend>>
-        (Create User Accounts and Access Permissions) <.. (Modify Permissions) : <<extend>>
-
-        A -- (Oversee Overall Functionality and Performance)
-        (Oversee Overall Functionality and Performance) <.. (Oversee School Management) : <<extend>>
-        (Oversee Overall Functionality and Performance) <.. (View School Staticstics) : <<extend>>
-        (Oversee Overall Functionality and Performance) <.. (View System Staticstics) : <<extend>>
-
-        A -- (Ensure Security and Integrity of the Platform)
-        (Ensure Security and Integrity of the Platform) <.. (Encrypt Data) : <<extend>>
-        (Ensure Security and Integrity of the Platform) <.. (Regular Data Backups) : <<extend>>
-
-        A -- (Generate Reports)
-        (Generate Reports) <.. (User Engagement Reports) : <<extend>>
-        (Generate Reports) <.. (Performance Reports) : <<extend>>
-        (Generate Reports) <.. (System Utilization Reports) : <<extend>>
-        (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
-        (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
+        (Notify Users) -- UR
 }
 
 @enduml
