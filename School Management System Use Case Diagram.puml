@@ -19,35 +19,71 @@ actor "Administrator" as A
 actor "User" as U
 actor "User" as UR
 
-U <|-- T
 U <|-- S
-U <|-- VP
-U <|-- A
+S <|-- T
 T <|-- CT
-T <|-- SH
+CT <|-- SH
+SH <|-- VP
 VP <|-- P
+P <|-- A
 
 rectangle "School Management System" {
-        SH -- (Access Exam Dashboard)
-        (Access Exam Dashboard) <.. (Create Exams) : <<extend>>
-        (Access Exam Dashboard) <.. (Update Exams) : <<extend>>
-        (Access Exam Dashboard) <.. (Delete Exams) : <<extend>>
+        U -- (Enter the Attendance Daily)
+        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
 
-        (Create Exams) ..> (Send Notifications to Teachers): <<include>>
-        (Update Exams) ..> (Send Notifications to Teachers): <<include>>
-        (Delete Exams) ..> (Send Notifications to Teachers): <<include>>
+        U -- (Login)
+        (Login) ..> (Validate User) : <<include>>
 
-        SH -- (Access Staff Management Dashboard as a Teacher)
-        (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
-        (Access Staff Management Dashboard as a Teacher) <.. (Create Time Tables) : <<extend>>
-        (Access Staff Management Dashboard as a Teacher) <.. (Update Time Tables) : <<extend>>
-        (Access Staff Management Dashboard as a Teacher) <.. (Delete Time Tables) : <<extend>>
+        U -- (Access User Profile)
+        (Access User Profile) <.. (View User Information) : <<extend>>
+        (Access User Profile) <.. (Update User Profile) : <<extend>>
+
+        U -- (Comminication)
+        (Comminication) <.. (Send Messages) : <<extend>>
+
+        (Send Messages) ..> (Send Notifications to Users) : <<include>>
+
+        U -- (Logout)
+        (Logout) ..> (Confirm) : <<include>>
+
+        (Send Notifications to Users) -- UR
+
+        S -- (Access Educational Content Dashboard as a Student)
+        (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (Submit Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
+        (Access Educational Content Dashboard as a Student) <.. (View Time Tables) : <<extend>>
+
+        (Submit Assessments) ..> (Send Notifications to Class Teachers): <<include>>
+        (Update Assessments) ..> (Send Notifications to Class Teachers): <<include>>
+
+        S -- (Access Extracurricular Content Dashboard as a Student)
+        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
+        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
+
+        (Apply for Societies and Clubs) ..> (Send Notifications to Class Teachers): <<include>>
+        (Apply for Competitions) ..> (Send Notifications to Class Teachers): <<include>>
+
+        S -- (Access Exam Dashboard as a Student)
+        (Access Exam Dashboard as a Student) <.. (View Exams as a Student) : <<extend>>
+        (Access Exam Dashboard as a Student) <.. (View Exam Results as a Student) : <<extend>>
+
+        S -- (Access Payment Dashboard)
+        (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
+        (Access Payment Dashboard) <.. (Pay Welfare Fees) : <<extend>>
+
+        (Pay School Fees) ..> (Generate Student Payment Receipts) : <<include>>
+        (Pay Welfare Fees) ..> (Generate Student Payment Receipts) : <<include>>
+
+        S -- (Access Query Dashboard as a Student)
+        (Access Query Dashboard as a Student) <.. (Submit Medicals for Sudden Leaves) : <<extend>>
+        (Access Query Dashboard as a Student) <.. (Submit Student Queries) : <<extend>>
+
+        (Submit Medicals for Sudden Leaves) ..> (Send Notifications to Class Teachers) : <<include>>
+        (Submit Student Queries) ..> (Send Notifications to Class Teachers) : <<include>>
         
-        (Schedule Sectional Staff Meetings) ..> (Send Notifications to Teachers) : <<include>>
-        (Create Time Tables) ..> (Send Notifications to Teachers): <<include>>
-        (Update Time Tables) ..> (Send Notifications to Teachers) : <<include>>
-        
-        (Send Notifications to Sectional Head) -- SHR
+        (Send Notifications to Students) -- SR
 
         T -- (Access Educational Content Dashboard)
         (Access Educational Content Dashboard) <.. (View Student Activity) : <<extend>>
@@ -119,55 +155,39 @@ rectangle "School Management System" {
         (Send Notifications to Class Teachers) -- CTR
         (Generate Student Payment Receipts) -- CTR
 
-        S -- (Access Educational Content Dashboard as a Student)
-        (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (View Assessments) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (Submit Assessments) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
-        (Access Educational Content Dashboard as a Student) <.. (View Time Tables) : <<extend>>
+        SH -- (Access Exam Dashboard)
+        (Access Exam Dashboard) <.. (Create Exams) : <<extend>>
+        (Access Exam Dashboard) <.. (Update Exams) : <<extend>>
+        (Access Exam Dashboard) <.. (Delete Exams) : <<extend>>
 
-        (Submit Assessments) ..> (Send Notifications to Class Teachers): <<include>>
-        (Update Assessments) ..> (Send Notifications to Class Teachers): <<include>>
+        (Create Exams) ..> (Send Notifications to Teachers): <<include>>
+        (Update Exams) ..> (Send Notifications to Teachers): <<include>>
+        (Delete Exams) ..> (Send Notifications to Teachers): <<include>>
 
-        S -- (Access Extracurricular Content Dashboard as a Student)
-        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
-        (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
-
-        (Apply for Societies and Clubs) ..> (Send Notifications to Class Teachers): <<include>>
-        (Apply for Competitions) ..> (Send Notifications to Class Teachers): <<include>>
-
-        S -- (Access Exam Dashboard as a Student)
-        (Access Exam Dashboard as a Student) <.. (View Exams as a Student) : <<extend>>
-        (Access Exam Dashboard as a Student) <.. (View Exam Results as a Student) : <<extend>>
-
-        S -- (Access Payment Dashboard)
-        (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
-        (Access Payment Dashboard) <.. (Pay Welfare Fees) : <<extend>>
-
-        (Pay School Fees) ..> (Generate Student Payment Receipts) : <<include>>
-        (Pay Welfare Fees) ..> (Generate Student Payment Receipts) : <<include>>
-
-        S -- (Access Query Dashboard as a Student)
-        (Access Query Dashboard as a Student) <.. (Submit Medicals for Sudden Leaves) : <<extend>>
-        (Access Query Dashboard as a Student) <.. (Submit Student Queries) : <<extend>>
-
-        (Submit Medicals for Sudden Leaves) ..> (Send Notifications to Class Teachers) : <<include>>
-        (Submit Student Queries) ..> (Send Notifications to Class Teachers) : <<include>>
+        SH -- (Access Staff Management Dashboard as a Teacher)
+        (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Create Time Tables) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Update Time Tables) : <<extend>>
+        (Access Staff Management Dashboard as a Teacher) <.. (Delete Time Tables) : <<extend>>
         
-        (Send Notifications to Students) -- SR
-
+        (Schedule Sectional Staff Meetings) ..> (Send Notifications to Teachers) : <<include>>
+        (Create Time Tables) ..> (Send Notifications to Teachers): <<include>>
+        (Update Time Tables) ..> (Send Notifications to Teachers) : <<include>>
+        
+        (Send Notifications to Sectional Head) -- SHR
+        
         VP -- (Broadcast Announcements)
         (Broadcast Announcements) ..> (Send Messages as the Principal) : <<include>>
-        (Send Messages as the Principal) ..> (Send Notifications to Users) : <<include>>
+        (Send Messages as the Principal) ..> (Send Notifications to Teachers) : <<include>>
 
         VP -- (Access Event Management Dashboard)
         (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Delete Events) : <<extend>>
 
-        (Create Events) ..> (Send Notifications to Users): <<include>>
-        (Update Events) ..> (Send Notifications to Users): <<include>>
-        (Delete Events) ..> (Send Notifications to Users): <<include>>
+        (Create Events) ..> (Send Notifications to Teachers): <<include>>
+        (Update Events) ..> (Send Notifications to Teachers): <<include>>
+        (Delete Events) ..> (Send Notifications to Teachers): <<include>>
 
         VP -- (Access Staff Management Dashboard)
         (Access Staff Management Dashboard) <.. (Schedule Meetings) : <<extend>>
@@ -175,8 +195,8 @@ rectangle "School Management System" {
         (Access Staff Management Dashboard) <.. (Remove Staff Members) : <<extend>>
         (Access Staff Management Dashboard) <.. (Update Staff Members) : <<extend>>
 
-        (Schedule Meetings) ..> (Send Notifications to Users) : <<include>>
-        (Update Staff Members) ..> (Send Notifications to Users): <<include>>
+        (Schedule Meetings) ..> (Send Notifications to Teachers) : <<include>>
+        (Update Staff Members) ..> (Send Notifications to Teachers): <<include>>
 
         VP -- (Access Student Management Dashboard)
         (Access Student Management Dashboard) <.. (view Enrollment Information) : <<extend>>
@@ -234,26 +254,6 @@ rectangle "School Management System" {
         (Generate Reports) <.. (System Utilization Reports) : <<extend>>
         (Generate Reports) <.. (Content Popularity Reports) : <<extend>>
         (Generate Reports) <.. (Monthly Attendance Reports) : <<extend>>
-
-        U -- (Enter the Attendance Daily)
-        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
-
-        U -- (Login)
-        (Login) ..> (Validate User) : <<include>>
-
-        U -- (Access User Profile)
-        (Access User Profile) <.. (View User Information) : <<extend>>
-        (Access User Profile) <.. (Update User Profile) : <<extend>>
-
-        U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extend>>
-
-        (Send Messages) ..> (Send Notifications to Users) : <<include>>
-
-        (Send Notifications to Users) -- UR
-
-        U -- (Logout)
-        (Logout) ..> (Confirm) : <<include>>
 }
 
 @enduml
