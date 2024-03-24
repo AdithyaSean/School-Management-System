@@ -31,7 +31,7 @@ rectangle "School Management System" {
         (View User Information) <.. (Update User) : <<extend>>
         (View User Information) <.. (Delete User) : <<extend>>
         (View User Information) <.. (Modify Permissions) : <<extend>>
-        
+
         (Add User) ..> (Update Registration Records) : <<include>>
         (Update User) ..> (Update Registration Records) : <<include>>
         (Delete User) ..> (Update Registration Records) : <<include>>
@@ -44,7 +44,7 @@ rectangle "School Management System" {
         (View System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
         (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
         (View System Monitor) <.. (Regular Information Backups) : <<extend>>
-        
+
         (Generate User Engagement Reports) ..> (Inform Vice Principal) : <<include>>
         (Generate Performance Reports) ..> (Inform Vice Principal) : <<include>>
         (Generate System Utilization Reports) ..> (Inform Vice Principal) : <<include>>
@@ -87,7 +87,7 @@ rectangle "School Management System" {
 
         (Plan School Budget) ..> (Inform Principal): <<include>>
         (Update School Budget) ..> (Inform Principal): <<include>>
-        
+
         (View Financial Information) <.. (Generate Financial Reports) : <<extend>>
         (View Financial Information) <.. (Withdraw Funds from School Account) : <<extend>>
         (View Financial Information) <.. (Deposit Funds to School Account) : <<extend>>
@@ -115,7 +115,7 @@ rectangle "School Management System" {
         (Update Time Tables) ..> (Inform Teachers) : <<include>>
         (Delete Time Tables) ..> (Inform Teachers) : <<include>>
         (Schedule Meetings) ..> (Inform Teachers) : <<include>>
-        
+
         (Inform Sectional Heads) -- SHR
 
         T -- (View Educational Information)
@@ -127,7 +127,7 @@ rectangle "School Management System" {
         (View Educational Information) <.. (Delete Educational Content) : <<extend>>
         (View Educational Information) <.. (View Time Table) : <<extend>>
 
-        (Grade Student Activity) ..> (Notify Students): <<include>>
+        (View Student Activity)..> (Grade Student Activity) : <<include>>
         (Send Feedback and Assessments) ..> (Notify Students): <<include>>
         (Create Educational Content) ..> (Notify Students): <<include>>
         (Update Educational Content) ..> (Notify Students): <<include>>
@@ -180,28 +180,18 @@ rectangle "School Management System" {
         (Delete Exams) ..> (Notify Students): <<include>>
         (Add Exam Results) ..> (Notify Students): <<include>>
         (Update Exam Results) ..> (Notify Students): <<include>>
-        
+
         T -- (View Query Information)
         (View Query Information) <.. (View Queries) : <<extend>>
-        (View Query Information) <.. (Feedback Queries) : <<extend>>
         (View Query Information) <.. (Submit Queries) : <<extend>>
-        (View Query Information) <.. (Submit Leaves and Short Leaves) : <<extend>>
 
-        (Feedback Student Queries) ..> (Notify Students): <<include>>
-        (Submit Queries) ..> (Notify Students) : <<include>>
-        (Submit Leaves and Short Leaves) ..> (Notify Sectional Heads) : <<include>>
-        
+        (View Queries) ..> (Feedback Queries) : <<include>>
+        (Submit Queries) ..> (Notify Sectional Heads) : <<include>>
+
         (Update Financial Information) -- TR
         (Update Logs) -- TR
         (Notify Teachers) -- TR
         (Inform Teachers) -- TR2
-
-        S -- (View Query Information as a Student)
-        (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
-        (View Query Information as a Student) <.. (Submit Queries as a Parent) : <<extend>>
-
-        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
-        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
 
         S -- (View Educational Information as a Student)
         (View Educational Information as a Student) <.. (View Educational Content) : <<extend>>
@@ -232,8 +222,17 @@ rectangle "School Management System" {
         (Pay School Fees) ..> (Update Financial Information) : <<include>>
         (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
         (Donate to the School) ..> (Update Financial Information) : <<include>>
-        
-        (Notify Students) -- SR
+
+        S -- (View Query Information as a Student)
+        (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
+        (View Query Information as a Student) <.. (Submit Queries as a Parent) : <<extend>>
+
+        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
+        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
+
+        (Notify Students) -- SR 
+        (Feedback Queries) -- SR
+        (Grade Student Activity) -- SR
 
         U -- (Enter the Attendance Daily)
         (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
@@ -241,7 +240,6 @@ rectangle "School Management System" {
         U -- (Login)
         (Login) ..> (Validate User) : <<include>>
         (Validate User)..> (Update Logs) : <<include>>
-
 
         U -- (View User Profile)
         (View User Profile) <.. (View Profile Information) : <<extend>>
