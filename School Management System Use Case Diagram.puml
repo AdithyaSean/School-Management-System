@@ -114,12 +114,16 @@ rectangle "School Management System" {
         (View Staff Information) <.. (Update Time Tables) : <<extend>>
         (View Staff Information) <.. (Delete Time Tables) : <<extend>>
         (View Staff Information) <.. (Add Staff Members) : <<extend>>
-        (View Staff Information) <.. (Remove Staff Members) : <<extend>>
         (View Staff Information) <.. (Update Staff Members) : <<extend>>
+        (View Staff Information) <.. (Remove Staff Members) : <<extend>>
 
         (Schedule Meetings) ..> (Inform Teachers) : <<include>>
         (Create Time Tables) ..> (Inform Teachers): <<include>>
         (Update Time Tables) ..> (Inform Teachers) : <<include>>
+        (Delete Time Tables) ..> (Inform Teachers) : <<include>>
+        (Add Staff Members) ..> (Inform Teachers) : <<include>>
+        (Update Staff Members) ..> (Inform Teachers) : <<include>>
+        (Remove Staff Members) ..> (Inform Teachers) : <<include>>
         
         (Inform Sectional Heads) -- SHR
 
