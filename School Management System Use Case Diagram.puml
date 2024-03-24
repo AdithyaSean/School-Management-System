@@ -5,8 +5,7 @@ skinparam linetype polyline
 
 actor "Teacher" as T
 actor "Teacher" as TR
-actor "Class Teacher" as CT
-actor "Class Teacher" as CTR
+actor "Teacher" as TR2
 actor "Sectional Head" as SH
 actor "Sectional Head" as SHR
 actor "Student" as S
@@ -21,8 +20,7 @@ actor "User" as UR
 
 U <|-- S
 S <|-- T
-T <|-- CT
-CT <|-- SH
+T <|-- SH
 SH <|-- VP
 VP <|-- P
 P <|-- A
@@ -41,12 +39,21 @@ rectangle "School Management System" {
         U -- (Comminication)
         (Comminication) <.. (Send Messages) : <<extend>>
 
-        (Send Messages) ..> (Send Notifications to Users) : <<include>>
+        (Send Messages) ..> (Inform Users) : <<include>>
 
         U -- (Logout)
         (Logout) ..> (Confirm) : <<include>>
 
-        (Send Notifications to Users) -- UR
+        (Inform Users) -- UR
+
+        S -- (Access Query Dashboard as a Student)
+        (Access Query Dashboard as a Student) <.. (Submit Queries as a Student) : <<extend>>
+        (Access Query Dashboard as a Student) <.. (Submit Queries as a Parent) : <<extend>>
+        (Access Query Dashboard as a Student) <.. (Submit Queries as a Guardian) : <<extend>>
+
+        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
+        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
+        (Submit Queries as a Guardian) ..> (Notify Teachers) : <<include>>
 
         S -- (Access Educational Content Dashboard as a Student)
         (Access Educational Content Dashboard as a Student) <.. (View Educational Content) : <<extend>>
@@ -55,15 +62,15 @@ rectangle "School Management System" {
         (Access Educational Content Dashboard as a Student) <.. (Update Assessments) : <<extend>>
         (Access Educational Content Dashboard as a Student) <.. (View Time Tables) : <<extend>>
 
-        (Submit Assessments) ..> (Send Notifications to Class Teachers): <<include>>
-        (Update Assessments) ..> (Send Notifications to Class Teachers): <<include>>
+        (Submit Assessments) ..> (Notify Teachers): <<include>>
+        (Update Assessments) ..> (Notify Teachers): <<include>>
 
         S -- (Access Extracurricular Content Dashboard as a Student)
         (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
         (Access Extracurricular Content Dashboard as a Student) <.. (Apply for Competitions) : <<extend>>
 
-        (Apply for Societies and Clubs) ..> (Send Notifications to Class Teachers): <<include>>
-        (Apply for Competitions) ..> (Send Notifications to Class Teachers): <<include>>
+        (Apply for Societies and Clubs) ..> (Notify Teachers): <<include>>
+        (Apply for Competitions) ..> (Notify Teachers): <<include>>
 
         S -- (Access Exam Dashboard as a Student)
         (Access Exam Dashboard as a Student) <.. (View Exams as a Student) : <<extend>>
@@ -72,18 +79,13 @@ rectangle "School Management System" {
         S -- (Access Payment Dashboard)
         (Access Payment Dashboard) <.. (Pay School Fees) : <<extend>>
         (Access Payment Dashboard) <.. (Pay Welfare Fees) : <<extend>>
+        (Access Payment Dashboard) <.. (Donate to the School) : <<extend>>
 
-        (Pay School Fees) ..> (Generate Student Payment Receipts) : <<include>>
-        (Pay Welfare Fees) ..> (Generate Student Payment Receipts) : <<include>>
-
-        S -- (Access Query Dashboard as a Student)
-        (Access Query Dashboard as a Student) <.. (Submit Medicals for Sudden Leaves) : <<extend>>
-        (Access Query Dashboard as a Student) <.. (Submit Student Queries) : <<extend>>
-
-        (Submit Medicals for Sudden Leaves) ..> (Send Notifications to Class Teachers) : <<include>>
-        (Submit Student Queries) ..> (Send Notifications to Class Teachers) : <<include>>
+        (Pay School Fees) ..> (Update Financial Information) : <<include>>
+        (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
+        (Donate to the School) ..> (Update Financial Information) : <<include>>
         
-        (Send Notifications to Students) -- SR
+        (Notify Students) -- SR
 
         T -- (Access Educational Content Dashboard)
         (Access Educational Content Dashboard) <.. (View Student Activity) : <<extend>>
@@ -94,11 +96,11 @@ rectangle "School Management System" {
         (Access Educational Content Dashboard) <.. (Delete Educational Content) : <<extend>>
         (Access Educational Content Dashboard) <.. (View Time Table) : <<extend>>
 
-        (Grade Student Activity) ..> (Send Notifications to Students): <<include>>
-        (Send Feedback and Assessments) ..> (Send Notifications to Students): <<include>>
-        (Create Educational Content) ..> (Send Notifications to Students): <<include>>
-        (Update Educational Content) ..> (Send Notifications to Students): <<include>>
-        (Delete Educational Content) ..> (Send Notifications to Students): <<include>>
+        (Grade Student Activity) ..> (Notify Students): <<include>>
+        (Send Feedback and Assessments) ..> (Notify Students): <<include>>
+        (Create Educational Content) ..> (Notify Students): <<include>>
+        (Update Educational Content) ..> (Notify Students): <<include>>
+        (Delete Educational Content) ..> (Notify Students): <<include>>
 
         T -- (Access Extracurricular Content Dashboard)
         (Access Extracurricular Content Dashboard) <.. (Add Members) : <<extend>>
@@ -110,20 +112,25 @@ rectangle "School Management System" {
         (Access Extracurricular Content Dashboard) <.. (Delete Societies and Clubs) : <<extend>>
         (Access Extracurricular Content Dashboard) <.. (Update Societies and Clubs) : <<extend>>
 
-        (Add Members) ..> (Send Notifications to Students): <<include>>
-        (Remove Members) ..> (Send Notifications to Students): <<include>>
-        (Update Members) ..> (Send Notifications to Students): <<include>>
-        (Create Competitions) ..> (Send Notifications to Students): <<include>>
-        (Create Societies and Clubs) ..> (Send Notifications to Students): <<include>>
-        (Update Societies and Clubs) ..> (Send Notifications to Students): <<include>>
+        (Add Members) ..> (Notify Students): <<include>>
+        (Remove Members) ..> (Notify Students): <<include>>
+        (Update Members) ..> (Notify Students): <<include>>
+        (Create Competitions) ..> (Notify Students): <<include>>
+        (Create Societies and Clubs) ..> (Notify Students): <<include>>
+        (Update Societies and Clubs) ..> (Notify Students): <<include>>
 
         T -- (Access Students Management Dashboard as a Teacher)
         (Access Students Management Dashboard as a Teacher) <.. (Update Student Information) : <<extend>>
         (Access Students Management Dashboard as a Teacher) <.. (Delete Student Information) : <<extend>>
         (Access Students Management Dashboard as a Teacher) <.. (Create Student Information) : <<extend>>
         (Access Students Management Dashboard as a Teacher) <.. (View Student Performance) : <<extend>>
+        (Access Students Management Dashboard as a Teacher) <.. (Generate Student Performance Reports) : <<extend>>
         (Access Students Management Dashboard as a Teacher) <.. (Update Student Performance) : <<extend>>
         (Access Students Management Dashboard as a Teacher) <.. (View Student Attendance) : <<extend>>
+        (Access Students Management Dashboard as a Teacher) <.. (Generate Student Attendance Reports) : <<extend>>
+
+        (Generate Student Performance Reports) ..> (Notify Students) : <<include>>
+        (Generate Student Attendance Reports) ..> (Notify Students) : <<include>>
 
         T -- (Access Exam Dashboard as a Teacher)
         (Access Exam Dashboard as a Teacher) <.. (View Exam Results) : <<extend>>
@@ -131,38 +138,29 @@ rectangle "School Management System" {
         (Access Exam Dashboard as a Teacher) <.. (Update Exam Results) : <<extend>>
         (Access Exam Dashboard as a Teacher) <.. (Delete Exams Results) : <<extend>>
 
-        (Enter Exam Results) ..> (Send Notifications to Students): <<include>>
-        (Update Exam Results) ..> (Send Notifications to Students): <<include>>
+        (Enter Exam Results) ..> (Notify Students): <<include>>
+        (Update Exam Results) ..> (Notify Students): <<include>>
         
         T -- (Access Query Dashboard)
         (Access Query Dashboard) <.. (Submit Leaves and Short Leaves) : <<extend>>
         (Access Query Dashboard) <.. (View Student Queries) : <<extend>>
         (Access Query Dashboard) <.. (Feedback Student Queries) : <<extend>>
 
-        (Submit Leaves and Short Leaves) ..> (Send Notifications to Students) : <<include>>
-        (Feedback Student Queries) ..> (Send Notifications to Students): <<include>>
+        (Submit Leaves and Short Leaves) ..> (Notify Students) : <<include>>
+        (Feedback Student Queries) ..> (Notify Students): <<include>>
 
-        (Send Notifications to Teachers) -- TR
+        (Inform Teachers) -- TR
+        (Notify Teachers) -- TR2
+        (Update Financial Information) - TR2
 
-        CT -- (Generate Student Reports)
-        (Generate Student Reports) <.. (Student Attendance Reports) : <<extend>>
-        (Generate Student Reports) <.. (Student Performance Reports) : <<extend>>
-        
-        (Student Performance Reports) ..> (Send Notifications to Students) : <<include>>
-        (Student Performance Reports) ..> (Send Notifications to Sectional Head) : <<include>>
-        (Student Attendance Reports) ..> (Send Notifications to Sectional Head) : <<include>>
+        SH -- (Access Exams Dashboard)
+        (Access Exams Dashboard) <.. (Create Exams) : <<extend>>
+        (Access Exams Dashboard) <.. (Update Exams) : <<extend>>
+        (Access Exams Dashboard) <.. (Delete Exams) : <<extend>>
 
-        (Send Notifications to Class Teachers) -- CTR
-        (Generate Student Payment Receipts) -- CTR
-
-        SH -- (Access Exam Dashboard)
-        (Access Exam Dashboard) <.. (Create Exams) : <<extend>>
-        (Access Exam Dashboard) <.. (Update Exams) : <<extend>>
-        (Access Exam Dashboard) <.. (Delete Exams) : <<extend>>
-
-        (Create Exams) ..> (Send Notifications to Teachers): <<include>>
-        (Update Exams) ..> (Send Notifications to Teachers): <<include>>
-        (Delete Exams) ..> (Send Notifications to Teachers): <<include>>
+        (Create Exams) ..> (Inform Teachers): <<include>>
+        (Update Exams) ..> (Inform Teachers): <<include>>
+        (Delete Exams) ..> (Inform Teachers): <<include>>
 
         SH -- (Access Staff Management Dashboard as a Teacher)
         (Access Staff Management Dashboard as a Teacher) <.. (Schedule Sectional Staff Meetings) : <<extend>>
@@ -170,24 +168,24 @@ rectangle "School Management System" {
         (Access Staff Management Dashboard as a Teacher) <.. (Update Time Tables) : <<extend>>
         (Access Staff Management Dashboard as a Teacher) <.. (Delete Time Tables) : <<extend>>
         
-        (Schedule Sectional Staff Meetings) ..> (Send Notifications to Teachers) : <<include>>
-        (Create Time Tables) ..> (Send Notifications to Teachers): <<include>>
-        (Update Time Tables) ..> (Send Notifications to Teachers) : <<include>>
+        (Schedule Sectional Staff Meetings) ..> (Inform Teachers) : <<include>>
+        (Create Time Tables) ..> (Inform Teachers): <<include>>
+        (Update Time Tables) ..> (Inform Teachers) : <<include>>
         
-        (Send Notifications to Sectional Head) -- SHR
+        (Inform Sectional Heads) -- SHR
         
         VP -- (Broadcast Announcements)
         (Broadcast Announcements) ..> (Send Messages as the Principal) : <<include>>
-        (Send Messages as the Principal) ..> (Send Notifications to Teachers) : <<include>>
+        (Send Messages as the Principal) ..> (Inform Sectional Heads) : <<include>>
 
         VP -- (Access Event Management Dashboard)
         (Access Event Management Dashboard) <.. (Create Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Update Events) : <<extend>>
         (Access Event Management Dashboard) <.. (Delete Events) : <<extend>>
 
-        (Create Events) ..> (Send Notifications to Teachers): <<include>>
-        (Update Events) ..> (Send Notifications to Teachers): <<include>>
-        (Delete Events) ..> (Send Notifications to Teachers): <<include>>
+        (Create Events) ..> (Inform Sectional Heads): <<include>>
+        (Update Events) ..> (Inform Sectional Heads): <<include>>
+        (Delete Events) ..> (Inform Sectional Heads): <<include>>
 
         VP -- (Access Staff Management Dashboard)
         (Access Staff Management Dashboard) <.. (Schedule Meetings) : <<extend>>
@@ -195,14 +193,14 @@ rectangle "School Management System" {
         (Access Staff Management Dashboard) <.. (Remove Staff Members) : <<extend>>
         (Access Staff Management Dashboard) <.. (Update Staff Members) : <<extend>>
 
-        (Schedule Meetings) ..> (Send Notifications to Teachers) : <<include>>
-        (Update Staff Members) ..> (Send Notifications to Teachers): <<include>>
+        (Schedule Meetings) ..> (Inform Sectional Heads) : <<include>>
+        (Update Staff Members) ..> (Inform Sectional Heads): <<include>>
 
         VP -- (Access Student Management Dashboard)
         (Access Student Management Dashboard) <.. (view Enrollment Information) : <<extend>>
         (Access Student Management Dashboard) <.. (Generate Enrollment Reports) : <<extend>>
 
-        (Generate Enrollment Reports) ..> (Send Notifications to Principal): <<include>>
+        (Generate Enrollment Reports) ..> (Inform Principal): <<include>>
 
         VP -- (Access Financial Management Dashboard)
         (Access Financial Management Dashboard) <.. (Monitor Student Payments) : <<extend>>
@@ -210,17 +208,17 @@ rectangle "School Management System" {
         (Access Financial Management Dashboard) <.. (Plan School Budget) : <<extend>>
         (Access Financial Management Dashboard) <.. (Update School Budget) : <<extend>>
 
-        (Plan School Budget) ..> (Send Notifications to Principal): <<include>>
-        (Update School Budget) ..> (Send Notifications to Principal): <<include>>
+        (Plan School Budget) ..> (Inform Principal): <<include>>
+        (Update School Budget) ..> (Inform Principal): <<include>>
         
         (Access Financial Management Dashboard) <.. (Generate Financial Reports) : <<extend>>
         (Access Financial Management Dashboard) <.. (Withdraw Funds from School Account) : <<extend>>
         (Access Financial Management Dashboard) <.. (Deposit Funds to School Account) : <<extend>>
 
-        (Withdraw Funds from School Account) ..> (Send Notifications to Principal) : <<include>>
-        (Deposit Funds to School Account) ..> (Send Notifications to Principal) : <<include>>
+        (Withdraw Funds from School Account) ..> (Inform Principal) : <<include>>
+        (Deposit Funds to School Account) ..> (Inform Principal) : <<include>>
 
-        (Send Notifications to Vice Principal) -- VPR
+        (Inform Vice Principal) -- VPR
 
         P -- (Access Administrative Dashboard)
         (Access Administrative Dashboard) <.. (View Policies) : <<extend>>
@@ -228,11 +226,11 @@ rectangle "School Management System" {
         (Access Administrative Dashboard) <.. (Update Policies) : <<extend>>
         (Access Administrative Dashboard) <.. (Delete Policies) : <<extend>>
 
-        (Create Policies) ..> (Send Notifications to Vice Principal): <<include>>
-        (Update Policies) ..> (Send Notifications to Vice Principal): <<include>>
-        (Delete Policies) ..> (Send Notifications to Vice Principal): <<include>>
+        (Create Policies) ..> (Inform Vice Principal): <<include>>
+        (Update Policies) ..> (Inform Vice Principal): <<include>>
+        (Delete Policies) ..> (Inform Vice Principal): <<include>>
 
-        (Send Notifications to Principal) -- PR
+        (Inform Principal) -- PR
 
         A -- (Create User Accounts and Access Permissions)
         (Create User Accounts and Access Permissions) <.. (Add User) : <<extend>>
