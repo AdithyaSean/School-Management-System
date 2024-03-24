@@ -44,13 +44,15 @@ rectangle "School Management System" {
         (View System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
         (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
         (View System Monitor) <.. (Regular Information Backups) : <<extend>>
+        (View System Monitor) <.. (View Logs) : <<extend>>
 
         (Generate User Engagement Reports) ..> (Inform Vice Principal) : <<include>>
         (Generate Performance Reports) ..> (Inform Vice Principal) : <<include>>
         (Generate System Utilization Reports) ..> (Inform Vice Principal) : <<include>>
         (Generate Content Popularity Reports) ..> (Inform Vice Principal) : <<include>>
         (Generate Monthly Attendance Reports) ..> (Inform Vice Principal) : <<include>>
-        (Regular Information Backups) ..> (Create Logs) : <<include>>
+        (Regular Information Backups) ..> (Generate Logs) : <<include>>
+        (View Logs) ..> (Generate Logs) : <<include>>
 
         A -- (View System Database)
         (View System Database) <.. (Create Tables) : <<extend>>
@@ -98,6 +100,7 @@ rectangle "School Management System" {
 
         (Inform Vice Principal) -- VPR
         (Update Registration Records) -- VPR
+        (Generate Logs) -- VPR
 
         SH -- (View Staff Information)
         (View Staff Information) <.. (Add Staff Members) : <<extend>>
@@ -120,7 +123,6 @@ rectangle "School Management System" {
 
         T -- (View Educational Information)
         (View Educational Information) <.. (View Student Activity) : <<extend>>
-        (View Educational Information) <.. (Grade Student Activity) : <<extend>>
         (View Educational Information) <.. (Send Feedback and Assessments) : <<extend>>
         (View Educational Information) <.. (Create Educational Content) : <<extend>>
         (View Educational Information) <.. (Update Educational Content) : <<extend>>
@@ -186,12 +188,19 @@ rectangle "School Management System" {
         (View Query Information) <.. (Submit Queries) : <<extend>>
 
         (View Queries) ..> (Feedback Queries) : <<include>>
-        (Submit Queries) ..> (Notify Sectional Heads) : <<include>>
+        (Submit Queries) ..> (Notify Students) : <<include>>
 
         (Update Financial Information) -- TR
         (Update Logs) -- TR
         (Notify Teachers) -- TR
         (Inform Teachers) -- TR2
+
+        S -- (View Query Information as a Student)
+        (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
+        (View Query Information as a Student) <.. (Submit Queries as a Parent) : <<extend>>
+
+        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
+        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
 
         S -- (View Educational Information as a Student)
         (View Educational Information as a Student) <.. (View Educational Content) : <<extend>>
@@ -222,13 +231,6 @@ rectangle "School Management System" {
         (Pay School Fees) ..> (Update Financial Information) : <<include>>
         (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
         (Donate to the School) ..> (Update Financial Information) : <<include>>
-
-        S -- (View Query Information as a Student)
-        (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
-        (View Query Information as a Student) <.. (Submit Queries as a Parent) : <<extend>>
-
-        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
-        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
 
         (Notify Students) -- SR 
         (Feedback Queries) -- SR
