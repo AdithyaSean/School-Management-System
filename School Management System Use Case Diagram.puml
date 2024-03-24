@@ -70,7 +70,7 @@ rectangle "School Management System" {
 
         (Inform Principal) -- PR
 
-        VP -- (Broadcast Announcements)
+        P -- (Broadcast Announcements)
         (Broadcast Announcements) ..> (Send Messages as the Principal) : <<include>>
         (Send Messages as the Principal) ..> (Inform Sectional Heads) : <<include>>
 
