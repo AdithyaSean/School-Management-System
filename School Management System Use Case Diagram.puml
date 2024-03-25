@@ -53,20 +53,26 @@ rectangle "School Management System" {
         (View System Monitor) <.. (Generate System Utilization Reports) : <<extend>>
         (View System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
         (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
-        (View System Monitor) <.. (Regular Informations Backups) : <<extend>>
 
         (Generate User Engagement Reports) ..> (Inform Principal) : <<include>>
         (Generate Performance Reports) ..> (Inform Principal) : <<include>>
         (Generate System Utilization Reports) ..> (Inform Principal) : <<include>>
         (Generate Content Popularity Reports) ..> (Inform Principal) : <<include>>
         (Generate Monthly Attendance Reports) ..> (Inform Principal) : <<include>>
+
+        A -- (View Backups)
+        (View Backups) <.. (Regular Informations Backups) : <<extend>>
+
         (Regular Informations Backups) ..> (Generate Backup Logs) : <<include>>
 
         (Update User Log) -- AR
 
         P -- (Broadcast Announcements)
-        (Broadcast Announcements) ..> (Inform Users) : <<include>>
+        (Broadcast Announcements) <.. (Inform Users) : <<extend>>
+        (Broadcast Announcements) <.. (Inform Vice Principals) : <<extend>>
+
         (Inform Users) ..> (Notify Users) : <<include>>
+        (Inform Vice Principals) ..> (Notify Vice Principal) : <<include>>
 
         P -- (View Administrative Informations)
         (View Administrative Informations) <.. (Create Policies) : <<extend>>
@@ -107,7 +113,9 @@ rectangle "School Management System" {
         (Delete Events) ..> (Update Events): <<include>>
 
         (Inform Vice Principal) -- VPR
+        (Notify Vice Principal) -- VPR
         (Update Administrative Informations) -- VPR
+        (Update Events) -- VPR
 
         SH -- (View Staff Informations)
         (View Staff Informations) <.. (Add Staff Members) : <<extend>>
