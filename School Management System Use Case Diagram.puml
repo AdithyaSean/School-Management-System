@@ -147,8 +147,8 @@ rectangle "School Management System" {
         (View Educational Informations) <.. (Edit Educational Content) : <<extend>>
         (View Educational Informations) <.. (Delete Educational Content) : <<extend>>
 
-        (Grade Student Assessments) ..> (Update Educational Informations) : <<extend>>
-        (Send Feedback and Assessments) ..> (Update Educational Informations) : <<extend>>
+        (Grade Student Assessments) ..> (Update Educational Informations) : <<include>>
+        (Send Feedback and Assessments) ..> (Update Educational Informations) : <<include>>
         (Create Educational Content) ..> (Update Educational Informations): <<include>>
         (Edit Educational Content) ..> (Update Educational Informations): <<include>>
         (Delete Educational Content) ..> (Update Educational Informations): <<include>>
