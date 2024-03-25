@@ -5,6 +5,7 @@ skinparam linetype polyline
 
 actor "User" as U
 actor "User" as UR
+actor "User" as UR2
 actor "Student" as S
 actor "Student" as SR
 actor "Teacher" as T
@@ -266,7 +267,7 @@ rectangle "School Management System" {
         (Confirm) ..> (Update User Logs) : <<include>>
 
         (Notify Users) -- UR
-        (Send Messages) -- UR
+        (Send Messages) -- UR2
 }
 
 @enduml
