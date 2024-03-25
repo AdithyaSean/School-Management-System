@@ -177,11 +177,11 @@ rectangle "School Management System" {
         (View Exam Informations) <.. (Enter Exam Results) : <<extend>>
         (View Exam Informations) <.. (Delete Exam Results) : <<extend>>
 
-        (Create Exams) ..> (Update Exam Informations): <<include>>
-        (Update Exams) ..> (Update Exam Informations): <<include>>
-        (Delete Exams) ..> (Update Exam Informations): <<include>>
-        (Enter Exam Results) ..> (Update Exam Informations): <<include>>
-        (Delete Exam Results) ..> (Update Exam Informations): <<include>>
+        (Create Exams) ..> (Update Exam Informations) : <<include>>
+        (Update Exams) ..> (Update Exam Informations) : <<include>>
+        (Delete Exams) ..> (Update Exam Informations) : <<include>>
+        (Enter Exam Results) ..> (Update Exam Informations) : <<include>>
+        (Delete Exam Results) ..> (Update Exam Informations) : <<include>>
 
         T -- (View Query Informations)
         (View Query Informations) <.. (Feedback for Queries) : <<extend>>
