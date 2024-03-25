@@ -34,10 +34,10 @@ rectangle "School Management System" {
         (View User Information) <.. (Modify Permissions) : <<extend>>
         (View User Information) <.. (View User Logs) : <<extend>>
 
-        (Add User) ..> (Update Registration Records) : <<include>>
-        (Update User) ..> (Update Registration Records) : <<include>>
-        (Delete User) ..> (Update Registration Records) : <<include>>
-        (Modify Permissions) ..> (Update Registration Records) : <<include>>
+        (Add User) ..> (Alter User Log) : <<include>>
+        (Update User) ..> (Alter User Log) : <<include>>
+        (Delete User) ..> (Alter User Log) : <<include>>
+        (Modify Permissions) ..> (Alter User Log) : <<include>>
 
         A -- (View System Monitor)
         (View System Monitor) <.. (Generate User Engagement Reports) : <<extend>>
@@ -59,7 +59,7 @@ rectangle "School Management System" {
         (View System Database) <.. (Update Tables) : <<extend>>
         (View System Database) <.. (Delete Tables) : <<extend>>
 
-        (Update User Logs) -- AR
+        (Alter User Log) -- AR
 
         P -- (View Administrative Information)
         (View Administrative Information) <.. (Create Policies) : <<extend>>
@@ -91,7 +91,7 @@ rectangle "School Management System" {
         (Inform Users) ..> (Notify Users) : <<include>>
 
         (Inform Principal) -- PR
-        (Update Registration Records) -- PR
+        (Alter User Log) -- PR
         (Generate Backup Logs) -- PR
 
         VP -- (View Events Information)
@@ -252,10 +252,11 @@ rectangle "School Management System" {
 
         U -- (Enter the Attendance Daily)
         (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+        (Verify Using Fingerprint) ..> (Update User Log) : <<include>>
 
         U -- (Login)
         (Login) ..> (Validate User) : <<include>>
-        (Validate User) ..> (Update User Logs) : <<include>>
+        (Validate User) ..> (Update User Log) : <<include>>
 
         U -- (View User Profile)
         (View User Profile) <.. (View Profile Information) : <<extend>>
@@ -267,7 +268,7 @@ rectangle "School Management System" {
 
         U -- (Logout)
         (Logout) ..> (Confirm) : <<include>>
-        (Confirm) ..> (Update User Logs) : <<include>>
+        (Confirm) ..> (Update User Log) : <<include>>
 
         (Notify Users) -- UR
 }
