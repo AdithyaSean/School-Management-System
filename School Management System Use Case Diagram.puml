@@ -17,6 +17,7 @@ actor "Vice Principal" as VPR
 actor "Principal" as P
 actor "Principal" as PR
 actor "Administrator" as A
+actor "Administrator" as AR
 
 U <|-- S
 S <|-- T
@@ -57,6 +58,8 @@ rectangle "School Management System" {
         (View System Database) <.. (Create Tables) : <<extend>>
         (View System Database) <.. (Update Tables) : <<extend>>
         (View System Database) <.. (Delete Tables) : <<extend>>
+
+        (Update User Logs) -- AR
 
         P -- (View Administrative Information)
         (View Administrative Information) <.. (Create Policies) : <<extend>>
