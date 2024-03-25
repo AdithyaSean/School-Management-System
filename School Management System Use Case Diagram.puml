@@ -27,248 +27,237 @@ VP <|-- P
 P <|-- A
 
 rectangle "School Management System" {
-        A -- (View User Information)
-        (View User Information) <.. (Add User) : <<extend>>
-        (View User Information) <.. (Update User) : <<extend>>
-        (View User Information) <.. (Delete User) : <<extend>>
-        (View User Information) <.. (Modify Permissions) : <<extend>>
-        (View User Information) <.. (View User Logs) : <<extend>>
+        A -- (View System Database)
+        (View System Database) <.. (Create Records) : <<extends>>
+        (View System Database) <.. (Edit Records) : <<extends>>
+        (View System Database) <.. (Delete Records) : <<extends>>
 
-        (Add User) ..> (Alter User Log) : <<include>>
-        (Update User) ..> (Alter User Log) : <<include>>
-        (Delete User) ..> (Alter User Log) : <<include>>
-        (Modify Permissions) ..> (Alter User Log) : <<include>>
+        (Create Records) ..> (Update Tables) : <<includes>>
+        (Edit Records) ..> (Update Tables) : <<includes>>
+        (Delete Records) ..> (Update Tables) : <<includes>>
+
+        A -- (View User Informations)
+        (View User Informations) <.. (Add User) : <<extends>>
+        (View User Informations) <.. (Update User) : <<extends>>
+        (View User Informations) <.. (Delete User) : <<extends>>
+        (View User Informations) <.. (Modify Permissions) : <<extends>>
+
+        (Add User) ..> (Update User Logs) : <<includes>>
+        (Update User) ..> (Update User Logs) : <<includes>>
+        (Delete User) ..> (Update User Logs) : <<includes>>
+        (Modify Permissions) ..> (Update User Logs) : <<includes>>
 
         A -- (View System Monitor)
-        (View System Monitor) <.. (Generate User Engagement Reports) : <<extend>>
-        (View System Monitor) <.. (Generate Performance Reports) : <<extend>>
-        (View System Monitor) <.. (Generate System Utilization Reports) : <<extend>>
-        (View System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
-        (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
-        (View System Monitor) <.. (Regular Information Backups) : <<extend>>
+        (View System Monitor) <.. (Generate User Engagement Reports) : <<extends>>
+        (View System Monitor) <.. (Generate Performance Reports) : <<extends>>
+        (View System Monitor) <.. (Generate System Utilization Reports) : <<extends>>
+        (View System Monitor) <.. (Generate Content Popularity Reports) : <<extends>>
+        (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extends>>
+        (View System Monitor) <.. (Regular Informations Backups) : <<extends>>
 
-        (Generate User Engagement Reports) ..> (Inform Principal) : <<include>>
-        (Generate Performance Reports) ..> (Inform Principal) : <<include>>
-        (Generate System Utilization Reports) ..> (Inform Principal) : <<include>>
-        (Generate Content Popularity Reports) ..> (Inform Principal) : <<include>>
-        (Generate Monthly Attendance Reports) ..> (Inform Principal) : <<include>>
-        (Regular Information Backups) ..> (Generate Backup Logs) : <<include>>
-
-        A -- (View System Database)
-        (View System Database) <.. (Create Tables) : <<extend>>
-        (View System Database) <.. (Update Tables) : <<extend>>
-        (View System Database) <.. (Delete Tables) : <<extend>>
+        (Generate User Engagement Reports) ..> (Inform Principal) : <<includes>>
+        (Generate Performance Reports) ..> (Inform Principal) : <<includes>>
+        (Generate System Utilization Reports) ..> (Inform Principal) : <<includes>>
+        (Generate Content Popularity Reports) ..> (Inform Principal) : <<includes>>
+        (Generate Monthly Attendance Reports) ..> (Inform Principal) : <<includes>>
+        (Regular Informations Backups) ..> (Generate Backup Logs) : <<includes>>
 
         (Update User Log) -- AR
 
-        P -- (View Administrative Information)
-        (View Administrative Information) <.. (Create Policies) : <<extend>>
-        (View Administrative Information) <.. (Update Policies) : <<extend>>
-        (View Administrative Information) <.. (Delete Policies) : <<extend>>
-
-        (Create Policies) ..> (Inform Vice Principal): <<include>>
-        (Update Policies) ..> (Inform Vice Principal): <<include>>
-        (Delete Policies) ..> (Inform Vice Principal): <<include>>
-
-        P -- (View Financial Information)
-        (View Financial Information) <.. (Plan School Budget) : <<extend>>
-        (View Financial Information) <.. (Update School Budget) : <<extend>>
-
-        (Plan School Budget) ..> (Inform Vice Principal): <<include>>
-        (Update School Budget) ..> (Inform Vice Principal): <<include>>
-
-        (View Financial Information) <.. (Generate Financial Reports) : <<extend>>
-        (View Financial Information) <.. (Withdraw Funds from School Account) : <<extend>>
-        (View Financial Information) <.. (Deposit Funds to School Account) : <<extend>>
-
-        (Generate Financial Reports) ..> (Inform Vice Principal): <<include>>
-        (Withdraw Funds from School Account) ..> (Inform Vice Principal) : <<include>>
-        (Deposit Funds to School Account) ..> (Inform Vice Principal) : <<include>>
-
         P -- (Broadcast Announcements)
-        (Broadcast Announcements) <.. (Inform Users) : <<extend>>
+        (Broadcast Announcements) ..> (Inform Users) : <<includes>>
+        (Inform Users) ..> (Notify Users) : <<includes>>
 
-        (Inform Users) ..> (Notify Users) : <<include>>
+        P -- (View Administrative Informations)
+        (View Administrative Informations) <.. (Create Policies) : <<extends>>
+        (View Administrative Informations) <.. (Edit Policies) : <<extends>>
+        (View Administrative Informations) <.. (Delete Policies) : <<extends>>
+
+        (Create Policies) ..> (Update Administrative Informations) : <<includes>>
+        (Edit Policies) ..> (Update Administrative Informations) : <<includes>>
+        (Delete Policies) ..> (Update Administrative Informations) : <<includes>>
+
+        P -- (View Financial Informations)
+        (View Financial Informations) <.. (Plan School Budget) : <<extends>>
+        (View Financial Informations) <.. (Update School Budget) : <<extends>>
+
+        (Plan School Budget) ..> (Inform Vice Principal): <<includes>>
+        (Update School Budget) ..> (Inform Vice Principal): <<includes>>
+
+        (View Financial Informations) <.. (Generate Financial Reports) : <<extends>>
+        (View Financial Informations) <.. (Withdraw Funds from School Account) : <<extends>>
+        (View Financial Informations) <.. (Deposit Funds to School Account) : <<extends>>
+
+        (Generate Financial Reports) ..> (Inform Vice Principal): <<includes>>
+        (Withdraw Funds from School Account) ..> (Inform Vice Principal) : <<includes>>
+        (Deposit Funds to School Account) ..> (Inform Vice Principal) : <<includes>>
 
         (Inform Principal) -- PR
-        (Alter User Log) -- PR
+        (Update User Logs) -- PR
         (Generate Backup Logs) -- PR
 
-        VP -- (View Events Information)
-        (View Events Information) <.. (Create Events) : <<extend>>
-        (View Events Information) <.. (Update Events) : <<extend>>
-        (View Events Information) <.. (Delete Events) : <<extend>>
+        VP -- (View Events Informations)
+        (View Events Informations) <.. (Create Events) : <<extends>>
+        (View Events Informations) <.. (Edit Events) : <<extends>>
+        (View Events Informations) <.. (Delete Events) : <<extends>>
 
-        (Create Events) ..> (Inform Sectional Heads): <<include>>
-        (Update Events) ..> (Inform Sectional Heads): <<include>>
-        (Delete Events) ..> (Inform Sectional Heads): <<include>>
+        (Create Events) ..> (Update Events): <<includes>>
+        (Edit Events) ..> (Update Events): <<includes>>
+        (Delete Events) ..> (Update Events): <<includes>>
 
         (Inform Vice Principal) -- VPR
+        (Update Administrative Informations) -- VPR
 
-        SH -- (View Staff Information)
-        (View Staff Information) <.. (Add Staff Members) : <<extend>>
-        (View Staff Information) <.. (Update Staff Members) : <<extend>>
-        (View Staff Information) <.. (Remove Staff Members) : <<extend>>
-        (View Staff Information) <.. (Create Time Tables) : <<extend>>
-        (View Staff Information) <.. (Update Time Tables) : <<extend>>
-        (View Staff Information) <.. (Delete Time Tables) : <<extend>>
-        (View Staff Information) <.. (Schedule Meetings) : <<extend>>
+        SH -- (View Staff Informations)
+        (View Staff Informations) <.. (Add Staff Members) : <<extends>>
+        (View Staff Informations) <.. (Update Staff Members) : <<extends>>
+        (View Staff Informations) <.. (Remove Staff Members) : <<extends>>
+        (View Staff Informations) <.. (Create Time Tables) : <<extends>>
+        (View Staff Informations) <.. (Update Time Tables) : <<extends>>
+        (View Staff Informations) <.. (Delete Time Tables) : <<extends>>
+        (View Staff Informations) <.. (Schedule Meetings) : <<extends>>
 
-        (Add Staff Members) ..> (Inform Teachers) : <<include>>
-        (Update Staff Members) ..> (Inform Teachers) : <<include>>
-        (Remove Staff Members) ..> (Inform Teachers) : <<include>>
-        (Create Time Tables) ..> (Inform Teachers): <<include>>
-        (Update Time Tables) ..> (Inform Teachers) : <<include>>
-        (Delete Time Tables) ..> (Inform Teachers) : <<include>>
-        (Schedule Meetings) ..> (Inform Teachers) : <<include>>
+        (Add Staff Members) ..> (Inform Teachers) : <<includes>>
+        (Update Staff Members) ..> (Inform Teachers) : <<includes>>
+        (Remove Staff Members) ..> (Inform Teachers) : <<includes>>
+        (Create Time Tables) ..> (Inform Teachers): <<includes>>
+        (Update Time Tables) ..> (Inform Teachers) : <<includes>>
+        (Delete Time Tables) ..> (Inform Teachers) : <<includes>>
+        (Schedule Meetings) ..> (Inform Teachers) : <<includes>>
 
-        (Inform Sectional Heads) -- SHR
+        (Update Events) -- SHR
 
-        T -- (View Educational Information)
-        (View Educational Information) <.. (View Student Activity) : <<extend>>
-        (View Educational Information) <.. (Create Educational Content) : <<extend>>
-        (View Educational Information) <.. (Update Educational Content) : <<extend>>
-        (View Educational Information) <.. (Delete Educational Content) : <<extend>>
-        (View Educational Information) <.. (View Time Tables) : <<extend>>
+        T -- (View Student Informations)
+        (View Student Informations) <.. (Create Student Informations) : <<extends>>
+        (View Student Informations) <.. (Delete Student Informations) : <<extends>>
+        (View Student Informations) <.. (Generate Student Attendance Reports) : <<extends>>
+        (View Student Informations) <.. (Generate Student Performance Reports) : <<extends>>
+        (View Student Informations) <.. (Generate Enrollment Reports) : <<extends>>
 
-        (View Student Activity) <.. (Grade Student Activity) : <<extend>>
-        (View Student Activity) <.. (Send Feedback and Assessments) : <<extend>>
-        (View Time Tables) <.. (Add Teacher Notes) : <<extend>>
+        (Create Student Informations) ..> (Update Student Informations) : <<includes>>
+        (Delete Student Informations) ..> (Update Student Informations) : <<includes>>
+        (Generate Student Attendance Reports) ..> (Update Student Informations) : <<includes>>
+        (Generate Student Performance Reports) ..> (Update Student Informations) : <<includes>>
+        (Generate Enrollment Reports) ..> (Update Student Informations): <<includes>>
 
-        (Create Educational Content) ..> (Notify Students): <<include>>
-        (Update Educational Content) ..> (Notify Students): <<include>>
-        (Delete Educational Content) ..> (Notify Students): <<include>>
+        T -- (View Educational Informations)
+        (View Educational Informations) <.. (Grade Student Assessments) : <<extends>>
+        (View Educational Informations) <.. (Send Feedback and Assessments) : <<extends>>
+        (View Educational Informations) <.. (Create Educational Content) : <<extends>>
+        (View Educational Informations) <.. (Edit Educational Content) : <<extends>>
+        (View Educational Informations) <.. (Delete Educational Content) : <<extends>>
 
-        T -- (View Extracurricular Information)
-        (View Extracurricular Information) <.. (Add Members) : <<extend>>
-        (View Extracurricular Information) <.. (Remove Members) : <<extend>>
-        (View Extracurricular Information) <.. (Update Members) : <<extend>>
-        (View Extracurricular Information) <.. (Create Competitions) : <<extend>>
-        (View Extracurricular Information) <.. (Create Societies and Clubs) : <<extend>>
-        (View Extracurricular Information) <.. (Monitor Societies and Clubs) : <<extend>>
-        (View Extracurricular Information) <.. (Delete Societies and Clubs) : <<extend>>
-        (View Extracurricular Information) <.. (Update Societies and Clubs) : <<extend>>
+        (Grade Student Assessments) ..> (Update Educational Informations) : <<extends>>
+        (Send Feedback and Assessments) ..> (Update Educational Informations) : <<extends>>
+        (Create Educational Content) ..> (Update Educational Informations): <<includes>>
+        (Edit Educational Content) ..> (Update Educational Informations): <<includes>>
+        (Delete Educational Content) ..> (Update Educational Informations): <<includes>>
 
-        (Add Members) ..> (Notify Students): <<include>>
-        (Remove Members) ..> (Notify Students): <<include>>
-        (Update Members) ..> (Notify Students): <<include>>
-        (Create Competitions) ..> (Notify Students): <<include>>
-        (Create Societies and Clubs) ..> (Notify Students): <<include>>
-        (Update Societies and Clubs) ..> (Notify Students): <<include>>
+        T -- (View Extracurricular Informations)
+        (View Extracurricular Informations) <.. (Add Members) : <<extends>>
+        (View Extracurricular Informations) <.. (Remove Members) : <<extends>>
+        (View Extracurricular Informations) <.. (Update Members) : <<extends>>
+        (View Extracurricular Informations) <.. (Create Competitions) : <<extends>>
+        (View Extracurricular Informations) <.. (Create Societies and Clubs) : <<extends>>
+        (View Extracurricular Informations) <.. (Delete Societies and Clubs) : <<extends>>
+        (View Extracurricular Informations) <.. (Update Societies and Clubs) : <<extends>>
 
-        T -- (View Students Information)
-        (View Students Information) <.. (Create Student Information) : <<extend>>
-        (View Students Information) <.. (Update Student Information) : <<extend>>
-        (View Students Information) <.. (Delete Student Information) : <<extend>>
-        (View Students Information) <.. (Generate Student Attendance Reports) : <<extend>>
-        (View Students Information) <.. (Generate Student Performance Reports) : <<extend>>
-        (View Students Information) <.. (Generate Enrollment Reports) : <<extend>>
+        (Add Members) ..> (Update Extracurricular Informations) : <<includes>>
+        (Remove Members) ..> (Update Extracurricular Informations) : <<includes>>
+        (Update Members) ..> (Update Extracurricular Informations) : <<includes>>
+        (Create Competitions) ..> (Update Extracurricular Informations) : <<includes>>
+        (Create Societies and Clubs) ..> (Update Extracurricular Informations) : <<includes>>
+        (Delete Societies and Clubs) ..> (Update Extracurricular Informations) : <<inculde>>
+        (Update Societies and Clubs) ..> (Update Extracurricular Informations) : <<inculde>>
 
-        (Create Student Information) ..> (Notify Students) : <<include>>
-        (Update Student Information) ..> (Notify Students) : <<include>>
-        (Delete Student Information) ..> (Notify Students) : <<include>>
-        (Generate Student Attendance Reports) ..> (Notify Students) : <<include>>
-        (Generate Student Performance Reports) ..> (Notify Students) : <<include>>
-        (Generate Enrollment Reports) ..> (Notify Students): <<include>>
 
-        T -- (View Exams Information)
-        (View Exams Information) <.. (Create Exams) : <<extend>>
-        (View Exams Information) <.. (Update Exams) : <<extend>>
-        (View Exams Information) <.. (Delete Exams) : <<extend>>
-        (View Exams Information) <.. (View Exam Results) : <<extend>>
-        (View Exams Information) <.. (Add Exam Results) : <<extend>>
-        (View Exams Information) <.. (Update Exam Results) : <<extend>>
-        (View Exams Information) <.. (Delete Exam Results) : <<extend>>
+        T -- (View Exam Informations)
+        (View Exam Informations) <.. (Create Exams) : <<extends>>
+        (View Exam Informations) <.. (Update Exams) : <<extends>>
+        (View Exam Informations) <.. (Delete Exams) : <<extends>>
+        (View Exam Informations) <.. (Enter Exam Results) : <<extends>>
+        (View Exam Informations) <.. (Delete Exam Results) : <<extends>>
 
-        (Create Exams) ..> (Notify Students): <<include>>
-        (Update Exams) ..> (Notify Students): <<include>>
-        (Delete Exams) ..> (Notify Students): <<include>>
-        (Add Exam Results) ..> (Notify Students): <<include>>
-        (Update Exam Results) ..> (Notify Students): <<include>>
+        (Create Exams) ..> (Update Exam Informations): <<includes>>
+        (Update Exams) ..> (Update Exam Informations): <<includes>>
+        (Delete Exams) ..> (Update Exam Informations): <<includes>>
+        (Enter Exam Results) ..> (Update Exam Informations): <<includes>>
+        (Delete Exam Results) ..> (Update Exam Informations): <<includes>>
 
-        T -- (View Query Information)
-        (View Query Information) <.. (View Queries) : <<extend>>
-        (View Query Information) <.. (Submit Queries) : <<extend>>
-        (View Queries) <.. (Feedback Queries) : <<extend>>
+        T -- (View Query Informations)
+        (View Query Informations) <.. (Feedback for Queries) : <<extends>>
+        (View Query Informations) <.. (Submit Queries) : <<extends>>
 
-        (Submit Queries) ..> (Notify Students) : <<include>>
+        (Submit Queries) ..> (Update Query Informations) : <<includes>>
+        (Feedback for Queries) ..> (Update Query Informations) : <<includes>>
 
-        (Update Financial Information) -- TR
-        (Notify Teachers) -- TR
+        (Update Payment Information) -- TR
+        (Update Educational Information) -- TR
+        (Update Extracurricular Information) -- TR
+        (Update Exam Information) -- TR
+        (Update Query Information) -- TR
         (Inform Teachers) -- TR2
-        (Submit Assessments) -- TR
-        (Update Assessments) -- TR
-        (Add Student Notes) -- TR
-        (Complete Tasks) -- TR
-        (Apply for Competitions) -- TR
-        (Apply for Societies and Clubs) -- TR
-        (Apply for Recorrections) -- TR
-
-        S -- (View Query Information as a Student)
-        (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
-        (View Query Information as a Student) <.. (Submit Queries as a Parent) : <<extend>>
-
-        (Submit Queries as a Student) ..> (Notify Teachers) : <<include>>
-        (Submit Queries as a Parent) ..> (Notify Teachers) : <<include>>
-
-        S -- (View Educational Information as a Student)
-        (View Educational Information as a Student) <.. (View Educational Content) : <<extend>>
-        (View Educational Information as a Student) <.. (View Assessments) : <<extend>>
-        (View Educational Information as a Student) <.. (View Tasks) : <<extend>>
-        (View Educational Information as a Student) <.. (View Time Table) : <<extend>>
-
-        (View Educational Content) <.. (Download) : <<extend>>
-        (View Assessments) <.. (Submit Assessments) : <<extend>>
-        (View Assessments) <.. (Update Assessments) : <<extend>>
-        (View Tasks) <.. (Complete Tasks) : <<extend>>
-        (View Time Table) <.. (Add Student Notes) : <<extend>>
-
-        S -- (View Extracurricular Information as a Student)
-        (View Extracurricular Information as a Student) <.. (View Societies and Clubs) : <<extend>>
-        (View Extracurricular Information as a Student) <.. (View Competitions) : <<extend>>
-
-        (View Societies and Clubs) <.. (Apply for Societies and Clubs) : <<extend>>
-        (View Competitions) <.. (Apply for Competitions) : <<extend>>
-
-        S -- (View Exams Information as a Student)
-        (View Exams Information as a Student) <.. (View Exam Results as a Student) : <<extend>>
-
-        (View Exam Results as a Student) <.. (Apply for Recorrections) : <<extend>>
 
         S -- (View Payment Information)
-        (View Payment Information) <.. (Pay School Fees) : <<extend>>
-        (View Payment Information) <.. (Pay Welfare Fees) : <<extend>>
-        (View Payment Information) <.. (Donate to the School) : <<extend>>
+        (View Payment Information) <.. (Pay School Fees) : <<extends>>
+        (View Payment Information) <.. (Pay Welfare Fees) : <<extends>>
+        (View Payment Information) <.. (Donate to the School) : <<extends>>
 
-        (Pay School Fees) ..> (Update Financial Information) : <<include>>
-        (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
-        (Donate to the School) ..> (Update Financial Information) : <<include>>
+        (Pay School Fees) ..> (Update Payment Information) : <<includes>>
+        (Pay Welfare Fees) ..> (Update Payment Information) : <<includes>>
+        (Donate to the School) ..> (Update Payment Information) : <<includes>>
+        
+        S -- (View Query Information)
+        (View Query Information) <.. (Submit Query) : <<extends>>
+        (View Query Information) <.. (Submit Query) : <<extends>>
 
-        (Notify Students) -- SR
-        (Feedback Queries) -- SR
-        (Grade Student Activity) -- SR
-        (Add Teacher Notes) -- SR
-        (Send Feedback and Assessments) -- SR
+        (Submit Query) ..> (Update Query Information) : <<includes>>
+        (Submit Query) ..>  (Update Query Information) : <<includes>>
+
+        S -- (View Educational Information)
+        (View Educational Information) <.. (Submit Assessments) : <<extends>>
+        (View Educational Information) <.. (Complete Tasks) : <<extends>>
+
+        (Submit Assessments) ..> (Update Educational Information) : <<includes>>
+        (Complete Tasks) ..> (Update Educational Information) : <<includes>>
+        (Add Student Notes) ..> (Update Educational Information) : <<includes>>
+
+        S -- (View Extracurricular Information)
+        (View Extracurricular Information) <.. (Apply for Societies and Clubs) : <<extends>>
+        (View Extracurricular Information) <.. (Apply for Competitions) : <<extends>>
+
+        (Apply for Societies and Clubs) <.. (Update Extracurricular Information) : <<includes>>
+        (Apply for Competitions) <.. (Update Extracurricular Information) : <<includes>>
+
+        S -- (View Exams Information)
+        (View Exams Information) <.. (Apply for Recorrections) : <<extends>>
+        (Apply for Recorrections) ..> (Update Exam Information): <<includes>>
+
+        (Update Student Informations) -- SR
+        (Update Educational Informations) -- SR
+        (Update Extracurricular Informations) -- SR
+        (Update Exam Informations) -- SR
+        (Update Query Informations) -- SR
 
         U -- (Enter the Attendance Daily)
-        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
-        (Verify Using Fingerprint) ..> (Update User Log) : <<include>>
+        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<includes>>
+        (Verify Using Fingerprint) ..> (Update User Log) : <<includes>>
 
         U -- (Login)
-        (Login) ..> (Validate User) : <<include>>
-        (Validate User) ..> (Update User Log) : <<include>>
+        (Login) ..> (Validate User) : <<includes>>
+        (Validate User) ..> (Update User Log) : <<includes>>
 
         U -- (View User Profile)
-        (View User Profile) <.. (View Profile Information) : <<extend>>
-        (View User Profile) <.. (Update User Profile) : <<extend>>
+        (View User Profile) <.. (View Profile Informations) : <<extends>>
+        (View User Profile) <.. (Update User Profile) : <<extends>>
 
         U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extend>>
-        (Comminication) <.. (Recieve Messages) : <<extend>>
+        (Comminication) <.. (Send Messages) : <<extends>>
+        (Comminication) <.. (Recieve Messages) : <<extends>>
 
         U -- (Logout)
-        (Logout) ..> (Confirm) : <<include>>
-        (Confirm) ..> (Update User Log) : <<include>>
+        (Logout) ..> (Confirm) : <<includes>>
+        (Confirm) ..> (Update User Log) : <<includes>>
 
         (Notify Users) -- UR
 }

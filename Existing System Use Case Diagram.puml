@@ -28,7 +28,7 @@ rectangle "Existing School Management System" {
     T -- (Supervise Clubs and Societies)
     T -- (Request Leaves and Short Leaves)
         
-    (Report Duty) ..> (Verify Using Fingerprint) : <<include>>
+    (Report Duty) ..> (Verify Using Fingerprint) : <<includes>>
 
     CT -- (Mark Students Attendence)
     CT -- (Collect School Fees)
@@ -36,42 +36,42 @@ rectangle "Existing School Management System" {
     CT -- (Sort Exam Results)
     CT -- (Enter Exam Results into Student Report Book)
 
-    (Sort Exam Results) ..> (Grade Students) : <<include>>
-    (Enter Exam Results into Student Report Book) ..> (Rank Students) : <<include>>
+    (Sort Exam Results) ..> (Grade Students) : <<includes>>
+    (Enter Exam Results into Student Report Book) ..> (Rank Students) : <<includes>>
 
     SH -- (Coordinate Teachers)
     SH -- (Coordinate Students)
     SH -- (Organize Events)
     SH -- (Collaborate with the Management)
 
-    (Collaborate with the Management) ..> (Keep Records) : <<include>>
-    (Organize Events) ..> (Inform Students and Teachers) : <<include>>
+    (Collaborate with the Management) ..> (Keep Records) : <<includes>>
+    (Organize Events) ..> (Inform Students and Teachers) : <<includes>>
 
     TR -- (Collect School Fees from Class Teachers)
     TR -- (Deposit Funds to School Account)
     TR -- (Keep Financial Records)
 
-    (Deposit Funds to School Account) ..> (Record Transactions) : <<include>>
+    (Deposit Funds to School Account) ..> (Record Transactions) : <<includes>>
 
     S -- (Create Clubs and Societies)
     S -- (Pay School Fees)
 
-    (Create Clubs and Societies) <.. (Add Members) : <<extend>>
-    (Create Clubs and Societies) <.. (Inform Members) : <<extend>>
+    (Create Clubs and Societies) <.. (Add Members) : <<extends>>
+    (Create Clubs and Societies) <.. (Inform Members) : <<extends>>
 
     SP -- (Assist in Student Discipline)
     SP -- (Organize Student Events)
 
-    (Assist in Student Discipline) ..> (Report Misconducts) : <<include>>
-    (Organize Student Events) ..> (Inform Students and Teachers) : <<include>>
+    (Assist in Student Discipline) ..> (Report Misconducts) : <<includes>>
+    (Organize Student Events) ..> (Inform Students) : <<includes>>
 
     P -- (Overall School Management)
     P -- (Organize Special Events)
     P -- (Take Important Decisions)
 
-    (Organize Special Events) ..> (Inform the School) : <<include>>
-    (Take Important Decisions) ..> (Collaborate with The Staff) : <<include>>
-    (Overall School Management) ..> (Set School Policies) : <<include>>
+    (Organize Special Events) ..> (Inform the School) : <<includes>>
+    (Take Important Decisions) ..> (Collaborate with The Staff) : <<includes>>
+    (Overall School Management) ..> (Set School Policies) : <<includes>>
 
     VP -- (Assist Principal)
     VP -- (Coordinate School Management)
@@ -80,12 +80,12 @@ rectangle "Existing School Management System" {
     VP -- (Register New Students)  
     VP -- (Generate Student Leaving Certificates)
 
-    (Generate Student Leaving Certificates) ..> (Update Logs and Records) : <<include>>
-    (Assist Principal) ..> (Handle Administrative Tasks) : <<include>>
-    (Coordinate School Management) ..> (Keep Management Records) : <<include>>
-    (Collect Funds for Development) ..> (Collaborate with Treasurer) : <<include>>
-    (Issueing Checks) ..> (Collaborate with The Treasurer) : <<include>>
-    (Register New Students) ..> (Update Logs and Records) : <<include>>
+    (Generate Student Leaving Certificates) ..> (Update Logs and Records) : <<includes>>
+    (Assist Principal) ..> (Handle Administrative Tasks) : <<includes>>
+    (Coordinate School Management) ..> (Keep Management Records) : <<includes>>
+    (Collect Funds for Development) ..> (Collaborate with Treasurer) : <<includes>>
+    (Issueing Cheques) ..> (Collaborate with The Treasurer) : <<includes>>
+    (Register New Students) ..> (Update Logs and Records) : <<includes>>
 }
 
 @enduml
