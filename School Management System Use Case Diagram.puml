@@ -3,20 +3,21 @@
 left to right direction
 skinparam linetype polyline
 
+actor "User" as U
+actor "User" as UR
+actor "Student" as S
+actor "Student" as SR
 actor "Teacher" as T
 actor "Teacher" as TR
 actor "Teacher" as TR2
 actor "Sectional Head" as SH
 actor "Sectional Head" as SHR
-actor "Student" as S
-actor "Student" as SR
-actor "Principal" as P
-actor "Principal" as PR
 actor "Vice Principal" as VP
 actor "Vice Principal" as VPR
+actor "Principal" as P
+actor "Principal" as PR
 actor "Administrator" as A
-actor "User" as U
-actor "User" as UR
+actor "Administrator" as AR
 
 U <|-- S
 S <|-- T
@@ -31,6 +32,7 @@ rectangle "School Management System" {
         (View User Information) <.. (Update User) : <<extend>>
         (View User Information) <.. (Delete User) : <<extend>>
         (View User Information) <.. (Modify Permissions) : <<extend>>
+        (View User Information) <.. (View User Logs) : <<extend>>
 
         (Add User) ..> (Update Registration Records) : <<include>>
         (Update User) ..> (Update Registration Records) : <<include>>
@@ -44,35 +46,53 @@ rectangle "School Management System" {
         (View System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
         (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
         (View System Monitor) <.. (Regular Information Backups) : <<extend>>
-        (View System Monitor) <.. (View Logs) : <<extend>>
 
-        (Generate User Engagement Reports) ..> (Inform Vice Principal) : <<include>>
-        (Generate Performance Reports) ..> (Inform Vice Principal) : <<include>>
-        (Generate System Utilization Reports) ..> (Inform Vice Principal) : <<include>>
-        (Generate Content Popularity Reports) ..> (Inform Vice Principal) : <<include>>
-        (Generate Monthly Attendance Reports) ..> (Inform Vice Principal) : <<include>>
-        (Regular Information Backups) ..> (Generate Logs) : <<include>>
-        (View Logs) ..> (Generate Logs) : <<include>>
+        (Generate User Engagement Reports) ..> (Inform Principal) : <<include>>
+        (Generate Performance Reports) ..> (Inform Principal) : <<include>>
+        (Generate System Utilization Reports) ..> (Inform Principal) : <<include>>
+        (Generate Content Popularity Reports) ..> (Inform Principal) : <<include>>
+        (Generate Monthly Attendance Reports) ..> (Inform Principal) : <<include>>
+        (Regular Information Backups) ..> (Generate Backup Logs) : <<include>>
 
         A -- (View System Database)
         (View System Database) <.. (Create Tables) : <<extend>>
         (View System Database) <.. (Update Tables) : <<extend>>
         (View System Database) <.. (Delete Tables) : <<extend>>
 
+        (Update User Logs) -- AR
+
         P -- (View Administrative Information)
         (View Administrative Information) <.. (Create Policies) : <<extend>>
         (View Administrative Information) <.. (Update Policies) : <<extend>>
         (View Administrative Information) <.. (Delete Policies) : <<extend>>
 
-        (Create Policies) ..> (Inform Sectional Heads): <<include>>
-        (Update Policies) ..> (Inform Sectional Heads): <<include>>
-        (Delete Policies) ..> (Inform Sectional Heads): <<include>>
+        (Create Policies) ..> (Inform Vice Principal): <<include>>
+        (Update Policies) ..> (Inform Vice Principal): <<include>>
+        (Delete Policies) ..> (Inform Vice Principal): <<include>>
 
-        (Inform Principal) -- PR
+        P -- (View Financial Information)
+        (View Financial Information) <.. (Plan School Budget) : <<extend>>
+        (View Financial Information) <.. (Update School Budget) : <<extend>>
+
+        (Plan School Budget) ..> (Inform Vice Principal): <<include>>
+        (Update School Budget) ..> (Inform Vice Principal): <<include>>
+
+        (View Financial Information) <.. (Generate Financial Reports) : <<extend>>
+        (View Financial Information) <.. (Withdraw Funds from School Account) : <<extend>>
+        (View Financial Information) <.. (Deposit Funds to School Account) : <<extend>>
+
+        (Generate Financial Reports) ..> (Inform Vice Principal): <<include>>
+        (Withdraw Funds from School Account) ..> (Inform Vice Principal) : <<include>>
+        (Deposit Funds to School Account) ..> (Inform Vice Principal) : <<include>>
 
         P -- (Broadcast Announcements)
-        (Broadcast Announcements) ..> (Send Notifications) : <<include>>
-        (Send Notifications) ..> (Inform Sectional Heads) : <<include>>
+        (Broadcast Announcements) <.. (Inform Users) : <<extend>>
+
+        (Inform Users) ..> (Notify Users) : <<include>>
+
+        (Inform Principal) -- PR
+        (Update Registration Records) -- PR
+        (Generate Backup Logs) -- PR
 
         VP -- (View Events Information)
         (View Events Information) <.. (Create Events) : <<extend>>
@@ -83,24 +103,7 @@ rectangle "School Management System" {
         (Update Events) ..> (Inform Sectional Heads): <<include>>
         (Delete Events) ..> (Inform Sectional Heads): <<include>>
 
-        VP -- (View Financial Information)
-        (View Financial Information) <.. (Plan School Budget) : <<extend>>
-        (View Financial Information) <.. (Update School Budget) : <<extend>>
-
-        (Plan School Budget) ..> (Inform Principal): <<include>>
-        (Update School Budget) ..> (Inform Principal): <<include>>
-
-        (View Financial Information) <.. (Generate Financial Reports) : <<extend>>
-        (View Financial Information) <.. (Withdraw Funds from School Account) : <<extend>>
-        (View Financial Information) <.. (Deposit Funds to School Account) : <<extend>>
-
-        (Generate Financial Reports) ..> (Inform Principal): <<include>>
-        (Withdraw Funds from School Account) ..> (Inform Principal) : <<include>>
-        (Deposit Funds to School Account) ..> (Inform Principal) : <<include>>
-
         (Inform Vice Principal) -- VPR
-        (Update Registration Records) -- VPR
-        (Generate Logs) -- VPR
 
         SH -- (View Staff Information)
         (View Staff Information) <.. (Add Staff Members) : <<extend>>
@@ -123,18 +126,18 @@ rectangle "School Management System" {
 
         T -- (View Educational Information)
         (View Educational Information) <.. (View Student Activity) : <<extend>>
-        (View Educational Information) <.. (Send Feedback and Assessments) : <<extend>>
         (View Educational Information) <.. (Create Educational Content) : <<extend>>
         (View Educational Information) <.. (Update Educational Content) : <<extend>>
         (View Educational Information) <.. (Delete Educational Content) : <<extend>>
-        (View Educational Information) <.. (View Time Table) : <<extend>>
+        (View Educational Information) <.. (View Time Tables) : <<extend>>
 
-        (View Student Activity)..> (Grade Student Activity) : <<include>>
-        (Send Feedback and Assessments) ..> (Notify Students): <<include>>
+        (View Student Activity) <.. (Grade Student Activity) : <<extend>>
+        (View Student Activity) <.. (Send Feedback and Assessments) : <<extend>>
+        (View Time Tables) <.. (Add Teacher Notes) : <<extend>>
+
         (Create Educational Content) ..> (Notify Students): <<include>>
         (Update Educational Content) ..> (Notify Students): <<include>>
         (Delete Educational Content) ..> (Notify Students): <<include>>
-        (View Time Table) ..> (Notify Students): <<include>>
 
         T -- (View Extracurricular Information)
         (View Extracurricular Information) <.. (Add Members) : <<extend>>
@@ -186,14 +189,17 @@ rectangle "School Management System" {
         T -- (View Query Information)
         (View Query Information) <.. (View Queries) : <<extend>>
         (View Query Information) <.. (Submit Queries) : <<extend>>
+        (View Queries) <.. (Feedback Queries) : <<extend>>
 
-        (View Queries) ..> (Feedback Queries) : <<include>>
         (Submit Queries) ..> (Notify Students) : <<include>>
 
         (Update Financial Information) -- TR
-        (Update Logs) -- TR
         (Notify Teachers) -- TR
         (Inform Teachers) -- TR2
+        (Submit Assessments) -- TR
+        (Update Assessments) -- TR
+        (Add Student Notes) -- TR
+        (Complete Tasks) -- TR
 
         S -- (View Query Information as a Student)
         (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
@@ -205,12 +211,14 @@ rectangle "School Management System" {
         S -- (View Educational Information as a Student)
         (View Educational Information as a Student) <.. (View Educational Content) : <<extend>>
         (View Educational Information as a Student) <.. (View Assessments) : <<extend>>
-        (View Educational Information as a Student) <.. (Submit Assessments) : <<extend>>
-        (View Educational Information as a Student) <.. (Update Assessments) : <<extend>>
-        (View Educational Information as a Student) <.. (View Time Tables) : <<extend>>
+        (View Educational Information as a Student) <.. (View Tasks) : <<extend>>
+        (View Educational Information as a Student) <.. (View Time Table) : <<extend>>
 
-        (Submit Assessments) ..> (Notify Teachers): <<include>>
-        (Update Assessments) ..> (Notify Teachers): <<include>>
+        (View Educational Content) <.. (Download) : <<extend>>
+        (View Assessments) <.. (Submit Assessments) : <<extend>>
+        (View Assessments) <.. (Update Assessments) : <<extend>>
+        (View Tasks) <.. (Complete Tasks) : <<extend>>
+        (View Time Table) <.. (Add Student Notes) : <<extend>>
 
         S -- (View Extracurricular Information as a Student)
         (View Extracurricular Information as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
@@ -235,25 +243,27 @@ rectangle "School Management System" {
         (Notify Students) -- SR 
         (Feedback Queries) -- SR
         (Grade Student Activity) -- SR
+        (Add Teacher Notes) -- SR
+        (Send Feedback and Assessments) -- SR
 
         U -- (Enter the Attendance Daily)
         (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
 
         U -- (Login)
         (Login) ..> (Validate User) : <<include>>
-        (Validate User)..> (Update Logs) : <<include>>
+        (Validate User) ..> (Update User Logs) : <<include>>
 
         U -- (View User Profile)
         (View User Profile) <.. (View Profile Information) : <<extend>>
         (View User Profile) <.. (Update User Profile) : <<extend>>
 
         U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extend>>
-
-        (Send Messages) ..> (Notify Users) : <<include>>
+        (Comminication) <.. (Send Messages to any User) : <<extend>>
+        (Comminication) <.. (Recieve Messages from any User) : <<extend>>
 
         U -- (Logout)
         (Logout) ..> (Confirm) : <<include>>
+        (Confirm) ..> (Update User Logs) : <<include>>
 
         (Notify Users) -- UR
 }
