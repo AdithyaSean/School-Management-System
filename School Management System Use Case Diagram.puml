@@ -227,7 +227,7 @@ rectangle "School Management System" {
 
         S -- (View Exams Information)
         (View Exams Information) <.. (Apply for Recorrections) : <<extend>>
-        
+
         (Apply for Recorrections) ..> (Update Exam Information): <<include>>
 
         (Update Student Informations) -- SR
@@ -245,12 +245,12 @@ rectangle "School Management System" {
         (Validate User) ..> (Update User Log) : <<include>>
 
         U -- (View User Profile)
-        (View User Profile) <.. (View Profile Informations) : <<extend>>
         (View User Profile) <.. (Update User Profile) : <<extend>>
+        (Update User Profile) ..> (Update User Log) : <<include>>
 
         U -- (Comminication)
         (Comminication) <.. (Send Messages) : <<extend>>
-        (Comminication) <.. (Recieve Messages) : <<extend>>
+        (Send Messages) ..> (Update User Log) : <<include>>
 
         U -- (Logout)
         (Logout) ..> (Confirm) : <<include>>
