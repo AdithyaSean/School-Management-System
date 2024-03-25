@@ -206,7 +206,7 @@ rectangle "School Management System" {
         (Pay School Fees) ..> (Update Payment Information) : <<includes>>
         (Pay Welfare Fees) ..> (Update Payment Information) : <<includes>>
         (Donate to the School) ..> (Update Payment Information) : <<includes>>
-        
+
         S -- (View Query Information)
         (View Query Information) <.. (Submit Query) : <<extends>>
         (View Query Information) <.. (Submit Query) : <<extends>>
