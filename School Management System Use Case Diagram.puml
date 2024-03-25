@@ -261,13 +261,13 @@ rectangle "School Management System" {
 
         U -- (Comminication)
         (Comminication) <.. (Send Messages) : <<extend>>
+        (Comminication) <.. (Recieve Messages) : <<extend>>
 
         U -- (Logout)
         (Logout) ..> (Confirm) : <<include>>
         (Confirm) ..> (Update User Logs) : <<include>>
 
         (Notify Users) -- UR
-        (Send Messages) -- UR2
 }
 
 @enduml
