@@ -5,7 +5,6 @@ skinparam linetype polyline
 
 actor "User" as U
 actor "User" as UR
-actor "User" as UR2
 actor "Student" as S
 actor "Student" as SR
 actor "Teacher" as T
