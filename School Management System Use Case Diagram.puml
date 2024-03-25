@@ -208,23 +208,22 @@ rectangle "School Management System" {
 
         S -- (View Query Information)
         (View Query Information) <.. (Submit Query) : <<extend>>
-        (View Query Information) <.. (Submit Query) : <<extend>>
 
-        (Submit Query) ..> (Update Query Information) : <<include>>        (Submit Query) ..>  (Update Query Information) : <<include>>
+        (Submit Query) ..> (Update Query Information) : <<include>>
 
         S -- (View Educational Information)
         (View Educational Information) <.. (Submit Assessments) : <<extend>>
         (View Educational Information) <.. (Complete Tasks) : <<extend>>
 
         (Submit Assessments) ..> (Update Educational Information) : <<include>>
-        (Complete Tasks) ..> (Update Educational Information) : <<include>>        (Add Student Notes) ..> (Update Educational Information) : <<include>>
+        (Complete Tasks) ..> (Update Educational Information) : <<include>>
 
         S -- (View Extracurricular Information)
         (View Extracurricular Information) <.. (Apply for Societies and Clubs) : <<extend>>
         (View Extracurricular Information) <.. (Apply for Competitions) : <<extend>>
 
-        (Apply for Societies and Clubs) <.. (Update Extracurricular Information) : <<include>>
-        (Apply for Competitions) <.. (Update Extracurricular Information) : <<include>>
+        (Apply for Societies and Clubs) ..> (Update Extracurricular Information) : <<include>>
+        (Apply for Competitions) ..> (Update Extracurricular Information) : <<include>>
 
         S -- (View Exams Information)
         (View Exams Information) <.. (Apply for Recorrections) : <<extend>>
