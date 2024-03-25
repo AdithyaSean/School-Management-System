@@ -95,6 +95,8 @@ rectangle "School Management System" {
         (Inform Principal) -- PR
         (Update User Logs) -- PR
         (Generate Backup Logs) -- PR
+        (Update Administrative Informations) -- PR
+        (Update Tables) -- PR
 
         VP -- (View Events Informations)
         (View Events Informations) <.. (Create Events) : <<extend>>
@@ -106,7 +108,6 @@ rectangle "School Management System" {
         (Delete Events) ..> (Update Events): <<include>>
 
         (Inform Vice Principal) -- VPR
-        (Update Administrative Informations) -- VPR
 
         SH -- (View Staff Informations)
         (View Staff Informations) <.. (Add Staff Members) : <<extend>>
