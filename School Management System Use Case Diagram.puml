@@ -17,7 +17,6 @@ actor "Vice Principal" as VPR
 actor "Principal" as P
 actor "Principal" as PR
 actor "Administrator" as A
-actor "Administrator" as AR
 
 U <|-- S
 S <|-- T
@@ -58,8 +57,6 @@ rectangle "School Management System" {
         (View System Database) <.. (Create Tables) : <<extend>>
         (View System Database) <.. (Update Tables) : <<extend>>
         (View System Database) <.. (Delete Tables) : <<extend>>
-
-        (Update User Logs) -- AR
 
         P -- (View Administrative Information)
         (View Administrative Information) <.. (Create Policies) : <<extend>>
@@ -200,6 +197,9 @@ rectangle "School Management System" {
         (Update Assessments) -- TR
         (Add Student Notes) -- TR
         (Complete Tasks) -- TR
+        (Apply for Competitions) -- TR
+        (Apply for Societies and Clubs) -- TR
+        (Apply for Recorrections) -- TR
 
         S -- (View Query Information as a Student)
         (View Query Information as a Student) <.. (Submit Queries as a Student) : <<extend>>
@@ -221,15 +221,16 @@ rectangle "School Management System" {
         (View Time Table) <.. (Add Student Notes) : <<extend>>
 
         S -- (View Extracurricular Information as a Student)
-        (View Extracurricular Information as a Student) <.. (Apply for Societies and Clubs) : <<extend>>
-        (View Extracurricular Information as a Student) <.. (Apply for Competitions) : <<extend>>
+        (View Extracurricular Information as a Student) <.. (View Societies and Clubs) : <<extend>>
+        (View Extracurricular Information as a Student) <.. (View Competitions) : <<extend>>
 
-        (Apply for Societies and Clubs) ..> (Notify Teachers): <<include>>
-        (Apply for Competitions) ..> (Notify Teachers): <<include>>
+        (View Societies and Clubs) <.. (Apply for Societies and Clubs) : <<extend>>
+        (View Competitions) <.. (Apply for Competitions) : <<extend>>
 
         S -- (View Exams Information as a Student)
-        (View Exams Information as a Student) <.. (View Exams as a Student) : <<extend>>
         (View Exams Information as a Student) <.. (View Exam Results as a Student) : <<extend>>
+
+        (View Exam Results as a Student) <.. (Apply for Recorrections) : <<extend>>
 
         S -- (View Payment Information)
         (View Payment Information) <.. (Pay School Fees) : <<extend>>
@@ -240,7 +241,7 @@ rectangle "School Management System" {
         (Pay Welfare Fees) ..> (Update Financial Information) : <<include>>
         (Donate to the School) ..> (Update Financial Information) : <<include>>
 
-        (Notify Students) -- SR 
+        (Notify Students) -- SR
         (Feedback Queries) -- SR
         (Grade Student Activity) -- SR
         (Add Teacher Notes) -- SR
@@ -258,14 +259,14 @@ rectangle "School Management System" {
         (View User Profile) <.. (Update User Profile) : <<extend>>
 
         U -- (Comminication)
-        (Comminication) <.. (Send Messages to any User) : <<extend>>
-        (Comminication) <.. (Recieve Messages from any User) : <<extend>>
+        (Comminication) <.. (Send Messages) : <<extend>>
 
         U -- (Logout)
         (Logout) ..> (Confirm) : <<include>>
         (Confirm) ..> (Update User Logs) : <<include>>
 
         (Notify Users) -- UR
+        (Send Messages) -- UR
 }
 
 @enduml
