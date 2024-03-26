@@ -9,7 +9,6 @@ actor "Student" as S
 actor "Student" as SR
 actor "Teacher" as T
 actor "Teacher" as TR
-actor "Teacher" as TR2
 actor "Sectional Head" as SH
 actor "Sectional Head" as SHR
 actor "Vice Principal" as VP
@@ -149,7 +148,7 @@ rectangle "School Management System" {
         (Update Extracurricular Information) -- TR
         (Update Exam Information) -- TR
         (Update Query Information) -- TR
-        (Inform Teachers) -- TR2
+        (Inform Teachers) -- TR
 
         SH -- (View Staff Informations)
         (View Staff Informations) <.. (Add Staff Members) : <<extends>>
