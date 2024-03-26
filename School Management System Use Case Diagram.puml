@@ -19,8 +19,6 @@ actor "Administrator" as A
 actor "Administrator" as AR
 
 rectangle "School Management System" {
-        
-
         S -- (View Payment Information)
         (View Payment Information) <.. (Pay School Fees) : <<extends>>
         (View Payment Information) <.. (Pay Welfare Fees) : <<extends>>
