@@ -4,7 +4,7 @@ skinparam linetype polyline
 class User {
   + username: String
   + password: String
-  + role: String
+  + fingerprint: String
 
   + login()
   + logout()
@@ -31,14 +31,14 @@ class Student extends User {
   + applyForRecorrections()
 }
 
-class Teacher extends User {
+class Teacher extends Student {
   + subject: String
 
-  + viewStudentInformation(studentId: String)
-  + createStudentInformation(student: Student)
-  + updateStudentInformation(student: Student)
-  + deleteStudentInformation(studentId: String)
-  + generateStudentReports(type: String)  // type: attendance, performance, enrollment
+  + viewStudentInformation()
+  + createStudentInformation()
+  + updateStudentInformation()
+  + deleteStudentInformation()
+  + generateStudentReports()
   + viewEducationalInformation()
   + gradeStudentAssessments()
   + sendFeedbackAndAssessments()
@@ -46,38 +46,81 @@ class Teacher extends User {
   + editEducationalContent()
   + deleteEducationalContent()
   + viewExtracurricularInformation()
-  + addMembers(clubId: String, studentIds: List<String>)
-  + removeMembers(clubId: String, studentIds: List<String>)
-  + updateMembers(clubId: String, studentData: List<Map<String, String>>) // Map<String, String> represents changes for a member
+  + addMembers()
+  + removeMembers()
+  + updateMembers()
   + createCompetitions()
   + createSocietiesAndClubs()
-  + deleteSocietiesAndClubs(clubId: String)
-  + updateSocietiesAndClubs(clubId: String, data: Map<String, String>)
+  + deleteSocietiesAndClubs()
+  + updateSocietiesAndClubs()
   + viewExamInformation()
   + createExams()
-  + updateExams(examId: String, data: Map<String, String>)
-  + deleteExams(examId: String)
-  + enterExamResults(examId: String, results: List<Map<String, String>>) // Map<String, String> represents studentId and score
-  + deleteExamResults(examId: String, studentIds: List<String>)
+  + updateExams()
+  + deleteExams()
+  + enterExamResults()
+  + deleteExamResults()
   + viewQueryInformation()
-  + provideFeedback(queryId: String, feedback: String)
+  + provideFeedback()
 }
 
-class Administrator extends User {
+class SectionalHead extends Teacher {
+  + section: String
+  + ... (other attributes)
+
+  + viewStaffInformation()
+  + addStaffMembers()
+  + updateStaffMembers()
+  + removeStaffMembers()
+  + createTimeTables()
+  + updateTimeTables()
+  + deleteTimeTables()
+  + scheduleMeetings()
+}
+
+class VicePrincipal extends SectionalHead {
+  + ... (other attributes)
+
+  + viewEventsInformation()
+  + createEvents()
+  + editEvents()
+  + deleteEvents()
+  + viewAdministrativeInformation()
+  + updateAdministrativeInformation()
+  + viewFinancialInformation()
+  + planSchoolBudget()
+  + updateSchoolBudget()
+  + generateFinancialReports()
+  + withdrawFunds()
+  + depositFunds()
+}
+
+class Principal extends VicePrincipal {
+  + ... (other attributes)
+
+  + broadcastAnnouncements()
+  + viewAdministrativeInformation()
+  + createPolicies()
+  + editPolicies()
+  + deletePolicies()
+  + viewFinancialInformation()
+  + planSchoolBudget()
+  + updateSchoolBudget()
+  + generateFinancialReports()
+  + withdrawFunds()
+  + depositFunds()
+}
+
+class Administrator extends Principal {
   + viewSystemDatabase()
-  + createUser(user: User)
-  + updateUser(user: User)
-  + deleteUser(userId: String)
-  + modifyPermissions(userId: String, permissions: List<String>)
+  + createUser()
+  + updateUser()
+  + deleteUser()
+  + modifyPermissions()
   + viewUserInformation()
   + viewSystemMonitor()
-  + generateReports(type: String)  // type: user engagement, performance, system utilization, content popularity, monthly attendance
+  + generateReports()
   + viewBackups()
   + performBackups()
 }
-
-User <|-- Student
-Student <|-- Teacher
-Teacher <|-- Administrator
 
 @enduml
