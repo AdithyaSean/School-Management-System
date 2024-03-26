@@ -19,13 +19,6 @@ actor "Principal" as PR
 actor "Administrator" as A
 actor "Administrator" as AR
 
-U <|-- S
-S <|-- T
-T <|-- SH
-SH <|-- VP
-VP <|-- P
-P <|-- A
-
 rectangle "School Management System" {
         U -- (Enter the Attendance Daily)
         (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
@@ -267,5 +260,12 @@ rectangle "School Management System" {
 
         (Update User Log) -- AR
 }
+
+U <|-- S
+S <|-- T
+T <|-- SH
+SH <|-- VP
+VP <|-- P
+P <|-- A
 
 @enduml

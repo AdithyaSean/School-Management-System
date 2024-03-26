@@ -1,41 +1,83 @@
 @startuml School Management System
+skinparam linetype polyline
+
 class User {
-  - id: int
-  - name: string
-  - role: string
+  + username: String
+  + password: String
+  + role: String
+
+  + login()
+  + logout()
+  + viewProfile()
+  + updateProfile()
 }
 
-class Student {
-  - grade: int
-  - attendance: List<AttendanceRecord>
+class Student extends User {
+  + gradeLevel: String
+
+  + viewPaymentInformation()
+  + paySchoolFees()
+  + payWelfareFees()
+  + donateToSchool()
+  + viewQueryInformation()
+  + submitQuery()
+  + viewEducationalInformation()
+  + submitAssessments()
+  + completeTasks()
+  + viewExtracurricularInformation()
+  + applyForSocietiesAndClubs()
+  + applyForCompetitions()
+  + viewExamsInformation()
+  + applyForRecorrections()
 }
 
-Student --|> User
+class Teacher extends User {
+  + subject: String
 
-class Teacher {
-  - subject: string
+  + viewStudentInformation(studentId: String)
+  + createStudentInformation(student: Student)
+  + updateStudentInformation(student: Student)
+  + deleteStudentInformation(studentId: String)
+  + generateStudentReports(type: String)  // type: attendance, performance, enrollment
+  + viewEducationalInformation()
+  + gradeStudentAssessments()
+  + sendFeedbackAndAssessments()
+  + createEducationalContent()
+  + editEducationalContent()
+  + deleteEducationalContent()
+  + viewExtracurricularInformation()
+  + addMembers(clubId: String, studentIds: List<String>)
+  + removeMembers(clubId: String, studentIds: List<String>)
+  + updateMembers(clubId: String, studentData: List<Map<String, String>>) // Map<String, String> represents changes for a member
+  + createCompetitions()
+  + createSocietiesAndClubs()
+  + deleteSocietiesAndClubs(clubId: String)
+  + updateSocietiesAndClubs(clubId: String, data: Map<String, String>)
+  + viewExamInformation()
+  + createExams()
+  + updateExams(examId: String, data: Map<String, String>)
+  + deleteExams(examId: String)
+  + enterExamResults(examId: String, results: List<Map<String, String>>) // Map<String, String> represents studentId and score
+  + deleteExamResults(examId: String, studentIds: List<String>)
+  + viewQueryInformation()
+  + provideFeedback(queryId: String, feedback: String)
 }
 
-Teacher --|> User
-
-class Course {
-  - name: string
-  - teacher: Teacher
-  - students: List<Student>
+class Administrator extends User {
+  + viewSystemDatabase()
+  + createUser(user: User)
+  + updateUser(user: User)
+  + deleteUser(userId: String)
+  + modifyPermissions(userId: String, permissions: List<String>)
+  + viewUserInformation()
+  + viewSystemMonitor()
+  + generateReports(type: String)  // type: user engagement, performance, system utilization, content popularity, monthly attendance
+  + viewBackups()
+  + performBackups()
 }
 
-class EducationalContent {
-  - title: string
-  - content: string
-  - course: Course
-}
+User <|-- Student
+Student <|-- Teacher
+Teacher <|-- Administrator
 
-Course *-- EducationalContent
-
-class AttendanceRecord {
-  - date: Date
-  - status: string
-}
-
-Student *-- AttendanceRecord
 @enduml
