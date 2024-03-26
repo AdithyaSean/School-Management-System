@@ -19,27 +19,7 @@ actor "Administrator" as A
 actor "Administrator" as AR
 
 rectangle "School Management System" {
-        U -- (Enter the Attendance Daily)
-        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
-        (Verify Using Fingerprint) ..> (Update User Log) : <<include>>
-
-        U -- (Login)
-        (Login) ..> (Validate User) : <<include>>
-        (Validate User) ..> (Update User Log) : <<include>>
-
-        U -- (View User Profile)
-        (View User Profile) <.. (Update User Profile) : <<extends>>
-        (Update User Profile) ..> (Update User Log) : <<include>>
-
-        U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extends>>
-        (Send Messages) ..> (Update User Log) : <<include>>
-
-        U -- (Logout)
-        (Logout) ..> (Confirm) : <<include>>
-        (Confirm) ..> (Update User Log) : <<include>>
-
-        (Notify Users) -- UR
+        
 
         S -- (View Payment Information)
         (View Payment Information) <.. (Pay School Fees) : <<extends>>
@@ -258,6 +238,28 @@ rectangle "School Management System" {
         (Regular Informations Backups) ..> (Generate Backup Logs) : <<include>>
 
         (Update User Log) -- AR
+
+        U -- (Enter the Attendance Daily)
+        (Enter the Attendance Daily) ..> (Verify Using Fingerprint) : <<include>>
+        (Verify Using Fingerprint) ..> (Update User Log) : <<include>>
+
+        U -- (Login)
+        (Login) ..> (Validate User) : <<include>>
+        (Validate User) ..> (Update User Log) : <<include>>
+
+        U -- (View User Profile)
+        (View User Profile) <.. (Update User Profile) : <<extends>>
+        (Update User Profile) ..> (Update User Log) : <<include>>
+
+        U -- (Comminication)
+        (Comminication) <.. (Send Messages) : <<extends>>
+        (Send Messages) ..> (Update User Log) : <<include>>
+
+        U -- (Logout)
+        (Logout) ..> (Confirm) : <<include>>
+        (Confirm) ..> (Update User Log) : <<include>>
+
+        (Notify Users) -- UR
 }
 
 T <|-- SH
