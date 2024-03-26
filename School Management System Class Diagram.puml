@@ -4,7 +4,7 @@ skinparam linetype polyline
 class User {
   + username: String
   + password: String
-  + fingerprint: String
+  + fingerPrint: String
 
   + login()
   + logout()
