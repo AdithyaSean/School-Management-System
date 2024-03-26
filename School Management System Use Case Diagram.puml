@@ -29,11 +29,11 @@ rectangle "School Management System" {
         (Validate User) ..> (Update User Log) : <<include>>
 
         U -- (View User Profile)
-        (View User Profile) <.. (Update User Profile) : <<extend>>
+        (View User Profile) <.. (Update User Profile) : <<extends>>
         (Update User Profile) ..> (Update User Log) : <<include>>
 
         U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extend>>
+        (Comminication) <.. (Send Messages) : <<extends>>
         (Send Messages) ..> (Update User Log) : <<include>>
 
         U -- (Logout)
@@ -43,35 +43,35 @@ rectangle "School Management System" {
         (Notify Users) -- UR
 
         S -- (View Payment Information)
-        (View Payment Information) <.. (Pay School Fees) : <<extend>>
-        (View Payment Information) <.. (Pay Welfare Fees) : <<extend>>
-        (View Payment Information) <.. (Donate to the School) : <<extend>>
+        (View Payment Information) <.. (Pay School Fees) : <<extends>>
+        (View Payment Information) <.. (Pay Welfare Fees) : <<extends>>
+        (View Payment Information) <.. (Donate to the School) : <<extends>>
 
         (Pay School Fees) ..> (Update Payment Information) : <<include>>
         (Pay Welfare Fees) ..> (Update Payment Information) : <<include>>
         (Donate to the School) ..> (Update Payment Information) : <<include>>
 
         S -- (View Query Information)
-        (View Query Information) <.. (Submit Query) : <<extend>>
+        (View Query Information) <.. (Submit Query) : <<extends>>
 
         (Submit Query) ..> (Update Query Information) : <<include>>
 
         S -- (View Educational Information)
-        (View Educational Information) <.. (Submit Assessments) : <<extend>>
-        (View Educational Information) <.. (Complete Tasks) : <<extend>>
+        (View Educational Information) <.. (Submit Assessments) : <<extends>>
+        (View Educational Information) <.. (Complete Tasks) : <<extends>>
 
         (Submit Assessments) ..> (Update Educational Information) : <<include>>
         (Complete Tasks) ..> (Update Educational Information) : <<include>>
 
         S -- (View Extracurricular Information)
-        (View Extracurricular Information) <.. (Apply for Societies and Clubs) : <<extend>>
-        (View Extracurricular Information) <.. (Apply for Competitions) : <<extend>>
+        (View Extracurricular Information) <.. (Apply for Societies and Clubs) : <<extends>>
+        (View Extracurricular Information) <.. (Apply for Competitions) : <<extends>>
 
         (Apply for Societies and Clubs) ..> (Update Extracurricular Information) : <<include>>
         (Apply for Competitions) ..> (Update Extracurricular Information) : <<include>>
 
         S -- (View Exams Information)
-        (View Exams Information) <.. (Apply for Recorrections) : <<extend>>
+        (View Exams Information) <.. (Apply for Recorrections) : <<extends>>
 
         (Apply for Recorrections) ..> (Update Exam Information): <<include>>
 
@@ -82,11 +82,11 @@ rectangle "School Management System" {
         (Update Query Informations) -- SR
 
         T -- (View Student Informations)
-        (View Student Informations) <.. (Create Student Informations) : <<extend>>
-        (View Student Informations) <.. (Delete Student Informations) : <<extend>>
-        (View Student Informations) <.. (Generate Student Attendance Reports) : <<extend>>
-        (View Student Informations) <.. (Generate Student Performance Reports) : <<extend>>
-        (View Student Informations) <.. (Generate Enrollment Reports) : <<extend>>
+        (View Student Informations) <.. (Create Student Informations) : <<extends>>
+        (View Student Informations) <.. (Delete Student Informations) : <<extends>>
+        (View Student Informations) <.. (Generate Student Attendance Reports) : <<extends>>
+        (View Student Informations) <.. (Generate Student Performance Reports) : <<extends>>
+        (View Student Informations) <.. (Generate Enrollment Reports) : <<extends>>
 
         (Create Student Informations) ..> (Update Student Informations) : <<include>>
         (Delete Student Informations) ..> (Update Student Informations) : <<include>>
@@ -95,11 +95,11 @@ rectangle "School Management System" {
         (Generate Enrollment Reports) ..> (Update Student Informations): <<include>>
 
         T -- (View Educational Informations)
-        (View Educational Informations) <.. (Grade Student Assessments) : <<extend>>
-        (View Educational Informations) <.. (Send Feedback and Assessments) : <<extend>>
-        (View Educational Informations) <.. (Create Educational Content) : <<extend>>
-        (View Educational Informations) <.. (Edit Educational Content) : <<extend>>
-        (View Educational Informations) <.. (Delete Educational Content) : <<extend>>
+        (View Educational Informations) <.. (Grade Student Assessments) : <<extends>>
+        (View Educational Informations) <.. (Send Feedback and Assessments) : <<extends>>
+        (View Educational Informations) <.. (Create Educational Content) : <<extends>>
+        (View Educational Informations) <.. (Edit Educational Content) : <<extends>>
+        (View Educational Informations) <.. (Delete Educational Content) : <<extends>>
 
         (Grade Student Assessments) ..> (Update Educational Informations) : <<include>>
         (Send Feedback and Assessments) ..> (Update Educational Informations) : <<include>>
@@ -108,13 +108,13 @@ rectangle "School Management System" {
         (Delete Educational Content) ..> (Update Educational Informations): <<include>>
 
         T -- (View Extracurricular Informations)
-        (View Extracurricular Informations) <.. (Add Members) : <<extend>>
-        (View Extracurricular Informations) <.. (Remove Members) : <<extend>>
-        (View Extracurricular Informations) <.. (Update Members) : <<extend>>
-        (View Extracurricular Informations) <.. (Create Competitions) : <<extend>>
-        (View Extracurricular Informations) <.. (Create Societies and Clubs) : <<extend>>
-        (View Extracurricular Informations) <.. (Delete Societies and Clubs) : <<extend>>
-        (View Extracurricular Informations) <.. (Update Societies and Clubs) : <<extend>>
+        (View Extracurricular Informations) <.. (Add Members) : <<extends>>
+        (View Extracurricular Informations) <.. (Remove Members) : <<extends>>
+        (View Extracurricular Informations) <.. (Update Members) : <<extends>>
+        (View Extracurricular Informations) <.. (Create Competitions) : <<extends>>
+        (View Extracurricular Informations) <.. (Create Societies and Clubs) : <<extends>>
+        (View Extracurricular Informations) <.. (Delete Societies and Clubs) : <<extends>>
+        (View Extracurricular Informations) <.. (Update Societies and Clubs) : <<extends>>
 
         (Add Members) ..> (Update Extracurricular Informations) : <<include>>
         (Remove Members) ..> (Update Extracurricular Informations) : <<include>>
@@ -125,11 +125,11 @@ rectangle "School Management System" {
         (Update Societies and Clubs) ..> (Update Extracurricular Informations) : <<Includes>>
 
         T -- (View Exam Informations)
-        (View Exam Informations) <.. (Create Exams) : <<extend>>
-        (View Exam Informations) <.. (Update Exams) : <<extend>>
-        (View Exam Informations) <.. (Delete Exams) : <<extend>>
-        (View Exam Informations) <.. (Enter Exam Results) : <<extend>>
-        (View Exam Informations) <.. (Delete Exam Results) : <<extend>>
+        (View Exam Informations) <.. (Create Exams) : <<extends>>
+        (View Exam Informations) <.. (Update Exams) : <<extends>>
+        (View Exam Informations) <.. (Delete Exams) : <<extends>>
+        (View Exam Informations) <.. (Enter Exam Results) : <<extends>>
+        (View Exam Informations) <.. (Delete Exam Results) : <<extends>>
 
         (Create Exams) ..> (Update Exam Informations) : <<include>>
         (Update Exams) ..> (Update Exam Informations) : <<include>>
@@ -138,8 +138,8 @@ rectangle "School Management System" {
         (Delete Exam Results) ..> (Update Exam Informations) : <<include>>
 
         T -- (View Query Informations)
-        (View Query Informations) <.. (Feedback for Queries) : <<extend>>
-        (View Query Informations) <.. (Submit Queries) : <<extend>>
+        (View Query Informations) <.. (Feedback for Queries) : <<extends>>
+        (View Query Informations) <.. (Submit Queries) : <<extends>>
 
         (Submit Queries) ..> (Update Query Informations) : <<include>>
         (Feedback for Queries) ..> (Update Query Informations) : <<include>>
@@ -152,13 +152,13 @@ rectangle "School Management System" {
         (Inform Teachers) -- TR2
 
         SH -- (View Staff Informations)
-        (View Staff Informations) <.. (Add Staff Members) : <<extend>>
-        (View Staff Informations) <.. (Update Staff Members) : <<extend>>
-        (View Staff Informations) <.. (Remove Staff Members) : <<extend>>
-        (View Staff Informations) <.. (Create Time Tables) : <<extend>>
-        (View Staff Informations) <.. (Update Time Tables) : <<extend>>
-        (View Staff Informations) <.. (Delete Time Tables) : <<extend>>
-        (View Staff Informations) <.. (Schedule Meetings) : <<extend>>
+        (View Staff Informations) <.. (Add Staff Members) : <<extends>>
+        (View Staff Informations) <.. (Update Staff Members) : <<extends>>
+        (View Staff Informations) <.. (Remove Staff Members) : <<extends>>
+        (View Staff Informations) <.. (Create Time Tables) : <<extends>>
+        (View Staff Informations) <.. (Update Time Tables) : <<extends>>
+        (View Staff Informations) <.. (Delete Time Tables) : <<extends>>
+        (View Staff Informations) <.. (Schedule Meetings) : <<extends>>
 
         (Add Staff Members) ..> (Inform Teachers) : <<include>>
         (Update Staff Members) ..> (Inform Teachers) : <<include>>
@@ -171,9 +171,9 @@ rectangle "School Management System" {
         (Update Events) -- SHR
 
         VP -- (View Events Informations)
-        (View Events Informations) <.. (Create Events) : <<extend>>
-        (View Events Informations) <.. (Edit Events) : <<extend>>
-        (View Events Informations) <.. (Delete Events) : <<extend>>
+        (View Events Informations) <.. (Create Events) : <<extends>>
+        (View Events Informations) <.. (Edit Events) : <<extends>>
+        (View Events Informations) <.. (Delete Events) : <<extends>>
 
         (Create Events) ..> (Update Events): <<include>>
         (Edit Events) ..> (Update Events): <<include>>
@@ -185,31 +185,31 @@ rectangle "School Management System" {
         (Update Events) -- VPR
 
         P -- (Broadcast Announcements)
-        (Broadcast Announcements) <.. (Inform Users) : <<extend>>
-        (Broadcast Announcements) <.. (Inform Vice Principals) : <<extend>>
+        (Broadcast Announcements) <.. (Inform Users) : <<extends>>
+        (Broadcast Announcements) <.. (Inform Vice Principals) : <<extends>>
 
         (Inform Users) ..> (Notify Users) : <<include>>
         (Inform Vice Principals) ..> (Notify Vice Principal) : <<include>>
 
         P -- (View Administrative Informations)
-        (View Administrative Informations) <.. (Create Policies) : <<extend>>
-        (View Administrative Informations) <.. (Edit Policies) : <<extend>>
-        (View Administrative Informations) <.. (Delete Policies) : <<extend>>
+        (View Administrative Informations) <.. (Create Policies) : <<extends>>
+        (View Administrative Informations) <.. (Edit Policies) : <<extends>>
+        (View Administrative Informations) <.. (Delete Policies) : <<extends>>
 
         (Create Policies) ..> (Update Administrative Informations) : <<include>>
         (Edit Policies) ..> (Update Administrative Informations) : <<include>>
         (Delete Policies) ..> (Update Administrative Informations) : <<include>>
 
         P -- (View Financial Informations)
-        (View Financial Informations) <.. (Plan School Budget) : <<extend>>
-        (View Financial Informations) <.. (Update School Budget) : <<extend>>
+        (View Financial Informations) <.. (Plan School Budget) : <<extends>>
+        (View Financial Informations) <.. (Update School Budget) : <<extends>>
 
         (Plan School Budget) ..> (Inform Vice Principal): <<include>>
         (Update School Budget) ..> (Inform Vice Principal): <<include>>
 
-        (View Financial Informations) <.. (Generate Financial Reports) : <<extend>>
-        (View Financial Informations) <.. (Withdraw Funds from School Account) : <<extend>>
-        (View Financial Informations) <.. (Deposit Funds to School Account) : <<extend>>
+        (View Financial Informations) <.. (Generate Financial Reports) : <<extends>>
+        (View Financial Informations) <.. (Withdraw Funds from School Account) : <<extends>>
+        (View Financial Informations) <.. (Deposit Funds to School Account) : <<extends>>
 
         (Generate Financial Reports) ..> (Inform Vice Principal): <<include>>
         (Withdraw Funds from School Account) ..> (Inform Vice Principal) : <<include>>
@@ -221,19 +221,19 @@ rectangle "School Management System" {
         (Update Tables) -- PR
 
         A -- (View System Database)
-        (View System Database) <.. (Create Records) : <<extend>>
-        (View System Database) <.. (Edit Records) : <<extend>>
-        (View System Database) <.. (Delete Records) : <<extend>>
+        (View System Database) <.. (Create Records) : <<extends>>
+        (View System Database) <.. (Edit Records) : <<extends>>
+        (View System Database) <.. (Delete Records) : <<extends>>
 
         (Create Records) ..> (Update Tables) : <<include>>
         (Edit Records) ..> (Update Tables) : <<include>>
         (Delete Records) ..> (Update Tables) : <<include>>
 
         A -- (View User Informations)
-        (View User Informations) <.. (Add User) : <<extend>>
-        (View User Informations) <.. (Update User) : <<extend>>
-        (View User Informations) <.. (Delete User) : <<extend>>
-        (View User Informations) <.. (Modify Permissions) : <<extend>>
+        (View User Informations) <.. (Add User) : <<extends>>
+        (View User Informations) <.. (Update User) : <<extends>>
+        (View User Informations) <.. (Delete User) : <<extends>>
+        (View User Informations) <.. (Modify Permissions) : <<extends>>
 
         (Add User) ..> (Update User Logs) : <<include>>
         (Update User) ..> (Update User Logs) : <<include>>
@@ -241,11 +241,11 @@ rectangle "School Management System" {
         (Modify Permissions) ..> (Update User Logs) : <<include>>
 
         A -- (View System Monitor)
-        (View System Monitor) <.. (Generate User Engagement Reports) : <<extend>>
-        (View System Monitor) <.. (Generate Performance Reports) : <<extend>>
-        (View System Monitor) <.. (Generate System Utilization Reports) : <<extend>>
-        (View System Monitor) <.. (Generate Content Popularity Reports) : <<extend>>
-        (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extend>>
+        (View System Monitor) <.. (Generate User Engagement Reports) : <<extends>>
+        (View System Monitor) <.. (Generate Performance Reports) : <<extends>>
+        (View System Monitor) <.. (Generate System Utilization Reports) : <<extends>>
+        (View System Monitor) <.. (Generate Content Popularity Reports) : <<extends>>
+        (View System Monitor) <.. (Generate Monthly Attendance Reports) : <<extends>>
 
         (Generate User Engagement Reports) ..> (Inform Principal) : <<include>>
         (Generate Performance Reports) ..> (Inform Principal) : <<include>>
@@ -254,18 +254,18 @@ rectangle "School Management System" {
         (Generate Monthly Attendance Reports) ..> (Inform Principal) : <<include>>
 
         A -- (View Backups)
-        (View Backups) <.. (Regular Informations Backups) : <<extend>>
+        (View Backups) <.. (Regular Informations Backups) : <<extends>>
 
         (Regular Informations Backups) ..> (Generate Backup Logs) : <<include>>
 
         (Update User Log) -- AR
 }
 
-U <|-- S
-S <|-- T
 T <|-- SH
-SH <|-- VP
 VP <|-- P
 P <|-- A
+U <|-- S
+U <|-- T
+U <|-- VP
 
 @enduml

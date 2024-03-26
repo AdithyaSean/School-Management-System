@@ -56,8 +56,8 @@ rectangle "Existing School Management System" {
     S -- (Create Clubs and Societies)
     S -- (Pay School Fees)
 
-    (Create Clubs and Societies) <.. (Add Members) : <<extend>>
-    (Create Clubs and Societies) <.. (Inform Members) : <<extend>>
+    (Create Clubs and Societies) <.. (Add Members) : <<extends>>
+    (Create Clubs and Societies) <.. (Inform Members) : <<extends>>
 
     SP -- (Assist in Student Discipline)
     SP -- (Organize Student Events)
