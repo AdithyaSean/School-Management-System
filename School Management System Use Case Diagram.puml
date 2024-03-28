@@ -260,11 +260,11 @@ rectangle "School Management System" {
         (Notify Users) -- UR
 }
 
-T <|-- SH
-VP <|-- P
-P <|-- A
 U <|-- S
 U <|-- T
 U <|-- VP
+T <|-- SH
+VP <|-- P
+P <|-- A
 
 @enduml

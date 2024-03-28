@@ -1,126 +1,79 @@
 @startuml School Management System
-skinparam linetype ortho
 
 class User {
-  + username: String
-  + password: String
-  + fingerPrint: String
 
-  + login()
-  + logout()
-  + viewProfile()
-  + updateProfile()
+  username: String
+  password: String
+  fingerprint: String
+  name: String
+  phone: String
+  address: String
 }
 
-class Student extends User {
-  + gradeLevel: String
+class Student {
 
-  + viewPaymentInformation()
-  + paySchoolFees()
-  + payWelfareFees()
-  + donateToSchool()
-  + viewQueryInformation()
-  + submitQuery()
-  + viewEducationalInformation()
-  + submitAssessments()
-  + completeTasks()
-  + viewExtracurricularInformation()
-  + applyForSocietiesAndClubs()
-  + applyForCompetitions()
-  + viewExamsInformation()
-  + applyForRecorrections()
+  grade: Integer
 }
 
-class Teacher extends User {
-  + subject: String
+class Teacher {
 
-  + viewStudentInformation()
-  + createStudentInformation()
-  + updateStudentInformation()
-  + deleteStudentInformation()
-  + generateStudentReports()
-  + viewEducationalInformation()
-  + gradeStudentAssessments()
-  + sendFeedbackAndAssessments()
-  + createEducationalContent()
-  + editEducationalContent()
-  + deleteEducationalContent()
-  + viewExtracurricularInformation()
-  + addMembers()
-  + removeMembers()
-  + updateMembers()
-  + createCompetitions()
-  + createSocietiesAndClubs()
-  + deleteSocietiesAndClubs()
-  + updateSocietiesAndClubs()
-  + viewExamInformation()
-  + createExams()
-  + updateExams()
-  + deleteExams()
-  + enterExamResults()
-  + deleteExamResults()
-  + viewQueryInformation()
-  + provideFeedback()
+  subject: String
+  classroom: String
 }
 
-class SectionalHead extends Teacher {
-  + section: String
-  + ... (other attributes)
-
-  + viewStaffInformation()
-  + addStaffMembers()
-  + updateStaffMembers()
-  + removeStaffMembers()
-  + createTimeTables()
-  + updateTimeTables()
-  + deleteTimeTables()
-  + scheduleMeetings()
+class SectionalHead {
+  section: String
 }
 
-class VicePrincipal extends User {
-  + ... (other attributes)
-
-  + viewEventsInformation()
-  + createEvents()
-  + editEvents()
-  + deleteEvents()
-  + viewAdministrativeInformation()
-  + updateAdministrativeInformation()
-  + viewFinancialInformation()
-  + planSchoolBudget()
-  + updateSchoolBudget()
-  + generateFinancialReports()
-  + withdrawFunds()
-  + depositFunds()
+class VicePrincipal {
 }
 
-class Principal extends VicePrincipal {
-  + ... (other attributes)
-
-  + broadcastAnnouncements()
-  + viewAdministrativeInformation()
-  + createPolicies()
-  + editPolicies()
-  + deletePolicies()
-  + viewFinancialInformation()
-  + planSchoolBudget()
-  + updateSchoolBudget()
-  + generateFinancialReports()
-  + withdrawFunds()
-  + depositFunds()
+class Principal {
 }
 
-class Administrator extends Principal {
-  + viewSystemDatabase()
-  + createUser()
-  + updateUser()
-  + deleteUser()
-  + modifyPermissions()
-  + viewUserInformation()
-  + viewSystemMonitor()
-  + generateReports()
-  + viewBackups()
-  + performBackups()
+class Administrator {
 }
+
+class Payment {
+}
+
+class Assessment {
+}
+
+class Education {
+}
+
+class Extracurricular {
+}
+
+class Club {
+}
+
+class Society {
+}
+
+class Query {
+}
+
+class Event {
+
+  date: Date
+  description: String
+}
+
+class Report {
+
+}
+
+class School {
+  // stores financial data and other data of the school
+}
+
+User <|-- Student
+User <|-- Teacher
+User <|-- VicePrincipal
+Teacher <|-- SectionalHead
+VicePrincipal <|-- Principal
+Principal <|-- Administrator
 
 @enduml
