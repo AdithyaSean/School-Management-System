@@ -61,12 +61,16 @@ class Event {
   description: String
 }
 
-class Report {
+class Announcements {
+}
 
+class Report {
+}
+
+class Administration {
 }
 
 class School {
-  // stores financial data and other data of the school
 }
 
 User <|-- Student
