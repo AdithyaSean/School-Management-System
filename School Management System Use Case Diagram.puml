@@ -18,6 +18,13 @@ actor "Principal" as PR
 actor "Administrator" as A
 actor "Administrator" as AR
 
+U <|-- S
+U <|-- T
+U <|-- VP
+T <|-- SH
+VP <|-- P
+P <|-- A
+
 rectangle "School Management System" {
         S -- (View Payment Information)
         (View Payment Information) <.. (Pay School Fees) : <<extends>>
@@ -259,12 +266,5 @@ rectangle "School Management System" {
 
         (Notify Users) -- UR
 }
-
-U <|-- S
-U <|-- T
-U <|-- VP
-T <|-- SH
-VP <|-- P
-P <|-- A
 
 @enduml

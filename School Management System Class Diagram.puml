@@ -1,5 +1,12 @@
 @startuml School Management System
 
+User <|-- Student
+User <|-- Teacher
+User <|-- VicePrincipal
+Teacher <|-- SectionalHead
+VicePrincipal <|-- Principal
+Principal <|-- Administrator
+
 class User {
 
   username: String
@@ -34,50 +41,44 @@ class Principal {
 class Administrator {
 }
 
-class Payment {
+
+
+interface School {
+  class Event {
+
+    date: Date
+    description: String
+  }
+
+  class Payment {
+  }
+
+  class Assessment {
+  }
+
+  class Education {
+  }
+
+  class Extracurricular {
+  }
+
+  class Club {
+  }
+
+  class Society {
+  }
+
+  class Query {
+  }
+
+  class Announcement {
+  }
+
+  class Report {
+  }
+
+  class Administration {
+  }
 }
-
-class Assessment {
-}
-
-class Education {
-}
-
-class Extracurricular {
-}
-
-class Club {
-}
-
-class Society {
-}
-
-class Query {
-}
-
-class Event {
-
-  date: Date
-  description: String
-}
-
-class Announcements {
-}
-
-class Report {
-}
-
-class Administration {
-}
-
-class School {
-}
-
-User <|-- Student
-User <|-- Teacher
-User <|-- VicePrincipal
-Teacher <|-- SectionalHead
-VicePrincipal <|-- Principal
-Principal <|-- Administrator
 
 @enduml
