@@ -41,44 +41,40 @@ class Principal {
 class Administrator {
 }
 
+class Event {
 
+  date: Date
+  description: String
+}
 
-interface School {
-  class Event {
+class Payment {
+}
 
-    date: Date
-    description: String
-  }
+class Assessment {
+}
 
-  class Payment {
-  }
+class Education {
+}
 
-  class Assessment {
-  }
+class Extracurricular {
+}
 
-  class Education {
-  }
+class Club {
+}
 
-  class Extracurricular {
-  }
+class Society {
+}
 
-  class Club {
-  }
+class Query {
+}
 
-  class Society {
-  }
+class Announcement {
+}
 
-  class Query {
-  }
+class Report {
+}
 
-  class Announcement {
-  }
-
-  class Report {
-  }
-
-  class Administration {
-  }
+class Administration {
 }
 
 @enduml
