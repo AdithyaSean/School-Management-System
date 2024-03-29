@@ -1,5 +1,7 @@
 @startuml School Management System
 
+skinparam linetype ortho
+
 User <|-- Student
 User <|-- Teacher
 User <|-- VicePrincipal
@@ -7,29 +9,84 @@ Teacher <|-- SectionalHead
 VicePrincipal <|-- Principal
 Principal <|-- Administrator
 
-class User {
+Education o-- Assessment
+Education o-- Society
+Student -- Payment
+Student -- Query
+Student -- Assessment
+Student -- Teacher
+Teacher -- Education
+Teacher -- Extracurricular
+Teacher -- Report
+Teacher -- Query
+Extracurricular o-- Club
+Extracurricular o-- Competition
+VicePrincipal -- Administration
+VicePrincipal -- Report
+VicePrincipal -- Event
+VicePrincipal -- Financial
+Principal -- Announcement
 
-  username: String
-  password: String
-  fingerprint: String
-  name: String
-  phone: String
-  address: String
+Financial -- Transaction
+
+class User {
+  # userID: int
+  # userType: string
+  # firstName: string
+  # lastName: string
+  # fullName: string
+  # dateOfBirth: date
+  # gender: string
+  # address: string
+  # phoneNumber: string
+  # email: string
+
+  - enterAttendence()
+  - login()
+  - viewProfile()
+  - updateProfile()
+  - logout()
 }
 
 class Student {
+  + studentID: int
+  + name: string
+  + dateOfBirth: date
+  + address: string
+  + gradeClass: string
+  + parentGuardianName: string
+  + contactInformation: string
+  + attendanceRecord: string
+  + performanceRecord: string
 
-  grade: Integer
+  - enroll()
+  - updateInfo()
+  - viewAttendance()
+  - viewPerformance()
+  - payFees()
+  - viewEducationalContent()
+  - viewExtracurricularContent()
+  - viewExamInformation()
+  - submitAssessment()
+  - viewTeacher()
+  - viewQuery()
 }
 
 class Teacher {
+  + teacherID: int
+  + subject: string
+  + classroom: string
+  + teachersGrade: string
 
-  subject: String
-  classroom: String
+  # createAssessment()
+  # viewStudentAssessments()
+  # gradeAssessment()
+  # viewStudentReports()
+  # generateStudentReports()
 }
 
 class SectionalHead {
-  section: String
+  - section: string
 }
 
 class VicePrincipal {
@@ -42,15 +99,47 @@ class Administrator {
 }
 
 class Event {
-
-  date: Date
-  description: String
+  + date: date
+  + description: string
 }
 
 class Payment {
+  + paymentID: int
+  + student: Student
+  + amount: double
+  + dueDate: date
+  + status: String
+  + paymentMethod: String
+  + transactionID: String
+
+  - makePayment()
+  - viewPaymentHistory()
+}
+
+class Financial {
+  + totalIncome: double
+  + totalExpenses: double
+  + accountBalances: double
+
+  - recordIncome()
+  - recordExpense()
+  - viewAccountBalances()
+  - viewTransactionHistory()
+}
+
+class Transaction {
+  + transactionID: int
+  + date: Date
+  + type: String
+  + amount: Double
+  + description: String
 }
 
 class Assessment {
+  + title: String
+  + dueDate: Date
+  + subject: String
+  + marks: int
 }
 
 class Education {
@@ -60,18 +149,38 @@ class Extracurricular {
 }
 
 class Club {
+  + name: String
+  + description: String
+}
+
+class Competition {
+  + name: String
+  + date: Date
+  + description: String
 }
 
 class Society {
+  + name: String
+  + description: String
 }
 
 class Query {
+  + message: String
+  + sender: User
+  + recipient: User
 }
 
 class Announcement {
+  + date: Date
+  + description: String
+  + author: Teacher
 }
 
 class Report {
+  + type: ReportType
+  + student: Student
+  + generatedBy: User
+  + content: String
 }
 
 class Administration {
