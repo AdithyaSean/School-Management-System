@@ -266,7 +266,6 @@ Principal -- Announcement
 Teacher -- ExtracurricularInformation
 Teacher -- EducationalInformation
 Teacher -- Query
-Teacher -- Payment
 Student -- EducationalInformation
 Student -- ExtracurricularInformation
 Student -- Query
