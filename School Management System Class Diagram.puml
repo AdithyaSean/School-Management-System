@@ -251,32 +251,31 @@ class Announcement {
 User <|-- Student
 User <|-- Teacher
 User <|-- VicePrincipal
-User o-- UserLog
+Teacher <|-- SectionalHead
+VicePrincipal <|-- Principal
+VicePrincipal -- Event
+Principal <|-- Admin
+SocietyOrClub "1" *-- "0..*" Member
+EducationalInformation -- Exam
+Exam "1" *-- "0..*" Result
 User -- Event
 User -- Announcement
-Teacher <|-- SectionalHead
+User o-- UserLog
+Principal -- Policy
+Principal -- Announcement
 Teacher -- ExtracurricularInformation
 Teacher -- EducationalInformation
 Teacher -- Query
 Teacher -- Payment
-Teacher o-- Class
-Student --* Class
 Student -- EducationalInformation
 Student -- ExtracurricularInformation
 Student -- Query
 Student -- Payment
 Student -- Submission
-SectionalHead <|-- VicePrincipal
-VicePrincipal <|-- Principal
-VicePrincipal -- Event
-Principal <|-- Admin
-Principal -- Policy
 Submission -- Assessment
-SocietyOrClub "1" *-- "0..*" Member
-EducationalInformation -- Exam
-Exam "1" *-- "0..*" Result
 Grade *-- Class
-Grade -- SectionalHead
+Class *-- Teacher
+Class *-- Student
 
 EducationalInformation -- Competition
 EducationalInformation -- ExamInformation
