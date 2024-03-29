@@ -1,189 +1,286 @@
 @startuml School Management System
 
-skinparam linetype ortho
+class User {
+  - userType: String
+  - userID: String
+  - username: String
+  - password: String
+  - email: String
+  - firstName: String
+  - lastName: String
+  - dateOfBirth: Date
+  - fingerprint: String
+  + enterAttendence()
+  + login()
+  + logout()
+}
+
+class Student {
+  - studentID: String
+  - gradeLevel: int
+  + getStudentID()
+  + getGradeLevel()
+  + setGradeLevel()
+}
+
+class Teacher {
+  - teacherID: String
+  - subjectTaught: String
+  - class: String
+  + getTeacherID()
+  + getSubjectTaught()
+  + setSubjectTaught()
+}
+
+class SectionalHead {
+  - sectionID: String
+  + getSectionID() 
+  + getDepartment()
+  + setDepartment()
+}
+
+class VicePrincipal {
+  + viewEventsInformation()
+  + informPrincipal()
+  + notifyVicePrincipal()
+  + updateAdministrativeInformation()
+  + updateEvents()
+}
+
+class Principal {
+  + broadcastAnnouncements()
+  + informUsers()
+  + informVicePrincipals()
+  + viewAdministrativeInformation()
+  + viewFinancialInformation()
+}
+
+class Admin {
+  + viewSystemDatabase()
+  + createRecords()
+  + editRecords()
+  + deleteRecords()
+  + viewUserInformation()
+  + addUser()
+  + updateUser()
+  + deleteUser()
+  + modifyPermissions()
+  + viewSystemMonitor()
+  + viewBackups()
+  + regularInformationBackups()
+}
+
+class Payment {
+  - paymentId: int
+  - amount: double
+  - description: string
+  - paymentDate: date
+  - paymentMethod: string
+  - status: string
+}
+
+class Query {
+  - queryId: int
+  - userId: int
+  - description: string
+  - submissionDate: date
+  - response: string
+  - responseDate: date
+}
+
+class Event {
+  - eventId: int
+  - eventName: string
+  - eventDate: date
+  - location: string
+  - description: string
+}
+
+class UserLog {
+  - logId: int
+  - userId: int
+  - action: string
+  - timestamp: datetime
+  + addUserLog()
+  + updateUserLog()
+  + deleteUserLog()
+  + getLogsByUser()
+  + getLogsByAction()
+  + getLogsByTimestamp()
+}
+
+class Policy {
+  - policyId: int
+  - policyName: string
+  - description: string
+  + addPolicy()
+  + updatePolicy()
+  + deletePolicy()
+  + getPolicyById()
+  + getPolicyByName()
+}
+
+class EducationalInformation {
+  - assessments: List<Assessment>
+  - Content: List<Conntent>
+  + viewAssessments()
+  + submitAssessment()
+  + gradeAssessment()
+  + viewContent()
+}
+
+class ExtracurricularInformation {
+  - societiesAndClubs: List<SocietyOrClub>
+  - competitions: List<Competition>
+  - events: List<Event>
+  + viewSocietiesAndClubs()
+  + applyForSocietyOrClub()
+  + createSocietyOrClub()
+  + deleteSocietyOrClub()
+  + viewCompetitions()
+  + applyForCompetition()
+  + createCompetition()
+  + deleteCompetition()
+  + viewEvents()
+  + applyForEvent()
+}
+
+class ExamInformation {
+  - exams: List<Exam>
+  + viewExams(): List<Exam>
+  + createExam()
+  + updateExam()
+  + deleteExam()
+  + enterExamResults()
+  + deleteExamResults()
+  + applyForRecorrection()
+}
+
+class Assessment {
+  - id: String
+  - title: String
+  - description: String
+  - dueDate: Date
+  - maxPoints: int
+  - studentSubmissions: Map<Student, Submission>
+  - grade: Grade
+  + createAssessment()
+  + updateAssessment()
+  + deleteAssessment()
+  + submitSubmission()
+  + getSubmission()
+}
+
+class SocietyOrClub {
+  - id: String
+  - name: String
+  - description: String
+  - members: List<Member>
+  + addMember()
+  + removeMember()
+}
+
+class Competition {
+  - id: String
+  - name: String
+  - description: String
+  - startDate: Date
+  - endDate: Date
+  - participants: List<Student>
+  + enrollParticipant()
+  + withdrawParticipant()
+}
+
+class Event {
+  - id: String
+  - name: String
+  - description: String
+  - date: Date
+}
+
+class Exam {
+  - id: String
+  - name: String
+  - description: String
+  - date: Date
+  - duration: int
+  - results: Map<Student, Result>
+  + enterResult()
+  + deleteResult()
+}
+
+class Result {
+  - score: int
+  - grade: String
+}
+
+class Submission {
+  - content: String
+  - submissionDate: Date
+  + Submit()
+  + removeSubmission()
+}
+
+class Member {
+  - id: String
+  - name: String
+  - role: String
+}
+
+class Grade {
+  - classes: List<Class>
+  - students: List<Student>
+  - studentCount: int
+  - subjects: List<Subject>
+  - teachers: List<Teacher>
+}
+
+class Class {
+  - teacher: Teacher
+  - students: List<Student>
+  - studentCount: int
+  - timeTable: TimeTable
+}
+
+class Announcement {
+  - header: String
+  - content: String
+  - userTypes: String
+}
 
 User <|-- Student
 User <|-- Teacher
 User <|-- VicePrincipal
+User o-- UserLog
+User -- Event
+User -- Announcement
 Teacher <|-- SectionalHead
-VicePrincipal <|-- Principal
-Principal <|-- Administrator
-
-Education o-- Assessment
-Education o-- Society
-Student -- Payment
-Student -- Query
-Student -- Assessment
-Student -- Teacher
-Teacher -- Education
-Teacher -- Extracurricular
-Teacher -- Report
+Teacher -- ExtracurricularInformation
+Teacher -- EducationalInformation
 Teacher -- Query
-Extracurricular o-- Club
-Extracurricular o-- Competition
-VicePrincipal -- Administration
-VicePrincipal -- Report
+Teacher -- Payment
+Teacher o-- Class
+Student --* Class
+Student -- EducationalInformation
+Student -- ExtracurricularInformation
+Student -- Query
+Student -- Payment
+Student -- Submission
+SectionalHead <|-- VicePrincipal
+VicePrincipal <|-- Principal
 VicePrincipal -- Event
-VicePrincipal -- Financial
-Principal -- Announcement
+Principal <|-- Admin
+Principal -- Policy
+Submission -- Assessment
+SocietyOrClub "1" *-- "0..*" Member
+EducationalInformation -- Exam
+Exam "1" *-- "0..*" Result
+Grade *-- Class
+Grade -- SectionalHead
 
-Financial -- Transaction
-
-class User {
-  # userID: int
-  # userType: string
-  # firstName: string
-  # lastName: string
-  # fullName: string
-  # dateOfBirth: date
-  # gender: string
-  # address: string
-  # phoneNumber: string
-  # email: string
-
-  - enterAttendence()
-  - login()
-  - viewProfile()
-  - updateProfile()
-  - logout()
-}
-
-class Student {
-  + studentID: int
-  + name: string
-  + dateOfBirth: date
-  + address: string
-  + gradeClass: string
-  + parentGuardianName: string
-  + contactInformation: string
-  + attendanceRecord: string
-  + performanceRecord: string
-
-  - enroll()
-  - updateInfo()
-  - viewAttendance()
-  - viewPerformance()
-  - payFees()
-  - viewEducationalContent()
-  - viewExtracurricularContent()
-  - viewExamInformation()
-  - submitAssessment()
-  - viewTeacher()
-  - viewQuery()
-}
-
-class Teacher {
-  + teacherID: int
-  + subject: string
-  + classroom: string
-  + teachersGrade: string
-
-  # createAssessment()
-  # viewStudentAssessments()
-  # gradeAssessment()
-  # viewStudentReports()
-  # generateStudentReports()
-}
-
-class SectionalHead {
-  - section: string
-}
-
-class VicePrincipal {
-}
-
-class Principal {
-}
-
-class Administrator {
-}
-
-class Event {
-  + date: date
-  + description: string
-}
-
-class Payment {
-  + paymentID: int
-  + student: Student
-  + amount: double
-  + dueDate: date
-  + status: String
-  + paymentMethod: String
-  + transactionID: String
-
-  - makePayment()
-  - viewPaymentHistory()
-}
-
-class Financial {
-  + totalIncome: double
-  + totalExpenses: double
-  + accountBalances: double
-
-  - recordIncome()
-  - recordExpense()
-  - viewAccountBalances()
-  - viewTransactionHistory()
-}
-
-class Transaction {
-  + transactionID: int
-  + date: Date
-  + type: String
-  + amount: Double
-  + description: String
-}
-
-class Assessment {
-  + title: String
-  + dueDate: Date
-  + subject: String
-  + marks: int
-}
-
-class Education {
-}
-
-class Extracurricular {
-}
-
-class Club {
-  + name: String
-  + description: String
-}
-
-class Competition {
-  + name: String
-  + date: Date
-  + description: String
-}
-
-class Society {
-  + name: String
-  + description: String
-}
-
-class Query {
-  + message: String
-  + sender: User
-  + recipient: User
-}
-
-class Announcement {
-  + date: Date
-  + description: String
-  + author: Teacher
-}
-
-class Report {
-  + type: ReportType
-  + student: Student
-  + generatedBy: User
-  + content: String
-}
-
-class Administration {
-}
+EducationalInformation -- Competition
+EducationalInformation -- ExamInformation
+ExtracurricularInformation -- Competition
+ExtracurricularInformation -- SocietyOrClub
 
 @enduml
