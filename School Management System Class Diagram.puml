@@ -374,6 +374,7 @@ Principal <|-- Admin
 Admin "1" -- "0..*" SystemReport : Generate
 Admin "1" -- "0..*" UserLog : View
 Admin "1" -- "1" SystemLog : View
+Principal "1" -- "1" VicePrincipal : Inform
 Principal "1" -- "0..*" Policy : Manage
 Principal "1" -- "0..*" Announcement : Manage
 VicePrincipal "1" -- "1" FinancialInformation : Manage
