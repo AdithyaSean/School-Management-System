@@ -110,6 +110,9 @@ class Admin {
   + viewBackups()
   + regularInformationBackups()
   + generateSystemReports()
+  + addUserLog()
+  + updateUserLog()
+  + deleteUserLog()
 }
 
 class Payment {
@@ -138,9 +141,6 @@ class UserLog {
   - userId: int
   - action: string
   - timestamp: datetime
-  + addUserLog()
-  + updateUserLog()
-  + deleteUserLog()
   + getLogsByUser()
   + getLogsByAction()
   + getLogsByTimestamp()
@@ -171,10 +171,11 @@ class EducationalInformation {
   + applyForSociety()
   + createSociety()
   + deleteSociety()
+  + viewSubjects()
+  + viewSubjectContent()
   + viewAssessments()
   + submitAssessment()
   + gradeAssessment()
-  + viewContent()
   + createAssessment()
   + updateAssessment()
   + deleteAssessment()
@@ -207,6 +208,9 @@ class ExamInformation {
   + enterExamResults()
   + deleteExamResults()
   + applyForRecorrection()
+  + enterExamResult()
+  + changeExamResult()
+  + deleteExamResult()
 }
 
 class Assessment {
@@ -267,8 +271,6 @@ class Exam {
   - date: Date
   - duration: int
   - results: Map<Student, Result>
-  + enterResult()
-  + deleteResult()
 }
 
 class Result {
@@ -401,8 +403,9 @@ EducationalInformation "1" o-- "0..*" ExamInformation : Has
 EducationalInformation "1" o-- "0..*" Society : Has
 EducationalInformation "1" o-- "0..*" Competition : Has
 EducationalInformation "1" o-- "0..*" Assessment : Has
+EducationalInformation "1" o-- "0..*" Subject : Has
 ExamInformation "1" o-- "0..*" Exam : Has
-Exam "1" O-- "0..*" Result : Has
+Exam "1" O--- "0..*" Result : Has
 Assessment "1" o-- "1" Submission : Has
 ExtracurricularInformation "1" o-- "0..*" Competition : Has
 ExtracurricularInformation "1" o-- "0..*" Club : Has
