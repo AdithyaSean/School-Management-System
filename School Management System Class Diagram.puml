@@ -88,6 +88,7 @@ class Admin {
   + viewSystemMonitor()
   + viewBackups()
   + regularInformationBackups()
+  + generateSystemReports()
 }
 
 class Payment {
@@ -273,6 +274,9 @@ class Announcement {
 }
 
 abstract class Report {
+  - dateCreated: Date
+  - dateModified: Date
+  - generatedBy: String
 }
 
 class StudentReport {
@@ -300,6 +304,7 @@ Principal <|-- Admin
 Report <|-- StudentReport
 Report <|-- SystemReport
 
+SystemReport -- Admin
 SocietyOrClub "1" *-- "0..*" Member
 EducationalInformation -- Exam
 Exam "1" *-- "0..*" Result
