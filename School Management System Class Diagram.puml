@@ -301,6 +301,13 @@ class Grade {
   - teachers: List<Teacher>
 }
 
+class Subject {
+  - subjectName: String
+  - teachers: List<Teacher>
+  - creditPoints: int
+  - hours: int
+}
+
 class Class {
   - teacher: Teacher
   - students: List<Student>
@@ -351,6 +358,7 @@ SchoolSystem "1" *-- "1" SystemLog : Has
 Grade "1" *-- "1..*" Class : Has
 Grade "1" *-- "1..*" Teacher : Has
 Grade "1" *-- "1" SectionalHead : Has
+Grade "1" *-- "1..*" Subject : Has
 Class "1" *-- "1" Teacher : Has
 Class "1" *-- "1..*" Student : Has
 
@@ -374,6 +382,7 @@ SectionalHead "1*" -- "1..*" Teacher : Inform
 Teacher "1" -- "1" ExtracurricularInformation : Manage
 Teacher "1" -- "1" EducationalInformation : Manage
 Teacher "1" -- "0..*" Query : Manage
+Teacher "1" -- "1..*" Subject : Manage
 Teacher "1" -- "0..*" StudentReport : Manage
 Student "1" -- "1" EducationalInformation : View
 Student "1" -- "1" ExtracurricularInformation : View
