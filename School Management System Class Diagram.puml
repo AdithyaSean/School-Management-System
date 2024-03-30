@@ -3,8 +3,8 @@
 skinparam Linetype ortho
 
 interface SchoolSystem {
-  name: String
-  date: Date
+  - name: String
+  - date: Date
 }
 
 class User {
@@ -48,6 +48,11 @@ class Teacher {
   + getClass()
   + setClass()
   + updateClass()
+  + viewStudetReport()
+  + updateStudentReport()
+  + viewStudentLetters()
+  + informVicePrincipal()
+  + informSectionalHead()
 }
 
 class SectionalHead {
@@ -306,10 +311,10 @@ class Announcement {
 }
 
 class SystemLog {
-  users: int
-  onlineUsers: int
-  systemErrors: String
-  date: Date
+  - users: int
+  - onlineUsers: int
+  - systemErrors: String
+  - date: Date
 }
 
 class StudentReport {
@@ -361,6 +366,7 @@ VicePrincipal "1" -- "1" FinancialInformation : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
 SectionalHead "1*" -- "1..*" Student : Manage
+SectionalHead "1*" -- "1..*" Teacher : Inform
 Teacher "1" -- "1" ExtracurricularInformation : Manage
 Teacher "1" -- "1" EducationalInformation : Manage
 Teacher "1" -- "0..*" Query : Manage
