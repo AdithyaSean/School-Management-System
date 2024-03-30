@@ -8,6 +8,7 @@ interface SchoolSystem {
   - systemLog: SystemLog
   - education: EducationalInformation
   - extracurricular: ExtracurricularInformation
+  - grades: List<Grade>
 }
 
 class User {
