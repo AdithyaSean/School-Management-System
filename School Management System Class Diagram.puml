@@ -1,5 +1,7 @@
 @startuml School Management System
 
+skinparam Linetype ortho
+
 class User {
   - userType: String
   - userID: String
