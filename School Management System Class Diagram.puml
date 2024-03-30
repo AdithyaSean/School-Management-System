@@ -305,13 +305,17 @@ class Announcement {
   - userTypes: String
 }
 
-abstract class Report {
-  - dateCreated: Date
-  - dateModified: Date
-  - generatedBy: String
+class SystemLog {
+  users: int
+  onlineUsers: int
+  systemErrors: String
+  date: Date
 }
 
 class StudentReport {
+  - dateCreated: Date
+  - dateModified: Date
+  - generatedBy: String
   - studentPerformance: String
   - studentAttendence: String
   - studentLetters: String
@@ -320,6 +324,9 @@ class StudentReport {
 }
 
 class SystemReport {
+  - dateCreated: Date
+  - dateModified: Date
+  - generatedBy: String
   - systemUtilization: int
   - systemLogs : List<SystemLog>
   - errors: String
@@ -329,7 +336,8 @@ SchoolSystem "1" *-- "*" User : Has
 SchoolSystem "1" *-- "1" EducationalInformation : Has
 SchoolSystem "1" *-- "1" ExtracurricularInformation : Has
 SchoolSystem "1" *-- "1" FinancialInformation : Has
-SchoolSystem "1" *-- "0..*" Report : Has
+SchoolSystem "1" *-- "1..*" Grade : Has
+SchoolSystem "1" *-- "1" SystemLog : Has
 
 Grade "1" *-- "1..*" Class : Has
 Grade "1" *-- "1..*" Teacher : Has
@@ -344,18 +352,15 @@ VicePrincipal <|-- Principal
 VicePrincipal -- Event
 Principal <|-- Admin
 
-Student "1..*" -- "1..*" SectionalHead : Manage
-Teacher "1..*" -- "1..*" VicePrincipal : Manage
-
-Report <|-- StudentReport
-Report <|-- SystemReport
-
 Admin "1" -- "0..*" SystemReport : Generate
 Admin "1" -- "0..*" UserLog : View
+Admin "1" -- "1" SystemLog : View
 Principal "1" -- "0..*" Policy : Manage
 Principal "1" -- "0..*" Announcement : Manage
 VicePrincipal "1" -- "1" FinancialInformation : Manage
+VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
+SectionalHead "1*" -- "1..*" Student : Manage
 Teacher "1" -- "1" ExtracurricularInformation : Manage
 Teacher "1" -- "1" EducationalInformation : Manage
 Teacher "1" -- "0..*" Query : Manage
@@ -366,11 +371,11 @@ Student "1" -- "0..*" Query : Submit
 Student "1" -- "0..*" Payment : Make
 User "1" -- "0..*" Event : View
 User "1" -- "0..*" Announcement : View
-Student "1" *-- "1" StudentReport : Has
-Exam "1" O-- "0..*" Result : Has
+
 Society "1" *-- "1..*" SocietyMember : Has
 Club "1" *-- "1..*" ClubMember : Has
 User "1" *-- "1" UserLog : Has
+Student "1" *-- "1" StudentReport : Has
 
 FinancialInformation "1" o-- "0..*" Payment : Has
 EducationalInformation "1" o-- "0..*" ExamInformation : Has
@@ -378,6 +383,7 @@ EducationalInformation "1" o-- "0..*" Society : Has
 EducationalInformation "1" o-- "0..*" Competition : Has
 EducationalInformation "1" o-- "0..*" Assessment : Has
 ExamInformation "1" o-- "0..*" Exam : Has
+Exam "1" O-- "0..*" Result : Has
 Assessment "1" o-- "1" Submission : Has
 ExtracurricularInformation "1" o-- "0..*" Competition : Has
 ExtracurricularInformation "1" o-- "0..*" Club : Has
