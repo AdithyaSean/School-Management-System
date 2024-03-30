@@ -1,6 +1,11 @@
 @startuml School Management System
 
-skinparam Linetype polyline
+skinparam Linetype ortho
+
+interface SchoolSystem {
+  name: String
+  date: Date
+}
 
 class User {
   - userType: String
@@ -320,6 +325,18 @@ class SystemReport {
   - errors: String
 }
 
+SchoolSystem "1" *-- "*" User : Has
+SchoolSystem "1" *-- "1" EducationalInformation : Has
+SchoolSystem "1" *-- "1" ExtracurricularInformation : Has
+SchoolSystem "1" *-- "1" FinancialInformation : Has
+SchoolSystem "1" *-- "0..*" Report : Has
+
+Grade "1" *-- "1..*" Class : Has
+Grade "1" *-- "1..*" Teacher : Has
+Grade "1" *-- "1" SectionalHead : Has
+Class "1" *-- "1" Teacher : Has
+Class "1" *-- "1..*" Student : Has
+
 User <|-- Student
 User <|-- Teacher
 User <|-- VicePrincipal
@@ -333,7 +350,8 @@ Teacher "1..*" -- "1..*" VicePrincipal : Manage
 Report <|-- StudentReport
 Report <|-- SystemReport
 
-SystemReport "0..*" -- "1" Admin : Generate
+Admin "1" -- "0..*" SystemReport : Generate
+Admin "1" -- "0..*" UserLog : View
 Principal "1" -- "0..*" Policy : Manage
 Principal "1" -- "0..*" Announcement : Manage
 VicePrincipal "1" -- "1" FinancialInformation : Manage
@@ -346,20 +364,13 @@ Student "1" -- "1" EducationalInformation : View
 Student "1" -- "1" ExtracurricularInformation : View
 Student "1" -- "0..*" Query : Submit
 Student "1" -- "0..*" Payment : Make
-Student "1" -- "0..*" Submission : Submit
-Submission "1" -- "1" Assessment : View
 User "1" -- "0..*" Event : View
 User "1" -- "0..*" Announcement : View
-Admin "1" -- "0..*" UserLog : View
-
 Student "1" *-- "1" StudentReport : Has
 Exam "1" O-- "0..*" Result : Has
 Society "1" *-- "1..*" SocietyMember : Has
 Club "1" *-- "1..*" ClubMember : Has
 User "1" *-- "1" UserLog : Has
-Grade "1" *-- "1..*" Class : Has
-Class "1" *-- "1" Teacher : Has
-Class "1" *-- "1..*" Student : Has
 
 FinancialInformation "1" o-- "0..*" Payment : Has
 EducationalInformation "1" o-- "0..*" ExamInformation : Has
@@ -367,6 +378,7 @@ EducationalInformation "1" o-- "0..*" Society : Has
 EducationalInformation "1" o-- "0..*" Competition : Has
 EducationalInformation "1" o-- "0..*" Assessment : Has
 ExamInformation "1" o-- "0..*" Exam : Has
+Assessment "1" o-- "1" Submission : Has
 ExtracurricularInformation "1" o-- "0..*" Competition : Has
 ExtracurricularInformation "1" o-- "0..*" Club : Has
 
