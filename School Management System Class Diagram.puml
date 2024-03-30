@@ -1,6 +1,6 @@
 @startuml School Management System
 
-skinparam Linetype ortho
+skinparam Linetype polyline
 
 class User {
   - userType: String
@@ -67,6 +67,9 @@ class VicePrincipal {
   + updateTeachers()
   + deleteTeachers()
   + informSectionalHead()
+  + viewEvents()
+  + createEvents()
+  + DeleteEvents()
 }
 
 class Principal {
@@ -75,6 +78,8 @@ class Principal {
   + informVicePrincipals()
   + viewAdministrativeInformation()
   + viewFinancialInformation()
+  + addPolicy()
+  + deletePolicy()
 }
 
 class Admin {
@@ -100,6 +105,9 @@ class Payment {
   - paymentDate: date
   - paymentMethod: string
   - status: string
+  + paySchoolFees()
+  + payWelfareFees()
+  + donateSchool()
 }
 
 class Query {
@@ -109,18 +117,6 @@ class Query {
   - submissionDate: date
   - response: string
   - responseDate: date
-}
-
-class Event {
-  - eventId: int
-  - eventName: string
-  - eventDate: date
-  - location: string
-  - description: string
-  + viewEvents()
-  + createEvents()
-  + UpdateEvents()
-  + DeleteEvents()
 }
 
 class UserLog {
@@ -140,41 +136,57 @@ class Policy {
   - policyId: int
   - policyName: string
   - description: string
-  + addPolicy()
   + updatePolicy()
-  + deletePolicy()
   + getPolicyById()
   + getPolicyByName()
 }
 
+class FinancialInformation {
+  - schoolBudget: double
+  - income: double
+  - expense: double
+  - donations: double
+  - studentPayments: List<Payment>
+}
+
 class EducationalInformation {
+  - societies: List<Society>
   - assessments: List<Assessment>
-  - Content: List<Conntent>
+  - competitions: List<Competition>
+  + viewSocieties()
+  + applyForSociety()
+  + createSociety()
+  + deleteSociety()
   + viewAssessments()
   + submitAssessment()
   + gradeAssessment()
   + viewContent()
-}
-
-class ExtracurricularInformation {
-  - societiesAndClubs: List<SocietyOrClub>
-  - competitions: List<Competition>
-  - events: List<Event>
-  + viewSocietiesAndClubs()
-  + applyForSocietyOrClub()
-  + createSocietyOrClub()
-  + deleteSocietyOrClub()
+  + createAssessment()
+  + updateAssessment()
+  + deleteAssessment()
   + viewCompetitions()
   + applyForCompetition()
   + createCompetition()
   + deleteCompetition()
-  + viewEvents()
-  + applyForEvent()
+}
+
+class ExtracurricularInformation {
+  - clubs: List<SocietyOrClub>
+  - competitions: List<Competition>
+  + viewContent()
+  + viewClubs()
+  + applyForClub()
+  + createClub()
+  + deleteClub()
+  + viewCompetitions()
+  + applyForCompetition()
+  + createCompetition()
+  + deleteCompetition()
 }
 
 class ExamInformation {
   - exams: List<Exam>
-  + viewExams(): List<Exam>
+  + viewExams()
   + createExam()
   + updateExam()
   + deleteExam()
@@ -191,14 +203,21 @@ class Assessment {
   - maxPoints: int
   - studentSubmissions: Map<Student, Submission>
   - grade: Grade
-  + createAssessment()
-  + updateAssessment()
-  + deleteAssessment()
   + submitSubmission()
-  + getSubmission()
+  + updateSubmission()
+  + removeSubmission()
 }
 
-class SocietyOrClub {
+class Society {
+  - id: String
+  - name: String
+  - description: String
+  - members: List<Member>
+  + addMember()
+  + removeMember()
+}
+
+class Club {
   - id: String
   - name: String
   - description: String
@@ -219,10 +238,12 @@ class Competition {
 }
 
 class Event {
-  - id: String
-  - name: String
-  - description: String
-  - date: Date
+  - eventId: int
+  - eventName: string
+  - eventDate: date
+  - location: string
+  - description: string
+  + updateEvent()
 }
 
 class Exam {
@@ -244,11 +265,15 @@ class Result {
 class Submission {
   - content: String
   - submissionDate: Date
-  + Submit()
-  + removeSubmission()
 }
 
-class Member {
+class ClubMember {
+  - id: String
+  - name: String
+  - role: String
+}
+
+class SocietyMember {
   - id: String
   - name: String
   - role: String
@@ -298,41 +323,51 @@ class SystemReport {
 User <|-- Student
 User <|-- Teacher
 User <|-- VicePrincipal
-Teacher <|-- SectionalHead
 VicePrincipal <|-- Principal
 VicePrincipal -- Event
 Principal <|-- Admin
 
+Student "1..*" -- "1..*" SectionalHead : Manage
+Teacher "1..*" -- "1..*" VicePrincipal : Manage
+
 Report <|-- StudentReport
 Report <|-- SystemReport
 
-SystemReport -- Admin
-SocietyOrClub "1" *-- "0..*" Member
-EducationalInformation -- Exam
-Exam "1" *-- "0..*" Result
-User -- Event
-User -- Announcement
-Principal -- Policy
-Principal -- Announcement
-Teacher -- ExtracurricularInformation
-Teacher -- EducationalInformation
-Teacher -- Query
-Student -- EducationalInformation
-Student -- ExtracurricularInformation
-Student -- Query
-Student -- Payment
-Student -- StudentReport
-Student -- Submission
-Submission -- Assessment
+SystemReport "0..*" -- "1" Admin : Generate
+Principal "1" -- "0..*" Policy : Manage
+Principal "1" -- "0..*" Announcement : Manage
+VicePrincipal "1" -- "1" FinancialInformation : Manage
+SectionalHead "1" -- "1" Grade : Manage
+Teacher "1" -- "1" ExtracurricularInformation : Manage
+Teacher "1" -- "1" EducationalInformation : Manage
+Teacher "1" -- "0..*" Query : Manage
+Teacher "1" -- "0..*" StudentReport : Manage
+Student "1" -- "1" EducationalInformation : View
+Student "1" -- "1" ExtracurricularInformation : View
+Student "1" -- "0..*" Query : Submit
+Student "1" -- "0..*" Payment : Make
+Student "1" -- "0..*" Submission : Submit
+Submission "1" -- "1" Assessment : View
+User "1" -- "0..*" Event : View
+User "1" -- "0..*" Announcement : View
+Admin "1" -- "0..*" UserLog : View
 
-User *-- UserLog
-Grade *-- Class
-Class *-- Teacher
-Class *-- Student
+Student "1" *-- "1" StudentReport : Has
+Exam "1" O-- "0..*" Result : Has
+Society "1" *-- "1..*" SocietyMember : Has
+Club "1" *-- "1..*" ClubMember : Has
+User "1" *-- "1" UserLog : Has
+Grade "1" *-- "1..*" Class : Has
+Class "1" *-- "1" Teacher : Has
+Class "1" *-- "1..*" Student : Has
 
-EducationalInformation -- Competition
-EducationalInformation -- ExamInformation
-ExtracurricularInformation -- Competition
-ExtracurricularInformation -- SocietyOrClub
+FinancialInformation "1" o-- "0..*" Payment : Has
+EducationalInformation "1" o-- "0..*" ExamInformation : Has
+EducationalInformation "1" o-- "0..*" Society : Has
+EducationalInformation "1" o-- "0..*" Competition : Has
+EducationalInformation "1" o-- "0..*" Assessment : Has
+ExamInformation "1" o-- "0..*" Exam : Has
+ExtracurricularInformation "1" o-- "0..*" Competition : Has
+ExtracurricularInformation "1" o-- "0..*" Club : Has
 
 @enduml
