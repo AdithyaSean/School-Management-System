@@ -12,39 +12,59 @@ class User {
   - fingerprint: String
   + enterAttendence()
   + login()
+  + viewProfile()
+  + updateProfile()
   + logout()
 }
 
 class Student {
   - studentID: String
   - gradeLevel: int
+  - studentReport: Report
   + getStudentID()
   + getGradeLevel()
   + setGradeLevel()
+  + getReport()
+  + createReport()
+  + updateReport()
 }
 
 class Teacher {
   - teacherID: String
   - subjectTaught: String
   - class: String
+  - society: String
+  - club: String
   + getTeacherID()
   + getSubjectTaught()
   + setSubjectTaught()
+  + getClass()
+  + setClass()
+  + updateClass()
 }
 
 class SectionalHead {
-  - sectionID: String
-  + getSectionID() 
-  + getDepartment()
-  + setDepartment()
+  - section: String
+  + getSection()
+  + setSection()
+  + informTeachers()
+  + informStudents()
+  + viewStudents()
+  + addStudents()
+  + updateStudents()
+  + deleteStudents()
+  + createClass()
+  + deleteClass()
 }
 
 class VicePrincipal {
-  + viewEventsInformation()
+  + role: String
   + informPrincipal()
-  + notifyVicePrincipal()
-  + updateAdministrativeInformation()
-  + updateEvents()
+  + viewTeachers()
+  + addTeachers()
+  + updateTeachers()
+  + deleteTeachers()
+  + informSectionalHead()
 }
 
 class Principal {
@@ -94,6 +114,10 @@ class Event {
   - eventDate: date
   - location: string
   - description: string
+  + viewEvents()
+  + createEvents()
+  + UpdateEvents()
+  + DeleteEvents()
 }
 
 class UserLog {
@@ -248,6 +272,23 @@ class Announcement {
   - userTypes: String
 }
 
+abstract class Report {
+}
+
+class StudentReport {
+  - studentPerformance: String
+  - studentAttendence: String
+  - studentLetters: String
+  - studentAchivements: String
+  - studentHealthStatus: String
+}
+
+class SystemReport {
+  - systemUtilization: int
+  - systemLogs : List<SystemLog>
+  - errors: String
+}
+
 User <|-- Student
 User <|-- Teacher
 User <|-- VicePrincipal
@@ -255,12 +296,15 @@ Teacher <|-- SectionalHead
 VicePrincipal <|-- Principal
 VicePrincipal -- Event
 Principal <|-- Admin
+
+Report <|-- StudentReport
+Report <|-- SystemReport
+
 SocietyOrClub "1" *-- "0..*" Member
 EducationalInformation -- Exam
 Exam "1" *-- "0..*" Result
 User -- Event
 User -- Announcement
-User o-- UserLog
 Principal -- Policy
 Principal -- Announcement
 Teacher -- ExtracurricularInformation
@@ -270,8 +314,11 @@ Student -- EducationalInformation
 Student -- ExtracurricularInformation
 Student -- Query
 Student -- Payment
+Student -- StudentReport
 Student -- Submission
 Submission -- Assessment
+
+User *-- UserLog
 Grade *-- Class
 Class *-- Teacher
 Class *-- Student
