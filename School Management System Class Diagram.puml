@@ -12,107 +12,107 @@ interface SchoolSystem {
 }
 
 class User {
-  - userType: String
-  - userID: String
-  - username: String
-  - password: String
-  - email: String
-  - firstName: String
-  - lastName: String
-  - dateOfBirth: Date
-  - fingerprint: String
-  + enterAttendance()
-  + login()
-  + viewProfile()
-  + updateProfile()
-  + logout()
+  # userType: String
+  # userID: String
+  # username: String
+  # password: String
+  # email: String
+  # firstName: String
+  # lastName: String
+  # dateOfBirth: Date
+  # fingerprint: String
+  # enterAttendance()
+  # login()
+  # viewProfile()
+  # updateProfile()
+  # logout()
 }
 
 class Student {
   - studentID: String
   - gradeLevel: int
   - studentReport: StudentReport
-  + getStudentID()
-  + getGradeLevel()
-  + setGradeLevel()
-  + getReport()
-  + createReport()
-  + updateReport()
+  - getStudentID()
+  - getGradeLevel()
+  - setGradeLevel()
+  - getReport()
+  - createReport()
+  - updateReport()
 }
 
 class Teacher {
-  - teacherID: String
-  - subjectTaught: String
-  - classTaught: String
-  - society: String
-  - club: String
-  + getTeacherID()
-  + getSubjectTaught()
-  + setSubjectTaught()
-  + getClassTaught()
-  + setClassTaught()
-  + updateClass()
-  + viewStudentReport()
-  + updateStudentReport()
-  + viewStudentLetters()
-  + informVicePrincipal()
-  + informSectionalHead()
+  # teacherID: String
+  # subjectTaught: String
+  # classTaught: String
+  # society: String
+  # club: String
+  # getTeacherID()
+  # getSubjectTaught()
+  # setSubjectTaught()
+  # getClassTaught()
+  # setClassTaught()
+  # updateClass()
+  # viewStudentReport()
+  # updateStudentReport()
+  # viewStudentLetters()
+  # informVicePrincipal()
+  # informSectionalHead()
 }
 
 class SectionalHead {
   - section: String
-  + getSection()
-  + setSection()
-  + informTeachers()
-  + informStudents()
-  + viewStudents()
-  + addStudents()
-  + updateStudents()
-  + deleteStudents()
-  + createClass()
-  + deleteClass()
+  - getSection()
+  - setSection()
+  - informTeachers()
+  - informStudents()
+  - viewStudents()
+  - addStudents()
+  - updateStudents()
+  - deleteStudents()
+  - createClass()
+  - deleteClass()
 }
 
 class VicePrincipal {
-  + role: String
-  + informPrincipal()
-  + viewTeachers()
-  + addTeachers()
-  + updateTeachers()
-  + deleteTeachers()
-  + informSectionalHead()
-  + viewEvents()
-  + createEvents()
-  + deleteEvents()
+  # role: String
+  # informPrincipal()
+  # viewTeachers()
+  # addTeachers()
+  # updateTeachers()
+  # deleteTeachers()
+  # informSectionalHead()
+  # viewEvents()
+  # createEvents()
+  # deleteEvents()
 }
 
 class Principal {
-  + broadcastAnnouncements()
-  + informUsers()
-  + informVicePrincipals()
-  + viewAdministrativeInformation()
-  + viewFinancialInformation()
-  + addPolicy()
-  + deletePolicy()
+  # broadcastAnnouncements()
+  # informUsers()
+  # informVicePrincipals()
+  # viewAdministrativeInformation()
+  # viewFinancialInformation()
+  # addPolicy()
+  # deletePolicy()
 }
 
 class Admin {
-  + viewSystemDatabase()
-  + createRecords()
-  + editRecords()
-  + deleteRecords()
-  + viewUserInformation()
-  + addUser()
-  + updateUser()
-  + deleteUser()
-  + modifyPermissions()
-  + viewSystemMonitor()
-  + viewBackups()
-  + regularInformationBackups()
-  + generateSystemReports()
-  + addUserLog()
-  + updateUserLog()
-  + deleteUserLog()
+  - viewSystemDatabase()
+  - createRecords()
+  - editRecords()
+  - deleteRecords()
+  - viewUserInformation()
+  - addUser()
+  - updateUser()
+  - deleteUser()
+  - modifyPermissions()
+  - viewSystemMonitor()
+  - viewBackups()
+  - regularInformationBackups()
+  - generateSystemReports()
+  - addUserLog()
+  - updateUserLog()
+  - deleteUserLog()
 }
 
 class Payment {
