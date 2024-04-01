@@ -407,7 +407,7 @@ EducationalInformation "1" o-- "0..*" Assessment : Has
 EducationalInformation "1" o-- "0..*" Subject : Has
 ExamInformation "1" o-- "0..*" Exam : Has
 Exam "1" O--- "0..*" Result : Has
-Assessment "1" o-- "1" Submission : Has
+Assessment "1" o-- "0..*" Submission : Has
 ExtracurricularInformation "1" o-- "0..*" Competition : Has
 ExtracurricularInformation "1" o-- "0..*" Club : Has
 
