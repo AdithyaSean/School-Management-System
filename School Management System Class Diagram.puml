@@ -12,16 +12,16 @@ interface SchoolSystem {
 }
 
 class User {
-  # userType: String
-  # userID: String
-  # username: String
-  # password: String
-  # email: String
-  # firstName: String
-  # lastName: String
-  # dateOfBirth: Date
-  # fingerprint: String
-  + enterAttendence()
+  - userType: String
+  - userID: String
+  - username: String
+  - password: String
+  - email: String
+  - firstName: String
+  - lastName: String
+  - dateOfBirth: Date
+  - fingerprint: String
+  + enterAttendance()
   + login()
   + viewProfile()
   + updateProfile()
@@ -31,7 +31,7 @@ class User {
 class Student {
   - studentID: String
   - gradeLevel: int
-  - studentReport: Report
+  - studentReport: StudentReport
   + getStudentID()
   + getGradeLevel()
   + setGradeLevel()
@@ -43,16 +43,16 @@ class Student {
 class Teacher {
   - teacherID: String
   - subjectTaught: String
-  - class: String
+  - classTaught: String
   - society: String
   - club: String
   + getTeacherID()
   + getSubjectTaught()
   + setSubjectTaught()
-  + getClass()
-  + setClass()
+  + getClassTaught()
+  + setClassTaught()
   + updateClass()
-  + viewStudetReport()
+  + viewStudentReport()
   + updateStudentReport()
   + viewStudentLetters()
   + informVicePrincipal()
@@ -83,7 +83,7 @@ class VicePrincipal {
   + informSectionalHead()
   + viewEvents()
   + createEvents()
-  + DeleteEvents()
+  + deleteEvents()
 }
 
 class Principal {
@@ -186,7 +186,7 @@ class EducationalInformation {
 }
 
 class ExtracurricularInformation {
-  - clubs: List<SocietyOrClub>
+  - clubs: List<Club>
   - competitions: List<Competition>
   + viewContent()
   + viewClubs()
@@ -207,7 +207,7 @@ class ExamInformation {
   + deleteExam()
   + enterExamResults()
   + deleteExamResults()
-  + applyForRecorrection()
+  + applyForRe-correction()
   + enterExamResult()
   + changeExamResult()
   + deleteExamResult()
@@ -230,7 +230,7 @@ class Society {
   - id: String
   - name: String
   - description: String
-  - members: List<Member>
+  - members: List<SocietyMember>
   + addMember()
   + removeMember()
 }
@@ -239,7 +239,7 @@ class Club {
   - id: String
   - name: String
   - description: String
-  - members: List<Member>
+  - members: List<ClubMember>
   + addMember()
   + removeMember()
 }
@@ -335,9 +335,9 @@ class StudentReport {
   - dateModified: Date
   - generatedBy: String
   - studentPerformance: String
-  - studentAttendence: String
+  - studentAttendance: String
   - studentLetters: String
-  - studentAchivements: String
+  - studentAchievements: String
   - studentHealthStatus: String
 }
 
