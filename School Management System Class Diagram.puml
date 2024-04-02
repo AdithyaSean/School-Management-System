@@ -9,6 +9,7 @@ interface SchoolSystem {
   - education: EducationalInformation
   - extracurricular: ExtracurricularInformation
   - grades: List<Grade>
+  + viewSchoolInformation()
 }
 
 class User {
@@ -75,6 +76,7 @@ class SectionalHead {
 
 class VicePrincipal {
   # role: String
+  # principalGrade: String
   # informPrincipal()
   # viewTeachers()
   # addTeachers()
@@ -97,6 +99,8 @@ class Principal {
 }
 
 class Admin {
+  - adminLog: UserLog
+  - masterPassword: String
   - viewSystemDatabase()
   - createRecords()
   - editRecords()
@@ -134,6 +138,7 @@ class Query {
   - submissionDate: date
   - response: string
   - responseDate: date
+  + viewQuery()
 }
 
 class UserLog {
@@ -161,6 +166,7 @@ class FinancialInformation {
   - expense: double
   - donations: double
   - studentPayments: List<Payment>
+  + viewFinancialInformation()
 }
 
 class EducationalInformation {
@@ -271,28 +277,36 @@ class Exam {
   - date: Date
   - duration: int
   - results: Map<Student, Result>
+  + viewExam()
+  + updateExam()
+  + getResults()
 }
 
 class Result {
   - score: int
   - grade: String
+  + getScore()
+  + getGrade()
 }
 
 class Submission {
   - content: String
   - submissionDate: Date
+  + editSubmission()
 }
 
 class ClubMember {
   - id: String
   - name: String
   - role: String
+  - leaveClub()
 }
 
 class SocietyMember {
   - id: String
   - name: String
   - role: String
+  - leaveSociety()
 }
 
 class Grade {
@@ -301,26 +315,37 @@ class Grade {
   - studentCount: int
   - subjects: List<Subject>
   - teachers: List<Teacher>
+  + addStudents()
+  + removeStudents()
+  + addTeachers()
+  + removeTeachers()
 }
 
 class Subject {
   - subjectName: String
+  - subjectContent: String
   - teachers: List<Teacher>
   - creditPoints: int
   - hours: int
+  + addContent()
+  + removeContent()
 }
 
 class Class {
   - teacher: Teacher
+  - classMonitor: Student
   - students: List<Student>
   - studentCount: int
   - timeTable: TimeTable
+  + addClassMonitor()
+  + removeClassMonitor()
 }
 
 class Announcement {
   - header: String
   - content: String
   - userTypes: String
+  + updateAnnouncement()
 }
 
 class SystemLog {
@@ -328,6 +353,7 @@ class SystemLog {
   - onlineUsers: int
   - systemErrors: String
   - date: Date
+  + viewSystemLog()
 }
 
 class StudentReport {
@@ -339,6 +365,8 @@ class StudentReport {
   - studentLetters: String
   - studentAchievements: String
   - studentHealthStatus: String
+  + updateStudentReport()
+  + viewStudentReport()
 }
 
 class SystemReport {
@@ -348,6 +376,7 @@ class SystemReport {
   - systemUtilization: int
   - systemLogs : List<SystemLog>
   - errors: String
+  + viewSystemReport()
 }
 
 SchoolSystem "1" *-- "*" User : Has
