@@ -1,0 +1,48 @@
+@startuml School Management System
+
+actor Student
+boundary "School System" as SchoolSystem
+actor Admin
+entity EducationalInformation
+entity FinancialInformation
+
+note over Student, SchoolSystem
+Student applies for enrollment
+end note
+
+Student -> SchoolSystem: Apply for Enrollment
+
+SchoolSystem -> Admin: Receive Enrollment Application
+
+Admin -> EducationalInformation: Verify Eligibility
+
+EducationalInformation -> Admin: Eligibility Verified
+
+Admin -> FinancialInformation: Process Fees
+
+FinancialInformation --> Admin: Fees Processed
+
+Admin -> SchoolSystem: Confirm Enrollment
+
+SchoolSystem --> Admin: Enrollment Confirmed
+
+Admin --> Student: Enrollment Confirmation
+
+note over Student, SchoolSystem
+Student applies for enrollment
+end note
+
+actor Student
+boundary SchoolSystem
+entity EducationalInformation
+
+Student -> SchoolSystem: View Educational Information
+activate SchoolSystem
+SchoolSystem -> EducationalInformation: Retrieve Educational Information
+activate EducationalInformation
+EducationalInformation --> SchoolSystem: Educational Information
+deactivate EducationalInformation
+SchoolSystem --> Student: Display Educational Information
+deactivate SchoolSystem
+
+@enduml
