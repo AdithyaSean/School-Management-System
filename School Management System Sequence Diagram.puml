@@ -1,72 +1,45 @@
 @startuml School Management System
 
-actor Student
-boundary SchoolSystem
-actor Admin
-control EducationalInformation
-control FinancialInformation
-
-note over Student, SchoolSystem
-Student applies for enrollment
-end note
-
-Student -> SchoolSystem: Apply for Enrollment
-
-SchoolSystem -> Admin: Receive Enrollment Application
-
-Admin -> EducationalInformation: Verify Eligibility
-
-EducationalInformation -> Admin: Eligibility Verified
-
-Admin -> FinancialInformation: Process Fees
-
-FinancialInformation --> Admin: Fees Processed
-
-Admin -> SchoolSystem: Confirm Enrollment
-
-SchoolSystem --> Admin: Enrollment Confirmed
-
-Admin --> Student: Enrollment Confirmation
-
-note over Student, SchoolSystem
-Student applies for enrollment
-end note
-
-actor Student
-boundary SchoolSystem
-entity EducationalInformation
-
-Student -> SchoolSystem: View Educational Information
-activate SchoolSystem
-SchoolSystem -> EducationalInformation: Retrieve Educational Information
-activate EducationalInformation
-EducationalInformation --> SchoolSystem: Educational Information
-deactivate EducationalInformation
-SchoolSystem --> Student: Display Educational Information
-deactivate SchoolSystem
-
 actor "Student" as S
+boundary "School Management System" as SMS
+control "Payment" as P
+entity "Finance" as F
+actor "Teacher" as T
 
-S -> S: View Payment Information
-activate S
+S -> SMS: View Payment Information
+activate SMS
+SMS --> S: Display payment information
+SMS -> P: Pay School Fees
+activate P
+P --> S: Confirmation message
+S --> P: Confirmation
+P --> F: Update Payment Information
+activate F
+P --> S: Payment Complete
+deactivate P
+F --> T: View Payment Update
+deactivate F
 
-alt Pay School Fees
-    S -> S: Pay School Fees
-    activate S
-    S --> S: Update Payment Information
-    deactivate S
-else Pay Welfare Fees
-    S -> S: Pay Welfare Fees
-    activate S
-    S --> S: Update Payment Information
-    deactivate S
-else Donate to the School
-    S -> S: Donate to the School
-    activate S
-    S --> S: Update Payment Information
-    deactivate S
-end
+SMS -> P: Pay Welfare Fees
+activate P
+P --> S: Confirmation message
+S --> P: Confirmation
+P --> F: Update Payment Information
+activate F
+F --> T: View Payment Update
+deactivate F
+P --> S: Confirmation message
+deactivate P
 
-deactivate S
+SMS -> P: Donate to the School
+activate P
+P --> S: Confirmation message
+S --> P: Confirmation
+P --> F: Update Payment Information
+activate F
+F --> T: View Payment Update
+deactivate F
+P --> S: Confirmation message
+deactivate P
 
 @enduml
