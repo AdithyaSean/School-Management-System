@@ -1,16 +1,7 @@
 @startuml School Management System
 
 skinparam Linetype ortho
-
-interface SchoolSystem {
-  - name: String
-  - date: Date
-  - systemLog: SystemLog
-  - education: EducationalInformation
-  - extracurricular: ExtracurricularInformation
-  - grades: List<Grade>
-  + viewSchoolInformation()
-}
+skinparam classAttributeIconSize 0
 
 class User {
   # userType: String
@@ -131,7 +122,7 @@ class Payment {
   + donateSchool()
 }
 
-class Query {
+class Request {
   - queryId: int
   - userId: int
   - description: string
@@ -160,7 +151,7 @@ class Policy {
   + getPolicyByName()
 }
 
-class FinancialInformation {
+class Financial {
   - schoolBudget: double
   - income: double
   - expense: double
@@ -169,7 +160,7 @@ class FinancialInformation {
   + viewFinancialInformation()
 }
 
-class EducationalInformation {
+class EducationalDashboard {
   - societies: List<Society>
   - assessments: List<Assessment>
   - competitions: List<Competition>
@@ -191,7 +182,7 @@ class EducationalInformation {
   + deleteCompetition()
 }
 
-class ExtracurricularInformation {
+class ExtracurricularDashboard {
   - clubs: List<Club>
   - competitions: List<Competition>
   + viewContent()
@@ -379,13 +370,6 @@ class SystemReport {
   + viewSystemReport()
 }
 
-SchoolSystem "1" *-- "*" User : Has
-SchoolSystem "1" *-- "1" EducationalInformation : Has
-SchoolSystem "1" *-- "1" ExtracurricularInformation : Has
-SchoolSystem "1" *-- "1" FinancialInformation : Has
-SchoolSystem "1" *-- "1..*" Grade : Has
-SchoolSystem "1" *-- "1" SystemLog : Has
-
 Grade "1" *-- "1..*" Class : Has
 Grade "1" *-- "1..*" Teacher : Has
 Grade "1" *-- "1" SectionalHead : Has
@@ -406,19 +390,19 @@ Admin "1" -- "1" SystemLog : View
 Principal "1" -- "1" VicePrincipal : Inform
 Principal "1" -- "0..*" Policy : Manage
 Principal "1" -- "0..*" Announcement : Manage
-VicePrincipal "1" -- "1" FinancialInformation : Manage
+VicePrincipal "1" -- "1" Financial : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
 SectionalHead "1*" -- "1..*" Student : Manage
 SectionalHead "1*" -- "1..*" Teacher : Inform
-Teacher "1" -- "1" ExtracurricularInformation : Manage
-Teacher "1" -- "1" EducationalInformation : Manage
-Teacher "1" -- "0..*" Query : Manage
+Teacher "1" -- "1" ExtracurricularDashboard : Manage
+Teacher "1" -- "1" EducationalDashboard : Manage
+Teacher "1" -- "0..*" Request : Manage
 Teacher "1" -- "1..*" Subject : Manage
 Teacher "1" -- "0..*" StudentReport : Manage
-Student "1" -- "1" EducationalInformation : View
-Student "1" -- "1" ExtracurricularInformation : View
-Student "1" -- "0..*" Query : Submit
+Student "1" -- "1" EducationalDashboard : View
+Student "1" -- "1" ExtracurricularDashboard : View
+Student "1" -- "0..*" Request : Submit
 Student "1" -- "0..*" Payment : Make
 User "1" -- "0..*" Event : View
 User "1" -- "0..*" Announcement : View
@@ -428,16 +412,16 @@ Club "1" *-- "1..*" ClubMember : Has
 User "1" *-- "1" UserLog : Has
 Student "1" *-- "1" StudentReport : Has
 
-FinancialInformation "1" o-- "0..*" Payment : Has
-EducationalInformation "1" o-- "0..*" ExamInformation : Has
-EducationalInformation "1" o-- "0..*" Society : Has
-EducationalInformation "1" o-- "0..*" Competition : Has
-EducationalInformation "1" o-- "0..*" Assessment : Has
-EducationalInformation "1" o-- "0..*" Subject : Has
+Financial "1" o-- "0..*" Payment : Has
+EducationalDashboard "1" o-- "0..*" ExamInformation : Has
+EducationalDashboard "1" o-- "0..*" Society : Has
+EducationalDashboard "1" o-- "0..*" Competition : Has
+EducationalDashboard "1" o-- "0..*" Assessment : Has
+EducationalDashboard "1" o-- "0..*" Subject : Has
 ExamInformation "1" o-- "0..*" Exam : Has
 Exam "1" O--- "0..*" Result : Has
 Assessment "1" o-- "0..*" Submission : Has
-ExtracurricularInformation "1" o-- "0..*" Competition : Has
-ExtracurricularInformation "1" o-- "0..*" Club : Has
+ExtracurricularDashboard "1" o-- "0..*" Competition : Has
+ExtracurricularDashboard "1" o-- "0..*" Club : Has
 
 @enduml

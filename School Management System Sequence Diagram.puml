@@ -1,10 +1,10 @@
 @startuml School Management System
 
 actor Student
-boundary "School System" as SchoolSystem
+boundary SchoolSystem
 actor Admin
-entity EducationalInformation
-entity FinancialInformation
+control EducationalInformation
+control FinancialInformation
 
 note over Student, SchoolSystem
 Student applies for enrollment
@@ -44,5 +44,29 @@ EducationalInformation --> SchoolSystem: Educational Information
 deactivate EducationalInformation
 SchoolSystem --> Student: Display Educational Information
 deactivate SchoolSystem
+
+actor "Student" as S
+
+S -> S: View Payment Information
+activate S
+
+alt Pay School Fees
+    S -> S: Pay School Fees
+    activate S
+    S --> S: Update Payment Information
+    deactivate S
+else Pay Welfare Fees
+    S -> S: Pay Welfare Fees
+    activate S
+    S --> S: Update Payment Information
+    deactivate S
+else Donate to the School
+    S -> S: Donate to the School
+    activate S
+    S --> S: Update Payment Information
+    deactivate S
+end
+
+deactivate S
 
 @enduml
