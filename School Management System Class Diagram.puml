@@ -142,7 +142,7 @@ class UserLog {
   + getLogsByTimestamp()
 }
 
-class Policy {
+class SchoolPolicy {
   - policyId: int
   - policyName: string
   - description: string
@@ -151,7 +151,7 @@ class Policy {
   + getPolicyByName()
 }
 
-class Financial {
+class Finance {
   - schoolBudget: double
   - income: double
   - expense: double
@@ -333,7 +333,7 @@ class Class {
 }
 
 class Announcement {
-  - header: String
+  - title: String
   - content: String
   - userTypes: String
   + updateAnnouncement()
@@ -388,9 +388,9 @@ Admin "1" -- "0..*" SystemReport : Generate
 Admin "1" -- "0..*" UserLog : View
 Admin "1" -- "1" SystemLog : View
 Principal "1" -- "1" VicePrincipal : Inform
-Principal "1" -- "0..*" Policy : Manage
+Principal "1" -- "0..*" SchoolPolicy : Manage
 Principal "1" -- "0..*" Announcement : Manage
-VicePrincipal "1" -- "1" Financial : Manage
+VicePrincipal "1" -- "1" Finance : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
 SectionalHead "1*" -- "1..*" Student : Manage
@@ -412,7 +412,7 @@ Club "1" *-- "1..*" ClubMember : Has
 User "1" *-- "1" UserLog : Has
 Student "1" *-- "1" StudentReport : Has
 
-Financial "1" o-- "0..*" Payment : Has
+Finance "1" o-- "0..*" Payment : Has
 EducationalDashboard "1" o-- "0..*" ExamInformation : Has
 EducationalDashboard "1" o-- "0..*" Society : Has
 EducationalDashboard "1" o-- "0..*" Competition : Has
