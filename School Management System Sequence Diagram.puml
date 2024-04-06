@@ -1,10 +1,10 @@
 @startuml School Management System
 
 actor Student
+actor Teacher
 boundary "School Management System" as SchoolManagementSystem
 control Payment
 entity Finance
-actor Teacher
 
 Student -> SchoolManagementSystem: View Payment Information
 activate SchoolManagementSystem
