@@ -1,8 +1,8 @@
 @startuml School Management System
 
 actor Student
-actor Teacher
 boundary "School Management System" as SchoolManagementSystem
+actor Teacher
 control Payment
 entity Finance
 
