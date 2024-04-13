@@ -17,7 +17,6 @@ Payment --> Finance: Update Payment Information
 activate Finance
 Payment --> Student: Payment Complete
 deactivate Payment
-Finance --> Teacher: View Payment Update
 deactivate Finance
 
 SchoolManagementSystem -> Payment: Pay Welfare Fees
@@ -26,9 +25,8 @@ Payment --> Student: Confirmation message
 Student --> Payment: Confirmation
 Payment --> Finance: Update Payment Information
 activate Finance
-Finance --> Teacher: View Payment Update
 deactivate Finance
-Payment --> Student: Confirmation message
+Payment --> Student: Payment Complete
 deactivate Payment
 
 SchoolManagementSystem -> Payment: Donate to the School
@@ -37,9 +35,8 @@ Payment --> Student: Confirmation message
 Student --> Payment: Confirmation
 Payment --> Finance: Update Payment Information
 activate Finance
-Finance --> Teacher: View Payment Update
 deactivate Finance
-Payment --> Student: Confirmation message
+Payment --> Student: Payment Complete
 deactivate Payment
 
 @enduml
