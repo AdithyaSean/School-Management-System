@@ -1,7 +1,6 @@
 @startuml School Management System
 
 actor Student
-actor Teacher
 boundary "School Management System" as SchoolManagementSystem
 control Payment
 entity Finance
@@ -15,9 +14,10 @@ Payment --> Student: Confirmation message
 Student --> Payment: Confirmation
 Payment --> Finance: Update Payment Information
 activate Finance
+Finance --> Payment: Payment Information Updated
+deactivate Finance
 Payment --> Student: Payment Complete
 deactivate Payment
-deactivate Finance
 
 SchoolManagementSystem -> Payment: Pay Welfare Fees
 activate Payment
@@ -25,6 +25,7 @@ Payment --> Student: Confirmation message
 Student --> Payment: Confirmation
 Payment --> Finance: Update Payment Information
 activate Finance
+Finance --> Payment: Payment Information Updated
 deactivate Finance
 Payment --> Student: Payment Complete
 deactivate Payment
@@ -35,6 +36,7 @@ Payment --> Student: Confirmation message
 Student --> Payment: Confirmation
 Payment --> Finance: Update Payment Information
 activate Finance
+Finance --> Payment: Payment Information Updated
 deactivate Finance
 Payment --> Student: Payment Complete
 deactivate Payment
