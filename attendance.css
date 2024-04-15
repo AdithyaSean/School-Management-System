@@ -140,7 +140,7 @@ nav .Navbar ul li a.log:hover{
     margin-top: 105px;
 }
 
-
+/* title */
 .dashborder .title {
     margin-top: 20px;
     margin-left: 28px;
@@ -149,57 +149,19 @@ nav .Navbar ul li a.log:hover{
     color: rgb(105, 105, 105);
 }
 
-.dashborder .square {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 65px;
-    column-gap: 25px;
-    margin-left: 30px;
-    
-}
-
-.box{
-    background-image: linear-gradient(to right, #e1e1e1,rgb(161, 147, 147));
-    width: 268px;
-    height: 133px;
+.content {
+    display:flex;
     margin-top: 20px;
-    border: 0.5px solid rgb(209, 209, 209);
-    border-bottom: none;
-    display: flex;
-    flex-direction:row;
-
+    margin-left: 28px;
+    margin-right: 28px;
+    background-color: rgb(179, 164, 164);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-.box2 {
-    text-align: center;
-    padding-top: 18px;
-    width: 330px;
-    height: 70px;
-    margin-top: 131px;
-    margin-left: -1px;
-    margin-right: -0.2px;
-    border: 5px solid rgb(209, 209, 209);
-    transition: background-color 0.4s ease;
-    background-color: rgb(161, 147, 147);
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-}
-
-.box2 a {
-    font-size: 14pt;
-    padding: 40px;
-    text-decoration: none;
+.content p {
     color: white;
-    font-weight: 500;
-}
-
-.box2:hover { /* Corrected selector */
-    color: white;
-    background-color: rgb(112, 96, 96);
-}
-
-.box2:hover a { /* Change color of text when box is hovered */
-    color: white;
-    font-weight: 500;
+    font-size: 13pt;
+    font-weight: 620;
+    margin-left: 100px;
 }
