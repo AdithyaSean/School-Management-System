@@ -144,24 +144,47 @@ nav .Navbar ul li a.log:hover{
 .dashborder .title {
     margin-top: 20px;
     margin-left: 28px;
+    margin-right: 28px;
     font-size: 19pt;
     font-weight: 100;
     color: rgb(105, 105, 105);
 }
 
-.content {
-    display:flex;
-    margin-top: 20px;
-    margin-left: 28px;
-    margin-right: 28px;
-    background-color: rgb(179, 164, 164);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+
+/* table */
+.table {
+    width: 100%;
 }
 
-.content p {
+/* table header */
+.table thead tr th {
+    background-color: rgb(142, 114, 114);
     color: white;
     font-size: 13pt;
-    font-weight: 620;
-    margin-left: 100px;
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+/* table data */
+.table tr td{
+    padding-top: 15px;
+    font-size: 18px;
+    padding-left: 22px;
+}
+
+/* view link */
+.table tr td a{
+    background-color: rgb(132, 98, 98);
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 450;
+    transition: background-color 0.2s ease;
+}
+
+.table tr td a:hover {
+    text-decoration: underline;
+    background-color: rgb(142, 114, 114);
 }
