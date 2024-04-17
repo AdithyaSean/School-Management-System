@@ -77,7 +77,7 @@ rectangle "Existing School Management System" {
     VP -- (Coordinate School Management)
     VP -- (Issueing Cheques)
     VP -- (Collect Funds for Development)
-    VP -- (Register New Students)  
+    VP -- (Register New Students)
     VP -- (Generate Student Leaving Certificates)
 
     (Generate Student Leaving Certificates) ..> (Update Logs and Records) : <<include>>
