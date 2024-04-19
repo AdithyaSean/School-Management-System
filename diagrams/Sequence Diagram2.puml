@@ -1,0 +1,18 @@
+ @startuml School Management System
+
+actor Student
+participant "View Educational Information" as ViewInfo
+participant "Submit Assessments" as SubmitAssessments
+participant "Complete Tasks" as CompleteTasks
+participant "Update Educational Information" as UpdateInfo
+
+Student -> ViewInfo: View Educational Information
+ViewInfo --> Student: Display Educational Information
+
+Student -> SubmitAssessments: Submit Assessments
+SubmitAssessments -> UpdateInfo: Update Educational Information
+
+Student -> CompleteTasks: Complete Tasks
+CompleteTasks -> UpdateInfo: Update Educational Information
+
+@enduml
