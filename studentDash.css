@@ -140,10 +140,18 @@ nav .Navbar ul li a.log:hover{
     margin-top: 105px;
 }
 
+.content {
+    margin-top: -16px;
+    margin-left: 12px;
+    width: 670px;
+    height: 620px;
+    background-color: rgb(245, 245, 245);
+}
 
-.dashborder .title {
-    margin-top: 20px;
-    margin-left: 28px;
+.title {
+    padding-top: 10px;
+    margin-top: 30px;
+    margin-left: 20px;
     font-size: 19pt;
     font-weight: 100;
     color: rgb(105, 105, 105);
@@ -160,23 +168,23 @@ nav .Navbar ul li a.log:hover{
 
 .box{
     background-image: linear-gradient(to right, #e1e1e1,rgb(161, 147, 147));
-    width: 268px;
-    height: 133px;
-    margin-top: 20px;
+    width: 200px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: -10px;
     border: 0.5px solid rgb(209, 209, 209);
     border-bottom: none;
     display: flex;
     flex-direction:row;
-
 }
 
 .box2 {
     text-align: center;
     padding-top: 18px;
     width: 330px;
-    height: 70px;
-    margin-top: 131px;
-    margin-left: -1px;
+    height: 60px;
+    margin-top: 98px;
+    margin-left: -1.5px;
     margin-right: -0.2px;
     border: 5px solid rgb(209, 209, 209);
     transition: background-color 0.4s ease;
@@ -187,7 +195,7 @@ nav .Navbar ul li a.log:hover{
 }
 
 .box2 a {
-    font-size: 14pt;
+    font-size: 11pt;
     padding: 40px;
     text-decoration: none;
     color: white;
@@ -202,4 +210,131 @@ nav .Navbar ul li a.log:hover{
 .box2:hover a { /* Change color of text when box is hovered */
     color: white;
     font-weight: 500;
+}
+
+
+/* Calendar */
+.con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 106vh;
+    background-color: rgb(87, 87, 87);
+}
+
+.wrapper {
+    position: absolute;
+    top: 28.7%;
+    left: 78.3%;
+    transform: translate(-50%,-50%);
+    width: 470px;
+    height: 400px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 150px;
+    /* border-radius: 15px; */
+}
+
+.wrapper header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px 20px;
+    justify-content: space-between;
+    margin-top: -10px;
+}
+
+/* April 2024 */
+.wrapper header p{
+    margin-left: 10px;
+}
+
+/* icon adjustment */
+.icons span i{
+    padding: 4px;
+    margin-bottom: 15px;
+    
+}
+
+header .current-date {
+    margin-top: 18px;
+    font-size: 16pt;
+    font-weight: 500;
+}
+
+header .icons span {
+    width: 200px;
+    font-size: 17pt;
+    margin-right: 20px;
+    padding: 7px 12px;
+    cursor: pointer;
+    /* background-color: rgb(231, 231, 231); */
+    text-align: center;
+    border-radius: 50%;
+}
+
+header .icons span:hover {
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.20);
+}
+
+/* header .icons span:last-child {
+    margin-right: -1px;
+} */
+
+.calendar ul{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-right: 40px;
+}
+
+
+.calendar .days li {
+    z-index: 1;
+    margin-top: 23px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.calendar ul li {
+    position: relative;
+    width: calc(100%/7);
+}
+
+.calendar .weeks li {
+    margin-top: -15px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: 500;
+}
+
+.calendar .days li::before {
+    position: absolute;
+    content: "";
+    transform: translate(-50%,-50%);
+    content: "";
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    /* background-color: rgb(230, 230, 230); */
+    z-index: -1;
+}
+
+.days li:hover::before {
+    background-color: rgb(215, 215, 215);
+}
+
+/* Inactive days */
+.inactive {
+    color: rgb(176, 176, 176);
+}
+
+/* active days */
+.days li.act::before {
+    background-color: rgb(157, 126, 126);
+}
+
+.days li.act {
+    color: white;
 }
