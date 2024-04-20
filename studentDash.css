@@ -142,8 +142,8 @@ nav .Navbar ul li a.log:hover{
 
 .content {
     margin-top: -16px;
-    margin-left: 12px;
-    width: 670px;
+    margin-left: 15px;
+    width: 660px;
     height: 620px;
     background-color: rgb(245, 245, 245);
 }
@@ -151,7 +151,7 @@ nav .Navbar ul li a.log:hover{
 .title {
     padding-top: 10px;
     margin-top: 30px;
-    margin-left: 20px;
+    margin-left: 25px;
     font-size: 19pt;
     font-weight: 100;
     color: rgb(105, 105, 105);
@@ -160,9 +160,9 @@ nav .Navbar ul li a.log:hover{
 .dashborder .square {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 65px;
+    row-gap: 70px;
     column-gap: 25px;
-    margin-left: 30px;
+    margin-left: 35px;
     
 }
 
@@ -176,6 +176,11 @@ nav .Navbar ul li a.log:hover{
     border-bottom: none;
     display: flex;
     flex-direction:row;
+}
+
+.box {
+    width: calc(34% - 20px); /* Adjust box width for three boxes per row */
+    margin-bottom: 10px; /* Add margin between rows */
 }
 
 .box2 {
@@ -337,4 +342,57 @@ header .icons span:hover {
 
 .days li.act {
     color: white;
+}
+
+/* Responsive styles */
+
+/* Navigation bar responsive */
+@media screen and (max-width : 700px)
+{
+    /* image resize */
+    nav img {
+        width: 35px;
+        margin-left: -40px;
+    }
+
+    /* menu */
+    nav .Navbar ul {
+        margin-right: 80px;
+    }
+    /* nav font size resize */
+    nav .Navbar ul li a{
+        font-size: 8pt;
+        padding: 20px 10px;
+    }
+
+    nav .Navbar ul li a.log {
+        font-size: 8pt;
+        padding: 13px 15px;
+        position: absolute; /* Position the login button relative to its containing element */
+        top: 15px; /* Position at the top */
+        right: 40px; /* Position at the right */
+    }
+
+    /* Sidebar */
+    .sidebar {
+        z-index: 10;
+        position: fixed;
+        width: 140px;
+        height: 100%;
+    }
+
+    .nav-links li a i {
+        font-size: 8pt;
+        margin-left: 8px;
+    }
+
+    .link-name {
+        font-size: 10pt;
+        margin-left: -15px;
+    }
+
+    .nav-links li a:hover{
+        border-left: none;
+        border-right: 1px rgb(0, 0, 0) solid;
+    }
 }
