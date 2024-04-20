@@ -81,6 +81,7 @@ nav .Navbar ul li a.log:hover{
 
 /* Sidebar */
 .sidebar {
+    z-index: 10;
     position: fixed;
     width: 240px;
     height: 100%;
@@ -200,11 +201,14 @@ nav .Navbar ul li a.log:hover{
 }
 
 .box2 a {
+    z-index: 5;
     font-size: 11pt;
     padding: 40px;
     text-decoration: none;
     color: white;
     font-weight: 500;
+    position: relative;
+    top: -10%;
 }
 
 .box2:hover { /* Corrected selector */
@@ -344,55 +348,77 @@ header .icons span:hover {
     color: white;
 }
 
-/* Responsive styles */
+/* Responsive Navigation */
+@media only screen and (max-width: 768px) {
+    nav {
+        padding: 14px 20px; /* Adjust padding for smaller screens */
+    }
 
-/* Navigation bar responsive */
-@media screen and (max-width : 700px)
-{
-    /* image resize */
     nav img {
-        width: 35px;
-        margin-left: -40px;
+        width: 40px; /* Reduce logo size for smaller screens */
     }
 
-    /* menu */
-    nav .Navbar ul {
-        margin-right: 80px;
+    nav .Navbar ul li a {
+        font-size: 11px; /* Reduce font size for navigation links */
+        padding: 23.5px 10px;
     }
-    /* nav font size resize */
-    nav .Navbar ul li a{
-        font-size: 8pt;
-        padding: 20px 10px;
+
+    nav .Navbar ul {
+        margin-right: 120px;
     }
 
     nav .Navbar ul li a.log {
-        font-size: 8pt;
-        padding: 13px 15px;
-        position: absolute; /* Position the login button relative to its containing element */
-        top: 15px; /* Position at the top */
-        right: 40px; /* Position at the right */
+        font-size: 11px;
+        position: absolute; /* Set the position to absolute */
+        right: 65px; /* Adjust the distance from the right side */
+        top: 55%; /* Position it vertically centered */
+        transform: translateY(-50%); /* Adjust for vertical centering */
+        padding: 8px 15px;
     }
+}
 
-    /* Sidebar */
+/* Responsive Sidebar */
+@media only screen and (max-width: 768px) {
+
     .sidebar {
-        z-index: 10;
-        position: fixed;
-        width: 140px;
-        height: 100%;
+        width: 160px;
     }
 
     .nav-links li a i {
+        margin-left: 19px;
         font-size: 8pt;
-        margin-left: 8px;
     }
 
-    .link-name {
-        font-size: 10pt;
+    .link-name{
         margin-left: -15px;
+        font-size: 8pt;
+    }
+}
+
+/* Responsive Content */
+@media only screen and (max-width: 768px) {
+
+    .dashborder {
+        margin-left: 175px;
+        height: 1060px;
+        width: 510px;
     }
 
-    .nav-links li a:hover{
-        border-left: none;
-        border-right: 1px rgb(0, 0, 0) solid;
+    .content {
+        margin-top: -16px;
+        margin-left: 15px;
+        width: 475px;
+        height: 1030px;
+        background-color: rgb(245, 245, 245);
+    }
+
+    .box {
+        width: calc(47% - 5px); /* Adjust box width for three boxes per row */
+        margin-bottom: 10px; /* Add margin between rows */
+    }
+
+    .wrapper {
+        margin-top: 990px;
+        margin-left: -135px;
     }
 }
