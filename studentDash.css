@@ -224,11 +224,11 @@ nav .Navbar ul li a.log:hover{
 
 .wrapper {
     position: absolute;
-    top: 28.7%;
+    top: 30.6%;
     left: 78.3%;
     transform: translate(-50%,-50%);
     width: 470px;
-    height: 400px;
+    height: 430px;
     background-color: rgb(243, 243, 243);
     margin-bottom: 150px;
     /* border-radius: 15px; */
