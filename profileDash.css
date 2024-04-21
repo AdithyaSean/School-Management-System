@@ -132,11 +132,21 @@ nav .Navbar ul li a.log:hover{
     background-color: rgb(179, 164, 164);
 }
 
+/* Dash Border */
+.dashborder {
+    width: 1207px;
+    height: 750px;
+    border: 0.5px solid rgb(209, 209, 209);
+    position: absolute;
+    margin-left: 255px;
+    margin-top: 105px;
+}
+
 .pngborder{
     position: absolute;
-    margin-top: 120px;
-    margin-left: 260px;
-    width: 670px;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 640px;
     height: 250px;
     border: 0.5px solid rgb(172, 172, 172);
     background-color: rgb(247, 247, 247);
@@ -154,8 +164,8 @@ nav .Navbar ul li a.log:hover{
 
 .userborder {
     position: absolute;
-    margin-top: 120px;
-    margin-left: 960px;
+    margin-top: 20px;
+    margin-left: 680px;
     width: 500px;
     height: 250px;
     border: 0.5px solid rgb(172, 172, 172);
@@ -166,7 +176,7 @@ nav .Navbar ul li a.log:hover{
     font-size: 15pt;
     font-weight: 200;
     margin-left: 20px;
-    margin-top: 5px;
+    margin-top: 15px;
     color: rgb(142, 142, 142);
 }
 
@@ -191,8 +201,8 @@ nav .Navbar ul li a.log:hover{
 
 .edit1 {
     width: 100%;
-    margin-left: 540px;
-    margin-top: 20px;
+    margin-left: 500px;
+    margin-top: -5px;
 }
 
 .edit1 a{
@@ -206,8 +216,8 @@ nav .Navbar ul li a.log:hover{
 
 
 .edit2 {
-    margin-left: 400px;
-    margin-top: -150px;
+    margin-left: 395px;
+    margin-top: -185px;
 }
 
 .edit2 a{
@@ -219,34 +229,4 @@ nav .Navbar ul li a.log:hover{
     text-decoration: underline;
 }
 
-/* Responsive Navigation */
-@media only screen and (max-width: 768px) {
-    nav {
-        padding: 14px 20px; /* Adjust padding for smaller screens */
-    }
 
-    nav img {
-        width: 40px; /* Reduce logo size for smaller screens */
-    }
-
-    nav .Navbar ul li a {
-        font-size: 11px; /* Reduce font size for navigation links */
-        padding: 23.5px 10px;
-    }
-
-    nav .Navbar ul {
-        margin-right: 120px;
-    }
-
-    nav .Navbar ul li a.log {
-        font-size: 11px;
-        position: absolute; /* Set the position to absolute */
-        right: 65px; /* Adjust the distance from the right side */
-        top: 55%; /* Position it vertically centered */
-        transform: translateY(-50%); /* Adjust for vertical centering */
-        padding: 8px 15px;
-    }
-}
-
-
-}
