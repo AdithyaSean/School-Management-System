@@ -230,3 +230,84 @@ nav .Navbar ul li a.log:hover{
 }
 
 
+/* For screens smaller than 768px (typical laptop screens) */
+@media (max-width: 1424px) {
+    /* Adjustments for navigation */
+    nav {
+        padding: 10px 20px; /* Reduce padding */
+    }
+
+    nav img {
+        width: 40px; /* Decrease logo size */
+    }
+
+    nav .Navbar ul {
+        margin-right: 0; /* Remove margin */
+    }
+
+    nav .Navbar ul li a {
+        font-size: 8pt;
+        padding: 15px 10px; /* Adjust link padding */
+    }
+
+    nav .Navbar ul li a.log {
+        font-size: 8pt;
+        margin-left: 10px; /* Adjust login button margin */
+        padding: 14px 30px; /* Adjust login button padding */
+    }
+
+    /* Adjustments for sidebar */
+    .sidebar {
+        width: 150px; /* Decrease sidebar width */
+    }
+
+    .nav-links {
+        margin-top: 70px; /* Adjust margin */
+    }
+
+    .nav-links li a span{
+        font-size: 8pt;
+        margin-left: -10px;
+    }
+
+    .nav-links li a i {
+        font-size: 8pt;
+        margin-left: 20px; /* Adjust icon margin */
+    }
+
+    /* Adjustments for content area */
+    .dashborder {
+        width: calc(101% - 220px); /* Adjust width */
+        margin-left: 180px; /* Adjust margin */
+        margin-top: 95px; /* Adjust margin */
+    }
+
+    .pngborder {
+        width: calc(50% - 40px); /* Adjust width */
+        margin-left: 20px; /* Adjust margin */
+        float: left; /* Float the .pngborder to the left */
+    }
+    
+    .userborder {
+        width: calc(50% - 40px); /* Adjust width */
+        margin-left: calc(50% + 20px); /* Adjust margin */
+        clear: right; /* Clear the float to prevent overlap */
+    }
+
+}
+
+@media (max-width: 768px) {
+    .pngborder,
+    .userborder {
+        width: calc(100% - 40px); /* Adjust width */
+        margin-left: 20px; /* Adjust margin */
+    }
+
+    .pngborder {
+        margin-top: 20px; /* Add margin to separate from the top */
+    }
+
+    .userborder {
+        margin-top: 300px; /* Add margin to separate from the bottom */
+    }
+}
