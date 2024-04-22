@@ -45,7 +45,7 @@ nav .Navbar ul li a{
     padding: 30px 25px;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.50s ease;
 }
@@ -56,7 +56,7 @@ nav .Navbar ul li a{
 
 nav .Navbar ul li a:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Login Button */
@@ -67,7 +67,7 @@ nav .Navbar ul li a.log {
     padding: 14px 40px;
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.40s ease-in-out;
     border-radius: 30px; 
@@ -75,7 +75,7 @@ nav .Navbar ul li a.log {
 
 nav .Navbar ul li a.log:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 
@@ -115,15 +115,16 @@ nav .Navbar ul li a.log:hover{
 }
 
 .nav-links li a i{
-    margin-left: 30px;
+    margin-left: 25px;
     min-width: 35px;
     color: rgb(66, 66, 66);
-    font-size: 11pt;
+    font-size: 9pt;
 }
 
 .link-name {
+    margin-left: -5px;
     color: rgb(66, 66, 66);
-    font-size: 11pt;
+    font-size: 9pt;
     font-weight: 500;
 }
 
@@ -134,7 +135,7 @@ nav .Navbar ul li a.log:hover{
 /* Dash Border */
 .dashborder {
     width: 1207px;
-    height: 750px;
+    height: 880px;
     border: 0.5px solid rgb(209, 209, 209);
     position: absolute;
     margin-left: 255px;
@@ -142,20 +143,34 @@ nav .Navbar ul li a.log:hover{
 }
 
 .content {
-    margin-top: -16px;
-    margin-left: 15px;
-    width: 660px;
-    height: 620px;
+    margin-top: -10px;
+    margin-left: 20px;
+    width: 790px;
+    height: 640px;
     background-color: rgb(245, 245, 245);
 }
 
 .title {
-    padding-top: 10px;
+    padding-top: 15px;
     margin-top: 30px;
     margin-left: 25px;
     font-size: 19pt;
     font-weight: 100;
     color: rgb(105, 105, 105);
+}
+
+.annbox p {
+    padding-top: 25px;
+    margin-top: -2px;
+}
+
+.annbox {
+    margin-top: -5px;
+    margin-left: 20px;
+    margin-bottom: 0;
+    width: 790px;
+    height: 160px;
+    background-color: rgb(245, 245, 245);
 }
 
 .dashborder .square {
@@ -164,7 +179,6 @@ nav .Navbar ul li a.log:hover{
     row-gap: 70px;
     column-gap: 25px;
     margin-left: 35px;
-    
 }
 
 .box{
@@ -233,10 +247,10 @@ nav .Navbar ul li a.log:hover{
 
 .wrapper {
     position: absolute;
-    top: 30.6%;
-    left: 78.3%;
+    top: 27.5%;
+    left: 83.8%;
     transform: translate(-50%,-50%);
-    width: 470px;
+    width: 350px;
     height: 430px;
     background-color: rgb(243, 243, 243);
     margin-bottom: 150px;
@@ -331,6 +345,8 @@ header .icons span:hover {
 }
 
 .days li:hover::before {
+    width: 35px;
+    height: 35px;
     background-color: rgb(215, 215, 215);
 }
 
@@ -341,6 +357,8 @@ header .icons span:hover {
 
 /* active days */
 .days li.act::before {
+    width: 30px;
+    height: 30px;
     background-color: rgb(157, 126, 126);
 }
 
