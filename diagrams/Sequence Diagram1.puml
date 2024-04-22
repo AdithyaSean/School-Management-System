@@ -11,8 +11,8 @@ SchoolManagementSystem --> Student: Display payment information
 SchoolManagementSystem -> Payment: Pay School Fees
 activate Payment
 Payment --> Student: Confirmation Message
-Student --> Payment: Confirmation
-Payment --> Finance: Update Payment Information
+Student -> Payment: Confirmation
+Payment -> Finance: Update Payment Information
 activate Finance
 Finance --> Payment: Payment Information Updated
 deactivate Finance
@@ -22,8 +22,8 @@ deactivate Payment
 SchoolManagementSystem -> Payment: Pay Welfare Fees
 activate Payment
 Payment --> Student: Confirmation Message
-Student --> Payment: Confirmation
-Payment --> Finance: Update Payment Information
+Student -> Payment: Confirmation
+Payment -> Finance: Update Payment Information
 activate Finance
 Finance --> Payment: Payment Information Updated
 deactivate Finance
@@ -33,8 +33,8 @@ deactivate Payment
 SchoolManagementSystem -> Payment: Donate to the School
 activate Payment
 Payment --> Student: Confirmation Message
-Student --> Payment: Confirmation
-Payment --> Finance: Update Payment Information
+Student -> Payment: Confirmation
+Payment -> Finance: Update Payment Information
 activate Finance
 Finance --> Payment: Payment Information Updated
 deactivate Finance
