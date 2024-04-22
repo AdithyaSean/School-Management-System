@@ -46,7 +46,7 @@ nav .Navbar ul li a{
     padding: 30px 25px;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.50s ease;
 }
@@ -57,7 +57,7 @@ nav .Navbar ul li a{
 
 nav .Navbar ul li a:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Login Button */
@@ -68,7 +68,7 @@ nav .Navbar ul li a.log {
     padding: 14px 40px;
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.40s ease-in-out;
     border-radius: 30px; 
@@ -76,9 +76,8 @@ nav .Navbar ul li a.log {
 
 nav .Navbar ul li a.log:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
-
 
 /* Sidebar */
 .sidebar {
@@ -116,17 +115,19 @@ nav .Navbar ul li a.log:hover{
 }
 
 .nav-links li a i{
-    margin-left: 30px;
+    margin-left: 25px;
     min-width: 35px;
     color: rgb(66, 66, 66);
-    font-size: 11pt;
+    font-size: 9pt;
 }
 
 .link-name {
+    margin-left: -5px;
     color: rgb(66, 66, 66);
-    font-size: 11pt;
+    font-size: 9pt;
     font-weight: 500;
 }
+
 
 .active{
     background-color: rgb(179, 164, 164);
