@@ -45,7 +45,7 @@ nav .Navbar ul li a{
     padding: 30px 25px;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.50s ease;
 }
@@ -56,7 +56,7 @@ nav .Navbar ul li a{
 
 nav .Navbar ul li a:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Login Button */
@@ -67,7 +67,7 @@ nav .Navbar ul li a.log {
     padding: 14px 40px;
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.40s ease-in-out;
     border-radius: 30px; 
@@ -75,7 +75,7 @@ nav .Navbar ul li a.log {
 
 nav .Navbar ul li a.log:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 
@@ -150,128 +150,32 @@ nav .Navbar ul li a.log:hover{
     color: rgb(105, 105, 105);
 }
 
+/* Responsive Navigation */
+@media only screen and (max-width: 768px) {
+    nav {
+        padding: 14px 20px; /* Adjust padding for smaller screens */
+    }
 
-/* Calendar */
-.content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 106vh;
-    background-color: rgb(234, 234, 234);
+    nav img {
+        width: 40px; /* Reduce logo size for smaller screens */
+    }
+
+    nav .Navbar ul li a {
+        font-size: 11px; /* Reduce font size for navigation links */
+        padding: 23.5px 10px;
+    }
+
+    nav .Navbar ul {
+        margin-right: 120px;
+    }
+
+    nav .Navbar ul li a.log {
+        font-size: 11px;
+        position: absolute; /* Set the position to absolute */
+        right: 65px; /* Adjust the distance from the right side */
+        top: 55%; /* Position it vertically centered */
+        transform: translateY(-50%); /* Adjust for vertical centering */
+        padding: 8px 15px;
+    }
 }
-
-.wrapper {
-    position: absolute;
-    top: 38%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 550px;
-    height: 480px;
-    background-color: rgb(255, 255, 255);
-    margin-bottom: 150px;
-    border-radius: 15px;
-}
-
-.wrapper header {
-    display: flex;
-    align-items: center;
-    padding: 20px 40px 20px;
-    justify-content: space-between;
-}
-
-/* April 2024 */
-.wrapper header p{
-    margin-left: 10px;
-}
-
-/* icon adjustment */
-.icons span i{
-    padding: 4px;
-    margin-bottom: 15px;
-    
-}
-
-header .current-date {
-    margin-top: 18px;
-    font-size: 16pt;
-    font-weight: 500;
-}
-
-header .icons span {
-    width: 200px;
-    font-size: 17pt;
-    margin-right: 20px;
-    padding: 7px 12px;
-    cursor: pointer;
-    /* background-color: rgb(231, 231, 231); */
-    text-align: center;
-    border-radius: 50%;
-}
-
-header .icons span:hover {
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.20);
-}
-
-/* header .icons span:last-child {
-    margin-right: -1px;
-} */
-
-.calendar ul{
-    display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    text-align: center;
-    margin-right: 40px;
-}
-
-
-.calendar .days li {
-    z-index: 1;
-    margin-top: 33px;
-    cursor: pointer;
-}
-
-.calendar ul li {
-    position: relative;
-    width: calc(100%/7);
-}
-
-.calendar .weeks li {
-    font-weight: 500;
-}
-
-.calendar .days li::before {
-    position: absolute;
-    content: "";
-    transform: translate(-50%,-50%);
-    content: "";
-    height: 40px;
-    width: 40px;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    /* background-color: rgb(230, 230, 230); */
-    z-index: -1;
-}
-
-.days li:hover::before {
-    background-color: rgb(215, 215, 215);
-}
-
-/* Inactive days */
-.inactive {
-    color: rgb(176, 176, 176);
-}
-
-/* active days */
-.days li.act::before {
-    background-color: rgb(157, 126, 126);
-}
-
-.days li.act {
-    color: white;
-}
-
-
-
 

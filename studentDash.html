@@ -11,6 +11,7 @@
 
 
     <script src="https://kit.fontawesome.com/01845c443b.js" crossorigin="anonymous"></script>
+    <script src="studentDash.js" defer></script>
 
 </head>
 
@@ -43,7 +44,14 @@
             <li>
                 <a class="active" href="studentDash.html">
                     <i class="fa-solid fa-border-all"></i>
-                    <span class="link-name">Dashboard</span>
+                    <span class="link-name">Student Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="extracurr.html">
+                    <i class="fa-solid fa-medal"></i>
+                    <span class="link-name">Extra-curricular Dashboard</span>
                 </a>
             </li>
 
@@ -62,23 +70,23 @@
             </li>
 
             <li>
-                <a href="announcements.html">
-                    <i class="fa-solid fa-bullhorn"></i>
-                    <span class="link-name">Announcements</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="calendar.html">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span class="link-name">Calender</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="feedback.html">
+                <a href="requests.html">
                     <i class="fa-solid fa-comments"></i>
-                    <span class="link-name">Feedback</span>
+                    <span class="link-name">Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="link-name">Exams</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span class="link-name">Payments</span>
                 </a>
             </li>
         </ul>
@@ -86,6 +94,13 @@
 
     <!-- Inner Content -->
     <div class="dashborder"> 
+
+        <div class="annbox">
+            <div class="title">
+                <p class="ann">Announcements</p>
+            </div>
+        </div>
+
         <div class="content">
 
             <div class="title">
@@ -145,6 +160,35 @@
                     <div class="box2">
                         <a href="">Arts</a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cont">
+            <div class="wrapper">
+                <header>
+                    <p class="current-date"></p>
+    
+                    <div class="icons">
+                        <span id="prev"><i class="fa-solid fa-chevron-left"></i></span>
+                        <span id="next"><i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </header>
+    
+                <div class="calendar">
+                    <ul class="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+    
+                    <ul class="days">
+                        
+                    </ul>
                 </div>
             </div>
         </div>

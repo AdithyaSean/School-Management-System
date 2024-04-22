@@ -45,7 +45,7 @@ nav .Navbar ul li a{
     padding: 30px 25px;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.50s ease;
 }
@@ -56,7 +56,7 @@ nav .Navbar ul li a{
 
 nav .Navbar ul li a:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Login Button */
@@ -67,7 +67,7 @@ nav .Navbar ul li a.log {
     padding: 14px 40px;
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.40s ease-in-out;
     border-radius: 30px; 
@@ -75,12 +75,13 @@ nav .Navbar ul li a.log {
 
 nav .Navbar ul li a.log:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 
 /* Sidebar */
 .sidebar {
+    z-index: 10;
     position: fixed;
     width: 240px;
     height: 100%;
@@ -114,15 +115,16 @@ nav .Navbar ul li a.log:hover{
 }
 
 .nav-links li a i{
-    margin-left: 30px;
+    margin-left: 25px;
     min-width: 35px;
     color: rgb(66, 66, 66);
-    font-size: 11pt;
+    font-size: 9pt;
 }
 
 .link-name {
+    margin-left: -5px;
     color: rgb(66, 66, 66);
-    font-size: 11pt;
+    font-size: 9pt;
     font-weight: 500;
 }
 
@@ -133,50 +135,76 @@ nav .Navbar ul li a.log:hover{
 /* Dash Border */
 .dashborder {
     width: 1207px;
-    height: 750px;
+    height: 880px;
     border: 0.5px solid rgb(209, 209, 209);
     position: absolute;
     margin-left: 255px;
     margin-top: 105px;
 }
 
+.content {
+    margin-top: -10px;
+    margin-left: 20px;
+    width: 790px;
+    height: 640px;
+    background-color: rgb(245, 245, 245);
+}
 
-.dashborder .title {
-    margin-top: 20px;
-    margin-left: 28px;
+.title {
+    padding-top: 15px;
+    margin-top: 30px;
+    margin-left: 25px;
     font-size: 19pt;
     font-weight: 100;
     color: rgb(105, 105, 105);
 }
 
+.annbox p {
+    padding-top: 25px;
+    margin-top: -2px;
+}
+
+.annbox {
+    margin-top: -5px;
+    margin-left: 20px;
+    margin-bottom: 0;
+    width: 790px;
+    height: 160px;
+    background-color: rgb(245, 245, 245);
+}
+
 .dashborder .square {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 65px;
+    row-gap: 70px;
     column-gap: 25px;
-    margin-left: 30px;
-    
+    margin-left: 35px;
 }
 
 .box{
     background-image: linear-gradient(to right, #e1e1e1,rgb(161, 147, 147));
-    width: 268px;
-    height: 133px;
-    margin-top: 20px;
+    width: 200px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: -10px;
     border: 0.5px solid rgb(209, 209, 209);
     border-bottom: none;
     display: flex;
     flex-direction:row;
+}
 
+.box {
+    width: calc(34% - 20px); /* Adjust box width for three boxes per row */
+    margin-bottom: 10px; /* Add margin between rows */
 }
 
 .box2 {
     text-align: center;
     padding-top: 18px;
     width: 330px;
-    height: 70px;
-    margin-top: 131px;
-    margin-left: -1px;
+    height: 60px;
+    margin-top: 98px;
+    margin-left: -1.5px;
     margin-right: -0.2px;
     border: 5px solid rgb(209, 209, 209);
     transition: background-color 0.4s ease;
@@ -187,11 +215,14 @@ nav .Navbar ul li a.log:hover{
 }
 
 .box2 a {
-    font-size: 14pt;
+    z-index: 5;
+    font-size: 11pt;
     padding: 40px;
     text-decoration: none;
     color: white;
     font-weight: 500;
+    position: relative;
+    top: -10%;
 }
 
 .box2:hover { /* Corrected selector */
@@ -203,3 +234,135 @@ nav .Navbar ul li a.log:hover{
     color: white;
     font-weight: 500;
 }
+
+
+/* Calendar */
+.con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 106vh;
+    background-color: rgb(87, 87, 87);
+}
+
+.wrapper {
+    position: absolute;
+    top: 27.5%;
+    left: 83.8%;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    height: 430px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 150px;
+    /* border-radius: 15px; */
+}
+
+.wrapper header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px 20px;
+    justify-content: space-between;
+    margin-top: -10px;
+}
+
+/* April 2024 */
+.wrapper header p{
+    margin-left: 10px;
+}
+
+/* icon adjustment */
+.icons span i{
+    padding: 4px;
+    margin-bottom: 15px;
+    
+}
+
+header .current-date {
+    margin-top: 18px;
+    font-size: 16pt;
+    font-weight: 500;
+}
+
+header .icons span {
+    width: 200px;
+    font-size: 17pt;
+    margin-right: 20px;
+    padding: 7px 12px;
+    cursor: pointer;
+    /* background-color: rgb(231, 231, 231); */
+    text-align: center;
+    border-radius: 50%;
+}
+
+header .icons span:hover {
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.20);
+}
+
+/* header .icons span:last-child {
+    margin-right: -1px;
+} */
+
+.calendar ul{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-right: 40px;
+}
+
+
+.calendar .days li {
+    z-index: 1;
+    margin-top: 23px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.calendar ul li {
+    position: relative;
+    width: calc(100%/7);
+}
+
+.calendar .weeks li {
+    margin-top: -15px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: 500;
+}
+
+.calendar .days li::before {
+    position: absolute;
+    content: "";
+    transform: translate(-50%,-50%);
+    content: "";
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    /* background-color: rgb(230, 230, 230); */
+    z-index: -1;
+}
+
+.days li:hover::before {
+    width: 35px;
+    height: 35px;
+    background-color: rgb(215, 215, 215);
+}
+
+/* Inactive days */
+.inactive {
+    color: rgb(176, 176, 176);
+}
+
+/* active days */
+.days li.act::before {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(157, 126, 126);
+}
+
+.days li.act {
+    color: white;
+}
+

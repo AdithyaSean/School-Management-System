@@ -45,7 +45,7 @@ nav .Navbar ul li a{
     padding: 30px 25px;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.50s ease;
 }
@@ -56,7 +56,7 @@ nav .Navbar ul li a{
 
 nav .Navbar ul li a:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Login Button */
@@ -67,7 +67,7 @@ nav .Navbar ul li a.log {
     padding: 14px 40px;
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.40s ease-in-out;
     border-radius: 30px; 
@@ -75,9 +75,8 @@ nav .Navbar ul li a.log {
 
 nav .Navbar ul li a.log:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
-
 
 /* Sidebar */
 .sidebar {
@@ -149,3 +148,33 @@ nav .Navbar ul li a.log:hover{
     font-weight: 100;
     color: rgb(105, 105, 105);
 }
+
+/* Responsive Navigation */
+@media only screen and (max-width: 768px) {
+    nav {
+        padding: 14px 20px; /* Adjust padding for smaller screens */
+    }
+
+    nav img {
+        width: 40px; /* Reduce logo size for smaller screens */
+    }
+
+    nav .Navbar ul li a {
+        font-size: 11px; /* Reduce font size for navigation links */
+        padding: 23.5px 10px;
+    }
+
+    nav .Navbar ul {
+        margin-right: 120px;
+    }
+
+    nav .Navbar ul li a.log {
+        font-size: 11px;
+        position: absolute; /* Set the position to absolute */
+        right: 65px; /* Adjust the distance from the right side */
+        top: 55%; /* Position it vertically centered */
+        transform: translateY(-50%); /* Adjust for vertical centering */
+        padding: 8px 15px;
+    }
+}
+
