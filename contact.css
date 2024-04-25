@@ -2,6 +2,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins' sans-serif;
+    
 }
 
 body {
@@ -28,6 +30,7 @@ nav img{
 }
 
 nav .Navbar ul{
+    margin-top: 15px;
     margin-right: 10px;
     display: inline-block;
 }
@@ -42,15 +45,18 @@ nav .Navbar ul li a{
     padding: 30px 25px;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.50s ease;
 }
 
+.Navbar ul li a{
+    position: relative;
+}
 
 nav .Navbar ul li a:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Login Button */
@@ -61,7 +67,7 @@ nav .Navbar ul li a.log {
     padding: 14px 40px;
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.40s ease-in-out;
     border-radius: 30px; 
@@ -69,13 +75,13 @@ nav .Navbar ul li a.log {
 
 nav .Navbar ul li a.log:hover{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
 }
 
 /* Home Active */
 nav .Navbar ul li a.active{
     color: white;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);;
 }
 
 /* Background image */
@@ -136,6 +142,9 @@ nav .Navbar ul li a.active{
     font-family: 'Poppins', sans-serif;
 }
 
+.icon i {
+    margin-top: -5px;
+}
 
 #square .pad{
     margin-top: 5px;
@@ -152,8 +161,8 @@ nav .Navbar ul li a.active{
 #square .txt{
     font-size: 11.5pt;
     font-weight: 450;
-    margin-top: 10px;
-    color: rgb(158, 66, 66)
+    margin-top: -10px;
+    color: rgb(122, 88, 88);
     
 }
 
@@ -168,9 +177,9 @@ nav .Navbar ul li a.active{
 .pad input.em {
     width: 27%;
     border: none;
-    font-size: 12pt;
+    font-size: 11pt;
     margin-top: 10px;
-    color: rgb(147, 87, 87);
+    color: rgb(99, 54, 54);
 }
 
 
@@ -206,7 +215,7 @@ form label{
 
 form input{
     font-family: 'Poppins', sans-serif;
-    font-size: 13pt;
+    font-size: 12pt;
     color: rgb(101, 101, 101);
     width: 80%;
     margin-top: 2px;
@@ -218,7 +227,7 @@ form input{
 }
 
 form input::placeholder{
-    font-size: 13pt;
+    font-size: 12pt;
     color: rgb(183, 183, 183);
 }
 
@@ -241,7 +250,7 @@ button{
     transform: translate(-50%,-50%);
     font-size: 12pt;
     font-family: 'Poppins', sans-serif;
-    background-color: brown;
+    background-color: rgb(122, 88, 88);
     color: white;
     padding: 15px 40px;
     width: 80%;
@@ -252,8 +261,7 @@ button{
 
 button:hover
 {
-    background-color: rgb(165, 84, 84);
-    
+    background-color: rgb(88, 60, 60);
 }
 
 /* Icon */
