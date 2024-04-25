@@ -62,7 +62,7 @@ nav .Navbar ul li a:hover{
 nav .Navbar ul li a.log {
     margin-left: 35px;
     font-weight: 500;
-    background-color: gray;
+    background-color: rgb(122, 88, 88);
     padding: 14px 40px;
     text-decoration: none;
     color: white;
@@ -72,12 +72,8 @@ nav .Navbar ul li a.log {
     border-radius: 30px; 
 }
 
-nav .Navbar ul li a.log:hover{
-    color: white;
-    background-color: rgb(122, 88, 88);
-}
-
 /* ............................................. */
+
 /* Login */
 body{
     background-color: #e4e4e4;
