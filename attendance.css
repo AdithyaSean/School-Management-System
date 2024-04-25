@@ -161,7 +161,7 @@ nav .Navbar ul li a.log:hover{
 
 /* table header */
 .table thead tr th {
-    background-color: rgb(142, 114, 114);
+    background-color: rgb(119, 90, 90);
     color: white;
     font-size: 13pt;
     padding-left: 20px;
@@ -171,7 +171,7 @@ nav .Navbar ul li a.log:hover{
 /* table data */
 .table tr td{
     padding-top: 15px;
-    font-size: 18px;
+    font-size: 17px;
     padding-left: 22px;
 }
 
@@ -183,7 +183,7 @@ nav .Navbar ul li a.log:hover{
     padding: 5px 20px;
     border-radius: 5px;
     text-decoration: none;
-    font-weight: 450;
+    font-weight: 350;
     transition: background-color 0.2s ease;
 }
 

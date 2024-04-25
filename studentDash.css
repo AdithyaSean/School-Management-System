@@ -150,6 +150,7 @@ nav .Navbar ul li a.log:hover{
     background-color: rgb(245, 245, 245);
 }
 
+/* common title */
 .title {
     padding-top: 15px;
     margin-top: 30px;
@@ -159,9 +160,16 @@ nav .Navbar ul li a.log:hover{
     color: rgb(105, 105, 105);
 }
 
-.annbox p {
-    padding-top: 25px;
-    margin-top: -2px;
+.ann {
+    padding-top: -18px;
+}
+
+.txt {
+    margin-top: -10px;
+    padding-left: 25px;
+    font-size: 14pt;
+    color: rgb(105, 105, 105);
+    font-weight: 200;
 }
 
 .annbox {
