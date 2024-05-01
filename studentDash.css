@@ -191,7 +191,7 @@ nav .Navbar ul li a.log:hover{
 
 .box {
     cursor: pointer;
-    background-image: linear-gradient(to bottom, #efefef, rgb(138, 123, 123));
+    background-image: linear-gradient(to bottom, #efefef, rgb(94, 77, 77));
     width: 200px;
     height: 150px;
     margin-left: -10px;
