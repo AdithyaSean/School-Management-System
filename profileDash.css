@@ -148,7 +148,7 @@ nav .Navbar ul li a.log:hover{
     margin-top: 20px;
     margin-left: 20px;
     width: 640px;
-    height: 250px;
+    height: 180px;
     border: 0.5px solid rgb(172, 172, 172);
     background-color: rgb(247, 247, 247);
 }
@@ -157,10 +157,25 @@ nav .Navbar ul li a.log:hover{
     background-image: url('images/profile.png');
     background-size: cover;
     position: absolute;
-    width: 200px;
-    height: 200px;
-    margin-left: 30px;
+    width: 135px;
+    height: 135px;
+    margin-left: 40px;
     margin-top: 20px;
+    display: flex;
+    gap: 130px;
+}
+
+.png a {
+    text-decoration: none;
+    font-size: 12pt;
+    min-width: 100px;
+    text-decoration: none;
+    font-weight: 350;
+    color: rgb(122, 88, 88);
+}
+
+.png a:hover {
+    text-decoration: underline;
 }
 
 .userborder {
@@ -168,9 +183,24 @@ nav .Navbar ul li a.log:hover{
     margin-top: 20px;
     margin-left: 680px;
     width: 500px;
-    height: 250px;
+    height: 180px;
     border: 0.5px solid rgb(172, 172, 172);
     background-color: rgb(247, 247, 247);
+}
+
+/* profile name */
+.name {
+    font-size: 23pt;
+    margin-top: 5px;
+    margin-left: 160px;
+    font-weight: 40;
+    color: rgb(103, 103, 103);
+    min-width: 200px; /* Set a minimum width */
+    max-width: 400px; /* Set a maximum width */
+    display: inline-block;
+    overflow: hidden; /* Hide any overflowing content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) for text overflow */
 }
 
 .detail {
@@ -179,55 +209,56 @@ nav .Navbar ul li a.log:hover{
     margin-left: 20px;
     margin-top: 15px;
     color: rgb(142, 142, 142);
+    display: flex;
 }
+
+.detail a {
+    text-decoration: none;
+    font-size: 12pt;
+    padding-left: 290px;
+    font-weight: 370;
+    color: rgb(122, 88, 88);
+}
+
+.detail a:hover {
+    text-decoration: underline;
+}
+
 
 .title {
     font-size: 13pt;
     color: rgb(97, 97, 97);
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
+    display: flex;
+    gap: 230px;
 }
 
 .title .mail{
     margin-top: 30px;
 }
 
-.title .cou{
-    margin-top: 55px;
+.title2 {
+    display: flex;
+    flex-direction: row;
 }
 
-.title p{
-    font-weight: 400;
+.title2 .mail{
+    min-width: 100px;
+    margin-left: 20px;
+    margin-top: -10px;
+    font-size: 13pt;
+    color: gray;
+    font-weight: 350;
 }
 
-.edit1 {
-    width: 100%;
-    margin-left: 500px;
-    margin-top: -5px;
-}
-
-.edit1 a{
-    text-decoration: none;
-    color: rgb(134, 80, 80);
-}
-
-.edit1 a:hover {
-    text-decoration: underline;
-}
-
-
-.edit2 {
-    margin-left: 395px;
-    margin-top: -185px;
-}
-
-.edit2 a{
-    text-decoration: none;
-    color: rgb(134, 80, 80);
-}
-
-.edit2 a:hover {
-    text-decoration: underline;
+.title2 .co {
+    min-width: 50px;
+    margin-top: -9.5px;
+    margin-left: 105px;
+    font-size: 13pt;
+    color: gray;
+    font-weight: 350;
 }
 
 

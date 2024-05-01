@@ -164,7 +164,7 @@ nav .Navbar ul li a.log:hover{
     padding-top: -18px;
 }
 
-.txt {
+.anntxt {
     margin-top: -10px;
     padding-left: 25px;
     font-size: 14pt;
@@ -184,64 +184,51 @@ nav .Navbar ul li a.log:hover{
 .dashborder .square {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 70px;
+    row-gap: 20px;
     column-gap: 25px;
     margin-left: 35px;
 }
 
-.box{
-    background-image: linear-gradient(to right, #e1e1e1,rgb(161, 147, 147));
+.box {
+    cursor: pointer;
+    background-image: linear-gradient(to bottom, #efefef, rgb(138, 123, 123));
     width: 200px;
-    height: 100px;
-    margin-top: 10px;
+    height: 150px;
     margin-left: -10px;
     border: 0.5px solid rgb(209, 209, 209);
-    border-bottom: none;
     display: flex;
-    flex-direction:row;
-}
-
-.box {
     width: calc(34% - 20px); /* Adjust box width for three boxes per row */
-    margin-bottom: 10px; /* Add margin between rows */
+    justify-content: center;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    transition: font-size 0.5s, padding-bottom 0.5s ;
 }
 
-.box2 {
-    text-align: center;
-    padding-top: 18px;
-    width: 330px;
-    height: 60px;
-    margin-top: 98px;
-    margin-left: -1.5px;
-    margin-right: -0.2px;
-    border: 5px solid rgb(209, 209, 209);
-    transition: background-color 0.4s ease;
-    background-color: rgb(135, 116, 116);
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-}
-
-.box2 a {
-    z-index: 5;
-    font-size: 11pt;
-    padding: 40px;
+.box a {
     text-decoration: none;
-    color: white;
-    font-weight: 500;
-    position: relative;
-    top: -10%;
 }
 
-.box2:hover { /* Corrected selector */
+.box .txt {
     color: white;
-    background-color: rgb(112, 96, 96);
+    font-weight: 350;
+    padding-right: 5px;
+    padding-top: 110px;
+    text-align: center; /* Center text horizontally */
+    transition: font-weight 0.2s
 }
 
-.box2:hover a { /* Change color of text when box is hovered */
-    color: white;
+.box:hover .txt{
     font-weight: 500;
 }
+
+.box:hover {
+    font-weight: 400;
+    font-size: 15pt;
+    padding-bottom: 95px;
+    box-shadow: 0px 0px 5px rgba(101, 83, 83, 0.2);
+}
+
+
 
 
 /* Calendar */
