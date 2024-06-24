@@ -35,10 +35,6 @@ class Student {
 
 class Teacher {
   # teacherID
-  # subjectTaught
-  # classTaught
-  # society
-  # club
   # getTeacherID()
   # getSubjectTaught()
   # setSubjectTaught()
@@ -135,7 +131,6 @@ class Request {
 
 class UserLog {
   - logId
-  - userId
   - action
   - timestamp
   + getLogsByUser()
@@ -143,7 +138,7 @@ class UserLog {
   + getLogsByTimestamp()
 }
 
-class Finance {
+class SchoolFinanceDashboard {
   - schoolBudget
   - income
   - expense
@@ -153,9 +148,6 @@ class Finance {
 }
 
 class EducationalDashboard {
-  - societies
-  - assessments
-  - competitions
   + viewSocieties()
   + applyForSociety()
   + createSociety()
@@ -175,8 +167,6 @@ class EducationalDashboard {
 }
 
 class ExtracurricularDashboard {
-  - clubs
-  - competitions
   + viewContent()
   + viewClubs()
   + applyForClub()
@@ -189,7 +179,6 @@ class ExtracurricularDashboard {
 }
 
 class ExamInformation {
-  - exams
   + viewExams()
   + createExam()
   + updateExam()
@@ -293,11 +282,8 @@ class SocietyMember {
 }
 
 class Grade {
-  - classes
-  - students
-  - studentCount
-  - subjects
-  - teachers
+  + createClasses()
+  + deleteClasses()
   + addStudents()
   + removeStudents()
   + addTeachers()
@@ -307,7 +293,6 @@ class Grade {
 class Subject {
   - subjectName
   - subjectContent
-  - teachers
   - creditPoints
   - hours
   + addContent()
@@ -315,9 +300,7 @@ class Subject {
 }
 
 class Class {
-  - teacher
   - classMonitor
-  - students
   - studentCount
   - timeTable
   + addClassMonitor()
@@ -332,7 +315,6 @@ class Announcement {
 }
 
 class SystemLog {
-  - users
   - onlineUsers
   - systemErrors
   - date
@@ -357,17 +339,16 @@ class SystemReport {
   - dateModified
   - generatedBy
   - systemUtilization
-  - systemLogs
   - errors
   + viewSystemReport()
 }
 
 Grade "1" *-- "1..*" Class : Has
-Grade "1" *-- "1..*" Teacher : Has
-Grade "1" *-- "1" SectionalHead : Has
+Grade "1" -- "1..*" Teacher : Has
+Grade "1" -- "1" SectionalHead : Has
 Grade "1" *-- "1..*" Subject : Has
-Class "1" *-- "1" Teacher : Has
-Class "1" *-- "1..*" Student : Has
+Class "1" -- "1" Teacher : Has
+Class "1" -- "1..*" Student : Has
 
 User <|-- Student
 User <|-- Teacher
@@ -381,7 +362,7 @@ Admin "1" -- "0..*" UserLog : View
 Admin "1" -- "1" SystemLog : View
 Principal "1" -- "1" VicePrincipal : Inform
 Principal "1" -- "0..*" Announcement : Manage
-VicePrincipal "1" -- "1" Finance : Manage
+VicePrincipal "1" -- "1" SchoolFinanceDashboard : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
 SectionalHead "1*" -- "1..*" Student : Manage
@@ -403,7 +384,7 @@ Club "1" *-- "1..*" ClubMember : Has
 User "1" *-- "1" UserLog : Has
 Student "1" *-- "1" StudentReport : Has
 
-Finance "1" o-- "0..*" Payment : Has
+SchoolFinanceDashboard "1" o-- "0..*" Payment : Has
 EducationalDashboard "1" o-- "0..*" ExamInformation : Has
 EducationalDashboard "1" o-- "0..*" Society : Has
 EducationalDashboard "1" o-- "0..*" Competition : Has
