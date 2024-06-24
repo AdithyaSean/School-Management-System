@@ -2,17 +2,18 @@
 
 skinparam Linetype ortho
 skinparam classAttributeIconSize 0
+hide circle
 
 class User {
-  # userType: String
-  # userID: String
-  # username: String
-  # password: String
-  # email: String
-  # firstName: String
-  # lastName: String
-  # dateOfBirth: Date
-  # fingerprint: String
+  # userType
+  # userID
+  # username
+  # password
+  # email
+  # firstName
+  # lastName
+  # dateOfBirth
+  # fingerprint
   # enterAttendance()
   # login()
   # viewProfile()
@@ -21,9 +22,9 @@ class User {
 }
 
 class Student {
-  - studentID: String
-  - gradeLevel: int
-  - studentReport: StudentReport
+  - studentID
+  - gradeLevel
+  - studentReport
   - getStudentID()
   - getGradeLevel()
   - setGradeLevel()
@@ -33,11 +34,11 @@ class Student {
 }
 
 class Teacher {
-  # teacherID: String
-  # subjectTaught: String
-  # classTaught: String
-  # society: String
-  # club: String
+  # teacherID
+  # subjectTaught
+  # classTaught
+  # society
+  # club
   # getTeacherID()
   # getSubjectTaught()
   # setSubjectTaught()
@@ -52,7 +53,7 @@ class Teacher {
 }
 
 class SectionalHead {
-  - section: String
+  - section
   - getSection()
   - setSection()
   - informTeachers()
@@ -66,8 +67,8 @@ class SectionalHead {
 }
 
 class VicePrincipal {
-  # role: String
-  # principalGrade: String
+  # role
+  # principalGrade
   # informPrincipal()
   # viewTeachers()
   # addTeachers()
@@ -90,8 +91,8 @@ class Principal {
 }
 
 class Admin {
-  - adminLog: UserLog
-  - masterPassword: String
+  - adminLog
+  - masterPassword
   - viewSystemDatabase()
   - createRecords()
   - editRecords()
@@ -111,59 +112,50 @@ class Admin {
 }
 
 class Payment {
-  - paymentId: int
-  - amount: double
-  - description: string
-  - paymentDate: date
-  - paymentMethod: string
-  - status: string
+  - paymentId
+  - amount
+  - description
+  - paymentDate
+  - paymentMethod
+  - status
   + paySchoolFees()
   + payWelfareFees()
   + donateSchool()
 }
 
 class Request {
-  - queryId: int
-  - userId: int
-  - description: string
-  - submissionDate: date
-  - response: string
-  - responseDate: date
+  - queryId
+  - userId
+  - description
+  - submissionDate
+  - response
+  - responseDate
   + viewQuery()
 }
 
 class UserLog {
-  - logId: int
-  - userId: int
-  - action: string
-  - timestamp: datetime
+  - logId
+  - userId
+  - action
+  - timestamp
   + getLogsByUser()
   + getLogsByAction()
   + getLogsByTimestamp()
 }
 
-class SchoolPolicy {
-  - policyId: int
-  - policyName: string
-  - description: string
-  + updatePolicy()
-  + getPolicyById()
-  + getPolicyByName()
-}
-
 class Finance {
-  - schoolBudget: double
-  - income: double
-  - expense: double
-  - donations: double
-  - studentPayments: List<Payment>
+  - schoolBudget
+  - income
+  - expense
+  - donations
+  - studentPayments
   + viewFinancialInformation()
 }
 
 class EducationalDashboard {
-  - societies: List<Society>
-  - assessments: List<Assessment>
-  - competitions: List<Competition>
+  - societies
+  - assessments
+  - competitions
   + viewSocieties()
   + applyForSociety()
   + createSociety()
@@ -183,8 +175,8 @@ class EducationalDashboard {
 }
 
 class ExtracurricularDashboard {
-  - clubs: List<Club>
-  - competitions: List<Competition>
+  - clubs
+  - competitions
   + viewContent()
   + viewClubs()
   + applyForClub()
@@ -197,115 +189,115 @@ class ExtracurricularDashboard {
 }
 
 class ExamInformation {
-  - exams: List<Exam>
+  - exams
   + viewExams()
   + createExam()
   + updateExam()
   + deleteExam()
   + enterExamResults()
   + deleteExamResults()
-  + applyForRe-correction()
+  + applyForRecorrection()
   + enterExamResult()
   + changeExamResult()
   + deleteExamResult()
 }
 
 class Assessment {
-  - id: String
-  - title: String
-  - description: String
-  - dueDate: Date
-  - maxPoints: int
-  - studentSubmissions: Map<Student, Submission>
-  - grade: Grade
+  - id
+  - title
+  - description
+  - dueDate
+  - maxPoints
+  - studentSubmissions
+  - grade
   + submitSubmission()
   + updateSubmission()
   + removeSubmission()
 }
 
 class Society {
-  - id: String
-  - name: String
-  - description: String
-  - members: List<SocietyMember>
+  - id
+  - name
+  - description
+  - members
   + addMember()
   + removeMember()
 }
 
 class Club {
-  - id: String
-  - name: String
-  - description: String
-  - members: List<ClubMember>
+  - id
+  - name
+  - description
+  - members
   + addMember()
   + removeMember()
 }
 
 class Competition {
-  - id: String
-  - name: String
-  - description: String
-  - startDate: Date
-  - endDate: Date
-  - participants: List<Student>
+  - id
+  - name
+  - description
+  - startDate
+  - endDate
+  - participants
   + enrollParticipant()
   + withdrawParticipant()
 }
 
 class Event {
-  - eventId: int
-  - eventName: string
-  - eventDate: date
-  - location: string
-  - description: string
+  - eventId
+  - eventName
+  - eventDate
+  - location
+  - description
   + updateEvent()
 }
 
 class Exam {
-  - id: String
-  - name: String
-  - description: String
-  - date: Date
-  - duration: int
-  - results: Map<Student, Result>
+  - id
+  - name
+  - description
+  - date
+  - duration
+  - results
   + viewExam()
   + updateExam()
   + getResults()
 }
 
 class Result {
-  - score: int
-  - grade: String
+  - score
+  - grade
   + getScore()
   + getGrade()
 }
 
 class Submission {
-  - content: String
-  - submissionDate: Date
+  - content
+  - submissionDate
   + editSubmission()
 }
 
 class ClubMember {
-  - id: String
-  - name: String
-  - role: String
+  - id
+  - name
+  - role
   - leaveClub()
 }
 
 class SocietyMember {
-  - id: String
-  - name: String
-  - role: String
+  - id
+  - name
+  - role
   - leaveSociety()
 }
 
 class Grade {
-  - classes: List<Class>
-  - students: List<Student>
-  - studentCount: int
-  - subjects: List<Subject>
-  - teachers: List<Teacher>
+  - classes
+  - students
+  - studentCount
+  - subjects
+  - teachers
   + addStudents()
   + removeStudents()
   + addTeachers()
@@ -313,60 +305,60 @@ class Grade {
 }
 
 class Subject {
-  - subjectName: String
-  - subjectContent: String
-  - teachers: List<Teacher>
-  - creditPoints: int
-  - hours: int
+  - subjectName
+  - subjectContent
+  - teachers
+  - creditPoints
+  - hours
   + addContent()
   + removeContent()
 }
 
 class Class {
-  - teacher: Teacher
-  - classMonitor: Student
-  - students: List<Student>
-  - studentCount: int
-  - timeTable: TimeTable
+  - teacher
+  - classMonitor
+  - students
+  - studentCount
+  - timeTable
   + addClassMonitor()
   + removeClassMonitor()
 }
 
 class Announcement {
-  - title: String
-  - content: String
-  - userTypes: String
+  - title
+  - content
+  - userTypes
   + updateAnnouncement()
 }
 
 class SystemLog {
-  - users: int
-  - onlineUsers: int
-  - systemErrors: String
-  - date: Date
+  - users
+  - onlineUsers
+  - systemErrors
+  - date
   + viewSystemLog()
 }
 
 class StudentReport {
-  - dateCreated: Date
-  - dateModified: Date
-  - generatedBy: String
-  - studentPerformance: String
-  - studentAttendance: String
-  - studentLetters: String
-  - studentAchievements: String
-  - studentHealthStatus: String
+  - dateCreated
+  - dateModified
+  - generatedBy
+  - studentPerformance
+  - studentAttendance
+  - studentLetters
+  - studentAchievements
+  - studentHealthStatus
   + updateStudentReport()
   + viewStudentReport()
 }
 
 class SystemReport {
-  - dateCreated: Date
-  - dateModified: Date
-  - generatedBy: String
-  - systemUtilization: int
-  - systemLogs : List<SystemLog>
-  - errors: String
+  - dateCreated
+  - dateModified
+  - generatedBy
+  - systemUtilization
+  - systemLogs
+  - errors
   + viewSystemReport()
 }
 
@@ -388,7 +380,6 @@ Admin "1" -- "0..*" SystemReport : Generate
 Admin "1" -- "0..*" UserLog : View
 Admin "1" -- "1" SystemLog : View
 Principal "1" -- "1" VicePrincipal : Inform
-Principal "1" -- "0..*" SchoolPolicy : Manage
 Principal "1" -- "0..*" Announcement : Manage
 VicePrincipal "1" -- "1" Finance : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
