@@ -154,6 +154,83 @@ nav .Navbar ul li a.log:hover{
     color: rgb(105, 105, 105);
 }
 
+
+
+/* table */
+.table {
+    width: 100%;
+}
+
+/* table header */
+.table thead tr th {
+    background-color: rgb(119, 90, 90);
+    color: white;
+    font-size: 13pt;
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+/* table data */
+.table tr td{
+    padding-top: 15px;
+    font-size: 17px;
+    padding-left: 22px;
+}
+
+/* view link */
+.table tr td a{
+    background-color: rgb(132, 98, 98);
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 350;
+    transition: background-color 0.2s ease;
+}
+
+.table tr td a:hover {
+    text-decoration: underline;
+    background-color: rgb(142, 114, 114);
+}
+
+
+
+
+
+
+/* Responsive Navigation */
+@media only screen and (max-width: 768px) {
+    nav {
+        padding: 14px 20px; /* Adjust padding for smaller screens */
+    }
+
+    nav img {
+        width: 40px; /* Reduce logo size for smaller screens */
+    }
+
+    nav .Navbar ul li a {
+        font-size: 11px; /* Reduce font size for navigation links */
+        padding: 23.5px 10px;
+    }
+
+    nav .Navbar ul {
+        margin-right: 120px;
+    }
+
+    nav .Navbar ul li a.log {
+        font-size: 11px;
+        position: absolute; /* Set the position to absolute */
+        right: 65px; /* Adjust the distance from the right side */
+        top: 55%; /* Position it vertically centered */
+        transform: translateY(-50%); /* Adjust for vertical centering */
+        padding: 8px 15px;
+    }
+}
+
+
+
+
 /* Responsive Navigation */
 @media only screen and (max-width: 768px) {
     nav {
