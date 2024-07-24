@@ -254,7 +254,6 @@ User <|-- Teacher
 User <|-- VicePrincipal
 Teacher <|-- SectionalHead
 VicePrincipal <|-- Principal
-VicePrincipal -- Event
 Principal <|-- Admin
 
 Grade "1" *-- "1..*" Class : Has
@@ -271,7 +270,6 @@ SectionalHead "1*" -- "1..*" Teacher : Inform
 Teacher "1" -- "0..1" Class : Manage
 Teacher "1" -- "1" ExtracurricularDashboard : Manage
 Teacher "1" -- "1" EducationalDashboard : Manage
-Teacher "1" -- "0..*" Request : Manage
 Teacher "1" -- "1..*" Subject : Manage
 Teacher "1" -- "0..*" StudentReport : Manage
 Student "1" -- "1" EducationalDashboard : View
