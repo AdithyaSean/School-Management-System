@@ -119,25 +119,6 @@ class Payment {
   + donateSchool()
 }
 
-class Request {
-  - queryId
-  - userId
-  - description
-  - submissionDate
-  - response
-  - responseDate
-  + viewQuery()
-}
-
-class UserLog {
-  - logId
-  - action
-  - timestamp
-  + getLogsByUser()
-  + getLogsByAction()
-  + getLogsByTimestamp()
-}
-
 class SchoolFinanceDashboard {
   - schoolBudget
   - income
@@ -204,44 +185,6 @@ class Assessment {
   + removeSubmission()
 }
 
-class Society {
-  - id
-  - name
-  - description
-  - members
-  + addMember()
-  + removeMember()
-}
-
-class Club {
-  - id
-  - name
-  - description
-  - members
-  + addMember()
-  + removeMember()
-}
-
-class Competition {
-  - id
-  - name
-  - description
-  - startDate
-  - endDate
-  - participants
-  + enrollParticipant()
-  + withdrawParticipant()
-}
-
-class Event {
-  - eventId
-  - eventName
-  - eventDate
-  - location
-  - description
-  + updateEvent()
-}
-
 class Exam {
   - id
   - name
@@ -265,20 +208,6 @@ class Submission {
   - content
   - submissionDate
   + editSubmission()
-}
-
-class ClubMember {
-  - id
-  - name
-  - role
-  - leaveClub()
-}
-
-class SocietyMember {
-  - id
-  - name
-  - role
-  - leaveSociety()
 }
 
 class Grade {
@@ -307,20 +236,6 @@ class Class {
   + removeClassMonitor()
 }
 
-class Announcement {
-  - title
-  - content
-  - userTypes
-  + updateAnnouncement()
-}
-
-class SystemLog {
-  - onlineUsers
-  - systemErrors
-  - date
-  + viewSystemLog()
-}
-
 class StudentReport {
   - dateCreated
   - dateModified
@@ -334,31 +249,19 @@ class StudentReport {
   + viewStudentReport()
 }
 
-class SystemReport {
-  - dateCreated
-  - dateModified
-  - generatedBy
-  - systemUtilization
-  - errors
-  + viewSystemReport()
-}
+User <|-- Student
+User <|-- Teacher
+User <|-- VicePrincipal
+Teacher <|-- SectionalHead
+VicePrincipal <|-- Principal
+VicePrincipal -- Event
+Principal <|-- Admin
 
 Grade "1" *-- "1..*" Class : Has
 Grade "1" -- "1..*" Teacher : Has
 Grade "1" -- "1" SectionalHead : Has
 Grade "1" *-- "1..*" Subject : Has
-Class "1" -- "1" Teacher : Has
 Class "1" -- "1..*" Student : Has
-
-User <|-- Student
-User <|-- Teacher
-User <|-- VicePrincipal
-VicePrincipal <|-- Principal
-VicePrincipal -- Event
-Principal <|-- Admin
-
-Admin "1" -- "0..*" SystemReport : Generate
-Admin "1" -- "0..*" UserLog : View
 Admin "1" -- "1" SystemLog : View
 Principal "1" -- "1" VicePrincipal : Inform
 Principal "1" -- "0..*" Announcement : Manage
@@ -367,6 +270,7 @@ VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
 SectionalHead "1*" -- "1..*" Student : Manage
 SectionalHead "1*" -- "1..*" Teacher : Inform
+Teacher "1" -- "0..1" Class : Manage
 Teacher "1" -- "1" ExtracurricularDashboard : Manage
 Teacher "1" -- "1" EducationalDashboard : Manage
 Teacher "1" -- "0..*" Request : Manage
@@ -379,21 +283,14 @@ Student "1" -- "0..*" Payment : Make
 User "1" -- "0..*" Event : View
 User "1" -- "0..*" Announcement : View
 
-Society "1" *-- "1..*" SocietyMember : Has
-Club "1" *-- "1..*" ClubMember : Has
-User "1" *-- "1" UserLog : Has
-Student "1" *-- "1" StudentReport : Has
-
 SchoolFinanceDashboard "1" o-- "0..*" Payment : Has
 EducationalDashboard "1" o-- "0..*" ExamInformation : Has
-EducationalDashboard "1" o-- "0..*" Society : Has
-EducationalDashboard "1" o-- "0..*" Competition : Has
 EducationalDashboard "1" o-- "0..*" Assessment : Has
 EducationalDashboard "1" o-- "0..*" Subject : Has
 ExamInformation "1" o-- "0..*" Exam : Has
 Exam "1" O--- "0..*" Result : Has
 Assessment "1" o-- "0..*" Submission : Has
-ExtracurricularDashboard "1" o-- "0..*" Competition : Has
-ExtracurricularDashboard "1" o-- "0..*" Club : Has
+Student "1" *-- "1" StudentReport : Has
+
 
 @enduml

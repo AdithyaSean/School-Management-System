@@ -1,0 +1,103 @@
+class Society {
+  - id
+  - name
+  - description
+  - members
+  + addMember()
+  + removeMember()
+}
+
+class Club {
+  - id
+  - name
+  - description
+  - members
+  + addMember()
+  + removeMember()
+}
+
+class Competition {
+  - id
+  - name
+  - description
+  - startDate
+  - endDate
+  - participants
+  + enrollParticipant()
+  + withdrawParticipant()
+}
+
+class Event {
+  - eventId
+  - eventName
+  - eventDate
+  - location
+  - description
+  + updateEvent()
+}
+
+class ClubMember {
+  - id
+  - name
+  - role
+  - leaveClub()
+}
+
+class SocietyMember {
+  - id
+  - name
+  - role
+  - leaveSociety()
+}
+
+class Announcement {
+  - title
+  - content
+  - userTypes
+  + updateAnnouncement()
+}
+
+class UserLog {
+  - logId
+  - action
+  - timestamp
+  + getLogsByUser()
+  + getLogsByAction()
+  + getLogsByTimestamp()
+}
+
+class SystemReport {
+  - dateCreated
+  - dateModified
+  - generatedBy
+  - systemUtilization
+  - errors
+  + viewSystemReport()
+}
+
+class SystemLog {
+  - onlineUsers
+  - systemErrors
+  - date
+  + viewSystemLog()
+}
+
+class Request {
+  - queryId
+  - userId
+  - description
+  - submissionDate
+  - response
+  - responseDate
+  + viewQuery()
+}
+
+Society "1" *-- "1..*" SocietyMember : Has
+Club "1" *-- "1..*" ClubMember : Has
+EducationalDashboard "1" o-- "0..*" Competition : Has
+ExtracurricularDashboard "1" o-- "0..*" Competition : Has
+EducationalDashboard "1" o-- "0..*" Society : Has
+ExtracurricularDashboard "1" o-- "0..*" Club : Has
+Admin "1" -- "0..*" SystemReport : Generate
+User "1" *-- "1" UserLog : Has
+Admin "1" -- "0..*" UserLog : View
