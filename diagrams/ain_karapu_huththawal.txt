@@ -101,3 +101,7 @@ ExtracurricularDashboard "1" o-- "0..*" Club : Has
 Admin "1" -- "0..*" SystemReport : Generate
 User "1" *-- "1" UserLog : Has
 Admin "1" -- "0..*" UserLog : View
+User "1" -- "0..*" Event : View
+User "1" -- "0..*" Announcement : View
+Admin "1" -- "1" SystemLog : View
+Principal "1" -- "0..*" Announcement : Manage

@@ -262,9 +262,7 @@ Grade "1" -- "1..*" Teacher : Has
 Grade "1" -- "1" SectionalHead : Has
 Grade "1" *-- "1..*" Subject : Has
 Class "1" -- "1..*" Student : Has
-Admin "1" -- "1" SystemLog : View
 Principal "1" -- "1" VicePrincipal : Inform
-Principal "1" -- "0..*" Announcement : Manage
 VicePrincipal "1" -- "1" SchoolFinanceDashboard : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
@@ -280,8 +278,6 @@ Student "1" -- "1" EducationalDashboard : View
 Student "1" -- "1" ExtracurricularDashboard : View
 Student "1" -- "0..*" Request : Submit
 Student "1" -- "0..*" Payment : Make
-User "1" -- "0..*" Event : View
-User "1" -- "0..*" Announcement : View
 
 SchoolFinanceDashboard "1" o-- "0..*" Payment : Has
 EducationalDashboard "1" o-- "0..*" ExamInformation : Has
