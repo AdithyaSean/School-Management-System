@@ -12,153 +12,134 @@ class User {
   # email
   # firstName
   # lastName
+  # fullName
   # dateOfBirth
   # fingerprint
-  # enterAttendance()
-  # login()
-  # viewProfile()
-  # updateProfile()
-  # logout()
+  # userReport
+  # userLog
+  + viewUser()
+  + createUser()
+  + updateUser()
+  + deleteUser()
+  + viewUserReport()
+  + generateUserReport()
+  + viewUserLog()
+  + editUserLog()
+  + enterAttendance()
+  + informUser()
+  + login()
+  + logout()
 }
 
 class Student {
   - studentID
-  - gradeLevel
+  - studentSection
+  - studentgrade
+  - studentClass
   - studentReport
-  - getStudentID()
-  - getGradeLevel()
-  - setGradeLevel()
-  - getReport()
-  - createReport()
-  - updateReport()
+  + viewStudent()
+  + createStudent()
+  + updateStudent()
+  + deleteStudent()
+  + viewStudentReport()
+  + generateStudentReport()
+  + informStudent()
 }
 
 class Teacher {
+  # gradeValue
   # teacherID
-  # getTeacherID()
-  # getSubjectTaught()
-  # setSubjectTaught()
-  # getClassTaught()
-  # setClassTaught()
-  # updateClass()
-  # viewStudentReport()
-  # updateStudentReport()
-  # viewStudentLetters()
-  # informVicePrincipal()
-  # informSectionalHead()
+  # teacherSubjects
+  # teacherClass
+  # teacherSection
+  # teacherReport
+  + viewTeacher()
+  + createTeacher()
+  + updateTeacher()
+  + deleteTeacher()
+  + viewTeacherReport()
+  + generateTeacherReport()
+  + informTeacher()
 }
 
 class SectionalHead {
   - section
-  - getSection()
-  - setSection()
-  - informTeachers()
-  - informStudents()
-  - viewStudents()
-  - addStudents()
-  - updateStudents()
-  - deleteStudents()
-  - createClass()
-  - deleteClass()
+  - sectionalHeadReport
+  + viewSectionalHead()
+  + createSectionalHead()
+  + updateSectionalHead()
+  + deleteSectionalHead()
+  + viewSectionalHeadReport()
+  + generateSectionalHeadReport()
+  + informSectionalHead()
 }
 
 class VicePrincipal {
-  # role
-  # principalGrade
-  # informPrincipal()
-  # viewTeachers()
-  # addTeachers()
-  # updateTeachers()
-  # deleteTeachers()
-  # informSectionalHead()
-  # viewEvents()
-  # createEvents()
-  # deleteEvents()
+  # vicePrincipalType
+  # vicePrincipalReport
+  # informVicePrincipal()
 }
 
 class Principal {
-  # broadcastAnnouncements()
-  # informUsers()
-  # informVicePrincipals()
-  # viewAdministrativeInformation()
-  # viewFinancialInformation()
-  # addPolicy()
-  # deletePolicy()
+  # principalType
+  # principalReport
+  # informPrincipal()
 }
 
 class Admin {
+  - adminID
+  - adminType
+  - adminReport
   - adminLog
-  - masterPassword
   - viewSystemDatabase()
-  - createRecords()
-  - editRecords()
-  - deleteRecords()
-  - viewUserInformation()
-  - addUser()
-  - updateUser()
-  - deleteUser()
-  - modifyPermissions()
+  - editSystemDatabase()
+  - viewUsers()
+  - editUsers()
+  - modifyUserPermissions()
   - viewSystemMonitor()
+  - systemBackups()
   - viewBackups()
-  - regularInformationBackups()
+  - restoreBackups()
   - generateSystemReports()
-  - addUserLog()
-  - updateUserLog()
-  - deleteUserLog()
 }
 
 class Payment {
   - paymentId
+  - paymentType
+  - paymentUser
   - amount
   - description
   - paymentDate
   - paymentMethod
-  - status
-  + paySchoolFees()
-  + payWelfareFees()
-  + donateSchool()
+  - currentStatus
+  + viewpayment()
+  + createPayment()
+  + updatePayment()
+  + deletePayment()
 }
 
-class SchoolFinanceDashboard {
+class SchoolBudget {
   - schoolBudget
   - income
   - expense
   - donations
   - studentPayments
-  + viewFinancialInformation()
+  - otherPayments
+  + viewBudget()
+  + updateBudget()
 }
 
-class EducationalDashboard {
-  + applyForSociety()
-  + createSociety()
-  + deleteSociety()
-  + viewSubjects()
-  + viewSubjectContent()
-  + viewAssessments()
-  + submitAssessment()
-  + gradeAssessment()
-  + createAssessment()
-  + updateAssessment()
-  + deleteAssessment()
-  + viewCompetitions()
-  + applyForCompetition()
-  + createCompetition()
-  + deleteCompetition()
-}
-
-class ExtracurricularDashboard {
-  + viewContent()
-  + viewClubs()
-  + applyForClub()
-  + createClub()
-  + deleteClub()
-  + viewCompetitions()
-  + applyForCompetition()
-  + createCompetition()
-  + deleteCompetition()
-}
-
-class ExamInformation {
+class Exam {
+  - id
+  - name
+  - subject
+  - type
+  - description
+  - date
+  - duration
+  - results
+  - medium
+  - grade
   + viewExams()
   + createExam()
   + updateExam()
@@ -166,56 +147,112 @@ class ExamInformation {
   + enterExamResults()
   + deleteExamResults()
   + applyForRecorrection()
-  + enterExamResult()
-  + changeExamResult()
+  + editExamResult()
   + deleteExamResult()
+  + getResults()
+  + sortResults()
 }
 
 class Assessment {
   - id
   - title
   - description
+  - attachedFiles
   - dueDate
-  - maxPoints
   - studentSubmissions
   - grade
-  + submitSubmission()
-  + updateSubmission()
-  + removeSubmission()
-}
-
-class Exam {
-  - id
-  - name
-  - description
-  - date
-  - duration
-  - results
-  + viewExam()
-  + updateExam()
-  + getResults()
-}
-
-class Result {
-  - score
-  - grade
-  + getScore()
-  + getGrade()
+  - class
+  - medium
+  - students
+  - marks
+  + viewAssessment()
+  + creatAssessment()
+  + updateAssessment()
+  + deleteAssessment()
+  + gradeAssessment()
 }
 
 class Submission {
+  - id
   - content
+  - attachedFiles
   - submissionDate
-  + editSubmission()
+  - submissionTime
+  - marks
+  - grade
+  - student
+  + viewSubmission()
+  + createSubmission()
+  + updateSubmission()
+  + deleteSubmission()
+  + gradeSubmission()
+  + sortSubmission()
+}
+
+class Section {
+  - section
+  - sectionalHead
+  - sectionReport
+  - sectionLog
+  - sectionStudents
+  - sectionTeachers
+  - sectionSubjects
+  + viewSection()
+  + createSection()
+  + updateSection()
+  + deleteSection()
+  + informSection()
+  + generateSectionReport()
+  + viewSectionReport()
+  + viewSectionLog()
+  + editSectionLog()
 }
 
 class Grade {
-  + createClasses()
-  + deleteClasses()
+  - grade
+  - gradeHead
+  - gradeReport
+  - gradelog
+  - gradeStudents
+  - gradeTeachers
+  - gradeSubjects
+  + viewGrade()
+  + createGrade()
+  + updateGrade()
+  + deleteGrade()
+  + informGrade()
+  + generateGradeReport()
+  + viewGradeReport()
+  + viewGradeLog()
+  + editGradeLog()
+}
+
+class Class {
+  - className
+  - classTeacher
+  - classMonitor
+  - students
+  - timeTable
+  - classReport
+  - classLog
+  + viewStudents()
   + addStudents()
   + removeStudents()
-  + addTeachers()
-  + removeTeachers()
+  + addClassMonitor()
+  + removeClassMonitor()
+  + addClassTeacher()
+  + removeClassTeacher()
+  + createTimeTable()
+  + updateTimeTable()
+  + deleteTimeTable()
+  + viewClass()
+  + createClass()
+  + updateClass()
+  + deleteClass()
+  + generateClassReport()
+  + viewClassReport()
+  + viewClassLog()
+  + editClassLog()
 }
 
 class Subject {
@@ -223,29 +260,13 @@ class Subject {
   - subjectContent
   - creditPoints
   - hours
+  - subjectContent
   + addContent()
   + removeContent()
-}
-
-class Class {
-  - classMonitor
-  - studentCount
-  - timeTable
-  + addClassMonitor()
-  + removeClassMonitor()
-}
-
-class StudentReport {
-  - dateCreated
-  - dateModified
-  - generatedBy
-  - studentPerformance
-  - studentAttendance
-  - studentLetters
-  - studentAchievements
-  - studentHealthStatus
-  + updateStudentReport()
-  + viewStudentReport()
+  + viewSubject()
+  + createSubject()
+  + updateSubject()
+  + deleteSubject()
 }
 
 User <|-- Student
@@ -254,35 +275,20 @@ User <|-- VicePrincipal
 Teacher <|-- SectionalHead
 VicePrincipal <|-- Principal
 Principal <|-- Admin
-
 Grade "1" *-- "1..*" Class : Has
 Grade "1" -- "1..*" Teacher : Has
 Grade "1" -- "1" SectionalHead : Has
 Grade "1" *-- "1..*" Subject : Has
 Class "1" -- "1..*" Student : Has
 Principal "1" -- "1" VicePrincipal : Inform
-VicePrincipal "1" -- "1" SchoolFinanceDashboard : Manage
 VicePrincipal "1" -- "1..*" Teacher : Manage
 SectionalHead "1" -- "1" Grade : Manage
 SectionalHead "1*" -- "1..*" Student : Manage
 SectionalHead "1*" -- "1..*" Teacher : Inform
 Teacher "1" -- "0..1" Class : Manage
-Teacher "1" -- "1" ExtracurricularDashboard : Manage
-Teacher "1" -- "1" EducationalDashboard : Manage
 Teacher "1" -- "1..*" Subject : Manage
-Teacher "1" -- "0..*" StudentReport : Manage
-Student "1" -- "1" EducationalDashboard : View
-Student "1" -- "1" ExtracurricularDashboard : View
 Student "1" -- "0..*" Payment : Make
-
-SchoolFinanceDashboard "1" o-- "0..*" Payment : Has
-EducationalDashboard "1" o-- "0..*" ExamInformation : Has
-EducationalDashboard "1" o-- "0..*" Assessment : Has
-EducationalDashboard "1" o-- "0..*" Subject : Has
-ExamInformation "1" o-- "0..*" Exam : Has
 Exam "1" O--- "0..*" Result : Has
 Assessment "1" o-- "0..*" Submission : Has
-Student "1" *-- "1" StudentReport : Has
-
 
 @enduml
