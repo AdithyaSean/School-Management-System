@@ -1,0 +1,91 @@
+@startuml Existing School Management System
+
+left to right direction
+skinparam linetype polyline
+
+actor "Teacher" as T
+actor "Class Teacher" as CT
+actor "Sectional Head" as SH
+actor "Treasurer" as TR
+actor "Student" as S
+actor "Prefects" as SP
+actor "Principal" as P
+actor "Vice Principal" as VP
+
+T <|-- CT
+T <|-- SH
+T <|-- TR
+S <|-- SP
+VP <|-- P
+
+rectangle "Existing School Management System" {
+    T -- (Report Duty)
+    T -- (View Schedule)
+    T -- (Prepare Exam Papers)
+    T -- (Record Lesson Progress)
+    T -- (Invigilate Exams)
+    T -- (Mark Exam Papers)
+    T -- (Supervise Clubs and Societies)
+    T -- (Request Leaves and Short Leaves)
+        
+    (Report Duty) ..> (Verify Using Fingerprint) : <<include>>
+
+    CT -- (Mark Students Attendence)
+    CT -- (Collect School Fees)
+    CT -- (Collect Parents Letters)
+    CT -- (Sort Exam Results)
+    CT -- (Enter Exam Results into Student Report Book)
+
+    (Sort Exam Results) ..> (Grade Students) : <<include>>
+    (Enter Exam Results into Student Report Book) ..> (Rank Students) : <<include>>
+
+    SH -- (Coordinate Teachers)
+    SH -- (Coordinate Students)
+    SH -- (Organize Events)
+    SH -- (Collaborate with the Management)
+
+    (Collaborate with the Management) ..> (Keep Records) : <<include>>
+    (Organize Events) ..> (Inform Students and Teachers) : <<include>>
+
+    TR -- (Collect School Fees from Class Teachers)
+    TR -- (Deposit Funds to School Account)
+    TR -- (Keep Financial Records)
+
+    (Deposit Funds to School Account) ..> (Record Transactions) : <<include>>
+
+    S -- (Create Clubs and Societies)
+    S -- (Pay School Fees)
+
+    (Create Clubs and Societies) <.. (Add Members) : <<extends>>
+    (Create Clubs and Societies) <.. (Inform Members) : <<extends>>
+
+    SP -- (Assist in Student Discipline)
+    SP -- (Organize Student Events)
+
+    (Assist in Student Discipline) ..> (Report Misconducts) : <<include>>
+    (Organize Student Events) ..> (Inform Students) : <<include>>
+
+    P -- (Overall School Management)
+    P -- (Organize Special Events)
+    P -- (Take Important Decisions)
+
+    (Organize Special Events) ..> (Inform the School) : <<include>>
+    (Take Important Decisions) ..> (Collaborate with The Staff) : <<include>>
+    (Overall School Management) ..> (Set School Policies) : <<include>>
+
+    VP -- (Assist Principal)
+    VP -- (Coordinate School Management)
+    VP -- (Issueing Cheques)
+    VP -- (Collect Funds for Development)
+    VP -- (Register New Students)
+    VP -- (Generate Student Leaving Certificates)
+
+    (Generate Student Leaving Certificates) ..> (Update Logs and Records) : <<include>>
+    (Assist Principal) ..> (Handle Administrative Tasks) : <<include>>
+    (Coordinate School Management) ..> (Keep Management Records) : <<include>>
+    (Collect Funds for Development) ..> (Collaborate with Treasurer) : <<include>>
+    (Issueing Cheques) ..> (Collaborate with The Treasurer) : <<include>>
+    (Register New Students) ..> (Update Logs and Records) : <<include>>
+}
+
+@enduml
