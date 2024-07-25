@@ -78,6 +78,7 @@ class VicePrincipal {
   # vicePrincipalType
   # vicePrincipalReport
   # informVicePrincipal()
+  # manageSchoolBudget()
 }
 
 class Principal {
@@ -103,92 +104,6 @@ class Admin {
   - generateSystemReports()
 }
 
-class Payment {
-  - paymentId
-  - paymentType
-  - paymentUser
-  - amount
-  - description
-  - paymentDate
-  - paymentMethod
-  - currentStatus
-  + viewpayment()
-  + createPayment()
-  + updatePayment()
-  + deletePayment()
-}
-
-class SchoolBudget {
-  - schoolBudget
-  - income
-  - expense
-  - donations
-  - studentPayments
-  - otherPayments
-  + viewBudget()
-  + updateBudget()
-}
-
-class Exam {
-  - id
-  - name
-  - subject
-  - type
-  - description
-  - date
-  - duration
-  - results
-  - medium
-  - grade
-  + viewExams()
-  + createExam()
-  + updateExam()
-  + deleteExam()
-  + enterExamResults()
-  + deleteExamResults()
-  + applyForRecorrection()
-  + editExamResult()
-  + deleteExamResult()
-  + getResults()
-  + sortResults()
-}
-
-class Assessment {
-  - id
-  - title
-  - description
-  - attachedFiles
-  - dueDate
-  - studentSubmissions
-  - grade
-  - class
-  - medium
-  - students
-  - marks
-  + viewAssessment()
-  + creatAssessment()
-  + updateAssessment()
-  + deleteAssessment()
-  + gradeAssessment()
-}
-
-class Submission {
-  - id
-  - content
-  - attachedFiles
-  - submissionDate
-  - submissionTime
-  - marks
-  - grade
-  - student
-  + viewSubmission()
-  + createSubmission()
-  + updateSubmission()
-  + deleteSubmission()
-  + gradeSubmission()
-  + sortSubmission()
-}
-
 class Section {
   - section
   - sectionalHead
@@ -208,33 +123,14 @@ class Section {
   + editSectionLog()
 }
 
-class Grade {
-  - grade
-  - gradeHead
-  - gradeReport
-  - gradelog
-  - gradeStudents
-  - gradeTeachers
-  - gradeSubjects
-  + viewGrade()
-  + createGrade()
-  + updateGrade()
-  + deleteGrade()
-  + informGrade()
-  + generateGradeReport()
-  + viewGradeReport()
-  + viewGradeLog()
-  + editGradeLog()
-}
-
 class Class {
-  - className
+  - class
   - classTeacher
   - classMonitor
-  - students
-  - timeTable
+  - classStudents
   - classReport
   - classLog
+  - timeTable
   + viewStudents()
   + addStudents()
   + removeStudents()
@@ -255,6 +151,90 @@ class Class {
   + editClassLog()
 }
 
+class Payment {
+  - paymentId
+  - paymentType
+  - paymentUser
+  - amount
+  - description
+  - paymentDate
+  - paymentMethod
+  - currentStatus
+  + viewpayment()
+  + createPayment()
+  + updatePayment()
+  + deletePayment()
+}
+
+class SchoolBudget {
+  - income
+  - expense
+  - donations
+  - otherPayments
+  + viewBudget()
+  + createBudget()
+  + updateBudget()
+}
+
+class Exam {
+  - id
+  - name
+  - type
+  - description
+  - date
+  - duration
+  - medium
+  + viewExams()
+  + createExam()
+  + updateExam()
+  + deleteExam()
+}
+
+class Result {
+  - id
+  - studentName
+  - marks
+  - grade
+  - updateDate
+  + viewResult()
+  + createResult()
+  + updateResult()
+  + deleteResult()
+  + applyForRecorrection()
+}
+
+class Assessment {
+  - id
+  - title
+  - description
+  - attachedFiles
+  - dueDate
+  - medium
+  + viewAssessment()
+  + creatAssessment()
+  + updateAssessment()
+  + deleteAssessment()
+  + gradeAssessment()
+  + submitSubmission()
+  + manageSubmission()
+}
+
+class Submission {
+  - id
+  - content
+  - attachedFiles
+  - submissionDate
+  - submissionTime
+  - marks
+  - grade
+  + viewSubmission()
+  + createSubmission()
+  + updateSubmission()
+  + deleteSubmission()
+  + gradeSubmission()
+  + sortSubmission()
+}
+
 class Subject {
   - subjectName
   - subjectContent
@@ -271,24 +251,38 @@ class Subject {
 
 User <|-- Student
 User <|-- Teacher
-User <|-- VicePrincipal
 Teacher <|-- SectionalHead
+SectionalHead <|-- VicePrincipal
 VicePrincipal <|-- Principal
 Principal <|-- Admin
-Grade "1" *-- "1..*" Class : Has
-Grade "1" -- "1..*" Teacher : Has
-Grade "1" -- "1" SectionalHead : Has
-Grade "1" *-- "1..*" Subject : Has
-Class "1" -- "1..*" Student : Has
-Principal "1" -- "1" VicePrincipal : Inform
-VicePrincipal "1" -- "1..*" Teacher : Manage
-SectionalHead "1" -- "1" Grade : Manage
-SectionalHead "1*" -- "1..*" Student : Manage
-SectionalHead "1*" -- "1..*" Teacher : Inform
+
+Section "1" *-- "1..*" Teacher : Has
+Section "1" *-- "1..*" Class : Has
+Section "1" *-- "1..*" Subject : Has
+Section "1" o-- "1..*" Exam : Has
+Class "1" *-- "1..*" Student : Has
+Assessment "1" o-- "0..*" Submission : Has
+Assessment "1" *-- "1" Subject
+Exam "1" o-- "0..*" Result : Has
+Exam "1" *-- "1" Subject
+Result "1" *-- "1" Subject
+SchoolBudget -- Payment
+Admin "1" -- "1..*" User : Manage
+Principal "1" -- "1..*" VicePrincipal : Manage
+VicePrincipal "1" -- "1..*" SchoolBudget : Manage
+VicePrincipal "1" -- "1..*" SectionalHead : Manage
+SectionalHead "1" -- "1" Section : Manage
+SectionalHead "1" -- "1..*" Teacher : Manage
 Teacher "1" -- "0..1" Class : Manage
 Teacher "1" -- "1..*" Subject : Manage
+Teacher "1" -- "1..*" Assessment : Manage
+Teacher "1" -- "1..*" Submission : Manage
+Teacher "1" -- "1..*" Exam : Manage
+Teacher "1" -- "1..*" Student : Manage
 Student "1" -- "0..*" Payment : Make
-Exam "1" O--- "0..*" Result : Has
-Assessment "1" o-- "0..*" Submission : Has
+Student "1" -- "1..*" Subject : Access
+Student "1" -- "1..*" Exam : Apply
+Student "1" o-- "0..*" Result : Has
+Student "1" -- "0..*" Assessment : Submit
 
 @enduml
