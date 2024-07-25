@@ -1,0 +1,250 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' sans-serif;
+    
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Navigation */
+nav{
+    position: fixed;
+    width: 100%;
+    background-color:rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 60px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.90);
+    z-index: 100; /* Set a higher z-index value */
+}
+
+nav img{
+    width: 60px;
+    cursor: pointer;
+}
+
+nav .Navbar ul{
+    margin-bottom: -30px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+nav .Navbar ul li{
+    display: contents;
+    list-style: none;
+}
+
+nav .Navbar ul li a{
+    font-weight: 400;
+    padding: 30px 25px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.50s ease;
+}
+
+.Navbar ul li a{
+    position: relative;
+}
+
+nav .Navbar ul li a:hover{
+    color: white;
+    background-color: rgb(122, 88, 88);
+}
+
+/* Login Button */
+nav .Navbar ul li a.log {
+    margin-left: 35px;
+    font-weight: 500;
+    background-color: gray;
+    padding: 14px 40px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.40s ease-in-out;
+    border-radius: 30px; 
+}
+
+nav .Navbar ul li a.log:hover{
+    color: white;
+    background-color: rgb(122, 88, 88);
+}
+
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    width: 240px;
+    height: 100%;
+    background: rgb(231, 226, 226);
+    z-index: 10;
+}
+
+.nav-links {
+    margin-top: 90px;
+    margin-left: -32px;
+}
+
+.nav-links li{
+    height: 70px;
+    width: 100%;
+    list-style: none;
+}
+
+.nav-links li a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* background-color: rgb(177, 177, 177); */
+    text-decoration: none;
+    transition: background-color 0.4s ease;
+}
+
+.nav-links li a:hover{
+    border-left: 20px solid transparent;
+    background-color: rgb(179, 164, 164);
+}
+
+.nav-links li a i{
+    margin-left: 25px;
+    min-width: 35px;
+    color: rgb(66, 66, 66);
+    font-size: 9pt;
+}
+
+.link-name {
+    margin-left: -5px;
+    color: rgb(66, 66, 66);
+    font-size: 9pt;
+    font-weight: 500;
+}
+
+
+.active{
+    background-color: rgb(179, 164, 164);
+}
+
+/* Dash Border */
+.dashborder {
+    width: 1207px;
+    height: 800px;
+    border: 0.5px solid rgb(209, 209, 209);
+    position: absolute;
+    margin-left: 255px;
+    margin-top: 105px;
+}
+
+/* title */
+.dashborder .title {
+    margin-top: 20px;
+    margin-left: 28px;
+    margin-right: 28px;
+    font-size: 19pt;
+    font-weight: 100;
+    color: rgb(105, 105, 105);
+}
+
+
+
+/* table */
+.table {
+    width: 100%;
+}
+
+/* table header */
+.table thead tr th {
+    background-color: rgb(119, 90, 90);
+    color: white;
+    font-size: 13pt;
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+/* table data */
+.table tr td{
+    padding-top: 15px;
+    font-size: 17px;
+    padding-left: 22px;
+}
+
+/* view link */
+.table tr td a{
+    background-color: rgb(132, 98, 98);
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 350;
+    transition: background-color 0.2s ease;
+}
+
+.table tr td a:hover {
+    text-decoration: underline;
+    background-color: rgb(142, 114, 114);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive Navigation */
+@media only screen and (max-width: 768px) {
+    nav {
+        padding: 14px 20px; /* Adjust padding for smaller screens */
+    }
+
+    nav img {
+        width: 40px; /* Reduce logo size for smaller screens */
+    }
+
+    nav .Navbar ul li a {
+        font-size: 11px; /* Reduce font size for navigation links */
+        padding: 23.5px 10px;
+    }
+
+    nav .Navbar ul {
+        margin-right: 120px;
+    }
+
+    nav .Navbar ul li a.log {
+        font-size: 11px;
+        position: absolute; /* Set the position to absolute */
+        right: 65px; /* Adjust the distance from the right side */
+        top: 55%; /* Position it vertically centered */
+        transform: translateY(-50%); /* Adjust for vertical centering */
+        padding: 8px 15px;
+    }
+}
+
