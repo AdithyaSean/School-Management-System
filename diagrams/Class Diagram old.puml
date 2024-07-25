@@ -1,0 +1,294 @@
+@startuml School Management System
+
+skinparam Linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+class User {
+  # userType
+  # userID
+  # username
+  # password
+  # email
+  # firstName
+  # lastName
+  # fullName
+  # dateOfBirth
+  # fingerprint
+  # userReport
+  # userLog
+  + viewUser()
+  + createUser()
+  + updateUser()
+  + deleteUser()
+  + viewUserReport()
+  + generateUserReport()
+  + viewUserLog()
+  + editUserLog()
+  + enterAttendance()
+  + informUser()
+  + login()
+  + logout()
+}
+
+class Student {
+  - studentID
+  - studentSection
+  - studentgrade
+  - studentClass
+  - studentReport
+  + viewStudent()
+  + createStudent()
+  + updateStudent()
+  + deleteStudent()
+  + viewStudentReport()
+  + generateStudentReport()
+  + informStudent()
+}
+
+class Teacher {
+  # gradeValue
+  # teacherID
+  # teacherSubjects
+  # teacherClass
+  # teacherSection
+  # teacherReport
+  + viewTeacher()
+  + createTeacher()
+  + updateTeacher()
+  + deleteTeacher()
+  + viewTeacherReport()
+  + generateTeacherReport()
+  + informTeacher()
+}
+
+class SectionalHead {
+  - section
+  - sectionalHeadReport
+  + viewSectionalHead()
+  + createSectionalHead()
+  + updateSectionalHead()
+  + deleteSectionalHead()
+  + viewSectionalHeadReport()
+  + generateSectionalHeadReport()
+  + informSectionalHead()
+}
+
+class VicePrincipal {
+  # vicePrincipalType
+  # vicePrincipalReport
+  # informVicePrincipal()
+}
+
+class Principal {
+  # principalType
+  # principalReport
+  # informPrincipal()
+}
+
+class Admin {
+  - adminID
+  - adminType
+  - adminReport
+  - adminLog
+  - viewSystemDatabase()
+  - editSystemDatabase()
+  - viewUsers()
+  - editUsers()
+  - modifyUserPermissions()
+  - viewSystemMonitor()
+  - systemBackups()
+  - viewBackups()
+  - restoreBackups()
+  - generateSystemReports()
+}
+
+class Payment {
+  - paymentId
+  - paymentType
+  - paymentUser
+  - amount
+  - description
+  - paymentDate
+  - paymentMethod
+  - currentStatus
+  + viewpayment()
+  + createPayment()
+  + updatePayment()
+  + deletePayment()
+}
+
+class SchoolBudget {
+  - schoolBudget
+  - income
+  - expense
+  - donations
+  - studentPayments
+  - otherPayments
+  + viewBudget()
+  + updateBudget()
+}
+
+class Exam {
+  - id
+  - name
+  - subject
+  - type
+  - description
+  - date
+  - duration
+  - results
+  - medium
+  - grade
+  + viewExams()
+  + createExam()
+  + updateExam()
+  + deleteExam()
+  + enterExamResults()
+  + deleteExamResults()
+  + applyForRecorrection()
+  + editExamResult()
+  + deleteExamResult()
+  + getResults()
+  + sortResults()
+}
+
+class Assessment {
+  - id
+  - title
+  - description
+  - attachedFiles
+  - dueDate
+  - studentSubmissions
+  - grade
+  - class
+  - medium
+  - students
+  - marks
+  + viewAssessment()
+  + creatAssessment()
+  + updateAssessment()
+  + deleteAssessment()
+  + gradeAssessment()
+}
+
+class Submission {
+  - id
+  - content
+  - attachedFiles
+  - submissionDate
+  - submissionTime
+  - marks
+  - grade
+  - student
+  + viewSubmission()
+  + createSubmission()
+  + updateSubmission()
+  + deleteSubmission()
+  + gradeSubmission()
+  + sortSubmission()
+}
+
+class Section {
+  - section
+  - sectionalHead
+  - sectionReport
+  - sectionLog
+  - sectionStudents
+  - sectionTeachers
+  - sectionSubjects
+  + viewSection()
+  + createSection()
+  + updateSection()
+  + deleteSection()
+  + informSection()
+  + generateSectionReport()
+  + viewSectionReport()
+  + viewSectionLog()
+  + editSectionLog()
+}
+
+class Grade {
+  - grade
+  - gradeHead
+  - gradeReport
+  - gradelog
+  - gradeStudents
+  - gradeTeachers
+  - gradeSubjects
+  + viewGrade()
+  + createGrade()
+  + updateGrade()
+  + deleteGrade()
+  + informGrade()
+  + generateGradeReport()
+  + viewGradeReport()
+  + viewGradeLog()
+  + editGradeLog()
+}
+
+class Class {
+  - className
+  - classTeacher
+  - classMonitor
+  - students
+  - timeTable
+  - classReport
+  - classLog
+  + viewStudents()
+  + addStudents()
+  + removeStudents()
+  + addClassMonitor()
+  + removeClassMonitor()
+  + addClassTeacher()
+  + removeClassTeacher()
+  + createTimeTable()
+  + updateTimeTable()
+  + deleteTimeTable()
+  + viewClass()
+  + createClass()
+  + updateClass()
+  + deleteClass()
+  + generateClassReport()
+  + viewClassReport()
+  + viewClassLog()
+  + editClassLog()
+}
+
+class Subject {
+  - subjectName
+  - subjectContent
+  - creditPoints
+  - hours
+  - subjectContent
+  + addContent()
+  + removeContent()
+  + viewSubject()
+  + createSubject()
+  + updateSubject()
+  + deleteSubject()
+}
+
+User <|-- Student
+User <|-- Teacher
+User <|-- VicePrincipal
+Teacher <|-- SectionalHead
+VicePrincipal <|-- Principal
+Principal <|-- Admin
+Grade "1" *-- "1..*" Class : Has
+Grade "1" -- "1..*" Teacher : Has
+Grade "1" -- "1" SectionalHead : Has
+Grade "1" *-- "1..*" Subject : Has
+Class "1" -- "1..*" Student : Has
+Principal "1" -- "1" VicePrincipal : Inform
+VicePrincipal "1" -- "1..*" Teacher : Manage
+SectionalHead "1" -- "1" Grade : Manage
+SectionalHead "1*" -- "1..*" Student : Manage
+SectionalHead "1*" -- "1..*" Teacher : Inform
+Teacher "1" -- "0..1" Class : Manage
+Teacher "1" -- "1..*" Subject : Manage
+Student "1" -- "0..*" Payment : Make
+Exam "1" O--- "0..*" Result : Has
+Assessment "1" o-- "0..*" Submission : Has
+
+@enduml

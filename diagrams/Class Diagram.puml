@@ -129,7 +129,6 @@ class SchoolFinanceDashboard {
 }
 
 class EducationalDashboard {
-  + viewSocieties()
   + applyForSociety()
   + createSociety()
   + deleteSociety()
@@ -274,7 +273,6 @@ Teacher "1" -- "1..*" Subject : Manage
 Teacher "1" -- "0..*" StudentReport : Manage
 Student "1" -- "1" EducationalDashboard : View
 Student "1" -- "1" ExtracurricularDashboard : View
-Student "1" -- "0..*" Request : Submit
 Student "1" -- "0..*" Payment : Make
 
 SchoolFinanceDashboard "1" o-- "0..*" Payment : Has

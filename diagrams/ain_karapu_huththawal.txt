@@ -107,3 +107,4 @@ Admin "1" -- "1" SystemLog : View
 Principal "1" -- "0..*" Announcement : Manage
 VicePrincipal -- Event
 Teacher "1" -- "0..*" Request : Manage
+Student "1" -- "0..*" Request : Submit
