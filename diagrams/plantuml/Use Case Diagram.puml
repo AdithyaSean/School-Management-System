@@ -159,14 +159,8 @@ rectangle "School Management System" {
         (View Events Informations) <.. (Edit Events) : <<extends>>
         (View Events Informations) <.. (Delete Events) : <<extends>>
 
-        (Create Events) ..> (Update Events): <<include>>
-        (Edit Events) ..> (Update Events): <<include>>
-        (Delete Events) ..> (Update Events): <<include>>
-
         (Inform Vice Principal) -- VPR
         (Notify Vice Principal) -- VPR
-        (Update Administrative Informations) -- VPR
-        (Update Events) -- VPR
 
         P -- (Broadcast Announcements)
         (Broadcast Announcements) <.. (Inform Users) : <<extends>>
@@ -174,30 +168,6 @@ rectangle "School Management System" {
 
         (Inform Users) ..> (Notify Users) : <<include>>
         (Inform Vice Principals) ..> (Notify Vice Principal) : <<include>>
-
-        P -- (View Administrative Informations)
-        (View Administrative Informations) <.. (Create Policies) : <<extends>>
-        (View Administrative Informations) <.. (Edit Policies) : <<extends>>
-        (View Administrative Informations) <.. (Delete Policies) : <<extends>>
-
-        (Create Policies) ..> (Update Administrative Informations) : <<include>>
-        (Edit Policies) ..> (Update Administrative Informations) : <<include>>
-        (Delete Policies) ..> (Update Administrative Informations) : <<include>>
-
-        P -- (View Financial Informations)
-        (View Financial Informations) <.. (Plan School Budget) : <<extends>>
-        (View Financial Informations) <.. (Update School Budget) : <<extends>>
-
-        (Plan School Budget) ..> (Inform Vice Principal): <<include>>
-        (Update School Budget) ..> (Inform Vice Principal): <<include>>
-
-        (View Financial Informations) <.. (Generate Financial Reports) : <<extends>>
-        (View Financial Informations) <.. (Withdraw Funds from School Account) : <<extends>>
-        (View Financial Informations) <.. (Deposit Funds to School Account) : <<extends>>
-
-        (Generate Financial Reports) ..> (Inform Vice Principal): <<include>>
-        (Withdraw Funds from School Account) ..> (Inform Vice Principal) : <<include>>
-        (Deposit Funds to School Account) ..> (Inform Vice Principal) : <<include>>
 
         (Inform Principal) -- PR
         (Update User Logs) -- PR
