@@ -1,0 +1,26 @@
+@startuml School Management System
+
+actor Student
+boundary "School Management System" as SchoolManagementSystem
+control "Educational Dashboard" as EducationalDashboard
+control Subject
+entity "Student Education" as Education
+
+Student -> SchoolManagementSystem : View Educational Info
+activate SchoolManagementSystem
+SchoolManagementSystem -> EducationalDashboard : Request Educational Info
+activate EducationalDashboard
+EducationalDashboard -> Education : Retrieve Educational Data
+activate Education
+Education --> EducationalDashboard : Educational Data
+deactivate Education
+EducationalDashboard --> SchoolManagementSystem : Show Educational Data
+deactivate EducationalDashboard
+SchoolManagementSystem --> Student : Show Educational Data
+deactivate SchoolManagementSystem
+
+
+Student -> 
+
+
+@enduml
