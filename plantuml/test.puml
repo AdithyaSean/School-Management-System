@@ -1,0 +1,21 @@
+@startuml test
+
+left to right direction
+
+actor User as U
+actor User as U2
+actor Receiver as R
+actor Receiver as R2
+
+rectangle "System" {
+    U -- (Perform Action)
+    (Perform Action) ..> (Generate Output) : <<include>>
+    (Generate Output) -- R2
+
+    R -- (Process Output)
+    (Process Output) ..> (Send Feedback) : <<include>>
+    (Send Feedback) -- U2
+}
+
+
+@enduml

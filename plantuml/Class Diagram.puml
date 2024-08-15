@@ -74,17 +74,17 @@ class SectionalHead {
   + informSectionalHead()
 }
 
-class VicePrincipal {
-  # vicePrincipalType
-  # vicePrincipalReport
-  # informVicePrincipal()
-  # manageSchoolBudget()
-}
-
 class Principal {
   # principalType
   # principalReport
-  # informPrincipal()
+  + viewPrincipal()
+  + createPrincipal()
+  + updatePrincipal()
+  + deletePrincipal()
+  + viewPrincipalReport()
+  + generatePrincipalReport()
+  + informPrincipal()
+  + informUsers()
 }
 
 class Admin {
@@ -96,7 +96,6 @@ class Admin {
   - editSystemDatabase()
   - viewUsers()
   - editUsers()
-  - modifyUserPermissions()
   - viewSystemMonitor()
   - systemBackups()
   - viewBackups()
@@ -130,25 +129,35 @@ class Class {
   - classStudents
   - classReport
   - classLog
-  - timeTable
-  + viewStudents()
-  + addStudents()
-  + removeStudents()
+  + viewClassStudents()
+  + addClassStudents()
+  + removeClassStudents()
   + addClassMonitor()
   + removeClassMonitor()
   + addClassTeacher()
   + removeClassTeacher()
-  + createTimeTable()
-  + updateTimeTable()
-  + deleteTimeTable()
+  + viewTimeTable()
+  + editTimeTable()
   + viewClass()
   + createClass()
   + updateClass()
   + deleteClass()
   + generateClassReport()
+  + updateClassLog()
   + viewClassReport()
   + viewClassLog()
   + editClassLog()
+}
+
+class TimeTable {
+  - timeTableID
+  - timeTableClass
+  - timeTableTeacher
+  - timeTableSection
+  + viewTimeTable()
+  + createTimeTable()
+  + updateTimeTable()
+  + deleteTimeTable()
 }
 
 class Payment {
@@ -164,16 +173,6 @@ class Payment {
   + createPayment()
   + updatePayment()
   + deletePayment()
-}
-
-class SchoolBudget {
-  - income
-  - expense
-  - donations
-  - otherPayments
-  + viewBudget()
-  + createBudget()
-  + updateBudget()
 }
 
 class Exam {
@@ -252,8 +251,7 @@ class Subject {
 User <|-- Student
 User <|-- Teacher
 Teacher <|-- SectionalHead
-SectionalHead <|-- VicePrincipal
-VicePrincipal <|-- Principal
+SectionalHead <|-- Principal
 Principal <|-- Admin
 
 Section "1" *-- "1..*" Teacher : Has
@@ -261,16 +259,14 @@ Section "1" *-- "1..*" Class : Has
 Section "1" *-- "1..*" Subject : Has
 Section "1" o-- "1..*" Exam : Has
 Class "1" *-- "1..*" Student : Has
-Assessment "1" o-- "0..*" Submission : Has
+Class "1" *-- "1" TimeTable
+Assessment "1" -- "0..*" Submission
 Assessment "1" *-- "1" Subject
 Exam "1" o-- "0..*" Result : Has
 Exam "1" *-- "1" Subject
 Result "1" *-- "1" Subject
-SchoolBudget -- Payment
 Admin "1" -- "1..*" User : Manage
-Principal "1" -- "1..*" VicePrincipal : Manage
-VicePrincipal "1" -- "1..*" SchoolBudget : Manage
-VicePrincipal "1" -- "1..*" SectionalHead : Manage
+Principal "1" -- "1..*" SectionalHead : Manage
 SectionalHead "1" -- "1" Section : Manage
 SectionalHead "1" -- "1..*" Teacher : Manage
 Teacher "1" -- "0..1" Class : Manage
