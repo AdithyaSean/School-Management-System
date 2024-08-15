@@ -14,7 +14,6 @@ actor "Sectional Head" as SHR
 actor "Principal" as P
 actor "Principal" as PR
 actor "Administrator" as A
-actor "Administrator" as AR
 
 U <|-- S
 U <|-- T
@@ -59,7 +58,6 @@ rectangle "School Management System" {
         (Update Student Informations) -- SR
         (Update Educational Informations) -- SR
         (Update Exam Informations) -- SR
-        (Notify Students) -- SR
 
         T -- (View Student Informations)
         (View Student Informations) <.. (Create Student Informations) : <<extends>>
@@ -78,12 +76,13 @@ rectangle "School Management System" {
         (View Educational Informations) <.. (Create Assessments) : <<extends>>
         (View Educational Informations) <.. (Edit Assessments) : <<extends>>
         (View Educational Informations) <.. (Delete Assessments) : <<extends>>
-        (View Educational Informations) <.. (Grade Student Assessments) : <<extends>>
+        (View Educational Informations) <.. (View Student Submissions) : <<extends>>
+        (View Educational Informations) <.. (Grade Student Submissions) : <<extends>>
 
         (Create Assessments) ..> (Update Educational Informations): <<include>>
         (Edit Assessments) ..> (Update Educational Informations): <<include>>
         (Delete Assessments) ..> (Update Educational Informations): <<include>>
-        (Grade Student Assessments) ..> (Update Educational Informations) : <<include>>
+        (Grade Student Submissions) ..> (Update Educational Informations) : <<include>>
 
         T -- (View Exam Informations)
         (View Exam Informations) <.. (Create Exams) : <<extends>>
@@ -97,7 +96,6 @@ rectangle "School Management System" {
         (Edit Exam Results) ..> (Update Exam Informations) : <<include>>
 
         (Update Educational Information) -- TR
-        (Update Exam Information) -- TR
         (Apply for Recorrections) -- TR
         (Notify Teachers) -- TR
 
@@ -111,23 +109,20 @@ rectangle "School Management System" {
         (View Sectional Informations) <.. (Update Time Tables) : <<extends>>
         (View Sectional Informations) <.. (Delete Time Tables) : <<extends>>
 
+        (Notify Sectional Heads) -- SHR
+
         (Add Staff Members) ..> (Notify Teachers) : <<include>>
         (Update Staff Members) ..> (Notify Teachers) : <<include>>
         (Remove Staff Members) ..> (Notify Teachers) : <<include>>
-        (Remove Staff Members) ..> (Notify Principals) : <<include>>
         (Create Time Tables) ..> (Notify Teachers): <<include>>
         (Update Time Tables) ..> (Notify Teachers) : <<include>>
         (Delete Time Tables) ..> (Notify Teachers) : <<include>>
-
-        (Notify Sectional Heads) -- SHR
 
         P -- (Broadcast Announcements)
         (Broadcast Announcements) ..> (Select Users) : <<include>>
 
         (Select Users) <.. (Notify Users) : <<extends>>
         (Select Users) <.. (Notify Sectional Heads) : <<extends>>
-        (Select Users) <.. (Notify Teachers) : <<extends>>
-        (Select Users) <.. (Notify Students) : <<extends>>
 
         (Notify Principals) -- PR
 
@@ -152,8 +147,6 @@ rectangle "School Management System" {
         (Generate System Utilization Reports) ..> (Notify Principals) : <<include>>
         (Generate Content Popularity Reports) ..> (Notify Principals) : <<include>>
         (Generate Monthly Attendance Reports) ..> (Notify Principals) : <<include>>
-
-        (Update User Logs) -- AR
 }
 
 @enduml
