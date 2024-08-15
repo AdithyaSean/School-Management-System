@@ -160,21 +160,6 @@ class TimeTable {
   + deleteTimeTable()
 }
 
-class Payment {
-  - paymentId
-  - paymentType
-  - paymentUser
-  - amount
-  - description
-  - paymentDate
-  - paymentMethod
-  - currentStatus
-  + viewpayment()
-  + createPayment()
-  + updatePayment()
-  + deletePayment()
-}
-
 class Exam {
   - id
   - name
@@ -258,26 +243,25 @@ Section "1" *-- "1..*" Teacher : Has
 Section "1" *-- "1..*" Class : Has
 Section "1" *-- "1..*" Subject : Has
 Section "1" o-- "1..*" Exam : Has
-Class "1" *-- "1..*" Student : Has
-Class "1" *-- "1" TimeTable
-Assessment "1" -- "0..*" Submission
-Assessment "1" *-- "1" Subject
+Class "1" -- "1..*" Student : Access
+Class "1" -- "1" TimeTable : Has
+Assessment "1" -- "0..*" Submission : Has
+Assessment "1" *-- "1"  Subject : Has
 Exam "1" o-- "0..*" Result : Has
-Exam "1" *-- "1" Subject
-Result "1" *-- "1" Subject
-Admin "1" -- "1..*" User : Manage
-Principal "1" -- "1..*" SectionalHead : Manage
-SectionalHead "1" -- "1" Section : Manage
-SectionalHead "1" -- "1..*" Teacher : Manage
-Teacher "1" -- "0..1" Class : Manage
-Teacher "1" -- "1..*" Subject : Manage
-Teacher "1" -- "1..*" Assessment : Manage
-Teacher "1" -- "1..*" Submission : Manage
-Teacher "1" -- "1..*" Exam : Manage
-Teacher "1" -- "1..*" Student : Manage
-Student "1" -- "0..*" Payment : Make
+Exam "1" *-- "1..*" Subject : Has
+Result "1" *-- "1" Subject : Has
+Admin "1" -- "1..*" User : Access
+Principal "1" -- "1..*" SectionalHead : Access
+SectionalHead "1" -- "1" Section : Access
+SectionalHead "1" -- "1..*" Teacher : Access
+Teacher "1" -- "0..1" Class : Access
+Teacher "1" -- "1..*" Subject : Access
+Teacher "1" -- "1..*" Assessment : Access
+Teacher "1" -- "1..*" Submission : Access
+Teacher "1" -- "1..*" Exam : Access
+Teacher "1" -- "1..*" Student : Access
 Student "1" -- "1..*" Subject : Access
-Student "1" -- "1..*" Exam : Apply
+Student "1" -- "1..*" Exam : View
 Student "1" o-- "0..*" Result : Has
 Student "1" -- "0..*" Assessment : Submit
 
