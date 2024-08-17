@@ -34,8 +34,8 @@ rectangle "School Management System" {
         (View User Profile) <.. (Update User Profile) : <<extends>>
         (Update User Profile) ..> (Update User Log) : <<include>>
 
-        U -- (Comminication)
-        (Comminication) <.. (Send Messages) : <<extends>>
+        U -- (Communication)
+        (Communication) <.. (Send Messages) : <<extends>>
         (Send Messages) ..> (Update User Log) : <<include>>
 
         U -- (Logout)
@@ -46,8 +46,10 @@ rectangle "School Management System" {
 
         S -- (View Educational Information)
         (View Educational Information) <.. (Submit Assessments) : <<extends>>
+        (View Educational Information) <.. (View Assessments) : <<extends>>
 
         (Submit Assessments) ..> (Update Educational Information) : <<include>>
+        (View Assessments) ..> (View Submission Marks) : <<include>>
 
         S -- (View Exams Information)
         (View Exams Information) <.. (View Exams) : <<extends>>
@@ -55,59 +57,60 @@ rectangle "School Management System" {
         (View Exam Results) <.. (Apply for Recorrections) : <<extends>>
         (View Exam Results) <.. (Calculate GPA) : <<extends>>
 
-        (Update Student Informations) -- SR
-        (Update Educational Informations) -- SR
-        (Update Exam Informations) -- SR
+        (Update Student Information ) -- SR
+        (Update Educational Information ) -- SR
+        (Update Exam Information ) -- SR
 
-        T -- (View Student Informations)
-        (View Student Informations) <.. (Create Student Informations) : <<extends>>
-        (View Student Informations) <.. (Delete Student Informations) : <<extends>>
-        (View Student Informations) <.. (Generate Student Attendance Reports) : <<extends>>
-        (View Student Informations) <.. (Generate Student Performance Reports) : <<extends>>
-        (View Student Informations) <.. (Generate Enrollment Reports) : <<extends>>
+        T -- (View Student Information )
+        (View Student Information ) <.. (Create Student Information ) : <<extends>>
+        (View Student Information ) <.. (Delete Student Information ) : <<extends>>
+        (View Student Information ) <.. (Generate Student Attendance Reports) : <<extends>>
+        (View Student Information ) <.. (Generate Student Performance Reports) : <<extends>>
+        (View Student Information ) <.. (Generate Enrollment Reports) : <<extends>>
 
-        (Create Student Informations) ..> (Update Student Informations) : <<include>>
-        (Delete Student Informations) ..> (Update Student Informations) : <<include>>
-        (Generate Student Attendance Reports) ..> (Update Student Informations) : <<include>>
-        (Generate Student Performance Reports) ..> (Update Student Informations) : <<include>>
-        (Generate Enrollment Reports) ..> (Update Student Informations): <<include>>
+        (Create Student Information ) ..> (Update Student Information ) : <<include>>
+        (Delete Student Information ) ..> (Update Student Information ) : <<include>>
+        (Generate Student Attendance Reports) ..> (Update Student Information ) : <<include>>
+        (Generate Student Performance Reports) ..> (Update Student Information ) : <<include>>
+        (Generate Enrollment Reports) ..> (Update Student Information ): <<include>>
 
-        T -- (View Educational Informations)
-        (View Educational Informations) <.. (Create Assessments) : <<extends>>
-        (View Educational Informations) <.. (Edit Assessments) : <<extends>>
-        (View Educational Informations) <.. (Delete Assessments) : <<extends>>
-        (View Educational Informations) <.. (View Student Submissions) : <<extends>>
-        (View Educational Informations) <.. (Grade Student Submissions) : <<extends>>
+        T -- (View Educational Information )
+        (View Educational Information ) <.. (Create Assessments) : <<extends>>
+        (View Educational Information ) <.. (Edit Assessments) : <<extends>>
+        (View Educational Information ) <.. (Delete Assessments) : <<extends>>
 
-        (Create Assessments) ..> (Update Educational Informations): <<include>>
-        (Edit Assessments) ..> (Update Educational Informations): <<include>>
-        (Delete Assessments) ..> (Update Educational Informations): <<include>>
-        (Grade Student Submissions) ..> (Update Educational Informations) : <<include>>
+        T -- (View Student Submissions)
+        (View Student Submissions) <.. (Mark Student Submissions) : <<extends>>
 
-        T -- (View Exam Informations)
-        (View Exam Informations) <.. (Create Exams) : <<extends>>
-        (View Exam Informations) <.. (Update Exams) : <<extends>>
-        (View Exam Informations) <.. (Delete Exams) : <<extends>>
-        (View Exam Informations) <.. (Edit Exam Results) : <<extends>>
+        (Create Assessments) ..> (Update Educational Information ): <<include>>
+        (Edit Assessments) ..> (Update Educational Information ): <<include>>
+        (Delete Assessments) ..> (Update Educational Information ): <<include>>
+        (Mark Student Submissions) ..> (Update Educational Information ) : <<include>>
 
-        (Create Exams) ..> (Update Exam Informations) : <<include>>
-        (Update Exams) ..> (Update Exam Informations) : <<include>>
-        (Delete Exams) ..> (Update Exam Informations) : <<include>>
-        (Edit Exam Results) ..> (Update Exam Informations) : <<include>>
+        T -- (View Exam Information )
+        (View Exam Information ) <.. (Create Exams) : <<extends>>
+        (View Exam Information ) <.. (Update Exams) : <<extends>>
+        (View Exam Information ) <.. (Delete Exams) : <<extends>>
+        (View Exam Information ) <.. (Edit Exam Results) : <<extends>>
+
+        (Create Exams) ..> (Update Exam Information ) : <<include>>
+        (Update Exams) ..> (Update Exam Information ) : <<include>>
+        (Delete Exams) ..> (Update Exam Information ) : <<include>>
+        (Edit Exam Results) ..> (Update Exam Information ) : <<include>>
 
         (Update Educational Information) -- TR
         (Apply for Recorrections) -- TR
         (Notify Teachers) -- TR
 
-        SH -- (View Staff Informations)
-        (View Staff Informations) <.. (Add Staff Members) : <<extends>>
-        (View Staff Informations) <.. (Update Staff Members) : <<extends>>
-        (View Staff Informations) <.. (Remove Staff Members) : <<extends>>
+        SH -- (View Staff Information )
+        (View Staff Information ) <.. (Add Staff Members) : <<extends>>
+        (View Staff Information ) <.. (Update Staff Members) : <<extends>>
+        (View Staff Information ) <.. (Remove Staff Members) : <<extends>>
         
-        SH -- (View Sectional Informations)
-        (View Sectional Informations) <.. (Create Time Tables) : <<extends>>
-        (View Sectional Informations) <.. (Update Time Tables) : <<extends>>
-        (View Sectional Informations) <.. (Delete Time Tables) : <<extends>>
+        SH -- (View Sectional Information )
+        (View Sectional Information ) <.. (Create Time Tables) : <<extends>>
+        (View Sectional Information ) <.. (Update Time Tables) : <<extends>>
+        (View Sectional Information ) <.. (Delete Time Tables) : <<extends>>
 
         (Notify Sectional Heads) -- SHR
 
@@ -126,10 +129,10 @@ rectangle "School Management System" {
 
         (Notify Principals) -- PR
 
-        A -- (View User Informations)
-        (View User Informations) <.. (Add User) : <<extends>>
-        (View User Informations) <.. (Update User) : <<extends>>
-        (View User Informations) <.. (Delete User) : <<extends>>
+        A -- (View User Information )
+        (View User Information ) <.. (Add User) : <<extends>>
+        (View User Information ) <.. (Update User) : <<extends>>
+        (View User Information ) <.. (Delete User) : <<extends>>
 
         (Add User) ..> (Update User Logs) : <<include>>
         (Update User) ..> (Update User Logs) : <<include>>

@@ -15,17 +15,10 @@ class User {
   # fullName
   # dateOfBirth
   # fingerprint
-  # userReport
-  # userLog
   + viewUser()
   + createUser()
   + updateUser()
   + deleteUser()
-  + viewUserReport()
-  + generateUserReport()
-  + viewUserLog()
-  + editUserLog()
-  + enterAttendance()
   + informUser()
   + login()
   + logout()
@@ -41,8 +34,6 @@ class Student {
   + createStudent()
   + updateStudent()
   + deleteStudent()
-  + viewStudentReport()
-  + generateStudentReport()
   + informStudent()
 }
 
@@ -57,8 +48,6 @@ class Teacher {
   + createTeacher()
   + updateTeacher()
   + deleteTeacher()
-  + viewTeacherReport()
-  + generateTeacherReport()
   + informTeacher()
 }
 
@@ -75,14 +64,12 @@ class SectionalHead {
 }
 
 class Principal {
-  # principalType
-  # principalReport
+  - principalID
+  - principalType
   + viewPrincipal()
   + createPrincipal()
   + updatePrincipal()
   + deletePrincipal()
-  + viewPrincipalReport()
-  + generatePrincipalReport()
   + informPrincipal()
   + informUsers()
 }
@@ -90,8 +77,6 @@ class Principal {
 class Admin {
   - adminID
   - adminType
-  - adminReport
-  - adminLog
   - viewSystemDatabase()
   - editSystemDatabase()
   - viewUsers()
@@ -100,14 +85,11 @@ class Admin {
   - systemBackups()
   - viewBackups()
   - restoreBackups()
-  - generateSystemReports()
 }
 
 class Section {
   - section
   - sectionalHead
-  - sectionReport
-  - sectionLog
   - sectionStudents
   - sectionTeachers
   - sectionSubjects
@@ -116,10 +98,6 @@ class Section {
   + updateSection()
   + deleteSection()
   + informSection()
-  + generateSectionReport()
-  + viewSectionReport()
-  + viewSectionLog()
-  + editSectionLog()
 }
 
 class Class {
@@ -127,8 +105,6 @@ class Class {
   - classTeacher
   - classMonitor
   - classStudents
-  - classReport
-  - classLog
   + viewClassStudents()
   + addClassStudents()
   + removeClassStudents()
@@ -142,11 +118,8 @@ class Class {
   + createClass()
   + updateClass()
   + deleteClass()
-  + generateClassReport()
-  + updateClassLog()
   + viewClassReport()
-  + viewClassLog()
-  + editClassLog()
+  + viewAttendance()
 }
 
 class TimeTable {
@@ -158,6 +131,16 @@ class TimeTable {
   + createTimeTable()
   + updateTimeTable()
   + deleteTimeTable()
+}
+
+class Attendance {
+  - attendanceID
+  - attendanceDate
+  - attendanceTime
+  + viewAttendance()
+  + markAttendance()
+  + updateAttendance()
+  + deleteAttendance()
 }
 
 class Exam {
@@ -233,6 +216,19 @@ class Subject {
   + deleteSubject()
 }
 
+class Report {
+  - reportID
+  - reportTitle
+  - reportContent
+  - reportDate
+  - reportTime
+  - reportType
+  + viewReport()
+  + generateReport()
+  + updateReport()
+  + deleteReport()
+}
+
 User <|-- Student
 User <|-- Teacher
 Teacher <|-- SectionalHead
@@ -243,6 +239,9 @@ Section "1" *-- "1..*" Teacher : Has
 Section "1" *-- "1..*" Class : Has
 Section "1" *-- "1..*" Subject : Has
 Section "1" o-- "1..*" Exam : Has
+Section "1" o-- "1..*" Report : Has
+Class "1" -- "1" Attendance : Access
+Class "1" -- "1" Report : Access
 Class "1" -- "1..*" Student : Access
 Class "1" -- "1" TimeTable : Has
 Assessment "1" -- "0..*" Submission : Has
