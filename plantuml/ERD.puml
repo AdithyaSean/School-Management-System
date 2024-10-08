@@ -1,4 +1,4 @@
-@startuml
+@startuml school management system ERD
 
 entity "User" {
   * userID: INT
