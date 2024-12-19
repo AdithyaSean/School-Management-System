@@ -1,9 +1,11 @@
 @startuml School Management System - Class Diagram
 
+' Layout settings
 skinparam Linetype ortho
 skinparam classAttributeIconSize 0
 hide circle
 
+' Style settings
 skinparam class {
     color black
     BackgroundColor white
@@ -195,6 +197,25 @@ class StudentRecord {
     + generateTranscript()
 }
 
+class Log {
+    - id
+    - type
+    - userId
+    - targetId
+    - action
+    - timestamp
+    - details
+    - status
+    - ipAddress
+    
+    + createLog()
+    + updateLog()
+    + getLogHistory()
+    + generateReport()
+    + calculateStatistics()
+    + cleanOldLogs()
+}
+
 ' Inheritance relationships
 User <|-- Student
 User <|-- Teacher
@@ -202,18 +223,63 @@ User <|-- SectionHead
 User <|-- Principal
 User <|-- Admin
 
-' Associations
-Student "many" -- "many" Assessment
-Student "many" -- "many" Exam
-Student "1" -- "many" ExamResult
-Student "1" -- "1" StudentRecord
-Teacher "many" -- "many" TimeTable
-Teacher "1" -- "many" Assessment
-Teacher "1" -- "many" Exam
-SectionHead "1" -- "many" Teacher
-SectionHead "1" -- "many" TimeTable
-TimeTable "1" -- "many" Session
-Principal "1" -- "many" Report
-Admin "1" -- "many" Report
+' Core academic relationships
+Student "*" -- "*" Assessment : submits
+Student "*" -- "*" Exam : takes
+Student "1" -- "*" ExamResult : receives
+Student "1" -- "1" StudentRecord : owns
+Student "*" -- "1" TimeTable : follows
+Student "*" -- "1" SectionHead : reports to
+
+' Teaching relationships
+Teacher "*" -- "*" TimeTable : schedules
+Teacher "1" -- "*" Assessment : creates
+Teacher "1" -- "*" Exam : conducts
+Teacher "*" -- "1" SectionHead : reports to
+Teacher "1" -- "*" Session : teaches
+Teacher "1..*" -- "*" Student : teaches
+
+' Management relationships
+SectionHead "1" -- "*" Teacher : supervises
+SectionHead "1" -- "*" TimeTable : manages
+SectionHead "1" -- "*" Report : reviews
+SectionHead "1" -- "*" Student : manages
+
+' Administrative relationships
+Principal "1" -- "*" Report : oversees
+Principal "1" -- "*" SectionHead : manages
+Principal "1" -- "*" Teacher : evaluates
+Principal "1" -- "*" Student : monitors
+Principal "1" -- "*" TimeTable : approves
+
+Admin "1" -- "*" TimeTable : configures
+Admin "1" -- "*" Session : maintains
+
+' Schedule relationships
+TimeTable "1" -- "*" Session : contains
+Session "*" -- "1" Teacher : assigned to
+Session "1" -- "*" Student : attended by
+
+' Academic content relationships
+Assessment "1" -- "*" Report : generates
+Assessment "*" -- "1" TimeTable : scheduled in
+Exam "1" -- "*" ExamResult : produces
+Exam "*" -- "1" TimeTable : scheduled in
+ExamResult "*" -- "1" Report : included in
+
+' Record relationships
+StudentRecord "1" -- "*" Assessment : tracks
+StudentRecord "1" -- "*" ExamResult : includes
+StudentRecord "1" -- "*" Report : generates
+StudentRecord "1" -- "*" Session : records
+
+' Logging relationships
+Log "*" -- "1" User : tracks activity
+Log "*" -- "1" Session : records attendance
+Log "*" -- "1" Student : tracks performance
+Teacher "1" -- "*" Log : manages attendance
+Admin "1" -- "*" Log : monitors
+Report "1" -- "*" Log : includes
+StudentRecord "1" -- "*" Log : contains history
 
 @enduml
