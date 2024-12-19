@@ -1,0 +1,156 @@
+@startuml School Management System - ERD Diagram
+
+' Layout and style settings
+!define Table(name) class name << (T,#FFAAAA) >>
+!define primary_key(x) <b><color:red>PK</color> x</b>
+!define foreign_key(x) <color:blue>FK</color> x
+skinparam linetype ortho
+hide methods
+hide stereotypes
+hide circle
+
+Table(User) {
+    primary_key(id)
+    username
+    password
+    firstName
+    lastName
+    email
+    phone
+    address
+    lastLogin
+    isActive
+    fingerprint
+}
+
+Table(Student) {
+    primary_key(studentId)
+    foreign_key(userId)
+    grade
+    section
+    enrollmentDate
+    parentName
+    parentContact
+    gpa
+}
+
+Table(Teacher) {
+    primary_key(teacherId)
+    foreign_key(userId)
+    department
+    subjects
+    joiningDate
+    qualification
+}
+
+Table(SectionHead) {
+    primary_key(sectionId)
+    foreign_key(teacherId)
+    department
+}
+
+Table(Principal) {
+    primary_key(schoolId)
+    foreign_key(userId)
+    appointmentDate
+}
+
+Table(Admin) {
+    primary_key(adminId)
+    foreign_key(userId)
+    accessLevel
+}
+
+Table(Assessment) {
+    primary_key(id)
+    title
+    description
+    dueDate
+    totalMarks
+    subject
+    assignedTo
+}
+
+Table(Exam) {
+    primary_key(id)
+    name
+    subject
+    date
+    duration
+    totalMarks
+}
+
+Table(ExamResult) {
+    primary_key(id)
+    foreign_key(examId)
+    foreign_key(studentId)
+    marks
+    grade
+    remarks
+    date
+}
+
+Table(TimeTable) {
+    primary_key(id)
+    grade
+    section
+    schedule
+    validFrom
+    validTo
+}
+
+Table(Session) {
+    primary_key(id)
+    subject
+    foreign_key(teacherId)
+    startTime
+    endTime
+    day
+}
+
+Table(Report) {
+    primary_key(id)
+    type
+    date
+    foreign_key(generatedBy)
+    content
+}
+
+Table(StudentRecord) {
+    primary_key(studentId)
+    foreign_key(studentId)
+    currentGrade
+    academicYear
+    subjects
+    attendance
+    achievements
+}
+
+Table(Log) {
+    primary_key(id)
+    action
+    timestamp
+    foreign_key(userId)
+    details
+}
+
+' Relationships
+User ||--o{ Student : has
+User ||--o{ Teacher : has
+User ||--o{ Admin : has
+User ||--o{ Principal : has
+Teacher ||--o{ SectionHead : can_be
+Student }o--|| Assessment : submits
+Teacher ||--o{ Assessment : creates
+Student }o--|| Exam : takes
+Teacher ||--o{ Exam : conducts
+Exam ||--o{ ExamResult : generates
+Student ||--|| StudentRecord : has
+TimeTable ||--o{ Session : contains
+Teacher ||--o{ Session : teaches
+StudentRecord ||--o{ Assessment : tracks
+StudentRecord ||--o{ ExamResult : includes
+StudentRecord ||--o{ Report : generates
+User ||--o{ Log : creates
+
+@enduml
