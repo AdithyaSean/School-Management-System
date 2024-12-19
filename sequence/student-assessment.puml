@@ -1,0 +1,58 @@
+@startuml Student Assessment Sequence
+
+actor Student
+actor Teacher
+participant "Assessment UI" as UI
+participant "Assessment Controller" as Ctrl
+participant "Assessment Service" as Svc
+database "Assessment Database" as DB
+
+== Create Assessment ==
+Teacher -> UI: Create Assessment
+activate UI
+UI -> Ctrl: createAssessment(details)
+activate Ctrl
+Ctrl -> Svc: saveAssessment(details)
+activate Svc
+Svc -> DB: insert()
+DB --> Svc: confirm
+Svc --> Ctrl: success
+Ctrl --> UI: refresh view
+UI --> Teacher: show confirmation
+deactivate UI
+deactivate Ctrl
+deactivate Svc
+
+== Submit Assessment ==
+Student -> UI: Submit Assessment
+activate UI
+UI -> Ctrl: submitAssessment(submission)
+activate Ctrl
+Ctrl -> Svc: processSubmission(submission)
+activate Svc
+Svc -> DB: saveSubmission()
+DB --> Svc: confirm
+Svc --> Ctrl: success
+Ctrl --> UI: show success
+UI --> Student: confirmation
+deactivate UI
+deactivate Ctrl
+deactivate Svc
+
+== Grade Assessment ==
+Teacher -> UI: Grade Submission
+activate UI
+UI -> Ctrl: gradeSubmission(submissionId, grade)
+activate Ctrl
+Ctrl -> Svc: updateGrade(submissionId, grade)
+activate Svc
+Svc -> DB: updateGrade()
+DB --> Svc: confirm
+Svc --> Ctrl: success
+Ctrl --> UI: refresh view
+UI --> Teacher: show confirmation
+deactivate UI
+deactivate Ctrl
+deactivate Svc
+
+@enduml

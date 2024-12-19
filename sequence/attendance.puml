@@ -1,0 +1,46 @@
+@startuml Attendance Management Sequence
+
+actor User
+participant "Attendance UI" as UI
+participant "Attendance Controller" as Ctrl
+participant "Fingerprint Service" as FP
+participant "Attendance Service" as Svc
+database "Attendance Database" as DB
+
+User -> UI: Initiate Attendance
+activate UI
+
+UI -> FP: requestFingerprint()
+activate FP
+FP -> FP: scanFingerprint()
+FP --> UI: fingerprintData
+deactivate FP
+
+UI -> Ctrl: verifyAttendance(fingerprintData)
+activate Ctrl
+
+Ctrl -> Svc: validateFingerprint(data)
+activate Svc
+Svc -> DB: matchFingerprint()
+DB --> Svc: user match
+deactivate Svc
+
+alt valid fingerprint
+    Ctrl -> Svc: recordAttendance(userId)
+    activate Svc
+    Svc -> DB: saveAttendance()
+    DB --> Svc: confirm
+    Svc --> Ctrl: success
+    deactivate Svc
+    
+    Ctrl --> UI: attendance recorded
+    UI --> User: show success
+else invalid fingerprint
+    Ctrl --> UI: verification failed
+    UI --> User: show error
+end
+
+deactivate Ctrl
+deactivate UI
+
+@enduml

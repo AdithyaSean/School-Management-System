@@ -1,0 +1,60 @@
+@startuml Exam Management Sequence
+
+actor Teacher
+actor Student
+participant "Exam UI" as UI
+participant "Exam Controller" as Ctrl
+participant "Exam Service" as Svc
+participant "Result Service" as RSvc
+database "Exam Database" as DB
+
+== Create Exam ==
+Teacher -> UI: Create Exam
+activate UI
+UI -> Ctrl: createExam(details)
+activate Ctrl
+Ctrl -> Svc: saveExam(details)
+activate Svc
+Svc -> DB: insert()
+DB --> Svc: confirm
+Svc --> Ctrl: success
+Ctrl --> UI: refresh view
+UI --> Teacher: show confirmation
+deactivate UI
+deactivate Ctrl
+deactivate Svc
+
+== View Results ==
+Student -> UI: View Results
+activate UI
+UI -> Ctrl: getResults(studentId)
+activate Ctrl
+Ctrl -> RSvc: fetchResults(studentId)
+activate RSvc
+RSvc -> DB: queryResults()
+DB --> RSvc: results
+RSvc -> RSvc: calculateGPA()
+RSvc --> Ctrl: results with GPA
+Ctrl --> UI: display results
+UI --> Student: show results
+deactivate UI
+deactivate Ctrl
+deactivate RSvc
+
+== Request Recorrection ==
+Student -> UI: Request Recorrection
+activate UI
+UI -> Ctrl: requestRecorrection(examId)
+activate Ctrl
+Ctrl -> RSvc: processRecorrection(examId)
+activate RSvc
+RSvc -> DB: markForRecorrection()
+DB --> RSvc: confirm
+RSvc --> Ctrl: success
+Ctrl --> UI: show confirmation
+UI --> Student: request confirmed
+deactivate UI
+deactivate Ctrl
+deactivate RSvc
+
+@enduml

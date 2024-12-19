@@ -1,0 +1,44 @@
+@startuml Authentication Sequence
+
+actor User
+participant "Login UI" as UI
+participant "Authentication Controller" as Auth
+participant "User Service" as UserSvc
+database "User Database" as DB
+participant "User Log Service" as Log
+
+User -> UI: Enter Credentials
+activate UI
+
+UI -> Auth: validateCredentials(username, password)
+activate Auth
+
+Auth -> UserSvc: validateUser(username, password)
+activate UserSvc
+
+UserSvc -> DB: findUser(username)
+activate DB
+DB --> UserSvc: return user
+deactivate DB
+
+UserSvc -> UserSvc: verifyPassword()
+UserSvc --> Auth: validation result
+deactivate UserSvc
+
+alt successful login
+    Auth -> Log: updateUserLog(userId, "LOGIN")
+    activate Log
+    Log --> Auth: log updated
+    deactivate Log
+    
+    Auth --> UI: success
+    UI --> User: show dashboard
+else failed login
+    Auth --> UI: invalid credentials
+    UI --> User: show error message
+end
+
+deactivate Auth
+deactivate UI
+
+@enduml
