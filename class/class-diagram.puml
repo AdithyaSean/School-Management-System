@@ -1,0 +1,219 @@
+@startuml School Management System - Class Diagram
+
+skinparam Linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+skinparam class {
+    color black
+    BackgroundColor white
+    BorderColor black
+    ArrowColor black
+}
+
+abstract class User {
+    - id
+    - username
+    - password
+    - firstName
+    - lastName
+    - email
+    - phone
+    - address
+    - lastLogin
+    - isActive
+    - fingerprint
+    
+    + login()
+    + logout()
+    + verifyFingerprint()
+    + updateProfile()
+    + changePassword()
+}
+
+class Student {
+    - studentId
+    - grade
+    - section
+    - enrollmentDate
+    - parentName
+    - parentContact
+    - gpa
+    
+    + submitAssessment()
+    + viewAssessments()
+    + viewSubmissionMarks()
+    + viewExams()
+    + viewExamResults()
+    + applyForRecorrection()
+    + calculateGPA()
+}
+
+class Teacher {
+    - teacherId
+    - department
+    - subjects
+    - joiningDate
+    - qualification
+    
+    + manageStudent()
+    + generateReport()
+    + manageAssessment()
+    + manageExam()
+    + gradeSubmission()
+}
+
+class SectionHead {
+    - sectionId
+    - department
+    - assignedTeachers
+    
+    + manageTeacher()
+    + manageTimeTable()
+    + approveLeaveRequest()
+    + generateSectionReport()
+}
+
+class Principal {
+    - schoolId
+    - appointmentDate
+    
+    + broadcastAnnouncement()
+    + reviewReports()
+    + approveEvents()
+    + manageStaff()
+    + reviewPerformance()
+}
+
+class Admin {
+    - adminId
+    - accessLevel
+    
+    + manageUsers()
+    + configureSystem()
+    + backupData()
+    + generateSystemReports()
+    + managePermissions()
+}
+
+class Assessment {
+    - id
+    - title
+    - description
+    - dueDate
+    - totalMarks
+    - subject
+    - assignedTo
+    
+    + createAssessment()
+    + updateAssessment()
+    + deleteAssessment()
+    + assignToStudents()
+}
+
+class Exam {
+    - id
+    - name
+    - subject
+    - date
+    - duration
+    - totalMarks
+    
+    + createExam()
+    + updateExam()
+    + deleteExam()
+    + assignToStudents()
+    + generateResults()
+}
+
+class ExamResult {
+    - id
+    - examId
+    - studentId
+    - marks
+    - grade
+    - remarks
+    - date
+    
+    + calculateGrade()
+    + generateReport()
+    + updateResult()
+}
+
+class TimeTable {
+    - id
+    - grade
+    - section
+    - schedule
+    - validFrom
+    - validTo
+    
+    + createSchedule()
+    + updateSchedule()
+    + deleteSchedule()
+    + validateSchedule()
+}
+
+class Session {
+    - id
+    - subject
+    - teacherId
+    - startTime
+    - endTime
+    - day
+    
+    + createSession()
+    + updateSession()
+    + deleteSession()
+    + validateTime()
+}
+
+class Report {
+    - id
+    - type
+    - date
+    - generatedBy
+    - content
+    
+    + generateReport()
+    + exportReport()
+    + shareReport()
+    + archiveReport()
+}
+
+class StudentRecord {
+    - studentId
+    - currentGrade
+    - academicYear
+    - subjects
+    - attendance
+    - achievements
+    
+    + updateRecord()
+    + calculateAttendance()
+    + addAchievement()
+    + generateTranscript()
+}
+
+' Inheritance relationships
+User <|-- Student
+User <|-- Teacher
+User <|-- SectionHead
+User <|-- Principal
+User <|-- Admin
+
+' Associations
+Student "many" -- "many" Assessment
+Student "many" -- "many" Exam
+Student "1" -- "many" ExamResult
+Student "1" -- "1" StudentRecord
+Teacher "many" -- "many" TimeTable
+Teacher "1" -- "many" Assessment
+Teacher "1" -- "many" Exam
+SectionHead "1" -- "many" Teacher
+SectionHead "1" -- "many" TimeTable
+TimeTable "1" -- "many" Session
+Principal "1" -- "many" Report
+Admin "1" -- "many" Report
+
+@enduml
