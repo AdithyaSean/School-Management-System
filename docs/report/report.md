@@ -361,6 +361,8 @@ The diagram reveals several inefficiencies in the current system:
 
 #### Proposed System Use Cases
 
+![System Use Case Diagram](images/use-case-diagram.png)
+
 The proposed system's use case diagram demonstrates a streamlined, digital approach:
 
 **System Access and Authentication:**
@@ -383,6 +385,8 @@ The new system addresses existing inefficiencies by:
 - Facilitating instant communication
 
 ### Class Structure
+
+![Class Diagram](images/class-diagram.png)
 
 The class diagram illustrates the system's object-oriented architecture, showing how different components interact to create a cohesive solution.
 
@@ -532,6 +536,8 @@ Academic Performance Metrics:
   * Performance trending
 
 ### Entity Relationship Analysis
+
+![Entity Relationship Diagram](images/er-diagram.png)
 
 The ER diagram demonstrates complex relationships essential for system functionality:
 
