@@ -87,35 +87,16 @@ The system follows a modular architecture with clear separation of concerns:
 - Data encryption
 - Regular backups
 
-## Getting Started
-
-### Prerequisites
-- [List of prerequisites will be added]
-- [Database requirements will be added]
-- [Server requirements will be added]
-
-### Installation
-[Installation steps will be added]
-
-### Configuration
-[Configuration steps will be added]
-
 ## Documentation
 
 Detailed documentation for each module and feature will be available in the `/docs` directory.
-
-## Contributing
-
-Guidelines for contributing to this project will be provided in CONTRIBUTING.md.
 
 ## License
 
 [License information will be added]
 
-## Support
-
-[Support information will be added]
-
 ## Authors
 
-[Author information will be added]
+[E M A S B E K A N A Y A K A][NIBM School of Computing and Engineering]
+[S D HEIYANTHUDUWA][NIBM School of Computing and Engineering]
+[M H D T TISSERA][NIBM School of Computing and Engineering]

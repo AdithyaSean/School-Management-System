@@ -5,8 +5,9 @@
 ---
 
 **Submitted By:**
-[E M A S B EKANAYAKA][CODSE224F-001]
-[School of Computing and Engineering]
+[E M A S B EKANAYAKA][CODSE224F-001][School of Computing and Engineering]
+[S D HEIYANTHUDUWA][CODSE224F-016][School of Computing and Engineering]
+[M H D T TISSERA][CODSE224F-054][School of Computing and Engineering]
 
 **Project Guide:**
 [DR. THISARA WEERASINGHE][Head of School of Computing and Engineering]
@@ -18,8 +19,8 @@
 This is to certify that the project report entitled "School Management System" submitted to [Board/University Name] in partial fulfillment of the requirements for the award of Diploma in [Course Name] is a record of bonafide work carried out by [Student Names] under my/our supervision and guidance.
 
 [Signature Blocks]
-[Date]
-[Place]
+[Date][2024/12/20]
+[Place][NIBM Colombo School of Computing and Engineering] 
 
 ---
 
