@@ -93,7 +93,7 @@ Detailed documentation for each module and feature will be available in the `/do
 
 ## License
 
-[License information will be added]
+[MIT License](LICENSE)
 
 ## Authors
 
