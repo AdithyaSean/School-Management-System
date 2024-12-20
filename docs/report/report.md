@@ -406,7 +406,7 @@ Communication and notification systems:
 - Messaging functionality embedded in user interactions
 - Announcement system for broadcast communications
 - Notification management for system events
-- Parent-teacher communication channels
+- Document sharing capabilities
 
 Resource management features:
 - Document storage and sharing capabilities
@@ -414,165 +414,382 @@ Resource management features:
 - Library management integration
 - Facility scheduling and booking
 
-### Database Design
+### Detailed Class Structure Analysis
 
-The Entity-Relationship diagram demonstrates the system's data architecture:
+The class diagram reveals a sophisticated object-oriented architecture designed to handle the complexities of school management:
 
-**Core Data Structures:**
-The database design centers around user management and academic records:
-- User entities store authentication and profile information
-- Academic records maintain student performance data
-- Resource management tracks school assets and materials
-- Communication records preserve interaction history
+1. **User Management Hierarchy**
 
-**Data Relationships:**
-The diagram illustrates important connections:
-- One-to-many relationships between teachers and classes
-- Many-to-many relationships in course enrollment
-- Hierarchical relationships in user management
-- Temporal relationships in academic records
+The Abstract User Class implements core functionality through the following comprehensive features:
+
+**Core Attributes Implementation**
+
+The `id` attribute serves as a unique identifier that forms the backbone of the system's data integrity. This UUID-based identifier ensures globally unique user identification across all system instances, facilitating potential future system integrations or data migrations. The attribute is immutable after creation and serves as the primary key in the database schema.
+
+The authentication credentials (`username` and `password`) are implemented with robust security measures. The username must be unique across the system and follows strict validation rules: alphanumeric characters, minimum length of 6 characters, and case-sensitive matching. The password is stored using industry-standard hashing algorithms (bcrypt with appropriate salt rounds) and never in plain text. Password requirements enforce complexity rules including minimum length, special characters, and regular renewal periods.
+
+Personal identification fields (`firstName` and `lastName`) maintain standardized formatting across the system. These fields undergo validation to ensure proper capitalization, handle special characters for international names, and support various cultural naming conventions. The system maintains audit logs of any changes to these fields to ensure data integrity and traceability.
+
+Contact information (`email`, `phone`, `address`) is implemented with comprehensive validation and verification systems:
+- Email addresses are validated against RFC 5322 standards
+- Phone numbers are stored in E.164 format for international compatibility
+- Addresses are structured to support international formats and include geocoding data
+
+The `lastLogin` timestamp provides security tracking capabilities, recording both successful and failed login attempts. This data is crucial for:
+- Security audit trails
+- User activity monitoring
+- Automated account lockout protection
+- Session management
+- Usage analytics
+
+The `fingerprint` biometric data is stored using industry-standard encryption and follows international biometric data protection regulations. The system implements:
+- Template-based fingerprint storage
+- Encryption at rest and in transit
+- Compliance with biometric data protection laws
+- Secure template matching algorithms
+
+**Essential Methods Implementation**
+
+The `login()` method implements a sophisticated authentication process:
+1. Initial credential validation
+2. Multi-factor authentication support
+3. Session token generation
+4. Login attempt tracking
+5. Automatic account lockout protection
+6. Activity logging
+7. Last login timestamp update
+
+The `logout()` method ensures secure session termination through:
+1. Session token invalidation
+2. Cache clearing
+3. Temporary data cleanup
+4. Activity logging
+5. Connection state management
+
+The `verifyFingerprint()` method provides biometric verification through:
+1. Secure template matching
+2. Quality score calculation
+3. False acceptance rate management
+4. False rejection rate optimization
+5. Failure handling and fallback mechanisms
+
+The `updateProfile()` method maintains data integrity through:
+1. Field-level validation
+2. Change history tracking
+3. Notification system integration
+4. Concurrent modification handling
+5. Transaction management
+
+The `changePassword()` method implements security best practices:
+1. Password complexity validation
+2. History-based reuse prevention
+3. Secure password hashing
+4. Session management
+5. Security notification system
+
+**Student Class Extension Implementation**
+
+The Student class extends the base User class with academic-specific functionality:
+
+The Academic Identifier System:
+- `studentId`: Implements a structured format combining:
+  * Year of enrollment
+  * Department code
+  * Sequential number
+  * Checksum digit
+  * Integration with legacy systems
+
+Academic Placement Management:
+- `grade` and `section`: Implement:
+  * Automatic promotion logic
+  * Section allocation algorithms
+  * Capacity management
+  * Balance maintenance
+  * Historical tracking
+
+Administrative Tracking:
+- `enrollmentDate`: Manages:
+  * Academic year alignment
+  * Batch processing
+  * Fee calculation basis
+  * Tenure tracking
+  * Alumni status
+
+Guardian Information System:
+- `parentName` and `parentContact`:
+  * Multiple guardian support
+  * Emergency contact prioritization
+  * Communication preference management
+  * Access control integration
+  * Update history tracking
+
+Academic Performance Metrics:
+- `gpa`: Implements:
+  * Weighted calculation systems
+  * Grade point normalization
+  * Semester-wise tracking
+  * Cumulative calculations
+  * Performance trending
+
+### Entity Relationship Analysis
+
+The ER diagram demonstrates complex relationships essential for system functionality:
+
+1. **Core Entity Relationships**
+
+a) **User-Role Relationships**
+```
+User (1) ──┬──(0,1) Student
+              ├──(0,1) Teacher
+              ├──(0,1) Admin
+              └──(0,1) Principal
+```
+
+- One-to-One relationships with role entities
+- Mandatory participation from User side
+- Optional participation from role side
+- Cascade delete dependencies
+
+b) **Academic Hierarchies**
+```
+Teacher (1)──(0,M) Assessment
+         │
+         └──(0,M) Exam
+              │
+              └──(1,M) ExamResult
+```
+
+- Teachers create multiple assessments/exams
+- Each exam generates multiple results
+- Results linked to specific students
+
+2. **Operational Relationships**
+
+a) **Student Academic Tracking**
+```
+Student (1)──(1) StudentRecord
+          │
+          ├──(0,M) Assessment
+          └──(0,M) ExamResult
+```
+
+- Each student has one comprehensive record
+- Multiple assessment submissions
+- Multiple exam results
+- Temporal tracking through academic year
+
+b) **Administrative Management**
+```
+TimeTable (1)──(1,M) Session
+            │
+            └──(M) Teacher
+```
+
+- Each timetable contains multiple sessions
+- Sessions linked to specific teachers
+- Resource allocation constraints
+- Temporal validity checks
+
+These relationships ensure:
+- Data integrity through proper constraints
+- Efficient query paths for common operations
+- Scalable system architecture
+- Clear audit trails for all operations
+- Flexible academic management
+
+### Data Architecture and Design
+
+The system's data architecture is designed to ensure data integrity, efficient access, and scalability while maintaining proper relationships between different entities.
+
+#### Class Structure Analysis
+
+The object-oriented design of the system is represented through a comprehensive class hierarchy:
+
+1. **User Management Hierarchy**
+```
+User
+  ├── id (PK)
+  ├── username (UNIQUE)
+  ├── password
+  ├── contact_details
+  └── authentication_data
+```
+
+```sql
+students
+  ├── student_id (PK)
+  ├── user_id (FK)
+  ├── academic_info
+  └── parent_details
+```
+
+2. **Academic Components**
+```sql
+assessments
+  ├── id (PK)
+  ├── details
+  ├── due_date
+  └── assigned_to (FK)
+```
+
+```sql
+exam_results
+  ├── id (PK)
+  ├── exam_id (FK)
+  ├── student_id (FK)
+  └── performance_data
+```
+
+Key Database Features:
+1. **Indexing Strategy**
+   - Primary indexes on all key fields
+   - Secondary indexes for frequent queries
+   - Composite indexes for complex joins
+
+2. **Data Integrity**
+   - Foreign key constraints
+   - Cascading updates/deletes
+   - Check constraints for data validation
+
+3. **Performance Optimization**
+   - Denormalization where appropriate
+   - JSON storage for flexible data
+   - Efficient query patterns
+
+4. **Security Measures**
+   - Encrypted sensitive data
+   - Role-based access control
+   - Audit logging
+
+The data architecture ensures:
+- **Data Integrity**: Through proper constraints and relationships
+- **Scalability**: Via efficient indexing and optimization
+- **Flexibility**: Through appropriate use of JSON and arrays
+- **Security**: Via proper access controls and encryption
+- **Maintainability**: Through clear structure and documentation
 
 ### System Workflows
 
-The sequence diagrams illustrate key system processes:
+The system's dynamic behavior is illustrated through a series of sequence diagrams that demonstrate key workflows and interactions between system components.
 
-**Authentication Process:**
-The system implements a secure, multi-step authentication:
-1. Initial credential verification
-2. Optional biometric confirmation
-3. Role-based access grant
-4. Session management and monitoring
+#### Authentication Flow
+![Authentication Sequence Diagram](images/authentication-sequence.png)
 
-**Assessment Management:**
-The assessment workflow demonstrates:
-1. Teacher creates and assigns assessments
-2. Students receive notifications and submit work
-3. Automated and manual grading processes
-4. Result publication and feedback
+The authentication workflow implements a secure, multi-step verification process:
 
-**Attendance Tracking:**
-The attendance system shows:
-1. Daily check-in process with biometric verification
-2. Automatic record updating
-3. Report generation and notification
-4. Absence management and tracking
+1. **Initial Authentication**
+   - User provides credentials through the Login UI
+   - Credentials are validated by the Authentication Controller
+   - User Service verifies against the database
+   - Successful logins are logged for audit purposes
 
-These diagrams collectively provide a comprehensive view of the system's architecture, demonstrating how different components work together to create an efficient and user-friendly school management solution.
+2. **Security Measures**
+   - Password verification occurs server-side
+   - Failed attempts are logged and monitored
+   - Session management handles concurrent logins
+   - Automatic timeout for inactive sessions
 
-## System Modeling and Documentation
+#### Attendance Management
+![Attendance Sequence Diagram](images/attendance-sequence.png)
 
-### Use Case Analysis
+The attendance system utilizes biometric verification for accurate tracking:
 
-The use case analysis provides a comprehensive view of system functionality from the users' perspective. Through detailed diagrams and descriptions, we illustrate how different actors interact with the system and how various use cases relate to each other.
+1. **Fingerprint Verification**
+   - User initiates attendance through UI
+   - Fingerprint Service captures and processes biometric data
+   - System matches against stored templates
+   - Real-time verification response
 
-#### System Use Case Diagram
+2. **Attendance Recording**
+   - Successful matches trigger attendance recording
+   - Time stamps are captured automatically
+   - Failed verifications prompt immediate retry
+   - Daily attendance reports are generated
 
-![School Management System Use Case Diagram](images/use-case-diagram.png)
+#### Exam Management
+![Exam Management Sequence Diagram](images/exam-sequence.png)
 
-*Figure 1: Use Case Diagram showing system actors and their interactions*
+The exam management workflow covers the complete examination lifecycle:
 
-The use case diagram above illustrates the complete functionality of the School Management System, organized by user roles and their respective capabilities. Key elements include:
+1. **Exam Creation and Setup**
+   - Teachers create exam definitions
+   - System validates exam parameters
+   - Automatic notification to affected students
+   - Resource allocation for exam sessions
 
-**Actor Hierarchy:**
-1. Base User (Common Functionality)
-   - Authentication and profile management
-   - Basic communication features
-   - System access controls
+2. **Results Processing**
+   - Automated grade calculation
+   - GPA computation for academic records
+   - Result publication with proper approvals
+   - Recorrection request handling
 
-2. Specialized Roles
-   - Student: Academic and assessment interactions
-   - Teacher: Educational content and student management
-   - Section Head: Departmental oversight
-   - Principal: Institution-wide management
-   - Administrator: System maintenance and configuration
+3. **Academic Record Management**
+   - Integration with student profiles
+   - Historical performance tracking
+   - Progress report generation
+   - Academic analytics support
 
-**Core Use Cases by Role:**
+#### Student Assessment
+![Student Assessment Sequence Diagram](images/assessment-sequence.png)
 
-*Students:*
-- View and submit assessments
-- Access educational resources
-- Track academic progress
-- View examination information
-- Apply for result corrections
+The assessment system manages continuous evaluation processes:
 
-*Teachers:*
-- Manage student information
-- Create and grade assessments
-- Handle examination processes
-- Generate performance reports
-- Track attendance
+1. **Assessment Creation**
+   - Teachers define assessment parameters
+   - System validates assessment criteria
+   - Automatic scheduling and notifications
+   - Resource allocation for submissions
 
-*Section Heads:*
-- Manage staff information
-- Create and update timetables
-- Coordinate departmental activities
-- Monitor teacher performance
+2. **Submission Handling**
+   - Secure submission storage
+   - Plagiarism detection integration
+   - Automated submission receipts
+   - Late submission management
 
-*Principal:*
-- Broadcast announcements
-- Review institutional reports
-- Manage staff appointments
-- Oversee school operations
+3. **Grading Process**
+   - Structured grading workflow
+   - Multiple reviewer support
+   - Grade normalization
+   - Performance analytics
 
-*Administrator:*
-- Manage user accounts
-- Monitor system performance
-- Generate system reports
-- Configure system settings
+#### Teacher Management
+![Teacher Management Sequence Diagram](images/teacher-sequence.png)
 
-### Class Structure
+The teacher management system handles staff administration:
 
-The class diagram provides a detailed view of the system's object-oriented architecture, showing how different components work together to create a cohesive solution.
+1. **Assignment Management**
+   - Section heads manage teacher assignments
+   - Workload distribution tracking
+   - Automatic conflict detection
+   - Integration with timetable system
 
-#### Class Diagram
+2. **TimeTable Management**
+   - Dynamic schedule updates
+   - Resource conflict prevention
+   - Automated notifications
+   - Schedule optimization
 
-![School Management System Class Diagram](images/class-diagram.png)
+3. **Leave Management**
+   - Structured approval workflow
+   - Substitute teacher assignment
+   - Attendance integration
+   - Automated notifications
 
-*Figure 2: Class Diagram showing system components and their relationships*
+These sequence diagrams collectively demonstrate:
+- Clear separation of concerns in system architecture
+- Robust error handling and validation
+- Efficient data flow between components
+- Secure and auditable processes
+- Real-time notification capabilities
+- Integration points between different modules
 
-The class diagram illustrates the system's structural design through several key aspects:
-
-**Core Components:**
-
-1. User Management Hierarchy
-   - Abstract User class defines common attributes and behaviors
-   - Specialized user classes (Student, Teacher, etc.) extend base functionality
-   - Each role has specific attributes and methods relevant to their responsibilities
-
-2. Academic Management Classes
-   - Assessment class handles all types of academic evaluations
-   - Exam class manages examination processes
-   - TimeTable and Session classes coordinate scheduling
-   - StudentRecord maintains comprehensive academic histories
-
-3. Administrative Components
-   - Report class generates various system reports
-   - Log class tracks system activities
-   - Communication handles messaging and notifications
-
-**Relationships and Dependencies:**
-
-1. Inheritance Relationships
-   - User hierarchy shows clear role specialization
-   - Each derived class adds specific functionality
-   - Common behaviors are inherited from base classes
-
-2. Associations
-   - One-to-many relationships between teachers and classes
-   - Many-to-many relationships in course enrollments
-   - Aggregation relationships in resource management
-
-3. Dependencies
-   - Assessment dependencies on Teachers and Students
-   - Report generation dependencies
-   - Notification system interactions
-
-The class structure ensures:
-- Clear separation of concerns
-- Maintainable and extensible code
-- Efficient data management
-- Secure role-based access
-- Scalable system architecture
+The workflows are designed to:
+- Minimize manual intervention
+- Ensure data consistency
+- Provide immediate feedback
+- Support concurrent operations
+- Maintain system security
+- Enable system scalability
 
 ## Implementation Strategy
 
@@ -624,3 +841,86 @@ The School Management System represents a significant step forward in educationa
 - Support data-driven decision making
 
 The modular design ensures future scalability and adaptability to changing educational needs.
+
+These relationships establish a robust foundation for the system's data integrity and operational efficiency:
+
+**Data Integrity Through Proper Constraints**
+The system implements comprehensive data integrity measures through a multi-layered constraint system. At the database level, referential integrity is maintained through foreign key constraints that ensure all relationships between entities remain valid. For instance, when a teacher creates an assessment, the system enforces the existence of both the teacher record and the corresponding class record. Check constraints validate data before insertion, ensuring that grades fall within acceptable ranges (0-100), dates are logically consistent (enrollment dates cannot be future dates), and numeric values meet business rules (attendance percentages cannot exceed 100%). Additionally, unique constraints on critical fields like student IDs, email addresses, and username prevent duplicate entries that could compromise system reliability.
+
+**Efficient Query Paths for Common Operations**
+The system's architecture is optimized for frequently performed operations through strategically designed query paths. For student performance tracking, the system maintains denormalized aggregate data in the StudentRecord entity, enabling quick access to commonly requested statistics without expensive joins. The relationship between Teachers and Assessments is directly linked, allowing efficient retrieval of all assessments created by a specific teacher. The TimeTable entity's relationship with Sessions enables quick lookups of daily schedules without traversing multiple tables. These optimized paths significantly reduce database load during peak usage periods, such as during attendance marking or result publication.
+
+**Scalable System Architecture**
+The architecture is designed with scalability as a core principle, implemented through several key strategies. The separation of user authentication (User entity) from role-specific data (Student, Teacher entities) allows for easy addition of new user types without modifying existing structures. The Assessment and Exam entities are designed to accommodate various evaluation types, from simple quizzes to complex project evaluations. The TimeTable system can handle multiple academic years and sections simultaneously, with the ability to expand to accommodate new scheduling requirements. The relationship between entities is designed to maintain performance even as the data volume grows, with appropriate indexing strategies and partition-ready structures.
+
+**Clear Audit Trails for All Operations**
+The system maintains comprehensive audit trails through a sophisticated logging mechanism. Every significant operation, from grade modifications to attendance updates, is recorded in the Log entity with detailed metadata. The logging system captures:
+
+1. Operation Context:
+   - The specific action performed (e.g., grade modification, attendance update)
+   - Timestamp of the operation
+   - User who performed the action
+   - Affected entities and their states before and after the change
+
+2. Data Lineage:
+   - Complete history of grade changes
+   - Attendance modification records
+   - User profile update history
+   - Assessment submission timelines
+
+3. Security Events:
+   - Login attempts (successful and failed)
+   - Permission changes
+   - Password resets
+   - System configuration modifications
+
+This audit system enables:
+   - Compliance with educational regulations
+   - Resolution of grade disputes
+   - Security incident investigations
+   - System usage analysis and optimization
+
+**Flexible Academic Management**
+The system's flexibility in academic management is achieved through a carefully designed relationship structure that accommodates various educational scenarios:
+
+1. Curriculum Management:
+   The relationship between Teachers and Subjects allows for:
+   - Dynamic subject allocation
+   - Cross-disciplinary teaching assignments
+   - Substitute teacher arrangements
+   - Special course accommodations
+
+2. Assessment Flexibility:
+   The Assessment entity's relationship with Students supports:
+   - Multiple assessment types (quizzes, projects, presentations)
+   - Custom grading schemes
+   - Group project handling
+   - Special consideration cases
+
+3. Schedule Adaptation:
+   The TimeTable and Session relationships enable:
+   - Dynamic schedule modifications
+   - Special event accommodation
+   - Resource reallocation
+   - Emergency schedule changes
+
+4. Student Progress Tracking:
+   The StudentRecord entity's comprehensive relationships facilitate:
+   - Continuous performance monitoring
+   - Customized learning paths
+   - Special needs accommodation
+   - Parent-teacher communication
+
+5. Administrative Flexibility:
+   The system's role-based architecture supports:
+   - Temporary role assignments
+   - Department-specific permissions
+   - Custom approval workflows
+   - Emergency access protocols
+
+This flexibility ensures that the system can adapt to:
+   - Changes in educational policies
+   - New assessment methodologies
+   - Various school calendar systems
+   - Different grading schemes
+   - Special educational requirements
