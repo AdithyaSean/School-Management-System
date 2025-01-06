@@ -1,0 +1,25 @@
+@startuml System Monitoring and Reporting Sequence
+
+actor Administrator
+participant "System Monitor UI" as UI
+participant "Report Controller" as Ctrl
+participant "Report Service" as Svc
+database "Report Database" as DB
+
+Administrator -> UI: Generate Report
+activate UI
+UI -> Ctrl: generateReport(type, dateRange)
+activate Ctrl
+Ctrl -> Svc: createReport(type, dateRange)
+activate Svc
+Svc -> DB: queryData()
+DB --> Svc: data
+Svc -> Svc: compileReport()
+Svc --> Ctrl: report
+Ctrl --> UI: display report
+UI --> Administrator: show report
+deactivate UI
+deactivate Ctrl
+deactivate Svc
+
+@enduml

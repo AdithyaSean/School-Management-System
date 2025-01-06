@@ -1,0 +1,56 @@
+@startuml Profile Management Sequence
+
+actor User
+participant "Profile UI" as UI
+participant "Profile Controller" as Ctrl
+participant "Profile Service" as PSvc
+participant "Validation Service" as Validate
+database "Profile Database" as DB
+participant "Log Service" as Log
+
+== View Profile ==
+User -> UI: View Profile
+activate UI
+UI -> Ctrl: getProfile(userId)
+activate Ctrl
+Ctrl -> PSvc: fetchProfile(userId)
+activate PSvc
+PSvc -> DB: queryProfile()
+DB --> PSvc: profileData
+PSvc --> Ctrl: profile
+Ctrl --> UI: display profile
+UI --> User: show profile
+deactivate UI
+deactivate Ctrl
+deactivate PSvc
+
+== Update Profile ==
+User -> UI: Update Profile
+activate UI
+UI -> Ctrl: updateProfile(userId, profileData)
+activate Ctrl
+Ctrl -> Validate: validateProfile(profileData)
+activate Validate
+Validate --> Ctrl: validation result
+deactivate Validate
+
+alt validation passed
+    Ctrl -> PSvc: updateProfile(userId, profileData)
+    activate PSvc
+    PSvc -> DB: updateProfile()
+    DB --> PSvc: confirm
+    PSvc -> Log: updateProfileLog()
+    Log --> PSvc: log updated
+    PSvc --> Ctrl: success
+    Ctrl --> UI: show confirmation
+    UI --> User: profile updated
+    deactivate PSvc
+else validation failed
+    Ctrl --> UI: validation errors
+    UI --> User: show errors
+end
+
+deactivate UI
+deactivate Ctrl
+
+@enduml

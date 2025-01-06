@@ -1,0 +1,45 @@
+@startuml Attendance Verification Sequence
+
+actor Teacher
+participant "Attendance UI" as UI
+participant "Attendance Controller" as Ctrl
+participant "Fingerprint Service" as FP
+participant "Attendance Service" as ASvc
+database "Attendance Database" as DB
+participant "Log Service" as Log
+
+== Verify Attendance ==
+Teacher -> UI: Initiate Attendance
+activate UI
+UI -> Ctrl: startAttendance(classId)
+activate Ctrl
+
+loop for each student
+    Teacher -> UI: Scan Fingerprint
+    UI -> Ctrl: verifyStudent(studentId, fingerprintData)
+    Ctrl -> FP: verifyFingerprint(fingerprintData)
+    activate FP
+    FP --> Ctrl: verification result
+    deactivate FP
+    
+    alt fingerprint verified
+        Ctrl -> ASvc: recordAttendance(studentId, classId)
+        activate ASvc
+        ASvc -> DB: insertAttendance()
+        DB --> ASvc: confirm
+        ASvc -> Log: updateAttendanceLog()
+        Log --> ASvc: log updated
+        ASvc --> Ctrl: success
+        deactivate ASvc
+    else fingerprint not verified
+        Ctrl --> UI: verification failed
+        UI --> Teacher: show error
+    end
+end
+
+Ctrl --> UI: attendance complete
+UI --> Teacher: show confirmation
+deactivate UI
+deactivate Ctrl
+
+@enduml

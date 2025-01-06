@@ -1,0 +1,27 @@
+@startuml Staff Management Sequence
+
+actor SectionHead
+participant "Staff UI" as UI
+participant "Staff Controller" as Ctrl
+participant "Staff Service" as StaffSvc
+database "Staff Database" as DB
+participant "Notification Service" as NSvc
+
+SectionHead -> UI: Add Staff Member
+activate UI
+UI -> Ctrl: addStaffMember(details)
+activate Ctrl
+Ctrl -> StaffSvc: processAddition(details)
+activate StaffSvc
+StaffSvc -> DB: insert()
+DB --> StaffSvc: confirm
+StaffSvc -> NSvc: notifyStaff(details)
+NSvc --> StaffSvc: notification sent
+StaffSvc --> Ctrl: success
+Ctrl --> UI: refresh view
+UI --> SectionHead: show confirmation
+deactivate UI
+deactivate Ctrl
+deactivate StaffSvc
+
+@enduml

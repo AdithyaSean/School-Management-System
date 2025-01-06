@@ -1,0 +1,41 @@
+@startuml GPA Calculation Sequence
+
+actor Student
+participant "GPA UI" as UI
+participant "GPA Controller" as Ctrl
+participant "GPA Service" as GSvc
+participant "Validation Service" as Validate
+database "Exam Database" as DB
+participant "Log Service" as Log
+
+== Calculate GPA ==
+Student -> UI: Request GPA Calculation
+activate UI
+UI -> Ctrl: calculateGPA(studentId)
+activate Ctrl
+Ctrl -> Validate: validateStudent(studentId)
+activate Validate
+Validate --> Ctrl: validation result
+deactivate Validate
+
+alt validation passed
+    Ctrl -> GSvc: calculateGPA(studentId)
+    activate GSvc
+    GSvc -> DB: queryExamResults(studentId)
+    DB --> GSvc: examResults
+    GSvc -> GSvc: calculateGPA()
+    GSvc -> Log: updateGPALog(studentId)
+    Log --> GSvc: log updated
+    GSvc --> Ctrl: GPA result
+    Ctrl --> UI: display GPA
+    UI --> Student: show GPA
+    deactivate GSvc
+else validation failed
+    Ctrl --> UI: validation errors
+    UI --> Student: show errors
+end
+
+deactivate UI
+deactivate Ctrl
+
+@enduml

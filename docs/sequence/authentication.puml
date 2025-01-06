@@ -4,24 +4,40 @@ actor User
 participant "Login UI" as UI
 participant "Authentication Controller" as Auth
 participant "User Service" as UserSvc
+participant "Fingerprint Service" as FP
 database "User Database" as DB
 participant "User Log Service" as Log
 
-User -> UI: Enter Credentials
+User -> UI: Select Login Method
 activate UI
 
-UI -> Auth: validateCredentials(username, password)
-activate Auth
+alt Password Login
+    User -> UI: Enter Credentials
+    UI -> Auth: validateCredentials(username, password)
+    activate Auth
+else Biometric Login
+    User -> UI: Initiate Biometric Scan
+    UI -> Auth: validateBiometric(fingerprintData)
+    activate Auth
+    Auth -> FP: verifyFingerprint(fingerprintData)
+    activate FP
+    FP --> Auth: verification result
+    deactivate FP
+end
 
-Auth -> UserSvc: validateUser(username, password)
+Auth -> UserSvc: validateUser()
 activate UserSvc
 
-UserSvc -> DB: findUser(username)
+UserSvc -> DB: findUser()
 activate DB
 DB --> UserSvc: return user
 deactivate DB
 
-UserSvc -> UserSvc: verifyPassword()
+alt Password Login
+    UserSvc -> UserSvc: verifyPassword()
+else Biometric Login
+    UserSvc -> UserSvc: verifyUser()
+end
 UserSvc --> Auth: validation result
 deactivate UserSvc
 
