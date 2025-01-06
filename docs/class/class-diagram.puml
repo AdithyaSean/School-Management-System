@@ -15,6 +15,7 @@ skinparam class {
 
 abstract class User {
     - id
+    - schoolId
     - username
     - password
     - firstName
@@ -77,7 +78,6 @@ class SectionHead {
 }
 
 class Principal {
-    - schoolId
     - appointmentDate
     
     + broadcastAnnouncement()

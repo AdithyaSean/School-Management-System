@@ -1,16 +1,16 @@
 @startuml School Management System - ERD Diagram
 
 ' Layout and style settings
-!define Table(name) class name << (T,#FFAAAA) >>
-!define primary_key(x) <b><color:red>PK</color> x</b>
-!define foreign_key(x) <color:blue>FK</color> x
+!define primary_key(x) <b>PK x</b>
+!define foreign_key(x) FK x
 skinparam linetype ortho
 hide methods
 hide stereotypes
 hide circle
 
-Table(User) {
+entity User {
     primary_key(id)
+    schoolId
     username
     password
     firstName
@@ -23,7 +23,7 @@ Table(User) {
     fingerprint
 }
 
-Table(Student) {
+entity Student {
     primary_key(studentId)
     foreign_key(userId)
     grade
@@ -34,7 +34,7 @@ Table(Student) {
     gpa
 }
 
-Table(Teacher) {
+entity Teacher {
     primary_key(teacherId)
     foreign_key(userId)
     department
@@ -43,27 +43,27 @@ Table(Teacher) {
     qualification
 }
 
-Table(SectionHead) {
+entity SectionHead {
     primary_key(sectionId)
     foreign_key(teacherId)
     department
 }
 
-Table(Principal) {
+entity Principal {
     primary_key(schoolId)
     foreign_key(userId)
     appointmentDate
 }
 
-Table(Admin) {
+entity Admin {
     primary_key(adminId)
     foreign_key(userId)
     accessLevel
 }
 
-Table(Assessment) {
+entity Assessment {
     primary_key(id)
-    title
+    assessment_title
     description
     dueDate
     totalMarks
@@ -71,7 +71,7 @@ Table(Assessment) {
     assignedTo
 }
 
-Table(Exam) {
+entity Exam {
     primary_key(id)
     name
     subject
@@ -80,7 +80,7 @@ Table(Exam) {
     totalMarks
 }
 
-Table(ExamResult) {
+entity ExamResult {
     primary_key(id)
     foreign_key(examId)
     foreign_key(studentId)
@@ -90,7 +90,7 @@ Table(ExamResult) {
     date
 }
 
-Table(TimeTable) {
+entity TimeTable {
     primary_key(id)
     grade
     section
@@ -99,7 +99,7 @@ Table(TimeTable) {
     validTo
 }
 
-Table(Session) {
+entity Session {
     primary_key(id)
     subject
     foreign_key(teacherId)
@@ -108,7 +108,7 @@ Table(Session) {
     day
 }
 
-Table(Report) {
+entity Report {
     primary_key(id)
     type
     date
@@ -116,7 +116,7 @@ Table(Report) {
     content
 }
 
-Table(StudentRecord) {
+entity StudentRecord {
     primary_key(studentId)
     foreign_key(studentId)
     currentGrade
@@ -126,7 +126,7 @@ Table(StudentRecord) {
     achievements
 }
 
-Table(Log) {
+entity Log {
     primary_key(id)
     action
     timestamp
@@ -135,22 +135,23 @@ Table(Log) {
 }
 
 ' Relationships
-User ||--o{ Student : has
-User ||--o{ Teacher : has
-User ||--o{ Admin : has
-User ||--o{ Principal : has
-Teacher ||--o{ SectionHead : can_be
-Student }o--|| Assessment : submits
-Teacher ||--o{ Assessment : creates
-Student }o--|| Exam : takes
-Teacher ||--o{ Exam : conducts
-Exam ||--o{ ExamResult : generates
-Student ||--|| StudentRecord : has
-TimeTable ||--o{ Session : contains
-Teacher ||--o{ Session : teaches
-StudentRecord ||--o{ Assessment : tracks
-StudentRecord ||--o{ ExamResult : includes
-StudentRecord ||--o{ Report : generates
-User ||--o{ Log : creates
+User ||--o{ Student : "is a"
+User ||--o{ Teacher : "is a"
+User ||--o{ Admin : "is a"
+User ||--o{ Principal : "is a"
+
+Teacher ||--o{ SectionHead : "can be"
+Student }o--|| Assessment : "submits"
+Teacher ||--o{ Assessment : "creates"
+Student }o--|| Exam : "takes"
+Teacher ||--o{ Exam : "conducts"
+Exam ||--o{ ExamResult : "generates"
+Student ||--|| StudentRecord : "has"
+TimeTable ||--o{ Session : "contains"
+Teacher ||--o{ Session : "teaches"
+StudentRecord ||--o{ Assessment : "tracks"
+StudentRecord ||--o{ ExamResult : "includes"
+StudentRecord ||--o{ Report : "generates"
+User ||--o{ Log : "creates"
 
 @enduml
