@@ -1,157 +1,193 @@
-@startuml School Management System - ERD Diagram
+@startuml School Management System - ER Diagram
 
-' Layout and style settings
-!define primary_key(x) <b>PK x</b>
-!define foreign_key(x) FK x
-skinparam linetype ortho
-hide methods
-hide stereotypes
+' Layout settings
+skinparam Linetype ortho
+skinparam classAttributeIconSize 0
 hide circle
 
+' Style settings
+skinparam class {
+    color black
+    BackgroundColor white
+    BorderColor black
+    ArrowColor black
+}
+
+' Entities (Tables)
+entity Subject {
+    + id [PK]
+    --
+    name
+    code
+    description
+}
+
 entity User {
-    primary_key(id)
-    schoolId
-    username
-    password
+    + id [PK]
+    --
     firstName
     lastName
     email
     phone
     address
+    schoolId
     lastLogin
     isActive
+    username
+    password
     fingerprint
 }
 
 entity Student {
-    primary_key(studentId)
-    foreign_key(userId)
-    grade
-    section
+    + id [PK]
+    --
+    studentId
     enrollmentDate
-    parentName
-    parentContact
-    gpa
 }
 
 entity Teacher {
-    primary_key(teacherId)
-    foreign_key(userId)
-    department
-    subjects
+    + id [PK]
+    --
+    teacherId
     joiningDate
     qualification
 }
 
-entity SectionHead {
-    primary_key(sectionId)
-    foreign_key(teacherId)
-    department
+entity SectionalHead {
+    + id [PK]
+    --
+    sectionId
 }
 
 entity Principal {
-    primary_key(schoolId)
-    foreign_key(userId)
+    + id [PK]
+    --
     appointmentDate
 }
 
 entity Admin {
-    primary_key(adminId)
-    foreign_key(userId)
+    + id [PK]
+    --
+    adminId
     accessLevel
 }
 
+entity Class {
+    + id [PK]
+    --
+    name
+    grade
+    section
+}
+
 entity Assessment {
-    primary_key(id)
-    assessment_title
+    + id [PK]
+    --
+    title
     description
     dueDate
     totalMarks
-    subject
-    assignedTo
+    subjectId [FK]
+    assignedTo [FK]
 }
 
 entity Exam {
-    primary_key(id)
-    name
-    subject
+    + id [PK]
+    --
+    year
+    term
     date
     duration
-    totalMarks
+    averageMarks
 }
 
 entity ExamResult {
-    primary_key(id)
-    foreign_key(examId)
-    foreign_key(studentId)
+    + id [PK]
+    --
     marks
     grade
     remarks
     date
+    examId [FK]
+    studentId [FK]
 }
 
 entity TimeTable {
-    primary_key(id)
-    grade
-    section
-    schedule
+    + id [PK]
+    --
     validFrom
     validTo
 }
 
 entity Session {
-    primary_key(id)
-    subject
-    foreign_key(teacherId)
+    + id [PK]
+    --
     startTime
     endTime
     day
+    timetableId [FK]
+    subjectId [FK]
 }
 
-entity Report {
-    primary_key(id)
-    type
+entity Attendance {
+    + id [PK]
+    --
     date
-    foreign_key(generatedBy)
-    content
-}
-
-entity StudentRecord {
-    primary_key(studentId)
-    foreign_key(studentId)
-    currentGrade
-    academicYear
-    subjects
-    attendance
-    achievements
+    status
+    sessionId [FK]
+    remarks
+    studentId [FK]
 }
 
 entity Log {
-    primary_key(id)
+    + id [PK]
+    --
     action
     timestamp
-    foreign_key(userId)
     details
+    ipAddress
+    userId [FK]
 }
 
 ' Relationships
 User ||--o{ Student : "is a"
 User ||--o{ Teacher : "is a"
-User ||--o{ Admin : "is a"
 User ||--o{ Principal : "is a"
+User ||--o{ Admin : "is a"
+Teacher ||--o{ SectionalHead : "is a"
+SectionalHead ||--o{ Principal : "is a"
+Principal ||--o{ Admin : "is a"
 
-Teacher ||--o{ SectionHead : "can be"
+User ||--o{ Log : "has"
+Student ||--o{ Attendance : "has"
+Teacher ||--o{ Subject : "teaches"
+TimeTable ||--o{ Session : "has"
+Exam ||--o{ ExamResult : "has"
+
+Session }o--|| Subject : "has"
+Assessment }o--|| Subject : "has"
+Exam }o--|| Subject : "has"
+Student }o--|| Subject : "studies"
+Student }o--|| ExamResult : "has"
+Teacher }o--|| Subject : "teaches"
+Teacher }o--|| ExamResult : "evaluates"
+Teacher }o--|| Attendance : "marks"
+Class }o--|| Teacher : "has"
+Class }o--|| Student : "has"
+
 Student }o--|| Assessment : "submits"
-Teacher ||--o{ Assessment : "creates"
 Student }o--|| Exam : "takes"
-Teacher ||--o{ Exam : "conducts"
-Exam ||--o{ ExamResult : "generates"
-Student ||--|| StudentRecord : "has"
-TimeTable ||--o{ Session : "contains"
-Teacher ||--o{ Session : "teaches"
-StudentRecord ||--o{ Assessment : "tracks"
-StudentRecord ||--o{ ExamResult : "includes"
-StudentRecord ||--o{ Report : "generates"
-User ||--o{ Log : "creates"
+Student }o--|| TimeTable : "follows"
+Teacher }o--|| Student : "teaches"
+Teacher }o--|| TimeTable : "schedules"
+Teacher }o--|| Assessment : "creates"
+Teacher }o--|| Session : "teaches"
+Teacher }o--|| Exam : "conducts"
+SectionalHead }o--|| Teacher : "supervises"
+SectionalHead }o--|| TimeTable : "manages"
+Principal }o--|| SectionalHead : "manages"
+Admin }o--|| User : "manages"
+Exam }o--|| Class : "assignedTo"
+TimeTable }o--|| Class : "assignedTo"
 
 @enduml
