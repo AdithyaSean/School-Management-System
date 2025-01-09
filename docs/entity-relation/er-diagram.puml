@@ -3,27 +3,7 @@
 ' Layout settings
 skinparam Linetype ortho
 skinparam classAttributeIconSize 0
-' Layout settings
-skinparam Linetype ortho
-skinparam classAttributeIconSize 0
 hide circle
-
-' Style settings
-skinparam class {
-    color black
-    BackgroundColor white
-    BorderColor black
-    ArrowColor black
-}
-
-' Entities (Tables)
-entity Subject {
-    + id [PK]
-    --
-    name
-    code
-    description
-}
 
 ' Style settings
 skinparam class {
@@ -45,19 +25,14 @@ entity Subject {
 entity User {
     + id [PK]
     --
-    + id [PK]
-    --
     firstName
     lastName
     email
     phone
     address
     schoolId
-    schoolId
     lastLogin
     isActive
-    username
-    password
     username
     password
     fingerprint
@@ -67,16 +42,10 @@ entity Student {
     + id [PK]
     --
     studentId
-    + id [PK]
-    --
-    studentId
     enrollmentDate
 }
 
 entity Teacher {
-    + id [PK]
-    --
-    teacherId
     + id [PK]
     --
     teacherId
@@ -88,15 +57,9 @@ entity SectionalHead {
     + id [PK]
     --
     sectionId
-entity SectionalHead {
-    + id [PK]
-    --
-    sectionId
 }
 
 entity Principal {
-    + id [PK]
-    --
     + id [PK]
     --
     appointmentDate
@@ -106,18 +69,7 @@ entity Admin {
     + id [PK]
     --
     adminId
-    + id [PK]
-    --
-    adminId
     accessLevel
-}
-
-entity Class {
-    + id [PK]
-    --
-    name
-    grade
-    section
 }
 
 entity Class {
@@ -136,8 +88,6 @@ entity Assessment {
     totalMarks
     subjectId [FK]
     assignedTo [FK]
-    subjectId [FK]
-    assignedTo [FK]
 }
 
 entity Exam {
@@ -145,19 +95,12 @@ entity Exam {
     --
     year
     term
-    + id [PK]
-    --
-    year
-    term
     date
     duration
-    averageMarks
     averageMarks
 }
 
 entity ExamResult {
-    + id [PK]
-    --
     + id [PK]
     --
     marks
@@ -166,13 +109,9 @@ entity ExamResult {
     date
     examId [FK]
     studentId [FK]
-    examId [FK]
-    studentId [FK]
 }
 
 entity TimeTable {
-    + id [PK]
-    --
     + id [PK]
     --
     validFrom
@@ -182,13 +121,9 @@ entity TimeTable {
 entity Session {
     + id [PK]
     --
-    + id [PK]
-    --
     startTime
     endTime
     day
-    timetableId [FK]
-    subjectId [FK]
     timetableId [FK]
     subjectId [FK]
 }
@@ -196,14 +131,7 @@ entity Session {
 entity Attendance {
     + id [PK]
     --
-entity Attendance {
-    + id [PK]
-    --
     date
-    status
-    sessionId [FK]
-    remarks
-    studentId [FK]
     status
     sessionId [FK]
     remarks
@@ -213,13 +141,9 @@ entity Attendance {
 entity Log {
     + id [PK]
     --
-    + id [PK]
-    --
     action
     timestamp
     details
-    ipAddress
-    userId [FK]
     ipAddress
     userId [FK]
 }
@@ -250,42 +174,8 @@ Teacher }o--|| Attendance : "marks"
 Class }o--|| Teacher : "has"
 Class }o--|| Student : "has"
 
-User ||--o{ Admin : "is a"
-Teacher ||--o{ SectionalHead : "is a"
-SectionalHead ||--o{ Principal : "is a"
-Principal ||--o{ Admin : "is a"
-
-User ||--o{ Log : "has"
-Student ||--o{ Attendance : "has"
-Teacher ||--o{ Subject : "teaches"
-TimeTable ||--o{ Session : "has"
-Exam ||--o{ ExamResult : "has"
-
-Session }o--|| Subject : "has"
-Assessment }o--|| Subject : "has"
-Exam }o--|| Subject : "has"
-Student }o--|| Subject : "studies"
-Student }o--|| ExamResult : "has"
-Teacher }o--|| Subject : "teaches"
-Teacher }o--|| ExamResult : "evaluates"
-Teacher }o--|| Attendance : "marks"
-Class }o--|| Teacher : "has"
-Class }o--|| Student : "has"
-
 Student }o--|| Assessment : "submits"
 Student }o--|| Exam : "takes"
-Student }o--|| TimeTable : "follows"
-Teacher }o--|| Student : "teaches"
-Teacher }o--|| TimeTable : "schedules"
-Teacher }o--|| Assessment : "creates"
-Teacher }o--|| Session : "teaches"
-Teacher }o--|| Exam : "conducts"
-SectionalHead }o--|| Teacher : "supervises"
-SectionalHead }o--|| TimeTable : "manages"
-Principal }o--|| SectionalHead : "manages"
-Admin }o--|| User : "manages"
-Exam }o--|| Class : "assignedTo"
-TimeTable }o--|| Class : "assignedTo"
 Student }o--|| TimeTable : "follows"
 Teacher }o--|| Student : "teaches"
 Teacher }o--|| TimeTable : "schedules"
