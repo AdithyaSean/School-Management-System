@@ -205,6 +205,8 @@ Exam "1" o-- "1" Subject : has
 Student "1" o-- "*" Subject : studies
 Student "1" o-- "*" ExamResult : has
 Teacher "1" o-- "*" Subject : teaches
+Teacher "1" o-- "*" ExamResult : evaluates
+Teacher "1" o-- "*" Attendance : marks
 
 ' Assosiation relationships
 Student "*" -- "*" Assessment : submits
