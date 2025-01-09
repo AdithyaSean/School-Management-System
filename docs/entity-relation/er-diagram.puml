@@ -1,5 +1,4 @@
 @startuml School Management System - ER Diagram
-@startuml School Management System - ER Diagram
 
 ' Layout settings
 skinparam Linetype ortho
