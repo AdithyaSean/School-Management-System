@@ -95,6 +95,20 @@ class Admin {
     + backupData()
     + generateSystemReports()
     + managePermissions()
+    + createAdminAccount()
+}
+
+class Class {
+    - id
+    - name
+    - grade
+    - section
+    
+    + addClass()
+    + updateClass()
+    + deleteClass()
+    + assignTeacher()
+    + assignStudents()
 }
 
 class Assessment {
@@ -114,16 +128,16 @@ class Assessment {
 
 class Exam {
     - id
-    - name
-    - subject
+    - year
+    - term
     - date
     - duration
-    - totalMarks
+    - averageMarks
     
     + createExam()
     + updateExam()
     + deleteExam()
-    + assignToStudents()
+    + assignToClasses()
     + generateResults()
 }
 
@@ -178,6 +192,7 @@ class Attendance {
 }
 
 class Log {
+    # id
     # action
     # timestamp
     # details
@@ -190,6 +205,8 @@ User <|-- Teacher
 User <|-- Principal
 User <|-- Admin
 Teacher <|-- SectionalHead
+SectionalHead <|-- Principal
+Principal <|-- Admin
 
 ' Compositions relationships
 User "1" *-- "*" Log
@@ -207,6 +224,8 @@ Student "1" o-- "*" ExamResult : has
 Teacher "1" o-- "*" Subject : teaches
 Teacher "1" o-- "*" ExamResult : evaluates
 Teacher "1" o-- "*" Attendance : marks
+Class "*" -- "*" Teacher
+Class "1" o-- "*" Student
 
 ' Assosiation relationships
 Student "*" -- "*" Assessment : submits
@@ -221,5 +240,7 @@ SectionalHead "1" -- "*" Teacher : supervises
 SectionalHead "1" -- "*" TimeTable : manages
 Principal "1" -- "*" SectionalHead : manages
 Admin "1" -- "*" User : manages
+Exam "*" -- "*" Class : assignedTo
+TimeTable "1" -- "1" Class : assignedTo
 
 @enduml
