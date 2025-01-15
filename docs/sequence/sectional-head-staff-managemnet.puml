@@ -1,0 +1,130 @@
+@startuml Sectional Head Staff Management
+
+actor "Sectional Head" as SH
+participant "UI" as UI
+participant "StaffController" as SC
+participant "Teacher" as T
+participant "Log" as L
+database "Database" as DB
+
+== Add Staff Member ==
+SH -> UI: Add Staff Member
+activate UI
+UI -> SC: addStaffMember(teacherData)
+activate SC
+
+SC -> T: validateTeacherData()
+activate T
+T --> SC: validationResult
+deactivate T
+
+SC -> T: createTeacher()
+activate T
+T -> DB: save()
+DB --> T: success
+T --> SC: teacherCreated
+deactivate T
+
+SC -> T: notifyTeacher()
+activate T
+T -> DB: saveNotification()
+DB --> T: success
+T --> SC: teacherNotified
+deactivate T
+
+SC -> L: logAction("Staff Added")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> SC: logged
+deactivate L
+
+SC --> UI: success
+deactivate SC
+UI --> SH: showSuccess
+deactivate UI
+
+== Update Staff Member ==
+SH -> UI: Update Staff Member
+activate UI
+UI -> SC: updateStaffMember(id, data)
+activate SC
+
+SC -> T: findById()
+activate T
+T -> DB: fetch()
+DB --> T: teacher
+T --> SC: teacher
+deactivate T
+
+SC -> T: validateTeacherData()
+activate T
+T --> SC: validationResult
+deactivate T
+
+SC -> T: updateTeacher()
+activate T
+T -> DB: update()
+DB --> T: success
+T --> SC: teacherUpdated
+deactivate T
+
+SC -> T: notifyTeacher()
+activate T
+T -> DB: saveNotification()
+DB --> T: success
+T --> SC: teacherNotified
+deactivate T
+
+SC -> L: logAction("Staff Updated")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> SC: logged
+deactivate L
+
+SC --> UI: success
+deactivate SC
+UI --> SH: showSuccess
+deactivate UI
+
+== Remove Staff Member ==
+SH -> UI: Remove Staff Member
+activate UI
+UI -> SC: removeStaffMember(id)
+activate SC
+
+SC -> T: findById()
+activate T
+T -> DB: fetch()
+DB --> T: teacher
+T --> SC: teacher
+deactivate T
+
+SC -> T: deactivateTeacher()
+activate T
+T -> DB: update()
+DB --> T: success
+T --> SC: teacherDeactivated
+deactivate T
+
+SC -> T: notifyTeacher()
+activate T
+T -> DB: saveNotification()
+DB --> T: success
+T --> SC: teacherNotified
+deactivate T
+
+SC -> L: logAction("Staff Removed")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> SC: logged
+deactivate L
+
+SC --> UI: success
+deactivate SC
+UI --> SH: showSuccess
+deactivate UI
+
+@enduml
