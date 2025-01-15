@@ -1,0 +1,99 @@
+@startuml Exam Management Sequence
+
+actor Teacher
+actor Student
+participant "UI" as UI
+participant "ExamController" as EC
+participant "Exam" as E
+participant "ExamResult" as ER
+participant "User" as U
+participant "Log" as L
+database "Database" as DB
+
+== Exam Creation ==
+Teacher -> UI: Create Exam
+activate UI
+UI -> EC: createExam(examData)
+activate EC
+EC -> U: validateTeacher()
+activate U
+U --> EC: valid
+deactivate U
+
+EC -> E: createExam()
+activate E
+E -> DB: save()
+DB --> E: success
+E --> EC: examCreated
+deactivate E
+
+EC -> L: logAction("Exam Created")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> EC: logged
+deactivate L
+
+EC --> UI: examCreationSuccess
+deactivate EC
+UI --> Teacher: showSuccess
+deactivate UI
+
+== Exam Taking ==
+Student -> UI: viewExams
+activate UI
+UI -> EC: getExams(studentId)
+activate EC
+EC -> E: getExamsByStudent()
+activate E
+E -> DB: fetch()
+DB --> E: exams
+E --> EC: examsList
+deactivate E
+EC --> UI: examsList
+deactivate EC
+UI --> Student: displayExams
+deactivate UI
+
+== Result Processing ==
+Teacher -> UI: enterResults
+activate UI
+UI -> EC: submitResults(examId, results)
+activate EC
+EC -> ER: createResults()
+activate ER
+ER -> ER: calculateGrade()
+ER -> DB: save()
+DB --> ER: success
+ER --> EC: resultsCreated
+deactivate ER
+
+EC -> L: logAction("Results Added")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> EC: logged
+deactivate L
+
+EC --> UI: resultSubmissionSuccess
+deactivate EC
+UI --> Teacher: showSuccess
+deactivate UI
+
+== View Results ==
+Student -> UI: viewResults
+activate UI
+UI -> EC: getResults(studentId)
+activate EC
+EC -> ER: getResultsByStudent()
+activate ER
+ER -> DB: fetch()
+DB --> ER: results
+ER --> EC: resultsList
+deactivate ER
+EC --> UI: resultsList
+deactivate EC
+UI --> Student: displayResults
+deactivate UI
+
+@enduml

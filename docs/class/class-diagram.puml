@@ -204,11 +204,9 @@ class Log {
 ' Inheritance relationships
 User <|-- Student
 User <|-- Teacher
-User <|-- Principal
 User <|-- Admin
 Teacher <|-- SectionalHead
 SectionalHead <|-- Principal
-Principal <|-- Admin
 
 ' Compositions relationships
 User "1" *-- "✱" Log
