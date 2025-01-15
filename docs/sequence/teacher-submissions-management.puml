@@ -1,4 +1,5 @@
 @startuml Teacher Submissions Management
+title Teacher Submissions Management
 
 actor "Teacher" as T
 participant "UI" as UI

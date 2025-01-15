@@ -1,4 +1,5 @@
 @startuml School Management System - Class Diagram
+title School Management System - Class Diagram
 
 ' Layout settings
 skinparam Linetype ortho
@@ -134,7 +135,7 @@ class Exam {
     - term
     - date
     - duration
-    - averageMarks
+    - passMarks
     
     + createExam()
     + updateExam()
@@ -184,7 +185,6 @@ class Attendance {
     - id
     - date
     - status
-    - sessionId
     - remarks
     
     + markAttendance()
@@ -204,7 +204,7 @@ class Log {
 ' Inheritance relationships
 User <|-- Student
 User <|-- Teacher
-User <|-- Admin
+Principal <|-- Admin
 Teacher <|-- SectionalHead
 SectionalHead <|-- Principal
 
@@ -213,25 +213,24 @@ User "1" *-- "✱" Log
 Teacher "1" *-- "✱" Subject
 TimeTable "1" *-- "✱" Session
 Exam "1" *-- "✱" ExamResult
+User "1" *-- "✱" Attendance
 
 ' Aggregations relationships
-Session "1" o-- "1" Subject : has
-Assessment "1" o-- "1" Subject : has
-Exam "1" o-- "1" Subject : has
-Student "1" o-- "✱" Attendance
-Student "1" o-- "✱" Subject : studies
-Student "1" o-- "✱" ExamResult : has
-Teacher "1" o-- "✱" Subject : teaches
-Teacher "1" o-- "✱" ExamResult : evaluates
-Teacher "1" o-- "✱" Attendance : marks
+Student "1" o-- "✱" Subject
+Student "1" o-- "✱" ExamResult
+Teacher "1" o-- "✱" Subject
+Teacher "1" o-- "✱" ExamResult
 Class "*" -- "✱" Teacher
 Class "1" o-- "✱" Student
+Session "1" o-- "1" Subject
+Assessment "1" o-- "1" Subject
+Exam "1" o-- "1" Subject
 
 ' Assosiation relationships
 Student "✱" -- "✱" Assessment : submits
 Student "✱" -- "✱" Exam : takes
 Student "✱" -- "1" TimeTable : follows
-Teacher "1..✱" -- "✱" Student : teaches
+Teacher "1" -- "✱" Student : teaches
 Teacher "✱" -- "✱" TimeTable : schedules
 Teacher "1" -- "✱" Assessment : creates
 Teacher "1" -- "✱" Session : teaches

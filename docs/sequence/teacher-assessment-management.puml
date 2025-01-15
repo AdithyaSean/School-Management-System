@@ -1,4 +1,5 @@
 @startuml Teacher Assessment Management
+title Teacher Assessment Management
 
 actor "Teacher" as T
 participant "UI" as UI

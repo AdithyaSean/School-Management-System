@@ -1,4 +1,5 @@
 @startuml Exam Management Sequence
+title Exam Management
 
 actor Teacher
 actor Student

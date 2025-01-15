@@ -1,0 +1,50 @@
+@startuml Profile Management
+title Profile Management
+
+actor User
+participant "UI" as UI
+participant "ProfileController" as PC
+participant "User" as U
+participant "Log" as L
+database "Database" as DB
+
+== View Profile ==
+User -> UI: viewProfile()
+activate UI
+UI -> PC: getProfile(userId)
+activate PC
+PC -> U: getUserDetails()
+activate U
+U -> DB: fetch()
+DB --> U: userDetails
+U --> PC: profileData
+deactivate U
+PC --> UI: profileData
+deactivate PC
+UI --> User: showProfile
+deactivate UI
+
+== Update Profile ==
+User -> UI: updateProfile(data)
+activate UI
+UI -> PC: updateProfile(data)
+activate PC
+PC -> U: updateProfile()
+activate U
+U -> DB: update()
+DB --> U: success
+U --> PC: updated
+deactivate U
+
+PC -> L: logAction("Profile Updated")
+activate L
+L -> DB: save()
+L --> PC: logged
+deactivate L
+
+PC --> UI: updateSuccess
+deactivate PC
+UI --> User: showSuccess
+deactivate UI
+
+@enduml

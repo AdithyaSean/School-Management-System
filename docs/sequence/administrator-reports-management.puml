@@ -1,4 +1,5 @@
 @startuml Administrator Reports Management
+title Administrator Reports Mangement
 
 actor "Administrator" as A
 participant "UI" as UI

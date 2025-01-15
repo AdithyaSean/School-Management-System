@@ -1,4 +1,5 @@
 @startuml Sectional Head Staff Management
+title Sectional Head Staff Management
 
 actor "Sectional Head" as SH
 participant "UI" as UI

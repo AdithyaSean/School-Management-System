@@ -1,4 +1,5 @@
 @startuml Sectional Head Time Table Management
+title Sectional Head Time Table Management
 
 actor "Sectional Head" as SH
 participant "UI" as UI

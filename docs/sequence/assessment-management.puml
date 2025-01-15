@@ -1,4 +1,5 @@
 @startuml Assessment Management Sequence
+title Student Assessment Management
 
 actor Teacher
 actor Student

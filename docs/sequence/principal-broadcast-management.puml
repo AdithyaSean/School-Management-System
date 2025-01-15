@@ -1,4 +1,5 @@
 @startuml Principal Broadcast Management
+title Principal Broadcast Management
 
 actor "Principal" as P
 participant "UI" as UI

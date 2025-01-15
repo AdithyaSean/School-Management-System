@@ -1,0 +1,53 @@
+@startuml Communication Flow
+title Communication Flow
+
+actor User
+participant "UI" as UI
+participant "CommunicationController" as CC
+participant "Message" as M
+participant "User" as U
+participant "Log" as L
+database "Database" as DB
+
+== Send Message ==
+User -> UI: sendMessage(data)
+activate UI
+UI -> CC: sendMessage(data)
+activate CC
+
+CC -> U: validateUser()
+activate U
+U --> CC: valid
+deactivate U
+
+CC -> M: createMessage()
+activate M
+M -> DB: save()
+DB --> M: success
+M --> CC: messageSent
+deactivate M
+
+CC -> L: logAction("Message Sent")
+activate L
+L -> DB: save()
+L --> CC: logged
+deactivate L
+
+CC --> UI: success
+deactivate CC
+UI --> User: showSuccess
+deactivate UI
+
+== Receive Notification ==
+User <- UI: showNotification
+activate UI
+UI <- CC: notifyUser()
+activate CC
+CC <- M: messageReceived()
+activate M
+M <- DB: newMessage
+deactivate M
+deactivate CC
+deactivate UI
+
+@enduml
