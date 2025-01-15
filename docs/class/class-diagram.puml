@@ -14,16 +14,6 @@ skinparam class {
     ArrowColor black
 }
 
-class Subject {
-    # name
-    # code
-    # description
-
-    + addSubject()
-    + updateSubject()
-    + deleteSubject()
-}
-
 abstract class User {
     # id
     # firstName
@@ -43,22 +33,24 @@ abstract class User {
     + verifyFingerprint()
     + updateProfile()
     + changePassword()
+    + createAccount()
+    + deleteAccount()
+    + updateAccount()
 }
 
 class Student {
     - studentId
+    - classIndex
     - enrollmentDate
     
-    + submitAssessment()
-    + viewAssessments()
-    + viewExams()
-    + applyForRecorrection()
+    + createStudent()
+    + updateStudent()
+    + deleteStudent()
 }
 
 class Teacher {
     # teacherId
     # joiningDate
-    # qualification
     
     + manageAssessments()
     + manageExams()
@@ -73,6 +65,10 @@ class SectionalHead {
     + manageTeachers()
     + manageTimeTable()
     + approveLeaveRequests()
+    + generateSectionReport()
+    + createSectionalHeadAccount()
+    + deleteSectionalHeadAccount()
+    + updateSectionalHeadAccount()
 }
 
 class Principal {
@@ -81,12 +77,15 @@ class Principal {
     
     + broadcastAnnouncement()
     + reviewReports()
-    + approveEvents()
     + manageStaff()
     + reviewPerformance()
     + generateSchoolReport()
     + generateStaffReport()
     + generatePerformanceReport()
+    + createPrincipalAccount()
+    + deletePrincipalAccount()
+    + updatePrincipalAccount()
+    + viewPrincipalAccount()
 }
 
 class Admin {
@@ -97,13 +96,11 @@ class Admin {
     + configureSystem()
     + backupData()
     + generateSystemReports()
-    + managePermissions()
     + createAdminAccount()
 }
 
 class Class {
     - id
-    - name
     - grade
     - section
     
@@ -120,17 +117,20 @@ class Assessment {
     - description
     - dueDate
     - totalMarks
-    - subject
     - assignedTo
     
     + createAssessment()
     + updateAssessment()
     + deleteAssessment()
     + assignToStudents()
+    + submitAssessment()
+    + viewAssessments()
 }
 
 class Exam {
     - id
+    - status
+    - examType
     - year
     - term
     - date
@@ -142,6 +142,7 @@ class Exam {
     + deleteExam()
     + assignToClasses()
     + generateResults()
+    + viewExams()
 }
 
 class ExamResult {
@@ -156,6 +157,7 @@ class ExamResult {
     + updateResult()
     + deleteResult()
     + publishResult()
+    + applyForRecorrection()
 }
 
 class TimeTable {
@@ -173,12 +175,24 @@ class Session {
     - id
     - startTime
     - endTime
-    - day
+    - dayOfWeek
     
     + createSession()
     + updateSession()
     + deleteSession()
     + validateTime()
+}
+
+class Subject {
+    # id
+    # name
+    # description
+
+    + addSubject()
+    + updateSubject()
+    + deleteSubject()
+    + assignToTeacher()
+    + viewSubjects()
 }
 
 class Attendance {
@@ -191,6 +205,7 @@ class Attendance {
     + updateAttendance()
     + calculateAttendancePercentage()
     + generateAttendanceReport()
+    + viewAttendance()
 }
 
 class Log {
@@ -199,47 +214,56 @@ class Log {
     # timestamp
     # details
     # ipAddress
+
+    + logAction()
+    + viewLogs()
+    + deleteLogs()
 }
 
 ' Inheritance relationships
 User <|-- Student
 User <|-- Teacher
-Principal <|-- Admin
+User <|-- Admin
 Teacher <|-- SectionalHead
 SectionalHead <|-- Principal
 
-' Compositions relationships
-User "1" *-- "✱" Log
-Teacher "1" *-- "✱" Subject
-TimeTable "1" *-- "✱" Session
-Exam "1" *-- "✱" ExamResult
-User "1" *-- "✱" Attendance
+' Composition with multiplicities (strong ownership)
+User "1" *-- "1" Log : has
+User "✱" *-- "✱" Attendance : records
+User "1" *-- "✱" TimeTable : manages
+Class "1" *-- "1" TimeTable : has
+TimeTable "1" *-- "✱" Session : contains
 
-' Aggregations relationships
-Student "1" o-- "✱" Subject
-Student "1" o-- "✱" ExamResult
-Teacher "1" o-- "✱" Subject
-Teacher "1" o-- "✱" ExamResult
-Class "*" -- "✱" Teacher
-Class "1" o-- "✱" Student
-Session "1" o-- "1" Subject
-Assessment "1" o-- "1" Subject
-Exam "1" o-- "1" Subject
+' Aggregation with multiplicities (weak ownership)
+Class "1" o-- "✱" Student : consists-of
+Class "1" o-- "✱" Assessment : has
+Class "1" o-- "✱" Exam : has
+Student "✱" o-- "✱" Subject : has
+Subject "1" o-- "✱" Assessment : includes
+Subject "1" o-- "✱" Session : taught-in
+Exam "1" o-- "✱" ExamResult : has
 
-' Assosiation relationships
-Student "✱" -- "✱" Assessment : submits
+' Association with multiplicities (relationships)
 Student "✱" -- "✱" Exam : takes
-Student "✱" -- "1" TimeTable : follows
+Teacher "✱" -- "✱" Subject : teaches
+Teacher "1" -- "✱" Exam : marks
+Teacher "1" -- "✱" TimeTable : follows
 Teacher "1" -- "✱" Student : teaches
-Teacher "✱" -- "✱" TimeTable : schedules
-Teacher "1" -- "✱" Assessment : creates
-Teacher "1" -- "✱" Session : teaches
-Teacher "1" -- "✱" Exam : conducts
 SectionalHead "1" -- "✱" Teacher : supervises
-SectionalHead "1" -- "✱" TimeTable : manages
 Principal "1" -- "✱" SectionalHead : manages
-Admin "1" -- "✱" User : manages
-Exam "✱" -- "✱" Class : assignedTo
-TimeTable "1" -- "1" Class : assignedTo
+Principal "1" -- "✱" User : administers
+SectionalHead "1" -- "✱" Class : supervises
+SectionalHead "1" -- "✱" Exam : conducts
+
+
+' Dependency relationships
+Exam -- Attendance : "records"
+Log -- Subject : access
+Log -- Exam : access
+Log -- Class : access
+Log -- Student : access
+Admin -- "✱" User : administers
+Admin -- "✱" Exam : modify 
+Admin -- "✱" Class : modify
 
 @enduml
