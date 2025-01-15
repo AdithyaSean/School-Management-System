@@ -1,0 +1,154 @@
+@startuml Teacher Submissions Management
+
+actor "Teacher" as T
+participant "UI" as UI
+participant "SubmissionController" as SC
+participant "AssessmentService" as AS
+participant "GradingService" as GS
+participant "NotificationService" as NS
+participant "Student" as S
+participant "Log" as L
+database "Database" as DB
+
+== View Student Submissions ==
+T -> UI: View Submissions
+activate UI
+UI -> SC: getSubmissions(assessmentId)
+activate SC
+
+SC -> AS: fetchSubmissions()
+activate AS
+AS -> DB: fetch()
+DB --> AS: submissions
+AS --> SC: submissionsList
+deactivate AS
+
+SC -> L: logAction("Submissions Viewed")
+activate L
+L -> DB: save()
+DB --> L: logged
+deactivate L
+
+SC --> UI: displaySubmissions
+deactivate SC
+UI --> T: showSubmissions
+deactivate UI
+
+== Mark Submission ==
+T -> UI: Grade Submission
+activate UI
+UI -> SC: gradeSubmission(submissionId, marks, feedback)
+activate SC
+
+SC -> AS: validateSubmission()
+activate AS
+AS -> DB: fetch()
+DB --> AS: valid
+AS --> SC: validated
+deactivate AS
+
+SC -> GS: calculateGrade(marks)
+activate GS
+GS --> SC: grade
+deactivate GS
+
+SC -> AS: updateSubmission()
+activate AS
+AS -> DB: update()
+DB --> AS: updated
+AS --> SC: submissionUpdated
+deactivate AS
+
+SC -> NS: notifyStudent()
+activate NS
+NS -> S: sendNotification()
+S --> NS: notified
+NS --> SC: studentNotified
+deactivate NS
+
+SC -> L: logAction("Submission Graded")
+activate L
+L -> DB: save()
+DB --> L: logged
+deactivate L
+
+SC --> UI: success
+deactivate SC
+UI --> T: showSuccess
+deactivate UI
+
+== Update Submission Marks ==
+T -> UI: Update Marks
+activate UI
+UI -> SC: updateMarks(submissionId, newMarks)
+activate SC
+
+SC -> AS: validateUpdate()
+activate AS
+AS -> DB: fetch()
+DB --> AS: valid
+AS --> SC: validated
+deactivate AS
+
+SC -> GS: recalculateGrade(newMarks)
+activate GS
+GS --> SC: newGrade
+deactivate GS
+
+SC -> AS: updateMarks()
+activate AS
+AS -> DB: update()
+DB --> AS: updated
+AS --> SC: marksUpdated
+deactivate AS
+
+SC -> NS: notifyStudent()
+activate NS
+NS -> S: sendNotification()
+S --> NS: notified
+NS --> SC: studentNotified
+deactivate NS
+
+SC -> L: logAction("Marks Updated")
+activate L
+L -> DB: save()
+DB --> L: logged
+deactivate L
+
+SC --> UI: success
+deactivate SC
+UI --> T: showSuccess
+deactivate UI
+
+== Generate Submission Report ==
+T -> UI: Generate Report
+activate UI
+UI -> SC: generateReport(assessmentId)
+activate SC
+
+SC -> AS: fetchAllSubmissions()
+activate AS
+AS -> DB: fetch()
+DB --> AS: submissions
+AS --> SC: submissionData
+deactivate AS
+
+SC -> GS: generateStatistics()
+activate GS
+GS -> GS: calculateAverages()
+GS -> GS: generateDistribution()
+GS --> SC: statistics
+deactivate GS
+
+SC -> L: logAction("Report Generated")
+activate L
+L -> DB: save()
+DB --> L: logged
+deactivate L
+
+SC --> UI: report
+deactivate SC
+UI --> T: displayReport
+deactivate UI
+
+@enduml

@@ -1,0 +1,115 @@
+@startuml Principal Broadcast Management
+
+actor "Principal" as P
+participant "UI" as UI
+participant "BroadcastController" as BC
+participant "NotificationService" as NS
+participant "User" as U
+participant "Log" as L
+database "Database" as DB
+
+== Create and Broadcast Announcement ==
+P -> UI: Create Broadcast Announcement
+activate UI
+UI -> BC: createAnnouncement(data)
+activate BC
+
+BC -> DB: saveAnnouncement()
+DB --> BC: announcementId
+
+BC -> BC: selectTargetUsers()
+activate BC
+BC -> U: getUserGroups()
+activate U
+U -> DB: fetch()
+DB --> U: userGroups
+U --> BC: availableGroups
+deactivate U
+deactivate BC
+
+BC -> NS: sendNotifications(users)
+activate NS
+
+NS -> U: notifyUsers()
+activate U
+U -> DB: saveNotifications()
+DB --> U: success
+U --> NS: usersNotified
+deactivate U
+
+NS -> U: notifySectionalHeads()
+activate U
+U -> DB: saveNotifications()
+DB --> U: success
+U --> NS: sectionalHeadsNotified
+deactivate U
+
+NS --> BC: notificationsSent
+deactivate NS
+
+BC -> L: logAction("Announcement Broadcast")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> BC: logged
+deactivate L
+
+BC --> UI: success
+deactivate BC
+UI --> P: showSuccess
+deactivate UI
+
+== View Broadcast History ==
+P -> UI: View Broadcast History
+activate UI
+UI -> BC: getBroadcastHistory()
+activate BC
+
+BC -> DB: fetchAnnouncements()
+DB --> BC: announcements
+
+BC -> L: fetchLogs()
+activate L
+L -> DB: fetch()
+DB --> L: logs
+L --> BC: broadcastLogs
+deactivate L
+
+BC --> UI: broadcastHistory
+deactivate BC
+UI --> P: displayHistory
+deactivate UI
+
+== Cancel/Update Broadcast ==
+P -> UI: Cancel/Update Broadcast
+activate UI
+UI -> BC: updateBroadcast(id, action)
+activate BC
+
+BC -> DB: updateAnnouncementStatus()
+DB --> BC: updated
+
+BC -> NS: sendUpdateNotifications()
+activate NS
+NS -> U: notifyUsers()
+activate U
+U -> DB: saveNotifications()
+DB --> U: success
+U --> NS: usersNotified
+deactivate U
+NS --> BC: updatesSent
+deactivate NS
+
+BC -> L: logAction("Broadcast Updated")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> BC: logged
+deactivate L
+
+BC --> UI: success
+deactivate BC
+UI --> P: showSuccess
+deactivate UI
+
+@enduml

@@ -1,0 +1,176 @@
+@startuml Administrator Reports Management
+
+actor "Administrator" as A
+participant "UI" as UI
+participant "ReportController" as RC
+participant "ReportGenerator" as RG
+participant "NotificationService" as NS
+participant "Principal" as P
+participant "Log" as L
+database "Database" as DB
+
+== Generate User Engagement Report ==
+A -> UI: Request User Engagement Report
+activate UI
+UI -> RC: generateUserEngagementReport(params)
+activate RC
+
+RC -> RG: collectUserData()
+activate RG
+RG -> DB: fetchUserLogs()
+DB --> RG: userLogs
+RG -> DB: fetchUserActivity()
+DB --> RG: activityData
+RG --> RC: userData
+deactivate RG
+
+RC -> RG: generateReport()
+activate RG
+RG -> RG: processData()
+RG -> RG: createVisualizations()
+RG --> RC: report
+deactivate RG
+
+RC -> NS: notifyPrincipal(report)
+activate NS
+NS -> P: sendNotification()
+P --> NS: notificationReceived
+NS --> RC: notificationSent
+deactivate NS
+
+RC -> L: logAction("User Engagement Report Generated")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> RC: logged
+deactivate L
+
+RC --> UI: reportGenerated
+deactivate RC
+UI --> A: displayReport
+deactivate UI
+
+== Generate System Utilization Report ==
+A -> UI: Request System Utilization Report
+activate UI
+UI -> RC: generateSystemUtilizationReport(params)
+activate RC
+
+RC -> RG: collectSystemData()
+activate RG
+RG -> DB: fetchSystemMetrics()
+DB --> RG: systemMetrics
+RG -> DB: fetchResourceUsage()
+DB --> RG: resourceData
+RG --> RC: systemData
+deactivate RG
+
+RC -> RG: generateReport()
+activate RG
+RG -> RG: analyzeMetrics()
+RG -> RG: createCharts()
+RG --> RC: report
+deactivate RG
+
+RC -> NS: notifyPrincipal(report)
+activate NS
+NS -> P: sendNotification()
+P --> NS: notificationReceived
+NS --> RC: notificationSent
+deactivate NS
+
+RC -> L: logAction("System Utilization Report Generated")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> RC: logged
+deactivate L
+
+RC --> UI: reportGenerated
+deactivate RC
+UI --> A: displayReport
+deactivate UI
+
+== Generate Monthly Attendance Report ==
+A -> UI: Request Monthly Attendance Report
+activate UI
+UI -> RC: generateMonthlyAttendanceReport(month)
+activate RC
+
+RC -> RG: collectAttendanceData()
+activate RG
+RG -> DB: fetchAttendanceRecords()
+DB --> RG: attendanceData
+RG -> DB: fetchUserDetails()
+DB --> RG: userData
+RG --> RC: compiledData
+deactivate RG
+
+RC -> RG: generateReport()
+activate RG
+RG -> RG: calculateStatistics()
+RG -> RG: createSummary()
+RG --> RC: report
+deactivate RG
+
+RC -> NS: notifyPrincipal(report)
+activate NS
+NS -> P: sendNotification()
+P --> NS: notificationReceived
+NS --> RC: notificationSent
+deactivate NS
+
+RC -> L: logAction("Monthly Attendance Report Generated")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> RC: logged
+deactivate L
+
+RC --> UI: reportGenerated
+deactivate RC
+UI --> A: displayReport
+deactivate UI
+
+== Generate Performance Report ==
+A -> UI: Request Performance Report
+activate UI
+UI -> RC: generatePerformanceReport(params)
+activate RC
+
+RC -> RG: collectPerformanceData()
+activate RG
+RG -> DB: fetchExamResults()
+DB --> RG: examData
+RG -> DB: fetchAssessments()
+DB --> RG: assessmentData
+RG --> RC: performanceData
+deactivate RG
+
+RC -> RG: generateReport()
+activate RG
+RG -> RG: analyzePerformance()
+RG -> RG: createPerformanceMetrics()
+RG --> RC: report
+deactivate RG
+
+RC -> NS: notifyPrincipal(report)
+activate NS
+NS -> P: sendNotification()
+P --> NS: notificationReceived
+NS --> RC: notificationSent
+deactivate NS
+
+RC -> L: logAction("Performance Report Generated")
+activate L
+L -> DB: save()
+DB --> L: success
+L --> RC: logged
+deactivate L
+
+RC --> UI: reportGenerated
+deactivate RC
+UI --> A: displayReport
+deactivate UI
+
+@enduml
