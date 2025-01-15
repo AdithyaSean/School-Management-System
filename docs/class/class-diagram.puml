@@ -66,7 +66,8 @@ class Teacher {
 }
 
 class SectionalHead {
-    - sectionId
+    # sectionHeadId
+    # sectionId
     
     + manageTeachers()
     + manageTimeTable()
@@ -74,7 +75,8 @@ class SectionalHead {
 }
 
 class Principal {
-    - appointmentDate
+    # principalId
+    # appointmentDate
     
     + broadcastAnnouncement()
     + reviewReports()
@@ -209,38 +211,38 @@ SectionalHead <|-- Principal
 Principal <|-- Admin
 
 ' Compositions relationships
-User "1" *-- "*" Log
-Student "1" *-- "*" Attendance
-Teacher "1" *-- "*" Subject
-TimeTable "1" *-- "*" Session
-Exam "1" *-- "*" ExamResult
+User "1" *-- "✱" Log
+Teacher "1" *-- "✱" Subject
+TimeTable "1" *-- "✱" Session
+Exam "1" *-- "✱" ExamResult
 
 ' Aggregations relationships
 Session "1" o-- "1" Subject : has
 Assessment "1" o-- "1" Subject : has
 Exam "1" o-- "1" Subject : has
-Student "1" o-- "*" Subject : studies
-Student "1" o-- "*" ExamResult : has
-Teacher "1" o-- "*" Subject : teaches
-Teacher "1" o-- "*" ExamResult : evaluates
-Teacher "1" o-- "*" Attendance : marks
-Class "*" -- "*" Teacher
-Class "1" o-- "*" Student
+Student "1" o-- "✱" Attendance
+Student "1" o-- "✱" Subject : studies
+Student "1" o-- "✱" ExamResult : has
+Teacher "1" o-- "✱" Subject : teaches
+Teacher "1" o-- "✱" ExamResult : evaluates
+Teacher "1" o-- "✱" Attendance : marks
+Class "*" -- "✱" Teacher
+Class "1" o-- "✱" Student
 
 ' Assosiation relationships
-Student "*" -- "*" Assessment : submits
-Student "*" -- "*" Exam : takes
-Student "*" -- "1" TimeTable : follows
-Teacher "1..*" -- "*" Student : teaches
-Teacher "*" -- "*" TimeTable : schedules
-Teacher "1" -- "*" Assessment : creates
-Teacher "1" -- "*" Session : teaches
-Teacher "1" -- "*" Exam : conducts
-SectionalHead "1" -- "*" Teacher : supervises
-SectionalHead "1" -- "*" TimeTable : manages
-Principal "1" -- "*" SectionalHead : manages
-Admin "1" -- "*" User : manages
-Exam "*" -- "*" Class : assignedTo
+Student "✱" -- "✱" Assessment : submits
+Student "✱" -- "✱" Exam : takes
+Student "✱" -- "1" TimeTable : follows
+Teacher "1..✱" -- "✱" Student : teaches
+Teacher "✱" -- "✱" TimeTable : schedules
+Teacher "1" -- "✱" Assessment : creates
+Teacher "1" -- "✱" Session : teaches
+Teacher "1" -- "✱" Exam : conducts
+SectionalHead "1" -- "✱" Teacher : supervises
+SectionalHead "1" -- "✱" TimeTable : manages
+Principal "1" -- "✱" SectionalHead : manages
+Admin "1" -- "✱" User : manages
+Exam "✱" -- "✱" Class : assignedTo
 TimeTable "1" -- "1" Class : assignedTo
 
 @enduml
