@@ -39,7 +39,7 @@ abstract class User {
 }
 
 class Student {
-    - studentId
+    - id
     - classIndex
     - enrollmentDate
     
@@ -49,7 +49,7 @@ class Student {
 }
 
 class Teacher {
-    # teacherId
+    # id
     # joiningDate
     
     + manageAssessments()
@@ -59,8 +59,8 @@ class Teacher {
 }
 
 class SectionalHead {
-    # sectionHeadId
-    # sectionId
+    # id
+    # section
     
     + manageTeachers()
     + manageTimeTable()
@@ -72,8 +72,8 @@ class SectionalHead {
 }
 
 class Principal {
-    # principalId
-    # appointmentDate
+    - id
+    - appointmentDate
     
     + broadcastAnnouncement()
     + reviewReports()
@@ -89,7 +89,7 @@ class Principal {
 }
 
 class Admin {
-    - adminId
+    - id
     - accessLevel
     
     + manageUsers()
@@ -184,9 +184,9 @@ class Session {
 }
 
 class Subject {
-    # id
-    # name
-    # description
+    - id
+    - name
+    - description
 
     + addSubject()
     + updateSubject()
@@ -208,18 +208,6 @@ class Attendance {
     + viewAttendance()
 }
 
-class Log {
-    # id
-    # action
-    # timestamp
-    # details
-    # ipAddress
-
-    + logAction()
-    + viewLogs()
-    + deleteLogs()
-}
-
 ' Inheritance relationships
 User <|-- Student
 User <|-- Teacher
@@ -228,9 +216,7 @@ Teacher <|-- SectionalHead
 SectionalHead <|-- Principal
 
 ' Composition with multiplicities (strong ownership)
-User "1" *-- "1" Log : has
 User "✱" *-- "✱" Attendance : records
-User "1" *-- "✱" TimeTable : manages
 Class "1" *-- "1" TimeTable : has
 TimeTable "1" *-- "✱" Session : contains
 
@@ -247,23 +233,17 @@ Exam "1" o-- "✱" ExamResult : has
 Student "✱" -- "✱" Exam : takes
 Teacher "✱" -- "✱" Subject : teaches
 Teacher "1" -- "✱" Exam : marks
-Teacher "1" -- "✱" TimeTable : follows
-Teacher "1" -- "✱" Student : teaches
+Teacher "1" -- "✱" Class : teaches
 SectionalHead "1" -- "✱" Teacher : supervises
 Principal "1" -- "✱" SectionalHead : manages
 Principal "1" -- "✱" User : administers
 SectionalHead "1" -- "✱" Class : supervises
 SectionalHead "1" -- "✱" Exam : conducts
 
-
 ' Dependency relationships
 Exam -- Attendance : "records"
-Log -- Subject : access
-Log -- Exam : access
-Log -- Class : access
-Log -- Student : access
 Admin -- "✱" User : administers
-Admin -- "✱" Exam : modify 
+Admin -- "✱" Exam : modify
 Admin -- "✱" Class : modify
 
 @enduml
