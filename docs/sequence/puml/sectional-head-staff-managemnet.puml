@@ -5,7 +5,6 @@ actor "Sectional Head" as SH
 participant "UI" as UI
 participant "StaffController" as SC
 participant "Teacher" as T
-participant "Log" as L
 database "Database" as DB
 
 == Add Staff Member ==
@@ -32,13 +31,6 @@ T -> DB: saveNotification()
 DB --> T: success
 T --> SC: teacherNotified
 deactivate T
-
-SC -> L: logAction("Staff Added")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> SC: logged
-deactivate L
 
 SC --> UI: success
 deactivate SC
@@ -77,13 +69,6 @@ DB --> T: success
 T --> SC: teacherNotified
 deactivate T
 
-SC -> L: logAction("Staff Updated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> SC: logged
-deactivate L
-
 SC --> UI: success
 deactivate SC
 UI --> SH: showSuccess
@@ -115,13 +100,6 @@ T -> DB: saveNotification()
 DB --> T: success
 T --> SC: teacherNotified
 deactivate T
-
-SC -> L: logAction("Staff Removed")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> SC: logged
-deactivate L
 
 SC --> UI: success
 deactivate SC

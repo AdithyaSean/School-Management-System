@@ -7,7 +7,6 @@ participant "UI" as UI
 participant "AssessmentController" as AC
 participant "Assessment" as A
 participant "Subject" as S
-participant "Log" as L
 database "Database" as DB
 
 == Assessment Creation ==
@@ -26,12 +25,6 @@ A -> DB: save()
 DB --> A: success
 A --> AC: assessmentCreated
 deactivate A
-
-AC -> L: logAction("Assessment Created")
-activate L
-L -> DB: save()
-L --> AC: logged
-deactivate L
 
 AC --> UI: success
 deactivate AC
@@ -66,12 +59,6 @@ DB --> A: success
 A --> AC: submissionAdded
 deactivate A
 
-AC -> L: logAction("Assessment Submitted")
-activate L
-L -> DB: save()
-L --> AC: logged
-deactivate L
-
 AC --> UI: submissionSuccess
 deactivate AC
 UI --> Student: showSuccess
@@ -89,12 +76,6 @@ A -> DB: updateMarks()
 DB --> A: success
 A --> AC: marksUpdated
 deactivate A
-
-AC -> L: logAction("Assessment Marked")
-activate L
-L -> DB: save()
-L --> AC: logged
-deactivate L
 
 AC --> UI: markingSuccess
 deactivate AC

@@ -5,7 +5,6 @@ actor User
 participant "UI" as UI
 participant "ProfileController" as PC
 participant "User" as U
-participant "Log" as L
 database "Database" as DB
 
 == View Profile ==
@@ -35,12 +34,6 @@ U -> DB: update()
 DB --> U: success
 U --> PC: updated
 deactivate U
-
-PC -> L: logAction("Profile Updated")
-activate L
-L -> DB: save()
-L --> PC: logged
-deactivate L
 
 PC --> UI: updateSuccess
 deactivate PC

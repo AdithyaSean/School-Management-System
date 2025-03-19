@@ -7,7 +7,6 @@ participant "ReportController" as RC
 participant "ReportGenerator" as RG
 participant "NotificationService" as NS
 participant "Principal" as P
-participant "Log" as L
 database "Database" as DB
 
 == Generate User Engagement Report ==
@@ -38,13 +37,6 @@ NS -> P: sendNotification()
 P --> NS: notificationReceived
 NS --> RC: notificationSent
 deactivate NS
-
-RC -> L: logAction("User Engagement Report Generated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> RC: logged
-deactivate L
 
 RC --> UI: reportGenerated
 deactivate RC
@@ -80,13 +72,6 @@ P --> NS: notificationReceived
 NS --> RC: notificationSent
 deactivate NS
 
-RC -> L: logAction("System Utilization Report Generated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> RC: logged
-deactivate L
-
 RC --> UI: reportGenerated
 deactivate RC
 UI --> A: displayReport
@@ -121,13 +106,6 @@ P --> NS: notificationReceived
 NS --> RC: notificationSent
 deactivate NS
 
-RC -> L: logAction("Monthly Attendance Report Generated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> RC: logged
-deactivate L
-
 RC --> UI: reportGenerated
 deactivate RC
 UI --> A: displayReport
@@ -161,13 +139,6 @@ NS -> P: sendNotification()
 P --> NS: notificationReceived
 NS --> RC: notificationSent
 deactivate NS
-
-RC -> L: logAction("Performance Report Generated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> RC: logged
-deactivate L
 
 RC --> UI: reportGenerated
 deactivate RC

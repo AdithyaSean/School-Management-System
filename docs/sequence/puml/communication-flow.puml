@@ -6,7 +6,6 @@ participant "UI" as UI
 participant "CommunicationController" as CC
 participant "Message" as M
 participant "User" as U
-participant "Log" as L
 database "Database" as DB
 
 == Send Message ==
@@ -26,12 +25,6 @@ M -> DB: save()
 DB --> M: success
 M --> CC: messageSent
 deactivate M
-
-CC -> L: logAction("Message Sent")
-activate L
-L -> DB: save()
-L --> CC: logged
-deactivate L
 
 CC --> UI: success
 deactivate CC

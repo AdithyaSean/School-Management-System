@@ -6,7 +6,6 @@ participant "UI" as UI
 participant "UserController" as UC
 participant "UserService" as US
 participant "PermissionService" as PS
-participant "Log" as L
 database "Database" as DB
 
 == Add New User ==
@@ -33,13 +32,6 @@ PS -> DB: savePermissions()
 DB --> PS: success
 PS --> UC: permissionsAssigned
 deactivate PS
-
-UC -> L: logAction("User Created")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> UC: logged
-deactivate L
 
 UC --> UI: success
 deactivate UC
@@ -70,13 +62,6 @@ US -> DB: update()
 DB --> US: success
 US --> UC: userUpdated
 deactivate US
-
-UC -> L: logAction("User Updated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> UC: logged
-deactivate L
 
 UC --> UI: success
 deactivate UC
@@ -110,13 +95,6 @@ DB --> US: success
 US --> UC: userDeactivated
 deactivate US
 
-UC -> L: logAction("User Deleted")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> UC: logged
-deactivate L
-
 UC --> UI: success
 deactivate UC
 UI --> A: showSuccess
@@ -139,13 +117,6 @@ PS -> DB: update()
 DB --> PS: success
 PS --> UC: permissionsUpdated
 deactivate PS
-
-UC -> L: logAction("Permissions Updated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> UC: logged
-deactivate L
 
 UC --> UI: success
 deactivate UC

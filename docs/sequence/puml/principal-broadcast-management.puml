@@ -6,7 +6,6 @@ participant "UI" as UI
 participant "BroadcastController" as BC
 participant "NotificationService" as NS
 participant "User" as U
-participant "Log" as L
 database "Database" as DB
 
 == Create and Broadcast Announcement ==
@@ -48,13 +47,6 @@ deactivate U
 NS --> BC: notificationsSent
 deactivate NS
 
-BC -> L: logAction("Announcement Broadcast")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> BC: logged
-deactivate L
-
 BC --> UI: success
 deactivate BC
 UI --> P: showSuccess
@@ -68,13 +60,6 @@ activate BC
 
 BC -> DB: fetchAnnouncements()
 DB --> BC: announcements
-
-BC -> L: fetchLogs()
-activate L
-L -> DB: fetch()
-DB --> L: logs
-L --> BC: broadcastLogs
-deactivate L
 
 BC --> UI: broadcastHistory
 deactivate BC
@@ -100,13 +85,6 @@ U --> NS: usersNotified
 deactivate U
 NS --> BC: updatesSent
 deactivate NS
-
-BC -> L: logAction("Broadcast Updated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> BC: logged
-deactivate L
 
 BC --> UI: success
 deactivate BC

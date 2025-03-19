@@ -5,7 +5,6 @@ actor User
 participant "UI" as UI
 participant "AuthController" as AC
 participant "User" as U
-participant "Log" as L
 database "Database" as DB
 
 == Login Flow ==
@@ -23,11 +22,6 @@ deactivate U
 
 alt successful login
     AC -> U: updateLastLogin()
-    AC -> L: logAction("Login")
-    activate L
-    L -> DB: save()
-    L --> AC: logged
-    deactivate L
     AC --> UI: loginSuccess
     UI --> User: showDashboard
 else failed login
@@ -42,11 +36,6 @@ User -> UI: Logout()
 activate UI
 UI -> AC: logout()
 activate AC
-AC -> L: logAction("Logout")
-activate L
-L -> DB: save()
-L --> AC: logged
-deactivate L
 AC --> UI: logoutSuccess
 UI --> User: showLoginPage
 deactivate AC

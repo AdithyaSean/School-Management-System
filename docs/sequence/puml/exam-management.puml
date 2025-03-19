@@ -8,7 +8,6 @@ participant "ExamController" as EC
 participant "Exam" as E
 participant "ExamResult" as ER
 participant "User" as U
-participant "Log" as L
 database "Database" as DB
 
 == Exam Creation ==
@@ -27,13 +26,6 @@ E -> DB: save()
 DB --> E: success
 E --> EC: examCreated
 deactivate E
-
-EC -> L: logAction("Exam Created")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> EC: logged
-deactivate L
 
 EC --> UI: examCreationSuccess
 deactivate EC
@@ -68,13 +60,6 @@ ER -> DB: save()
 DB --> ER: success
 ER --> EC: resultsCreated
 deactivate ER
-
-EC -> L: logAction("Results Added")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> EC: logged
-deactivate L
 
 EC --> UI: resultSubmissionSuccess
 deactivate EC

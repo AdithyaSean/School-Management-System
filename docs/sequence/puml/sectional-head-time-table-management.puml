@@ -7,7 +7,6 @@ participant "TimeTableController" as TC
 participant "TimeTable" as TT
 participant "Session" as S
 participant "Teacher" as T
-participant "Log" as L
 database "Database" as DB
 
 == Create Time Table ==
@@ -41,13 +40,6 @@ T -> DB: save()
 DB --> T: notified
 T --> TC: teachersNotified
 deactivate T
-
-TC -> L: logAction("TimeTable Created")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> TC: logged
-deactivate L
 
 TC --> UI: success
 deactivate TC
@@ -93,13 +85,6 @@ DB --> T: notified
 T --> TC: teachersNotified
 deactivate T
 
-TC -> L: logAction("TimeTable Updated")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> TC: logged
-deactivate L
-
 TC --> UI: success
 deactivate TC
 UI --> SH: showSuccess
@@ -138,13 +123,6 @@ T -> DB: save()
 DB --> T: notified
 T --> TC: teachersNotified
 deactivate T
-
-TC -> L: logAction("TimeTable Deleted")
-activate L
-L -> DB: save()
-DB --> L: success
-L --> TC: logged
-deactivate L
 
 TC --> UI: success
 deactivate TC

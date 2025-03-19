@@ -8,7 +8,6 @@ participant "AssessmentService" as AS
 participant "GradingService" as GS
 participant "NotificationService" as NS
 participant "Student" as S
-participant "Log" as L
 database "Database" as DB
 
 == View Student Submissions ==
@@ -23,12 +22,6 @@ AS -> DB: fetch()
 DB --> AS: submissions
 AS --> SC: submissionsList
 deactivate AS
-
-SC -> L: logAction("Submissions Viewed")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
 
 SC --> UI: displaySubmissions
 deactivate SC
@@ -67,12 +60,6 @@ S --> NS: notified
 NS --> SC: studentNotified
 deactivate NS
 
-SC -> L: logAction("Submission Graded")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
-
 SC --> UI: success
 deactivate SC
 UI --> T: showSuccess
@@ -110,12 +97,6 @@ S --> NS: notified
 NS --> SC: studentNotified
 deactivate NS
 
-SC -> L: logAction("Marks Updated")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
-
 SC --> UI: success
 deactivate SC
 UI --> T: showSuccess
@@ -140,12 +121,6 @@ GS -> GS: calculateAverages()
 GS -> GS: generateDistribution()
 GS --> SC: statistics
 deactivate GS
-
-SC -> L: logAction("Report Generated")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
 
 SC --> UI: report
 deactivate SC

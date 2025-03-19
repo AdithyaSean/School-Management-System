@@ -7,7 +7,6 @@ participant "AssessmentController" as AC
 participant "AssessmentService" as AS
 participant "StudentService" as SS
 participant "NotificationService" as NS
-participant "Log" as L
 database "Database" as DB
 
 == Create Assessment ==
@@ -42,12 +41,6 @@ DB --> NS: success
 NS --> AC: studentsNotified
 deactivate NS
 
-AC -> L: logAction("Assessment Created")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
-
 AC --> UI: success
 deactivate AC
 UI --> T: showSuccess
@@ -79,12 +72,6 @@ NS -> DB: saveNotifications()
 DB --> NS: success
 NS --> AC: studentsNotified
 deactivate NS
-
-AC -> L: logAction("Assessment Updated")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
 
 AC --> UI: success
 deactivate AC
@@ -118,12 +105,6 @@ DB --> NS: success
 NS --> AC: studentsNotified
 deactivate NS
 
-AC -> L: logAction("Assessment Deleted")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
-
 AC --> UI: success
 deactivate AC
 UI --> T: showSuccess
@@ -148,12 +129,6 @@ SS -> DB: fetchSubmissions()
 DB --> SS: submissions
 SS --> AC: submissionStatus
 deactivate SS
-
-AC -> L: logAction("Assessment Status Viewed")
-activate L
-L -> DB: save()
-DB --> L: logged
-deactivate L
 
 AC --> UI: statusReport
 deactivate AC
