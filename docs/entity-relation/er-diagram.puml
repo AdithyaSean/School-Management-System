@@ -138,16 +138,6 @@ entity Attendance {
     studentId [FK]
 }
 
-entity Log {
-    + id [PK]
-    --
-    action
-    timestamp
-    details
-    ipAddress
-    userId [FK]
-}
-
 ' Relationships
 User ||--o{ Student : "is a"
 User ||--o{ Teacher : "is a"
@@ -157,7 +147,6 @@ Teacher ||--o{ SectionalHead : "is a"
 SectionalHead ||--o{ Principal : "is a"
 Principal ||--o{ Admin : "is a"
 
-User ||--o{ Log : "has"
 Student ||--o{ Attendance : "has"
 Teacher ||--o{ Subject : "teaches"
 TimeTable ||--o{ Session : "has"

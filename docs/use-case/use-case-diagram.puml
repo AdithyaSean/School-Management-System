@@ -45,14 +45,14 @@ rectangle "School Management System" {
 
         (Notify Users) -- UR
 
-        S -- (View Educational Information)
+        S -- (View Educational Information) : "Show option to create if empty"
         (View Educational Information) <.. (Submit Assessments) : <<extends>>
         (View Educational Information) <.. (View Assessments) : <<extends>>
 
         (Submit Assessments) ..> (Update Educational Information) : <<include>>
         (View Assessments) ..> (View Submission Marks) : <<include>>
 
-        S -- (View Exams Information)
+        S -- (View Exams Information) : "Show option to create if empty"
         (View Exams Information) <.. (View Exams) : <<extends>>
         (View Exams Information) <.. (View Exam Results) : <<extends>>
         (View Exam Results) <.. (Apply for Recorrections) : <<extends>>
@@ -62,7 +62,7 @@ rectangle "School Management System" {
         (Update Educational Information ) -- SR
         (Update Exam Information ) -- SR
 
-        T -- (View Student Information )
+        T -- (View Student Information ) : "Show option to create if empty"
         (View Student Information ) <.. (Create Student Information ) : <<extends>>
         (View Student Information ) <.. (Delete Student Information ) : <<extends>>
         (View Student Information ) <.. (Generate Student Attendance Reports) : <<extends>>
@@ -75,12 +75,12 @@ rectangle "School Management System" {
         (Generate Student Performance Reports) ..> (Update Student Information ) : <<include>>
         (Generate Enrollment Reports) ..> (Update Student Information ): <<include>>
 
-        T -- (View Educational Information )
+        T -- (View Educational Information ) : "Show option to create if empty"
         (View Educational Information ) <.. (Create Assessments) : <<extends>>
         (View Educational Information ) <.. (Edit Assessments) : <<extends>>
         (View Educational Information ) <.. (Delete Assessments) : <<extends>>
 
-        T -- (View Student Submissions)
+        T -- (View Student Submissions) : "Show option to create if empty"
         (View Student Submissions) <.. (Mark Student Submissions) : <<extends>>
 
         (Create Assessments) ..> (Update Educational Information ): <<include>>
@@ -88,7 +88,7 @@ rectangle "School Management System" {
         (Delete Assessments) ..> (Update Educational Information ): <<include>>
         (Mark Student Submissions) ..> (Update Educational Information ) : <<include>>
 
-        T -- (View Exam Information )
+        T -- (View Exam Information ) : "Show option to create if empty"
         (View Exam Information ) <.. (Create Exams) : <<extends>>
         (View Exam Information ) <.. (Update Exams) : <<extends>>
         (View Exam Information ) <.. (Delete Exams) : <<extends>>
@@ -103,12 +103,12 @@ rectangle "School Management System" {
         (Apply for Recorrections) -- TR
         (Notify Teachers) -- TR
 
-        SH -- (View Staff Information )
+        SH -- (View Staff Information ) : "Show option to create if empty"
         (View Staff Information ) <.. (Add Staff Members) : <<extends>>
         (View Staff Information ) <.. (Update Staff Members) : <<extends>>
         (View Staff Information ) <.. (Remove Staff Members) : <<extends>>
         
-        SH -- (View Sectional Information )
+        SH -- (View Sectional Information ) : "Show option to create if empty"
         (View Sectional Information ) <.. (Create Time Tables) : <<extends>>
         (View Sectional Information ) <.. (Update Time Tables) : <<extends>>
         (View Sectional Information ) <.. (Delete Time Tables) : <<extends>>
@@ -130,7 +130,7 @@ rectangle "School Management System" {
 
         (Notify Principals) -- PR
 
-        A -- (View User Information )
+        A -- (View User Information ) : "Show option to create if empty"
         (View User Information ) <.. (Add User) : <<extends>>
         (View User Information ) <.. (Update User) : <<extends>>
         (View User Information ) <.. (Delete User) : <<extends>>
@@ -139,7 +139,7 @@ rectangle "School Management System" {
         (Update User) ..> (Update User Logs) : <<include>>
         (Delete User) ..> (Update User Logs) : <<include>>
 
-        A -- (View System Monitor)
+        A -- (View System Monitor) : "Show option to create if empty"
         (View System Monitor) <.. (Generate User Engagement Reports) : <<extends>>
         (View System Monitor) <.. (Generate Performance Reports) : <<extends>>
         (View System Monitor) <.. (Generate System Utilization Reports) : <<extends>>

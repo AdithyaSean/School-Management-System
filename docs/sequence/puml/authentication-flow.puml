@@ -1,0 +1,44 @@
+@startuml Authentication Flow
+title Authentication Flow
+
+actor User
+participant "UI" as UI
+participant "AuthController" as AC
+participant "User" as U
+database "Database" as DB
+
+== Login Flow ==
+User -> UI: Login(username, password)
+activate UI
+UI -> AC: authenticate(credentials)
+activate AC
+
+AC -> U: validateUser()
+activate U
+U -> DB: checkCredentials()
+DB --> U: userDetails
+U --> AC: validationResult
+deactivate U
+
+alt successful login
+    AC -> U: updateLastLogin()
+    AC --> UI: loginSuccess
+    UI --> User: showDashboard
+else failed login
+    AC --> UI: loginError
+    UI --> User: showError
+end
+deactivate AC
+deactivate UI
+
+== Logout Flow ==
+User -> UI: Logout()
+activate UI
+UI -> AC: logout()
+activate AC
+AC --> UI: logoutSuccess
+UI --> User: showLoginPage
+deactivate AC
+deactivate UI
+
+@enduml

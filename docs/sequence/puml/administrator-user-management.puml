@@ -1,0 +1,126 @@
+@startuml Administrator User Management
+title Administrator User Management
+
+actor "Administrator" as A
+participant "UI" as UI
+participant "UserController" as UC
+participant "UserService" as US
+participant "PermissionService" as PS
+database "Database" as DB
+
+== Add New User ==
+A -> UI: Create New User
+activate UI
+UI -> UC: addUser(userData)
+activate UC
+
+UC -> US: validateUserData()
+activate US
+US --> UC: validationResult
+deactivate US
+
+UC -> US: createUser()
+activate US
+US -> DB: save()
+DB --> US: userId
+US --> UC: userCreated
+deactivate US
+
+UC -> PS: assignDefaultPermissions(userId)
+activate PS
+PS -> DB: savePermissions()
+DB --> PS: success
+PS --> UC: permissionsAssigned
+deactivate PS
+
+UC --> UI: success
+deactivate UC
+UI --> A: showSuccess
+deactivate UI
+
+== Update User ==
+A -> UI: Update User
+activate UI
+UI -> UC: updateUser(id, data)
+activate UC
+
+UC -> US: findUser(id)
+activate US
+US -> DB: fetch()
+DB --> US: user
+US --> UC: user
+deactivate US
+
+UC -> US: validateUserData()
+activate US
+US --> UC: validationResult
+deactivate US
+
+UC -> US: updateUser()
+activate US
+US -> DB: update()
+DB --> US: success
+US --> UC: userUpdated
+deactivate US
+
+UC --> UI: success
+deactivate UC
+UI --> A: showSuccess
+deactivate UI
+
+== Delete User ==
+A -> UI: Delete User
+activate UI
+UI -> UC: deleteUser(id)
+activate UC
+
+UC -> US: findUser(id)
+activate US
+US -> DB: fetch()
+DB --> US: user
+US --> UC: user
+deactivate US
+
+UC -> PS: revokeAllPermissions(id)
+activate PS
+PS -> DB: deletePermissions()
+DB --> PS: success
+PS --> UC: permissionsRevoked
+deactivate PS
+
+UC -> US: deactivateUser()
+activate US
+US -> DB: update()
+DB --> US: success
+US --> UC: userDeactivated
+deactivate US
+
+UC --> UI: success
+deactivate UC
+UI --> A: showSuccess
+deactivate UI
+
+== Manage User Permissions ==
+A -> UI: Modify User Permissions
+activate UI
+UI -> UC: updatePermissions(userId, permissions)
+activate UC
+
+UC -> PS: validatePermissions()
+activate PS
+PS --> UC: validationResult
+deactivate PS
+
+UC -> PS: updateUserPermissions()
+activate PS
+PS -> DB: update()
+DB --> PS: success
+PS --> UC: permissionsUpdated
+deactivate PS
+
+UC --> UI: success
+deactivate UC
+UI --> A: showSuccess
+deactivate UI
+
+@enduml
