@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessments - School Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar (Same as dashboard) -->
+    <nav class="sidebar">
+        <div class="text-center mb-4">
+            <img src="../../assets/images/default-avatar.png" alt="Student" class="profile-image mb-2">
+            <h6 class="mb-0">Welcome, Student</h6>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fas fa-home me-2"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="assessments.html">
+                    <i class="fas fa-tasks me-2"></i> Assessments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="exams.html">
+                    <i class="fas fa-file-alt me-2"></i> Exams
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="results.html">
+                    <i class="fas fa-chart-bar me-2"></i> Results
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="attendance.html">
+                    <i class="fas fa-calendar-check me-2"></i> Attendance
+                </a>
+            </li>
+            <li class="nav-item mt-auto">
+                <a class="nav-link text-danger" href="../../index.html">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Assessments</h2>
+                <div class="d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        <i class="fas fa-bell fs-5 cursor-pointer"></i>
+                        <span class="notification-badge bg-danger">3</span>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-link text-dark" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="../../index.html">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assessment Filters -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <select class="form-select" id="subjectFilter">
+                                <option value="">All Subjects</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                                <option value="history">History</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="submitted">Submitted</option>
+                                <option value="graded">Graded</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search assessments...">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assessments List -->
+            <div class="row g-4">
+                <!-- Current Assessments -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Current Assessments</h5>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm active">
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-4">
+                                <!-- Mathematics Assignment -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 border-primary border-opacity-25">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between mb-3">
+                                                <span class="badge bg-primary">Mathematics</span>
+                                                <span class="badge bg-warning">Due in 2 days</span>
+                                            </div>
+                                            <h5 class="card-title">Quadratic Equations Assignment</h5>
+                                            <p class="card-text small text-muted">Complete problems 1-10 from Chapter 5. Show all work and explain your reasoning.</p>
+                                            <div class="progress mb-3" style="height: 5px;">
+                                                <div class="progress-bar bg-primary" style="width: 60%"></div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">Due: May 3, 2025</small>
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#submitModal">
+                                                    Submit Work
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Science Project -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 border-success border-opacity-25">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between mb-3">
+                                                <span class="badge bg-success">Science</span>
+                                                <span class="badge bg-danger">Due in 6 days</span>
+                                            </div>
+                                            <h5 class="card-title">Ecosystem Research Project</h5>
+                                            <p class="card-text small text-muted">Research and present findings on a local ecosystem. Include visual aids and data analysis.</p>
+                                            <div class="progress mb-3" style="height: 5px;">
+                                                <div class="progress-bar bg-success" style="width: 30%"></div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">Due: May 7, 2025</small>
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#submitModal">
+                                                    Submit Work
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- English Essay -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 border-info border-opacity-25">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between mb-3">
+                                                <span class="badge bg-info">English</span>
+                                                <span class="badge bg-secondary">Submitted</span>
+                                            </div>
+                                            <h5 class="card-title">Literary Analysis Essay</h5>
+                                            <p class="card-text small text-muted">Write a 1000-word analysis of the themes in "To Kill a Mockingbird".</p>
+                                            <div class="progress mb-3" style="height: 5px;">
+                                                <div class="progress-bar bg-info" style="width: 100%"></div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">Submitted: Apr 30, 2025</small>
+                                                <button class="btn btn-outline-info btn-sm">
+                                                    View Submission
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Submit Assessment Modal -->
+    <div class="modal fade" id="submitModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Submit Assessment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="assessmentSubmissionForm">
+                        <div class="mb-3">
+                            <label for="submissionFile" class="form-label">Upload File</label>
+                            <input type="file" class="form-control" id="submissionFile" multiple>
+                            <div class="form-text">Accepted formats: PDF, DOC, DOCX, PNG, JPG (Max 10MB)</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="submissionComments" class="form-label">Comments</label>
+                            <textarea class="form-control" id="submissionComments" rows="3" placeholder="Add any comments about your submission..."></textarea>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="confirmSubmission" required>
+                            <label class="form-check-label" for="confirmSubmission">
+                                I confirm this is my own work and complies with academic integrity guidelines
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitAssessment()">Submit Assessment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../../assets/js/dashboard.js"></script>
+    <script src="../../assets/js/assessments.js"></script>
+</body>
+</html>

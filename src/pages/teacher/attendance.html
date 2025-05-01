@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management - School Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar (Same as teacher dashboard) -->
+    <nav class="sidebar">
+        <div class="text-center mb-4">
+            <img src="../../assets/images/default-avatar.png" alt="Teacher" class="profile-image mb-2">
+            <h6 class="mb-0">Welcome, Teacher</h6>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fas fa-home me-2"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="manage-assessments.html">
+                    <i class="fas fa-tasks me-2"></i> Assessments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="manage-exams.html">
+                    <i class="fas fa-file-alt me-2"></i> Exams
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="attendance.html">
+                    <i class="fas fa-calendar-check me-2"></i> Attendance
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="grades.html">
+                    <i class="fas fa-chart-line me-2"></i> Grades
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="students.html">
+                    <i class="fas fa-user-graduate me-2"></i> Students
+                </a>
+            </li>
+            <li class="nav-item mt-auto">
+                <a class="nav-link text-danger" href="../../index.html">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Attendance Management</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary" onclick="viewAttendanceReports()">
+                        <i class="fas fa-chart-pie me-2"></i>View Reports
+                    </button>
+                    <button class="btn btn-primary" onclick="takeAttendance()">
+                        <i class="fas fa-plus me-2"></i>Take Attendance
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card dashboard-card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Attendance</h5>
+                            <p class="card-text display-6">85%</p>
+                            <small>This Month</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card dashboard-card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Present Today</h5>
+                            <p class="card-text display-6">112</p>
+                            <small>Out of 120 Students</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card dashboard-card bg-warning text-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">Classes Today</h5>
+                            <p class="card-text display-6">4</p>
+                            <small>Remaining: 2</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card dashboard-card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Low Attendance</h5>
+                            <p class="card-text display-6">8</p>
+                            <small>Below 75%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class Selection and Date -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Select Class</label>
+                            <select class="form-select" id="classSelect">
+                                <option value="">All Classes</option>
+                                <option value="10a">Grade 10A</option>
+                                <option value="11b">Grade 11B</option>
+                                <option value="9c">Grade 9C</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Select Date</label>
+                            <input type="date" class="form-control" id="dateSelect">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select" id="subjectSelect">
+                                <option value="">All Subjects</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Records -->
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Recent Attendance Records</h5>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-secondary active">
+                            <i class="fas fa-table"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary">
+                            <i class="fas fa-chart-bar"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Class</th>
+                                    <th>Subject</th>
+                                    <th>Total Students</th>
+                                    <th>Present</th>
+                                    <th>Absent</th>
+                                    <th>Attendance %</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>May 1, 2025</td>
+                                    <td>Grade 10A</td>
+                                    <td>Mathematics</td>
+                                    <td>25</td>
+                                    <td>23</td>
+                                    <td>2</td>
+                                    <td>92%</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-primary" onclick="viewAttendanceDetails('10a', '2025-05-01')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-warning" onclick="editAttendance('10a', '2025-05-01')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>May 1, 2025</td>
+                                    <td>Grade 11B</td>
+                                    <td>Mathematics</td>
+                                    <td>28</td>
+                                    <td>26</td>
+                                    <td>2</td>
+                                    <td>93%</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-primary" onclick="viewAttendanceDetails('11b', '2025-05-01')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-warning" onclick="editAttendance('11b', '2025-05-01')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Take Attendance Modal -->
+    <div class="modal fade" id="takeAttendanceModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Take Attendance</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="attendanceForm">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label">Class</label>
+                                <select class="form-select" required>
+                                    <option value="">Select Class</option>
+                                    <option value="10a">Grade 10A</option>
+                                    <option value="11b">Grade 11B</option>
+                                    <option value="9c">Grade 9C</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Subject</label>
+                                <select class="form-select" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="mathematics">Mathematics</option>
+                                    <option value="science">Science</option>
+                                    <option value="english">English</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="selectAll">
+                                            </div>
+                                        </th>
+                                        <th>Student Name</th>
+                                        <th>Roll Number</th>
+                                        <th>Status</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" checked>
+                                            </div>
+                                        </td>
+                                        <td>John Doe</td>
+                                        <td>101</td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option value="present">Present</option>
+                                                <option value="absent">Absent</option>
+                                                <option value="late">Late</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" placeholder="Optional">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" checked>
+                                            </div>
+                                        </td>
+                                        <td>Jane Smith</td>
+                                        <td>102</td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option value="present">Present</option>
+                                                <option value="absent">Absent</option>
+                                                <option value="late">Late</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" placeholder="Optional">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitAttendance()">Save Attendance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../../assets/js/dashboard.js"></script>
+    <script src="../../assets/js/attendance.js"></script>
+</body>
+</html>
