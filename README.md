@@ -41,8 +41,6 @@ The School Management System is a robust platform that serves various stakeholde
 - Staff management
 - Announcement broadcasting
 - Performance review
-- Event approval
-- Institution-wide reporting
 
 ### Administrator Features
 - System configuration
@@ -85,7 +83,6 @@ The system follows a modular architecture with clear separation of concerns:
 - Secure login system
 - Activity logging
 - Data encryption
-- Regular backups
 
 ## Documentation
 
