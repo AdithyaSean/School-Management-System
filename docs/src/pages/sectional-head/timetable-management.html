@@ -1,0 +1,161 @@
+<!-- Sectional Head - Timetable Management UI (CRUD) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sectional Head - Timetable Management</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .section-list, .timetable-list { list-style: none; padding: 0; }
+        .section-list li, .timetable-list li { cursor: pointer; padding: 8px; border-bottom: 1px solid #eee; }
+        .section-list li.selected { background: #e0f7fa; }
+        .crud-btn { margin-left: 8px; }
+        .timetable-form { margin: 12px 0; }
+        .timetable-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        .timetable-table th, .timetable-table td { padding: 8px; border: 1px solid #ddd; }
+        .timetable-table th { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sections</h2>
+        <ul id="sectionList" class="section-list"></ul>
+
+        <div id="sectionDetails" style="display:none;">
+            <h3 id="sectionName"></h3>
+            <button id="showCreateForm">Create Timetable</button>
+            <form id="timetableForm" class="timetable-form" style="display:none;">
+                <input type="hidden" id="timetableId">
+                <input type="text" id="timetableName" placeholder="Timetable Name" required>
+                <button type="submit" id="saveBtn">Save</button>
+                <button type="button" id="cancelBtn">Cancel</button>
+            </form>
+            <table id="timetableTable" class="timetable-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Timetable Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="timetableTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        // Mock data for demonstration
+        let sections = [
+            { id: 1, name: 'Section A' },
+            { id: 2, name: 'Section B' },
+            { id: 3, name: 'Section C' }
+        ];
+        let timetables = {
+            1: [ { id: 1, name: 'A - Morning' }, { id: 2, name: 'A - Afternoon' } ],
+            2: [ { id: 3, name: 'B - Morning' } ],
+            3: []
+        };
+        let selectedSectionId = null;
+        let editingTimetableId = null;
+
+        const sectionList = document.getElementById('sectionList');
+        const sectionDetails = document.getElementById('sectionDetails');
+        const sectionName = document.getElementById('sectionName');
+        const timetableTableBody = document.getElementById('timetableTableBody');
+        const timetableForm = document.getElementById('timetableForm');
+        const timetableName = document.getElementById('timetableName');
+        const timetableId = document.getElementById('timetableId');
+        const showCreateForm = document.getElementById('showCreateForm');
+        const saveBtn = document.getElementById('saveBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        function renderSections() {
+            sectionList.innerHTML = '';
+            sections.forEach(section => {
+                const li = document.createElement('li');
+                li.textContent = section.name;
+                li.className = section.id === selectedSectionId ? 'selected' : '';
+                li.onclick = () => selectSection(section.id);
+                sectionList.appendChild(li);
+            });
+        }
+
+        function selectSection(id) {
+            selectedSectionId = id;
+            sectionDetails.style.display = 'block';
+            sectionName.textContent = sections.find(s => s.id === id).name;
+            renderTimetables();
+            timetableForm.style.display = 'none';
+        }
+
+        function renderTimetables() {
+            timetableTableBody.innerHTML = '';
+            (timetables[selectedSectionId] || []).forEach((tt, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${idx + 1}</td>
+                    <td>${tt.name}</td>
+                    <td>
+                        <button class='crud-btn' onclick='showEditFormFromTable(${tt.id})'>Update</button>
+                        <button class='crud-btn' onclick='deleteTimetableFromTable(${tt.id})'>Delete</button>
+                    </td>
+                `;
+                timetableTableBody.appendChild(tr);
+            });
+        }
+
+        function showEditForm(tt) {
+            timetableForm.style.display = 'block';
+            timetableName.value = tt.name;
+            timetableId.value = tt.id;
+            editingTimetableId = tt.id;
+        }
+
+        showCreateForm.onclick = () => {
+            timetableForm.style.display = 'block';
+            timetableName.value = '';
+            timetableId.value = '';
+            editingTimetableId = null;
+        };
+
+        cancelBtn.onclick = () => {
+            timetableForm.style.display = 'none';
+        };
+
+        timetableForm.onsubmit = function(e) {
+            e.preventDefault();
+            const name = timetableName.value.trim();
+            if (!name) return;
+            if (editingTimetableId) {
+                // Update
+                const tts = timetables[selectedSectionId];
+                const idx = tts.findIndex(tt => tt.id === editingTimetableId);
+                if (idx > -1) tts[idx].name = name;
+            } else {
+                // Create
+                const newId = Date.now();
+                timetables[selectedSectionId].push({ id: newId, name });
+            }
+            renderTimetables();
+            timetableForm.style.display = 'none';
+        };
+
+        function deleteTimetable(id) {
+            timetables[selectedSectionId] = timetables[selectedSectionId].filter(tt => tt.id !== id);
+            renderTimetables();
+        }
+
+        // For table action buttons
+        window.showEditFormFromTable = function(id) {
+            const tt = (timetables[selectedSectionId] || []).find(tt => tt.id === id);
+            if (tt) showEditForm(tt);
+        };
+        window.deleteTimetableFromTable = function(id) {
+            deleteTimetable(id);
+        };
+
+        // Initial render
+        renderSections();
+    </script>
+</body>
+</html>

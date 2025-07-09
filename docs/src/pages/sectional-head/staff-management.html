@@ -28,10 +28,80 @@
         <h1>Sectional Head - Staff Management</h1>
         <div class="actions">
             <button id="showAddFormBtn">Add Staff Member</button>
+            <button type="submit" class="btn btn btn-primary">Create</button>
+            <button type="submit" class="btn btn btn-primary">Update</button>
+            <button type="submit" class="btn btn btn-primary">Delete</button>
         </div>
         <div id="addForm" class="form-section hidden">
             <h2>Add Staff Member</h2>
-            <div id="addFormMsg"></div>
+            <div id="addFormMsg"></div>            import React, { useState, useEffect } from 'react';
+            
+            function SectionalInformation() {
+              const [sections, setSections] = useState([]);
+              const [selectedSection, setSelectedSection] = useState(null);
+              const [timetables, setTimetables] = useState([]);
+            
+              // Fetch all sections on mount
+              useEffect(() => {
+                // Fetch sections from API
+                fetch('/api/sections')
+                  .then(res => res.json())
+                  .then(data => setSections(data));
+              }, []);
+            
+              // Fetch timetables when a section is selected
+              useEffect(() => {
+                if (selectedSection) {
+                  fetch(`/api/sections/${selectedSection.id}/timetables`)
+                    .then(res => res.json())
+                    .then(data => setTimetables(data));
+                }
+              }, [selectedSection]);
+            
+              // Handlers for CRUD operations
+              const handleCreateTimetable = (newTimetable) => {
+                // POST to API, then refresh list
+              };
+            
+              const handleUpdateTimetable = (id, updatedTimetable) => {
+                // PUT to API, then refresh list
+              };
+            
+              const handleDeleteTimetable = (id) => {
+                // DELETE to API, then refresh list
+              };
+            
+              return (
+                <div>
+                  <h2>Sections</h2>
+                  <ul>
+                    {sections.map(section => (
+                      <li key={section.id} onClick={() => setSelectedSection(section)}>
+                        {section.name}
+                      </li>
+                    ))}
+                  </ul>
+            
+                  {selectedSection && (
+                    <div>
+                      <h3>{selectedSection.name} - Timetables</h3>
+                      <button onClick={() => handleCreateTimetable(/* ... */)}>Create Timetable</button>
+                      <ul>
+                        {timetables.map(tt => (
+                          <li key={tt.id}>
+                            {tt.name}
+                            <button onClick={() => handleUpdateTimetable(tt.id, /* ... */)}>Update</button>
+                            <button onClick={() => handleDeleteTimetable(tt.id)}>Delete</button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            
+            export default SectionalInformation;
             <form id="staffAddForm">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
