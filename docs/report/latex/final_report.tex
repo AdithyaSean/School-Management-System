@@ -1,0 +1,333 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% School Management System - Final Year Diploma Project Report
+% LaTeX Template (for Overleaf or other compilers)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,a4paper]{report}
+
+% Required Packages
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{tocloft}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{lipsum}
+
+% Page Setup
+\geometry{a4paper, left=1.5in, right=1in, top=1in, bottom=1in}
+\setstretch{1.5}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+% Chapter/Section Formatting
+\titleformat{\chapter}[hang]{\bfseries\LARGE}{\thechapter}{2em}{}
+\titleformat{\section}[hang]{\bfseries\large}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\bfseries}{\thesubsection}{1em}{}
+
+% Roman numerals for preamble
+\renewcommand{\thepage}{\roman{page}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cover Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge\bfseries School Management System\\[1.5em]}
+    {\Large Final Year Diploma Project Report\\[1em]Academic Year 2022-23}
+    \vspace{2cm}
+    \begin{tabular}{ll}
+        \textbf{Submitted By:} & E M A S B EKANAYAKA (CODSE224F-001) \\
+        & S D HEIYANTHUDUWA (CODSE224F-016) \\
+        & M H D T TISSERA (CODSE224F-054) \\
+        & School of Computing and Engineering \\
+        \\
+        \textbf{Project Guide:} & DR. THISARA WEERASINGHE \\
+        & Head of School of Computing and Engineering \\
+    \end{tabular}
+    
+    \vfill
+    \textbf{Date:} 2024/12/20\\
+    \textbf{Place:} NIBM Colombo School of Computing and Engineering
+    
+    \vspace{1cm}
+    \includegraphics[width=0.3\textwidth]{placeholder_logo.png} % Placeholder for institute logo
+    
+    \vspace{1cm}
+    \textbf{Diploma in Software Engineering}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Declaration Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Declaration}
+I/We hereby declare that this project report is my/our own work and has not been submitted previously for any academic qualification. All sources of information have been acknowledged.
+
+\vspace{2cm}
+\noindent\textbf{Signatures:}
+
+\vspace{2cm}
+\noindent\rule{6cm}{0.4pt}\\
+\noindent\rule{6cm}{0.4pt}\\
+\noindent\rule{6cm}{0.4pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Abstract}
+The School Management System is a comprehensive software solution designed to address the growing needs of modern educational institutions. This project implements a robust platform that integrates various aspects of school administration, academic management, and communication into a unified system. The system employs cutting-edge technologies including biometric authentication, role-based access control, and real-time data processing to provide an efficient and secure environment for all stakeholders.
+
+The implementation demonstrates significant improvements in administrative efficiency, reducing manual workload through automation of routine tasks and streamlining communication channels, thereby enhancing the overall educational experience. The system's modular architecture ensures scalability and maintainability, while its intuitive interface promotes rapid adoption among users of varying technical proficiency.
+
+The project's significance lies in its potential to transform traditional educational management practices, particularly in government schools where resources are often limited. By digitizing core processes and providing real-time access to information, the system enables better decision-making and more effective resource utilization, ultimately contributing to improved educational outcomes.
+
+\textbf{Keywords:} School Management, Education Technology, Academic Administration, Database Management, Web Application
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% List of Keywords, Figures, Tables, Acronyms, Acknowledgement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Keywords}
+School Management, Education Technology, Academic Administration, Database Management, Web Application
+
+\section*{List of Figures}
+\begin{longtable}{p{0.5\textwidth}p{0.4\textwidth}}
+    Figure & Page \\
+    \hline
+    Class Diagram & \pageref{fig:class-diagram} \\
+    Entity-Relationship Diagram & \pageref{fig:er-diagram} \\
+    Use Case Diagram & \pageref{fig:use-case-diagram} \\
+    Attendance Sequence Diagram & \pageref{fig:attendance-sequence} \\
+    Exam Sequence Diagram & \pageref{fig:exam-sequence} \\
+    Assessment Sequence Diagram & \pageref{fig:assessment-sequence} \\
+    Teacher Sequence Diagram & \pageref{fig:teacher-sequence} \\
+    % Add more figures as needed
+\end{longtable}
+
+\section*{List of Tables}
+\begin{longtable}{p{0.5\textwidth}p{0.4\textwidth}}
+    Table & Page \\
+    \hline
+    % Add table entries here
+    Placeholder Table & -- \\
+\end{longtable}
+
+\section*{List of Acronyms and Abbreviations}
+\begin{longtable}{p{0.3\textwidth}p{0.6\textwidth}}
+    Acronym & Description \\
+    \hline
+    SMS & School Management System \\
+    UI & User Interface \\
+    API & Application Programming Interface \\
+    DBMS & Database Management System \\
+    % Add more as needed
+\end{longtable}
+
+\section*{Acknowledgement}
+We would like to express our sincere gratitude to our project guide, Dr. Thisara Weerasinghe, and the faculty of the School of Computing and Engineering for their invaluable support and guidance throughout this project.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\tableofcontents
+\newpage
+\renewcommand{\thepage}{\arabic{page}} % Switch to Arabic numerals
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter 1: Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+\section{Background}
+The digital revolution has transformed virtually every sector of society, yet many educational institutions, particularly government schools, continue to operate using traditional manual systems. This technological gap not only impacts administrative efficiency but also affects the quality of education and student engagement. In an era where students are increasingly tech-savvy and parents expect real-time updates about their children's progress, the need for a comprehensive digital solution has become paramount.
+
+\section{Project Context}
+This School Management System project emerges from a critical need to modernize educational institution operations in government schools. The initiative was conceived after extensive consultation with educators, administrators, and education technology experts, who identified significant opportunities for improving educational outcomes through digital transformation.
+
+\section{Project Objectives}
+\begin{itemize}
+    \item Modernization of Educational Operations
+    \item Enhancement of Educational Quality
+    \item Improvement of Stakeholder Engagement
+\end{itemize}
+
+\section{Scope and Significance}
+The project encompasses a complete overhaul of school management processes, from daily administrative tasks to long-term strategic planning. Its significance lies in its potential to:
+\begin{itemize}
+    \item Reduce administrative burden through automation
+    \item Improve communication efficiency through integrated messaging systems
+    \item Enhance student performance tracking accuracy with digital records
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter 2: Methodology
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Methodology}
+\section{Introduction}
+The methodology adopted for this project follows a structured software development lifecycle, including requirements gathering, system analysis, design, implementation, and testing. Data collection techniques included interviews, questionnaires, and document reviews with stakeholders.
+
+\section{Development Approach}
+A phased development approach was used:
+\begin{itemize}
+    \item \textbf{Phase 1: Foundation} -- User authentication, profile management, database setup
+    \item \textbf{Phase 2: Core Features} -- Academic management, attendance, assessment modules
+    \item \textbf{Phase 3: Advanced Features} -- Reporting, communication platform, analytics dashboard
+\end{itemize}
+
+\section{Chapter Summary}
+This chapter outlined the methodology and development approach used to ensure the system meets stakeholder requirements and is delivered on time.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter 3: Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Analysis}
+\section{Current Environment Assessment}
+Government schools often operate with limited resources and manual processes, leading to inefficiencies and data management challenges. The current environment was assessed through stakeholder interviews and process mapping.
+
+\section{Feasibility Study}
+A feasibility study was conducted to evaluate technical, operational, and economic viability. The results indicated strong potential for improvement through digital transformation.
+
+\section{Problem Statement}
+Teachers spend considerable time on administrative tasks that could be automated, while parents struggle to stay informed about their children's progress. The lack of standardized processes and difficulty in tracking student performance data are key issues.
+
+\section{Chapter Summary}
+This chapter analyzed the current system, identified limitations, and established the need for a comprehensive school management solution.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter 4: Solution Design
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Solution Design}
+\section{System Architecture}
+The system is designed with a modular architecture, ensuring scalability and maintainability. Key modules include authentication, academic management, attendance, assessment, reporting, and communication.
+
+\section{Design Patterns and Principles}
+The design follows best practices such as separation of concerns, robust error handling, and secure data flow. Standardized API interfaces and middleware facilitate integration between modules.
+
+\section{System Modeling and Documentation}
+\subsection{Use Case Analysis}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{use-case-diagram.png}
+    \caption{Use Case Diagram}
+    \label{fig:use-case-diagram}
+\end{figure}
+
+\subsection{System Workflows}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{class-diagram.png}
+    \caption{Class Diagram}
+    \label{fig:class-diagram}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{er-diagram.png}
+    \caption{Entity-Relationship Diagram}
+    \label{fig:er-diagram}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{attendance-sequence.png}
+    \caption{Attendance Sequence Diagram}
+    \label{fig:attendance-sequence}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{exam-sequence.png}
+    \caption{Exam Sequence Diagram}
+    \label{fig:exam-sequence}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assessment-sequence.png}
+    \caption{Assessment Sequence Diagram}
+    \label{fig:assessment-sequence}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{teacher-sequence.png}
+    \caption{Teacher Management Sequence Diagram}
+    \label{fig:teacher-sequence}
+\end{figure}
+
+% Placeholder for additional images
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{placeholder_image.png}
+    \caption{Placeholder for future diagrams}
+\end{figure}
+
+\section{Report Layout Design}
+Each report layout is numbered, named, and described in the appendix.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter 5: Conclusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusion}
+The School Management System represents a significant step forward in educational institution management. By addressing current system limitations and incorporating modern technology, the system promises to:
+\begin{itemize}
+    \item Improve administrative efficiency
+    \item Enhance communication between stakeholders
+    \item Provide better tracking of student performance
+    \item Reduce operational costs
+    \item Support data-driven decision making
+\end{itemize}
+
+The modular design ensures future scalability and adaptability to changing educational needs.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{thebibliography}{99}
+    \bibitem{ref1} Diploma in Software Engineering Project Guidelines, NIBM
+    \bibitem{ref2} School Management System Documentation
+    % Add more references as needed
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\chapter{Appendices}
+\section{Project Schedule}
+% Include project timeline table or Gantt chart here
+\includegraphics[width=0.8\textwidth]{placeholder_schedule.png}
+
+\section{Letters from Organization}
+% Placeholder for approval letters
+
+\section{Questionnaires and Interview Questions}
+% Placeholder for data collection instruments
+
+\section{Meeting Minutes and Log Sheets}
+% Placeholder for meeting documentation
+
+\section{Reviewed Documents}
+% Placeholder for reviewed documents
+
+\section{Software Setup and Configuration}
+A CD with the software setup and configuration files is included with the final submission.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
