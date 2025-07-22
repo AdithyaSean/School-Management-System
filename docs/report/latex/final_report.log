@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.3)  22 JUL 2025 13:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.3)  22 JUL 2025 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -571,7 +571,7 @@ Package hyperref Info: Link coloring OFF on input line 42.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<nibm-logo.png, id=196, 447.6725pt x 113.42375pt>
+<nibm-logo.png, id=188, 447.6725pt x 113.42375pt>
 File: nibm-logo.png Graphic file (type png)
 <use nibm-logo.png>
 Package pdftex.def Info: nibm-logo.png  used on input line 49.
@@ -650,17 +650,17 @@ Chapter 3.
 
 ]
 Chapter 4.
-<er-diagram.png, id=342, 2446.13875pt x 2223.30624pt>
+<er-diagram.png, id=332, 2446.13875pt x 2223.30624pt>
 File: er-diagram.png Graphic file (type png)
 <use er-diagram.png>
 Package pdftex.def Info: er-diagram.png  used on input line 255.
 (pdftex.def)             Requested size: 416.83289pt x 378.83911pt.
-<class-diagram.png, id=344, 1660.2025pt x 2644.88126pt>
+<class-diagram.png, id=334, 1660.2025pt x 2644.88126pt>
 File: class-diagram.png Graphic file (type png)
 <use class-diagram.png>
 Package pdftex.def Info: class-diagram.png  used on input line 263.
 (pdftex.def)             Requested size: 416.83289pt x 664.04373pt.
-<use-case-diagram.png, id=345, 1855.93375pt x 2894.815pt>
+<use-case-diagram.png, id=335, 1855.93375pt x 2894.815pt>
 File: use-case-diagram.png Graphic file (type png)
 <use use-case-diagram.png>
 Package pdftex.def Info: use-case-diagram.png  used on input line 271.
@@ -670,12 +670,12 @@ Package pdftex.def Info: use-case-diagram.png  used on input line 271.
 ] [6 <docs/report/latex/er-diagram.png>] [7 <docs/report/latex/class-diagram.pn
 g>] [8 <docs/report/latex/use-case-diagram.png (PNG copy)>]
 Chapter 5.
-<login-page.png, id=365, 510.90875pt x 569.12625pt>
+<login-page.png, id=355, 510.90875pt x 569.12625pt>
 File: login-page.png Graphic file (type png)
 <use login-page.png>
 Package pdftex.def Info: login-page.png  used on input line 280.
 (pdftex.def)             Requested size: 333.46758pt x 371.46478pt.
-<admin-dashboard-page.png, id=366, 663.98062pt x 389.95688pt>
+<admin-dashboard-page.png, id=356, 663.98062pt x 389.95688pt>
 File: admin-dashboard-page.png Graphic file (type png)
 <use admin-dashboard-page.png>
 Package pdftex.def Info: admin-dashboard-page.png  used on input line 288.
@@ -685,63 +685,63 @@ Package pdftex.def Info: admin-dashboard-page.png  used on input line 288.
  <docs/report/latex/login-page.png>] [10 <docs/report/latex/admin-dashboard-pag
 e.png>]
 Chapter 6.
-<admin-user-managment-sequence.png, id=377, 224.33812pt x 409.53pt>
+<admin-user-managment-sequence.png, id=367, 224.33812pt x 409.53pt>
 File: admin-user-managment-sequence.png Graphic file (type png)
 <use admin-user-managment-sequence.png>
 Package pdftex.def Info: admin-user-managment-sequence.png  used on input line 
 297.
 (pdftex.def)             Requested size: 333.46758pt x 608.81319pt.
-<administrator-report-management-sequence.png, id=378, 447.17062pt x 424.58624p
+<administrator-report-management-sequence.png, id=368, 447.17062pt x 424.58624p
 t>
 File: administrator-report-management-sequence.png Graphic file (type png)
 <use administrator-report-management-sequence.png>
 Package pdftex.def Info: administrator-report-management-sequence.png  used on 
 input line 305.
 (pdftex.def)             Requested size: 416.83289pt x 395.78757pt.
-<assessment-sequence.png, id=379, 1020.81375pt x 1017.8025pt>
+<assessment-sequence.png, id=369, 1020.81375pt x 1017.8025pt>
 File: assessment-sequence.png Graphic file (type png)
 <use assessment-sequence.png>
 Package pdftex.def Info: assessment-sequence.png  used on input line 313.
 (pdftex.def)             Requested size: 416.83289pt x 415.60892pt.
-<attendance-management-sequence.png, id=380, 302.63063pt x 307.1475pt>
+<attendance-management-sequence.png, id=370, 302.63063pt x 307.1475pt>
 File: attendance-management-sequence.png Graphic file (type png)
 <use attendance-management-sequence.png>
 Package pdftex.def Info: attendance-management-sequence.png  used on input line
  321.
 (pdftex.def)             Requested size: 416.83289pt x 423.05789pt.
-<attendance-sequence.png, id=381, 984.67876pt x 711.65875pt>
+<attendance-sequence.png, id=371, 984.67876pt x 711.65875pt>
 File: attendance-sequence.png Graphic file (type png)
 <use attendance-sequence.png>
 Package pdftex.def Info: attendance-sequence.png  used on input line 329.
 (pdftex.def)             Requested size: 416.83289pt x 301.2619pt.
-<authentication-flow-sequence.png, id=382, 288.3272pt x 298.11375pt>
+<authentication-flow-sequence.png, id=372, 288.3272pt x 298.11375pt>
 File: authentication-flow-sequence.png Graphic file (type png)
 <use authentication-flow-sequence.png>
 Package pdftex.def Info: authentication-flow-sequence.png  used on input line 3
 37.
 (pdftex.def)             Requested size: 416.83289pt x 430.99838pt.
-<authentication-sequence.png, id=383, 1086.0575pt x 623.32875pt>
+<authentication-sequence.png, id=373, 1086.0575pt x 623.32875pt>
 File: authentication-sequence.png Graphic file (type png)
 <use authentication-sequence.png>
 Package pdftex.def Info: authentication-sequence.png  used on input line 345.
 (pdftex.def)             Requested size: 416.83289pt x 239.23567pt.
-<communication-flow-sequence.png, id=384, 402.75468pt x 409.53pt>
+<communication-flow-sequence.png, id=374, 402.75468pt x 409.53pt>
 File: communication-flow-sequence.png Graphic file (type png)
 <use communication-flow-sequence.png>
 Package pdftex.def Info: communication-flow-sequence.png  used on input line 35
 3.
 (pdftex.def)             Requested size: 416.83289pt x 423.84525pt.
-<exam-management-sequence.png, id=385, 291.33844pt x 416.30531pt>
+<exam-management-sequence.png, id=375, 291.33844pt x 416.30531pt>
 File: exam-management-sequence.png Graphic file (type png)
 <use exam-management-sequence.png>
 Package pdftex.def Info: exam-management-sequence.png  used on input line 361.
 (pdftex.def)             Requested size: 416.83289pt x 595.68051pt.
-<exam-sequence.png, id=386, 967.615pt x 1060.96375pt>
+<exam-sequence.png, id=376, 967.615pt x 1060.96375pt>
 File: exam-sequence.png Graphic file (type png)
 <use exam-sequence.png>
 Package pdftex.def Info: exam-sequence.png  used on input line 369.
 (pdftex.def)             Requested size: 416.83289pt x 457.04735pt.
-<generate-monthly-report-dministrator-sequence.png, id=387, 434.37282pt x 460.7
+<generate-monthly-report-dministrator-sequence.png, id=377, 434.37282pt x 460.7
 2125pt>
 File: generate-monthly-report-dministrator-sequence.png Graphic file (type png)
 
@@ -749,20 +749,20 @@ File: generate-monthly-report-dministrator-sequence.png Graphic file (type png)
 Package pdftex.def Info: generate-monthly-report-dministrator-sequence.png  use
 d on input line 377.
 (pdftex.def)             Requested size: 416.83289pt x 442.13974pt.
-<principal-broadcast-sequence.png, id=388, 280.04625pt x 395.22656pt>
+<principal-broadcast-sequence.png, id=378, 280.04625pt x 395.22656pt>
 File: principal-broadcast-sequence.png Graphic file (type png)
 <use principal-broadcast-sequence.png>
 Package pdftex.def Info: principal-broadcast-sequence.png  used on input line 3
 85.
 (pdftex.def)             Requested size: 416.83289pt x 588.29729pt.
-<sectional-head-staff-management-sequence.png, id=389, 202.50656pt x 430.60875p
+<sectional-head-staff-management-sequence.png, id=379, 202.50656pt x 430.60875p
 t>
 File: sectional-head-staff-management-sequence.png Graphic file (type png)
 <use sectional-head-staff-management-sequence.png>
 Package pdftex.def Info: sectional-head-staff-management-sequence.png  used on 
 input line 393.
 (pdftex.def)             Requested size: 291.78174pt x 620.4572pt.
-<student-assesment-management-sequence.png, id=390, 225.84375pt x 374.90062pt>
+<student-assesment-management-sequence.png, id=380, 225.84375pt x 374.90062pt>
 File: student-assesment-management-sequence.png Graphic file (type png)
 <use student-assesment-management-sequence.png>
 Package pdftex.def Info: student-assesment-management-sequence.png  used on inp
@@ -789,10 +789,10 @@ Chapter 7.
 
 ]
 Appendix A.
-<school-permission-lettter.png, id=475, 342.5297pt x 479.54156pt>
+<school-permission-lettter.png, id=465, 342.5297pt x 479.54156pt>
 File: school-permission-lettter.png Graphic file (type png)
 <use school-permission-lettter.png>
-Package pdftex.def Info: school-permission-lettter.png  used on input line 454.
+Package pdftex.def Info: school-permission-lettter.png  used on input line 448.
 
 (pdftex.def)             Requested size: 333.46758pt x 466.88893pt.
 [28
@@ -804,23 +804,23 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `final_report.out' has not changed.
-(rerunfilecheck)             Checksum: DE432D7814E96A097D8D6AAA3DC5F2FE;7888.
+(rerunfilecheck)             Checksum: FF01909E7729E1B942A30C19FFBC4103;7476.
  ) 
 Here is how much of TeX's memory you used:
- 13518 strings out of 476182
- 212497 string characters out of 5795596
+ 13514 strings out of 476182
+ 212449 string characters out of 5795596
  1933975 words of memory out of 5000000
- 35224 multiletter control sequences out of 15000+600000
+ 35222 multiletter control sequences out of 15000+600000
  591860 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,11n,79p,574b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on docs/report/latex/final_report.pdf (37 pages, 2197693 bytes).
+Output written on docs/report/latex/final_report.pdf (37 pages, 2197136 bytes).
 
 PDF statistics:
- 527 PDF objects out of 1000 (max. 8388607)
- 442 compressed objects within 5 object streams
- 109 named destinations out of 1000 (max. 500000)
- 490 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 515 PDF objects out of 1000 (max. 8388607)
+ 430 compressed objects within 5 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 474 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -40,9 +40,7 @@
 \contentsline {chapter}{\numberline {7}Conclusion}{26}{chapter.7}%
 \contentsline {chapter}{\numberline {A}Appendices}{28}{appendix.A}%
 \contentsline {section}{\numberline {A.1}Project Schedule}{28}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Letters from Organization}{28}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Questionnaires and Interview Questions}{28}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Meeting Minutes and Log Sheets}{28}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Reviewed Documents}{28}{section.A.5}%
-\contentsline {section}{\numberline {A.6}Software Setup and Configuration}{28}{section.A.6}%
-\contentsline {section}{\numberline {A.7}Permission Letter}{28}{section.A.7}%
+\contentsline {section}{\numberline {A.2}Questionnaires and Interview Questions}{28}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Meeting Minutes and Log Sheets}{28}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Reviewed Documents}{28}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Permission Letter}{28}{section.A.5}%
