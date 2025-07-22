@@ -16,15 +16,33 @@
 \contentsline {section}{\numberline {4.1}System Architecture}{5}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Design Patterns and Principles}{5}{section.4.2}%
 \contentsline {section}{\numberline {4.3}System Modeling and Documentation}{5}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Use Case Analysis}{5}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}System Workflows}{5}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}Report Layout Design}{5}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{27}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Appendices}{29}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Project Schedule}{29}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Letters from Organization}{29}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Questionnaires and Interview Questions}{29}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Meeting Minutes and Log Sheets}{29}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Reviewed Documents}{29}{section.A.5}%
-\contentsline {section}{\numberline {A.6}Software Setup and Configuration}{29}{section.A.6}%
-\contentsline {section}{\numberline {A.7}Permission Letter}{29}{section.A.7}%
+\contentsline {subsection}{\numberline {4.3.1}Entity-Relationship Diagram}{5}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Class Diagram}{5}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Use Case Diagram}{5}{subsection.4.3.3}%
+\contentsline {chapter}{\numberline {5}User Interface Design}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Login Page}{9}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Admin Dashboard}{9}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Sequence Diagrams}{11}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Admin User Management}{11}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Administrator Report Management}{11}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Assessment Sequence}{11}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Attendance Management Sequence}{11}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Attendance Sequence}{11}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Authentication Flow Sequence}{11}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Authentication Sequence}{11}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Communication Flow Sequence}{11}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Exam Management Sequence}{11}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Exam Sequence}{11}{section.6.10}%
+\contentsline {section}{\numberline {6.11}Generate Monthly Report dministrator Sequence}{11}{section.6.11}%
+\contentsline {section}{\numberline {6.12}Principal Broadcast Sequence}{11}{section.6.12}%
+\contentsline {section}{\numberline {6.13}Sectional Head Staff Management Sequence}{11}{section.6.13}%
+\contentsline {section}{\numberline {6.14}Student Assesment Management Sequence}{11}{section.6.14}%
+\contentsline {chapter}{\numberline {7}Conclusion}{26}{chapter.7}%
+\contentsline {chapter}{\numberline {A}Appendices}{28}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Project Schedule}{28}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Letters from Organization}{28}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Questionnaires and Interview Questions}{28}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Meeting Minutes and Log Sheets}{28}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Reviewed Documents}{28}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Software Setup and Configuration}{28}{section.A.6}%
+\contentsline {section}{\numberline {A.7}Permission Letter}{28}{section.A.7}%
