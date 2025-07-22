@@ -1,0 +1,29 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Project Context}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Project Objectives}{1}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Scope and Significance}{2}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Methodology}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Development Approach}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Chapter Summary}{3}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Analysis}{4}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Current Environment Assessment}{4}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Feasibility Study}{4}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Problem Statement}{4}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Chapter Summary}{4}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Solution Design}{5}{chapter.4}%
+\contentsline {section}{\numberline {4.1}System Architecture}{5}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Design Patterns and Principles}{5}{section.4.2}%
+\contentsline {section}{\numberline {4.3}System Modeling and Documentation}{5}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Use Case Analysis}{5}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}System Workflows}{5}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Report Layout Design}{5}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{18}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Appendices}{20}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Project Schedule}{20}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Letters from Organization}{20}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Questionnaires and Interview Questions}{20}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Meeting Minutes and Log Sheets}{20}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Reviewed Documents}{20}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Software Setup and Configuration}{20}{section.A.6}%

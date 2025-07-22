@@ -3,75 +3,111 @@
 % LaTeX Template (for Overleaf or other compilers)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,a4paper]{report}
-
-% Required Packages
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{geometry}
+\usepackage[a4paper, left=1.5in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathptmx} % Better Times New Roman implementation
+\usepackage[T1]{fontenc} % Better font encoding
+\usepackage{url} % For hyperlinking URLs
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{hyperref}
 \usepackage{longtable}
 \usepackage{tocloft}
-\usepackage{enumitem}
-\usepackage{titlesec}
 \usepackage{caption}
-\usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{booktabs}
-\usepackage{array}
-\usepackage{lipsum}
 
 % Page Setup
-\geometry{a4paper, left=1.5in, right=1in, top=1in, bottom=1in}
 \setstretch{1.5}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[C]{\thepage}
 
-% Chapter/Section Formatting
+% Customizing section titles to match the document's style (simple and bold)
 \titleformat{\chapter}[hang]{\bfseries\LARGE}{\thechapter}{2em}{}
 \titleformat{\section}[hang]{\bfseries\large}{\thesection}{1em}{}
 \titleformat{\subsection}[hang]{\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
-% Roman numerals for preamble
-\renewcommand{\thepage}{\roman{page}}
+% Remove page number on the first page (cover page)
+\pagenumbering{gobble}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Cover Page
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
+% --- Cover Page ---
 \begin{titlepage}
     \centering
-    \vspace*{2cm}
-    {\Huge\bfseries School Management System\\[1.5em]}
-    {\Large Final Year Diploma Project Report\\[1em]Academic Year 2022-23}
-    \vspace{2cm}
-    \begin{tabular}{ll}
-        \textbf{Submitted By:} & E M A S B EKANAYAKA (CODSE224F-001) \\
-        & S D HEIYANTHUDUWA (CODSE224F-016) \\
-        & M H D T TISSERA (CODSE224F-054) \\
-        & School of Computing and Engineering \\
-        \\
-        \textbf{Project Guide:} & DR. THISARA WEERASINGHE \\
-        & Head of School of Computing and Engineering \\
-    \end{tabular}
+    \vspace*{0.3cm}
     
-    \vfill
-    \textbf{Date:} 2024/12/20\\
-    \textbf{Place:} NIBM Colombo School of Computing and Engineering
+    \includegraphics[width=3.5cm]{nibm-logo.png} % NIBM Logo
     
     \vspace{1cm}
-    \includegraphics[width=0.3\textwidth]{placeholder_logo.png} % Placeholder for institute logo
+    
+    {\Huge\bfseries NATIONAL INSTITUTE OF BUSINESS MANAGEMENT}
     
     \vspace{1cm}
-    \textbf{Diploma in Software Engineering}
+    
+    {\Large School of Computing and Engineering}
+    
+    \vspace{1.2cm}
+    
+    {\Huge\bfseries ``School Management System''}
+    
+    \vspace{1.2cm}
+    
+    {\Large\bfseries Final Year Diploma Project Report}
+    
+    {\large Academic Year 2022-23}
+    
+    \vspace{1.5cm}
+    
+    {\Large Submitted By:}
+    
+    \vspace{0.5cm}
+    
+    {\large E M A S B EKANAYAKA (CODSE224F-001)}
+    
+    {\large S D HEIYANTHUDUWA (CODSE224F-016)}
+    
+    {\large M H D T TISSERA (CODSE224F-054)}
+    
+    \vspace{1cm}
+    
+    {\Large Project Guide:}
+    
+    \vspace{0.3cm}
+    
+    {\Large\bfseries DR. THISARA WEERASINGHE}
+    
+    {\large Head of School of Computing and Engineering}
+    
+    \vfill % Pushes content to the bottom
+    
+    {\large Date: 2024/12/20}
+    
+    {\large Place: NIBM Colombo School of Computing and Engineering}
+    
+    \vspace{0.5cm}
+    
+    {\Large\bfseries Diploma in Software Engineering}
+    
 \end{titlepage}
+
+\newpage
+\pagenumbering{roman} % Start page numbering from here with Roman numerals
+
+% --- Coursework Content ---
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Declaration Page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \section*{Declaration}
 I/We hereby declare that this project report is my/our own work and has not been submitted previously for any academic qualification. All sources of information have been acknowledged.
 
@@ -101,38 +137,23 @@ The project's significance lies in its potential to transform traditional educat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section*{Keywords}
-School Management, Education Technology, Academic Administration, Database Management, Web Application
+School Management, EdTech, Academic Administration, Database Management, Web Application
 
 \section*{List of Figures}
 \begin{longtable}{p{0.5\textwidth}p{0.4\textwidth}}
     Figure & Page \\
-    \hline
-    Class Diagram & \pageref{fig:class-diagram} \\
-    Entity-Relationship Diagram & \pageref{fig:er-diagram} \\
-    Use Case Diagram & \pageref{fig:use-case-diagram} \\
-    Attendance Sequence Diagram & \pageref{fig:attendance-sequence} \\
-    Exam Sequence Diagram & \pageref{fig:exam-sequence} \\
-    Assessment Sequence Diagram & \pageref{fig:assessment-sequence} \\
-    Teacher Sequence Diagram & \pageref{fig:teacher-sequence} \\
     % Add more figures as needed
 \end{longtable}
 
 \section*{List of Tables}
 \begin{longtable}{p{0.5\textwidth}p{0.4\textwidth}}
     Table & Page \\
-    \hline
-    % Add table entries here
     Placeholder Table & -- \\
 \end{longtable}
 
 \section*{List of Acronyms and Abbreviations}
 \begin{longtable}{p{0.3\textwidth}p{0.6\textwidth}}
     Acronym & Description \\
-    \hline
-    SMS & School Management System \\
-    UI & User Interface \\
-    API & Application Programming Interface \\
-    DBMS & Database Management System \\
     % Add more as needed
 \end{longtable}
 
@@ -146,6 +167,7 @@ We would like to express our sincere gratitude to our project guide, Dr. Thisara
 \tableofcontents
 \newpage
 \renewcommand{\thepage}{\arabic{page}} % Switch to Arabic numerals
+\setcounter{page}{1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter 1: Introduction
@@ -160,7 +182,6 @@ This School Management System project emerges from a critical need to modernize 
 \section{Project Objectives}
 \begin{itemize}
     \item Modernization of Educational Operations
-    \item Enhancement of Educational Quality
     \item Improvement of Stakeholder Engagement
 \end{itemize}
 
@@ -168,7 +189,6 @@ This School Management System project emerges from a critical need to modernize 
 The project encompasses a complete overhaul of school management processes, from daily administrative tasks to long-term strategic planning. Its significance lies in its potential to:
 \begin{itemize}
     \item Reduce administrative burden through automation
-    \item Improve communication efficiency through integrated messaging systems
     \item Enhance student performance tracking accuracy with digital records
 \end{itemize}
 
@@ -183,7 +203,6 @@ The methodology adopted for this project follows a structured software developme
 A phased development approach was used:
 \begin{itemize}
     \item \textbf{Phase 1: Foundation} -- User authentication, profile management, database setup
-    \item \textbf{Phase 2: Core Features} -- Academic management, attendance, assessment modules
     \item \textbf{Phase 3: Advanced Features} -- Reporting, communication platform, analytics dashboard
 \end{itemize}
 
@@ -218,7 +237,7 @@ The design follows best practices such as separation of concerns, robust error h
 
 \section{System Modeling and Documentation}
 \subsection{Use Case Analysis}
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{use-case-diagram.png}
     \caption{Use Case Diagram}
@@ -226,52 +245,107 @@ The design follows best practices such as separation of concerns, robust error h
 \end{figure}
 
 \subsection{System Workflows}
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{class-diagram.png}
     \caption{Class Diagram}
     \label{fig:class-diagram}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{er-diagram.png}
     \caption{Entity-Relationship Diagram}
     \label{fig:er-diagram}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{attendance-sequence.png}
     \caption{Attendance Sequence Diagram}
     \label{fig:attendance-sequence}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{exam-sequence.png}
     \caption{Exam Sequence Diagram}
     \label{fig:exam-sequence}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{assessment-sequence.png}
     \caption{Assessment Sequence Diagram}
     \label{fig:assessment-sequence}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{teacher-sequence.png}
     \caption{Teacher Management Sequence Diagram}
     \label{fig:teacher-sequence}
 \end{figure}
 
-% Placeholder for additional images
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{placeholder_image.png}
+    \includegraphics[width=0.7\textwidth]{admin-user-managment-sequence.png}
+    \caption{Admin User Management Sequence Diagram}
+    \label{fig:admin-user-management-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{administrator-report-management-sequence.png}
+    \caption{Administrator Report Management Sequence Diagram}
+    \label{fig:administrator-report-management-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{principal-broadcast-sequence.png}
+    \caption{Principal Broadcast Sequence Diagram}
+    \label{fig:principal-broadcast-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{sectional-head-staff-management-sequence.png}
+    \caption{Sectional Head Staff Management Sequence Diagram}
+    \label{fig:sectional-head-staff-management-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{student-assesment-management-sequence.png}
+    \caption{Student Assessment Management Sequence Diagram}
+    \label{fig:student-assessment-management-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{authentication-flow-sequence.png}
+    \caption{Authentication Flow Sequence Diagram}
+    \label{fig:authentication-flow-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{communication-flow-sequence.png}
+    \caption{Communication Flow Sequence Diagram}
+    \label{fig:communication-flow-sequence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{exam-management-sequence.png}
+    \caption{Exam Management Sequence Diagram}
+    \label{fig:exam-management-sequence}
+\end{figure}
+
+% Placeholder for additional images
+\begin{figure}[htbp]
+    \centering
     \caption{Placeholder for future diagrams}
 \end{figure}
 
@@ -285,9 +359,6 @@ Each report layout is numbered, named, and described in the appendix.
 The School Management System represents a significant step forward in educational institution management. By addressing current system limitations and incorporating modern technology, the system promises to:
 \begin{itemize}
     \item Improve administrative efficiency
-    \item Enhance communication between stakeholders
-    \item Provide better tracking of student performance
-    \item Reduce operational costs
     \item Support data-driven decision making
 \end{itemize}
 
@@ -297,9 +368,8 @@ The modular design ensures future scalability and adaptability to changing educa
 % References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\begin{thebibliography}{99}
+\begin{thebibliography}{9}
     \bibitem{ref1} Diploma in Software Engineering Project Guidelines, NIBM
-    \bibitem{ref2} School Management System Documentation
     % Add more references as needed
 \end{thebibliography}
 
@@ -310,7 +380,6 @@ The modular design ensures future scalability and adaptability to changing educa
 \chapter{Appendices}
 \section{Project Schedule}
 % Include project timeline table or Gantt chart here
-\includegraphics[width=0.8\textwidth]{placeholder_schedule.png}
 
 \section{Letters from Organization}
 % Placeholder for approval letters
