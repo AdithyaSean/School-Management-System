@@ -22,6 +22,7 @@
 \usepackage{tocloft}
 \usepackage{caption}
 \usepackage{booktabs}
+\usepackage{ragged2e}
 
 % Page Setup
 \setstretch{1.5}
@@ -193,7 +194,7 @@ The project encompasses a complete overhaul of school management processes, from
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Methodology}
 \section{Introduction}
-The methodology adopted for this project follows a structured software development lifecycle, encompassing requirements gathering, system analysis, design, implementation, and testing. To ensure the solution was tailored to the specific needs of Susamayawardhana College, a variety of data collection techniques were employed. These included structured interviews with the school principal and administrative staff, questionnaires distributed to teachers to understand their daily challenges, and a thorough review of existing administrative documents, such as student registration forms and attendance logs. This multi-faceted approach ensured a holistic understanding of the operational environment.
+The methodology for this project follows a structured software development lifecycle, including requirements gathering, system analysis, design, implementation, and testing. To ensure the solution was tailored to the specific needs of Susamayawardhana College, a variety of data collection techniques were employed. These included structured interviews with the school principal and administrative staff, questionnaires distributed to teachers to understand their daily challenges, and a thorough review of existing administrative documents, such as student registration forms and attendance logs. This multi-faceted approach ensured a holistic understanding of the operational environment.
 
 \section{Development Approach}
 A phased development approach was used:
@@ -252,7 +253,7 @@ The design follows best practices such as separation of concerns, robust error h
 \subsection{Entity-Relationship Diagram}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{er-diagram.png}
+    \includegraphics[width=0.9\textwidth]{er-diagram.png}
     \caption{Entity-Relationship Diagram}
     \label{fig:er-diagram}
 \end{figure}
@@ -260,7 +261,7 @@ The design follows best practices such as separation of concerns, robust error h
 \subsection{Class Diagram}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{class-diagram.png}
+    \includegraphics[width=0.9\textwidth]{class-diagram.png}
     \caption{Class Diagram}
     \label{fig:class-diagram}
 \end{figure}
@@ -268,7 +269,7 @@ The design follows best practices such as separation of concerns, robust error h
 \subsection{Use Case Diagram}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{use-case-diagram.png}
+    \includegraphics[width=0.9\textwidth]{use-case-diagram.png}
     \caption{Use Case Diagram}
     \label{fig:use-case-diagram}
 \end{figure}
@@ -277,7 +278,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Login Page}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{login-page.png}
+    \includegraphics[width=0.5\textwidth]{login-page.png}
     \caption{Login Page}
     \label{fig:login-page}
 \end{figure}
@@ -285,7 +286,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Admin Dashboard}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{admin-dashboard-page.png}
+    \includegraphics[width=0.9\textwidth]{admin-dashboard-page.png}
     \caption{Admin Dashboard Page}
     \label{fig:admin-dashboard-page}
 \end{figure}
@@ -294,15 +295,17 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Admin User Management}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{admin-user-managment-sequence.png}
+    \includegraphics[width=0.5\textwidth]{admin-user-managment-sequence.png}
     \caption{Admin User Management Sequence}
     \label{fig:admin-user-managment-sequence}
 \end{figure}
 
+\newpage
+
 \section{Administrator Report Management}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{administrator-report-management-sequence.png}
+    \includegraphics[width=0.5\textwidth]{administrator-report-management-sequence.png}
     \caption{Administrator Report Management Sequence}
     \label{fig:administrator-report-management-sequence}
 \end{figure}
@@ -310,7 +313,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Assessment Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{assessment-sequence.png}
+    \includegraphics[width=0.5\textwidth]{assessment-sequence.png}
     \caption{Assessment Sequence}
     \label{fig:assessment-sequence}
 \end{figure}
@@ -318,7 +321,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Attendance Management Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{attendance-management-sequence.png}
+    \includegraphics[width=0.7\textwidth]{attendance-management-sequence.png}
     \caption{Attendance Management Sequence}
     \label{fig:attendance-management-sequence}
 \end{figure}
@@ -326,7 +329,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Attendance Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{attendance-sequence.png}
+    \includegraphics[width=0.5\textwidth]{attendance-sequence.png}
     \caption{Attendance Sequence}
     \label{fig:attendance-sequence}
 \end{figure}
@@ -334,7 +337,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Authentication Flow Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{authentication-flow-sequence.png}
+    \includegraphics[width=0.5\textwidth]{authentication-flow-sequence.png}
     \caption{Authentication Flow Sequence}
     \label{fig:authentication-flow-sequence}
 \end{figure}
@@ -342,7 +345,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Authentication Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{authentication-sequence.png}
+    \includegraphics[width=0.5\textwidth]{authentication-sequence.png}
     \caption{Authentication Sequence}
     \label{fig:authentication-sequence}
 \end{figure}
@@ -350,7 +353,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Communication Flow Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{communication-flow-sequence.png}
+    \includegraphics[width=0.5\textwidth]{communication-flow-sequence.png}
     \caption{Communication Flow Sequence}
     \label{fig:communication-flow-sequence}
 \end{figure}
@@ -358,7 +361,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Exam Management Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{exam-management-sequence.png}
+    \includegraphics[width=0.5\textwidth]{exam-management-sequence.png}
     \caption{Exam Management Sequence}
     \label{fig:exam-management-sequence}
 \end{figure}
@@ -366,7 +369,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Exam Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{exam-sequence.png}
+    \includegraphics[width=0.5\textwidth]{exam-sequence.png}
     \caption{Exam Sequence}
     \label{fig:exam-sequence}
 \end{figure}
@@ -374,7 +377,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Generate Monthly Report dministrator Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{generate-monthly-report-dministrator-sequence.png}
+    \includegraphics[width=0.5\textwidth]{generate-monthly-report-dministrator-sequence.png}
     \caption{Generate Monthly Report dministrator Sequence}
     \label{fig:generate-monthly-report-dministrator-sequence}
 \end{figure}
@@ -382,7 +385,7 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Principal Broadcast Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{principal-broadcast-sequence.png}
+    \includegraphics[width=0.5\textwidth]{principal-broadcast-sequence.png}
     \caption{Principal Broadcast Sequence}
     \label{fig:principal-broadcast-sequence}
 \end{figure}
@@ -390,15 +393,17 @@ The design follows best practices such as separation of concerns, robust error h
 \section{Sectional Head Staff Management Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{sectional-head-staff-management-sequence.png}
+    \includegraphics[width=0.5\textwidth]{sectional-head-staff-management-sequence.png}
     \caption{Sectional Head Staff Management Sequence}
     \label{fig:sectional-head-staff-management-sequence}
 \end{figure}
 
+\newpage
+
 \section{Student Assesment Management Sequence}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{student-assesment-management-sequence.png}
+    \includegraphics[width=0.5\textwidth]{student-assesment-management-sequence.png}
     \caption{Student Assesment Management Sequence}
     \label{fig:student-assesment-management-sequence}
 \end{figure}
@@ -432,7 +437,7 @@ The modular design ensures future scalability and adaptability to changing educa
 \section{Project Schedule}
 The project was executed over a period of six months, following the schedule outlined below.
 
-\begin{longtable}{p{0.2\textwidth} p{0.6\textwidth} p{0.2\textwidth}}
+\begin{longtable}{>{\RaggedRight}p{0.2\textwidth} >{\RaggedRight}p{0.5\textwidth} >{\RaggedRight\arraybackslash}p{0.2\textwidth}}
     \caption{Project Execution Timeline}\\
     \toprule
     \textbf{Phase} & \textbf{Key Activities} & \textbf{Duration} \\
@@ -450,9 +455,9 @@ The project was executed over a period of six months, following the schedule out
     \endfoot
     \bottomrule
     \endlastfoot
-    Phase 1: Planning \& Analysis & Requirements gathering, feasibility study, project planning, initial stakeholder meetings. & 4 Weeks \\
+    Phase 1: Planning \& Analysis & Requirements gathering, feasibility study, project planning, and initial stakeholder meetings. & 4 Weeks \\
     \midrule
-    Phase 2: System Design & System architecture design, database schema design, UI/UX wireframing, technology stack finalization. & 4 Weeks \\
+    Phase 2: System Design & System architecture design, database schema design, UI/UX wireframing, and technology stack finalization. & 4 Weeks \\
     \midrule
     Phase 3: Core Development & Development of user authentication, profile management, and core academic modules. & 8 Weeks \\
     \midrule
@@ -486,13 +491,13 @@ The project was executed over a period of six months, following the schedule out
 
 \textbf{Agenda:}
 \begin{enumerate}
-    \item Gether Client requirements
+    \item Gather Client requirements
     \item Discussion about the current plan limitations and changes
 \end{enumerate}
 
 \textbf{Decisions:}
 \begin{itemize}
-    \item Changed the teacher permisisons to manage and access student functions to test from student side.
+    \item Changed the teacher permissions to manage and access student functions to test from student side.
     \item Discussed how to gather user data like fingerprint data and attendance.
 \end{itemize}
 
@@ -509,7 +514,7 @@ The following documents from Susamayawardhana College were reviewed during the a
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{school-permission-lettter.png}
+    \includegraphics[width=0.8\textwidth]{school-permission-letter.png}
     \caption{School Permission Letter}
     \label{fig:permission-letter}
 \end{figure}

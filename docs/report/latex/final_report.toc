@@ -24,26 +24,26 @@
 \contentsline {section}{\numberline {5.2}Admin Dashboard}{10}{section.5.2}%
 \contentsline {chapter}{\numberline {6}Sequence Diagrams}{12}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Admin User Management}{12}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Administrator Report Management}{12}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Assessment Sequence}{12}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Attendance Management Sequence}{12}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Attendance Sequence}{12}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Authentication Flow Sequence}{12}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Authentication Sequence}{12}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Communication Flow Sequence}{12}{section.6.8}%
-\contentsline {section}{\numberline {6.9}Exam Management Sequence}{12}{section.6.9}%
-\contentsline {section}{\numberline {6.10}Exam Sequence}{12}{section.6.10}%
-\contentsline {section}{\numberline {6.11}Generate Monthly Report dministrator Sequence}{12}{section.6.11}%
-\contentsline {section}{\numberline {6.12}Principal Broadcast Sequence}{12}{section.6.12}%
-\contentsline {section}{\numberline {6.13}Sectional Head Staff Management Sequence}{12}{section.6.13}%
-\contentsline {section}{\numberline {6.14}Student Assesment Management Sequence}{12}{section.6.14}%
-\contentsline {chapter}{\numberline {7}Conclusion}{27}{chapter.7}%
-\contentsline {chapter}{\numberline {A}Appendices}{29}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Project Schedule}{29}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Questionnaires and Interview Questions}{30}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}For School Administration}{30}{subsection.A.2.1}%
-\contentsline {subsection}{\numberline {A.2.2}For Teachers}{30}{subsection.A.2.2}%
-\contentsline {section}{\numberline {A.3}Meeting Minutes and Log Sheets}{30}{section.A.3}%
-\contentsline {subsection}{\numberline {A.3.1}Sample Meeting Minutes}{30}{subsection.A.3.1}%
-\contentsline {section}{\numberline {A.4}Reviewed Documents}{31}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Permission Letter}{31}{section.A.5}%
+\contentsline {section}{\numberline {6.2}Administrator Report Management}{13}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Assessment Sequence}{15}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Attendance Management Sequence}{15}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Attendance Sequence}{15}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Authentication Flow Sequence}{15}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Authentication Sequence}{16}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Communication Flow Sequence}{16}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Exam Management Sequence}{19}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Exam Sequence}{19}{section.6.10}%
+\contentsline {section}{\numberline {6.11}Generate Monthly Report dministrator Sequence}{19}{section.6.11}%
+\contentsline {section}{\numberline {6.12}Principal Broadcast Sequence}{19}{section.6.12}%
+\contentsline {section}{\numberline {6.13}Sectional Head Staff Management Sequence}{19}{section.6.13}%
+\contentsline {section}{\numberline {6.14}Student Assesment Management Sequence}{20}{section.6.14}%
+\contentsline {chapter}{\numberline {7}Conclusion}{21}{chapter.7}%
+\contentsline {chapter}{\numberline {A}Appendices}{23}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Project Schedule}{23}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Questionnaires and Interview Questions}{24}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}For School Administration}{24}{subsection.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}For Teachers}{24}{subsection.A.2.2}%
+\contentsline {section}{\numberline {A.3}Meeting Minutes and Log Sheets}{24}{section.A.3}%
+\contentsline {subsection}{\numberline {A.3.1}Sample Meeting Minutes}{24}{subsection.A.3.1}%
+\contentsline {section}{\numberline {A.4}Reviewed Documents}{25}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Permission Letter}{25}{section.A.5}%
