@@ -1,9 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.3)  22 JUL 2025 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.3)  22 JUL 2025 11:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**final_report.tex
-(./final_report.tex
+**/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_repor
+t.tex
+
+(/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_report
+.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -486,7 +489,8 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count304
 \l__pdf_internal_box=\box62
 )
-(./final_report.aux)
+(/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_report
+.aux)
 \openout1 = `final_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -507,8 +511,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count305
 \scratchdimen=\dimen194
@@ -565,7 +568,11 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 42.
-(./final_report.out) (./final_report.out)
+
+(/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_report
+.out)
+(/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_report
+.out)
 \@outlinefile=\write3
 \openout3 = `final_report.out'.
 
@@ -579,12 +586,13 @@ Package pdftex.def Info: nibm-logo.png  used on input line 49.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-di
-st/fonts/enc/dvips/base/8r.enc} <./nibm-logo.png>] [1] [2] [3] (./final_report.
-toc
+st/fonts/enc/dvips/base/8r.enc} </home/adithya/dev/NIBM/School-Management-Syste
+m/docs/report/latex/nibm-logo.png>] [1] [2] [3]
+(/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_report
+.toc
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
  1.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
@@ -723,51 +731,137 @@ File: exam-management-sequence.png Graphic file (type png)
 <use exam-management-sequence.png>
 Package pdftex.def Info: exam-management-sequence.png  used on input line 341.
 (pdftex.def)             Requested size: 291.78174pt x 416.97127pt.
+<attendance-management-sequence.png, id=215, 302.63063pt x 307.1475pt>
+File: attendance-management-sequence.png Graphic file (type png)
+<use attendance-management-sequence.png>
+Package pdftex.def Info: attendance-management-sequence.png  used on input line
+ 348.
+(pdftex.def)             Requested size: 291.78174pt x 296.13771pt.
+<authentication-sequence.png, id=216, 1086.0575pt x 623.32875pt>
+File: authentication-sequence.png Graphic file (type png)
+<use authentication-sequence.png>
+Package pdftex.def Info: authentication-sequence.png  used on input line 355.
+(pdftex.def)             Requested size: 291.78174pt x 167.46402pt.
+<generate-monthly-report-dministrator-sequence.png, id=217, 434.37282pt x 460.7
+2125pt>
+File: generate-monthly-report-dministrator-sequence.png Graphic file (type png)
+
+<use generate-monthly-report-dministrator-sequence.png>
+Package pdftex.def Info: generate-monthly-report-dministrator-sequence.png  use
+d on input line 362.
+(pdftex.def)             Requested size: 291.78174pt x 309.49712pt.
+<login-page.png, id=218, 510.90875pt x 569.12625pt>
+File: login-page.png Graphic file (type png)
+<use login-page.png>
+Package pdftex.def Info: login-page.png  used on input line 369.
+(pdftex.def)             Requested size: 291.78174pt x 325.0306pt.
+<profile-management.png, id=219, 295.85532pt x 350.81062pt>
+File: profile-management.png Graphic file (type png)
+<use profile-management.png>
+Package pdftex.def Info: profile-management.png  used on input line 376.
+(pdftex.def)             Requested size: 291.78174pt x 345.99211pt.
+<sectional-head-staff-management.png, id=220, 202.50656pt x 430.60875pt>
+File: sectional-head-staff-management.png Graphic file (type png)
+<use sectional-head-staff-management.png>
+Package pdftex.def Info: sectional-head-staff-management.png  used on input lin
+e 383.
+(pdftex.def)             Requested size: 291.78174pt x 620.4572pt.
+<student-assessment-page.png, id=221, 1927.2pt x 965.6075pt>
+File: student-assessment-page.png Graphic file (type png)
+<use student-assessment-page.png>
+Package pdftex.def Info: student-assessment-page.png  used on input line 390.
+(pdftex.def)             Requested size: 291.78174pt x 146.1904pt.
+<student-dashboard-page.png, id=222, 1927.2pt x 965.6075pt>
+File: student-dashboard-page.png Graphic file (type png)
+<use student-dashboard-page.png>
+Package pdftex.def Info: student-dashboard-page.png  used on input line 397.
+(pdftex.def)             Requested size: 291.78174pt x 146.1904pt.
+<student-exams-page.png, id=223, 1927.2pt x 965.6075pt>
+File: student-exams-page.png Graphic file (type png)
+<use student-exams-page.png>
+Package pdftex.def Info: student-exams-page.png  used on input line 404.
+(pdftex.def)             Requested size: 291.78174pt x 146.1904pt.
+<student-profile-page.png, id=224, 1927.2pt x 965.6075pt>
+File: student-profile-page.png Graphic file (type png)
+<use student-profile-page.png>
+Package pdftex.def Info: student-profile-page.png  used on input line 411.
+(pdftex.def)             Requested size: 291.78174pt x 146.1904pt.
+<student-results-page.png, id=225, 1927.2pt x 965.6075pt>
+File: student-results-page.png Graphic file (type png)
+<use student-results-page.png>
+Package pdftex.def Info: student-results-page.png  used on input line 418.
+(pdftex.def)             Requested size: 291.78174pt x 146.1904pt.
 [5
 
-] [6 <./use-case-diagram.png (PNG copy)>] [7 <./class-diagram.png>] [8 <./er-di
-agram.png> <./attendance-sequence.png (PNG copy)>] [9 <./exam-sequence.png (PNG
- copy)> <./assessment-sequence.png (PNG copy)>] [10 <./teacher-sequence.png (PN
-G copy)>] [11 <./admin-user-managment-sequence.png>] [12 <./administrator-repor
-t-management-sequence.png>] [13 <./principal-broadcast-sequence.png>]
-[14 <./sectional-head-staff-management-sequence.png>] [15 <./student-assesment-
-management-sequence.png>] [16 <./authentication-flow-sequence.png> <./communica
-tion-flow-sequence.png>] [17 <./exam-management-sequence.png>]
+] [6 </home/adithya/dev/NIBM/School-Management-System/docs/report/latex/use-cas
+e-diagram.png (PNG copy)>] [7 </home/adithya/dev/NIBM/School-Management-System/
+docs/report/latex/class-diagram.png>] [8 </home/adithya/dev/NIBM/School-Managem
+ent-System/docs/report/latex/er-diagram.png> </home/adithya/dev/NIBM/School-Man
+agement-System/docs/report/latex/attendance-sequence.png (PNG copy)>]
+[9 </home/adithya/dev/NIBM/School-Management-System/docs/report/latex/exam-sequ
+ence.png (PNG copy)> </home/adithya/dev/NIBM/School-Management-System/docs/repo
+rt/latex/assessment-sequence.png (PNG copy)>] [10 </home/adithya/dev/NIBM/Schoo
+l-Management-System/docs/report/latex/teacher-sequence.png (PNG copy)>]
+[11 </home/adithya/dev/NIBM/School-Management-System/docs/report/latex/admin-us
+er-managment-sequence.png>] [12 </home/adithya/dev/NIBM/School-Management-Syste
+m/docs/report/latex/administrator-report-management-sequence.png>] [13 </home/a
+dithya/dev/NIBM/School-Management-System/docs/report/latex/principal-broadcast-
+sequence.png>] [14 </home/adithya/dev/NIBM/School-Management-System/docs/report
+/latex/sectional-head-staff-management-sequence.png>] [15 </home/adithya/dev/NI
+BM/School-Management-System/docs/report/latex/student-assesment-management-sequ
+ence.png>] [16 </home/adithya/dev/NIBM/School-Management-System/docs/report/lat
+ex/authentication-flow-sequence.png> </home/adithya/dev/NIBM/School-Management-
+System/docs/report/latex/communication-flow-sequence.png>] [17 </home/adithya/d
+ev/NIBM/School-Management-System/docs/report/latex/exam-management-sequence.png
+>] [18 </home/adithya/dev/NIBM/School-Management-System/docs/report/latex/atten
+dance-management-sequence.png> </home/adithya/dev/NIBM/School-Management-System
+/docs/report/latex/authentication-sequence.png (PNG copy)>] [19 </home/adithya/
+dev/NIBM/School-Management-System/docs/report/latex/generate-monthly-report-dmi
+nistrator-sequence.png> </home/adithya/dev/NIBM/School-Management-System/docs/r
+eport/latex/login-page.png>] [20 </home/adithya/dev/NIBM/School-Management-Syst
+em/docs/report/latex/profile-management.png>] [21 </home/adithya/dev/NIBM/Schoo
+l-Management-System/docs/report/latex/sectional-head-staff-management.png>]
+[22 </home/adithya/dev/NIBM/School-Management-System/docs/report/latex/student-
+assessment-page.png> </home/adithya/dev/NIBM/School-Management-System/docs/repo
+rt/latex/student-dashboard-page.png> </home/adithya/dev/NIBM/School-Management-
+System/docs/report/latex/student-exams-page.png>] [23 </home/adithya/dev/NIBM/S
+chool-Management-System/docs/report/latex/student-profile-page.png> </home/adit
+hya/dev/NIBM/School-Management-System/docs/report/latex/student-results-page.pn
+g>]
 Chapter 5.
-[18
+[24
 
-] [19
+] [25
 
 ]
 Appendix A.
-[20
+[26
 
-] (./final_report.aux)
+]
+(/home/adithya/dev/NIBM/School-Management-System/docs/report/latex/final_report
+.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `final_report.out' has not changed.
 (rerunfilecheck)             Checksum: A63D7B85A1174A55E09CE4E0C2DD6A00;4410.
  ) 
 Here is how much of TeX's memory you used:
- 13410 strings out of 476182
- 209750 string characters out of 5795596
- 1932975 words of memory out of 5000000
- 35155 multiletter control sequences out of 15000+600000
+ 13516 strings out of 476182
+ 213939 string characters out of 5795596
+ 1937975 words of memory out of 5000000
+ 35243 multiletter control sequences out of 15000+600000
  591860 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,11n,79p,556b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,622b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on final_report.pdf (26 pages, 1710766 bytes).
+Output written on /home/adithya/dev/NIBM/School-Management-System/docs/report/l
+atex/final_report.pdf (32 pages, 2361058 bytes).
 PDF statistics:
- 342 PDF objects out of 1000 (max. 8388607)
- 280 compressed objects within 3 object streams
- 77 named destinations out of 1000 (max. 500000)
- 313 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 403 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
+ 94 named destinations out of 1000 (max. 500000)
+ 368 words of extra memory for PDF output out of 10000 (max. 10000000)
 

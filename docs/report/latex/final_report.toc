@@ -19,11 +19,11 @@
 \contentsline {subsection}{\numberline {4.3.1}Use Case Analysis}{5}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}System Workflows}{5}{subsection.4.3.2}%
 \contentsline {section}{\numberline {4.4}Report Layout Design}{5}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{18}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Appendices}{20}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Project Schedule}{20}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Letters from Organization}{20}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Questionnaires and Interview Questions}{20}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Meeting Minutes and Log Sheets}{20}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Reviewed Documents}{20}{section.A.5}%
-\contentsline {section}{\numberline {A.6}Software Setup and Configuration}{20}{section.A.6}%
+\contentsline {chapter}{\numberline {5}Conclusion}{24}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Appendices}{26}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Project Schedule}{26}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Letters from Organization}{26}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Questionnaires and Interview Questions}{26}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Meeting Minutes and Log Sheets}{26}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Reviewed Documents}{26}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Software Setup and Configuration}{26}{section.A.6}%
