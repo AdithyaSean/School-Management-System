@@ -116,8 +116,15 @@ I/We hereby declare that this project report is my/our own work and has not been
 
 \vspace{2cm}
 \noindent\rule{6cm}{0.4pt}\\
+\noindent E M A S B EKANAYAKA (CODSE224F-001)
+
+\vspace{1cm}
 \noindent\rule{6cm}{0.4pt}\\
-\noindent\rule{6cm}{0.4pt}
+\noindent S D HEIYANTHUDUWA (CODSE224F-016)
+
+\vspace{1cm}
+\noindent\rule{6cm}{0.4pt}\\
+\noindent M H D T TISSERA (CODSE224F-054)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abstract
@@ -136,27 +143,6 @@ The project's significance lies in its potential to transform traditional educat
 % List of Keywords, Figures, Tables, Acronyms, Acknowledgement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section*{Keywords}
-School Management, EdTech, Academic Administration, Database Management, Web Application
-
-\section*{List of Figures}
-\begin{longtable}{p{0.5\textwidth}p{0.4\textwidth}}
-    Figure & Page \\
-    % Add more figures as needed
-\end{longtable}
-
-\section*{List of Tables}
-\begin{longtable}{p{0.5\textwidth}p{0.4\textwidth}}
-    Table & Page \\
-    Placeholder Table & -- \\
-\end{longtable}
-
-\section*{List of Acronyms and Abbreviations}
-\begin{longtable}{p{0.3\textwidth}p{0.6\textwidth}}
-    Acronym & Description \\
-    % Add more as needed
-\end{longtable}
-
 \section*{Acknowledgement}
 We would like to express our sincere gratitude to our project guide, Dr. Thisara Weerasinghe, and the faculty of the School of Computing and Engineering for their invaluable support and guidance throughout this project.
 
@@ -165,6 +151,16 @@ We would like to express our sincere gratitude to our project guide, Dr. Thisara
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% List of Figures and Tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\listoffigures
+
+\newpage
+\listoftables
+
 \newpage
 \renewcommand{\thepage}{\arabic{page}} % Switch to Arabic numerals
 \setcounter{page}{1}
@@ -203,6 +199,7 @@ The methodology adopted for this project follows a structured software developme
 A phased development approach was used:
 \begin{itemize}
     \item \textbf{Phase 1: Foundation} -- User authentication, profile management, database setup
+    \item \textbf{Phase 2: Core Functionality} -- Academic management, attendance tracking, and assessment features
     \item \textbf{Phase 3: Advanced Features} -- Reporting, communication platform, analytics dashboard
 \end{itemize}
 
@@ -231,6 +228,22 @@ This chapter analyzed the current system, identified limitations, and establishe
 \chapter{Solution Design}
 \section{System Architecture}
 The system is designed with a modular architecture, ensuring scalability and maintainability. Key modules include authentication, academic management, attendance, assessment, reporting, and communication.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Technologies Used}
+    \label{tab:tech-stack}
+    \begin{tabular}{ll}
+        \toprule
+        Category & Technology \\
+        \midrule
+        Frontend & HTML, CSS, JavaScript \\
+        Backend & Node.js, Express.js \\
+        Database & MySQL \\
+        Version Control & Git \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Design Patterns and Principles}
 The design follows best practices such as separation of concerns, robust error handling, and secure data flow. Standardized API interfaces and middleware facilitate integration between modules.
@@ -535,6 +548,15 @@ The modular design ensures future scalability and adaptability to changing educa
 
 \section{Software Setup and Configuration}
 A CD with the software setup and configuration files is included with the final submission.
+
+\section{Permission Letter}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{school-permission-lettter.png}
+    \caption{School Permission Letter}
+    \label{fig:permission-letter}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % End of Document
