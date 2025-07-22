@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sectional Head - Staff Management</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        h1 { text-align: center; margin-bottom: 32px; }
+        .actions { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+        .actions button { margin-left: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background: #f7f7f7; }
+        tr:last-child td { border-bottom: none; }
+        .form-section { background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 24px; }
+        .form-section label { display: block; margin-bottom: 6px; font-weight: 500; }
+        .form-section input, .form-section select { width: 100%; padding: 8px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 4px; }
+        .form-section button { margin-top: 8px; }
+        .hidden { display: none; }
+        .success { color: green; margin-bottom: 12px; }
+        .error { color: red; margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sectional Head - Staff Management</h1>
+        <div class="actions">
+            <button id="showAddFormBtn">Add Staff Member</button>
+            <button type="submit" class="btn btn btn-primary">Create</button>
+            <button type="submit" class="btn btn btn-primary">Update</button>
+            <button type="submit" class="btn btn btn-primary">Delete</button>
+        </div>
+        <div id="addForm" class="form-section hidden">
+            <h2>Add Staff Member</h2>
+            <div id="addFormMsg"></div>            import React, { useState, useEffect } from 'react';
+            
+            function SectionalInformation() {
+              const [sections, setSections] = useState([]);
+              const [selectedSection, setSelectedSection] = useState(null);
+              const [timetables, setTimetables] = useState([]);
+            
+              // Fetch all sections on mount
+              useEffect(() => {
+                // Fetch sections from API
+                fetch('/api/sections')
+                  .then(res => res.json())
+                  .then(data => setSections(data));
+              }, []);
+            
+              // Fetch timetables when a section is selected
+              useEffect(() => {
+                if (selectedSection) {
+                  fetch(`/api/sections/${selectedSection.id}/timetables`)
+                    .then(res => res.json())
+                    .then(data => setTimetables(data));
+                }
+              }, [selectedSection]);
+            
+              // Handlers for CRUD operations
+              const handleCreateTimetable = (newTimetable) => {
+                // POST to API, then refresh list
+              };
+            
+              const handleUpdateTimetable = (id, updatedTimetable) => {
+                // PUT to API, then refresh list
+              };
+            
+              const handleDeleteTimetable = (id) => {
+                // DELETE to API, then refresh list
+              };
+            
+              return (
+                <div>
+                  <h2>Sections</h2>
+                  <ul>
+                    {sections.map(section => (
+                      <li key={section.id} onClick={() => setSelectedSection(section)}>
+                        {section.name}
+                      </li>
+                    ))}
+                  </ul>
+            
+                  {selectedSection && (
+                    <div>
+                      <h3>{selectedSection.name} - Timetables</h3>
+                      <button onClick={() => handleCreateTimetable(/* ... */)}>Create Timetable</button>
+                      <ul>
+                        {timetables.map(tt => (
+                          <li key={tt.id}>
+                            {tt.name}
+                            <button onClick={() => handleUpdateTimetable(tt.id, /* ... */)}>Update</button>
+                            <button onClick={() => handleDeleteTimetable(tt.id)}>Delete</button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            
+            export default SectionalInformation;
+            <form id="staffAddForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Assistant">Assistant</option>
+                </select>
+                <button type="submit">Add</button>
+                <button type="button" id="cancelAddBtn">Cancel</button>
+            </form>
+        </div>
+        <div id="updateForm" class="form-section hidden">
+            <h2>Update Staff Member</h2>
+            <div id="updateFormMsg"></div>
+            <form id="staffUpdateForm">
+                <input type="hidden" id="updateId" name="id">
+                <label for="updateName">Name</label>
+                <input type="text" id="updateName" name="name" required>
+                <label for="updateEmail">Email</label>
+                <input type="email" id="updateEmail" name="email" required>
+                <label for="updateSubject">Subject</label>
+                <input type="text" id="updateSubject" name="subject" required>
+                <label for="updateRole">Role</label>
+                <select id="updateRole" name="role" required>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Assistant">Assistant</option>
+                </select>
+                <button type="submit">Update</button>
+                <button type="button" id="cancelUpdateBtn">Cancel</button>
+            </form>
+        </div>
+        <h2>Staff List</h2>
+        <table id="staffTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Staff rows will be inserted here by JS -->
+            </tbody>
+        </table>
+    </div>
+    <script src="../../assets/js/sectional-head-staff.js"></script>
+</body>
+</html>
