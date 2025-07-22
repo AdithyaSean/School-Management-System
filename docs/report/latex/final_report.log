@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.3)  22 JUL 2025 11:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.3)  22 JUL 2025 12:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**docs/report/latex/final_report.tex
-(./docs/report/latex/final_report.tex
+**final_report.tex
+(./final_report.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -486,7 +486,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count304
 \l__pdf_internal_box=\box62
 )
-(docs/report/latex/final_report.aux)
+(./final_report.aux)
 \openout1 = `final_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -565,7 +565,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 42.
-(docs/report/latex/final_report.out) (docs/report/latex/final_report.out)
+(./final_report.out) (./final_report.out)
 \@outlinefile=\write3
 \openout3 = `final_report.out'.
 
@@ -576,12 +576,11 @@ File: nibm-logo.png Graphic file (type png)
 <use nibm-logo.png>
 Package pdftex.def Info: nibm-logo.png  used on input line 49.
 (pdftex.def)             Requested size: 99.58464pt x 25.23021pt.
-
-[1
+ [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-di
-st/fonts/enc/dvips/base/8r.enc} <docs/report/latex/nibm-logo.png>] [1]
-[2] [3] (docs/report/latex/final_report.toc
+st/fonts/enc/dvips/base/8r.enc} <./nibm-logo.png>] [1] [2] [3] (./final_report.
+toc
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
  1.
 
@@ -784,37 +783,85 @@ File: student-results-page.png Graphic file (type png)
 <use student-results-page.png>
 Package pdftex.def Info: student-results-page.png  used on input line 418.
 (pdftex.def)             Requested size: 291.78174pt x 146.1904pt.
+<admin-dashboard-page.png, id=226, 663.98062pt x 389.95688pt>
+File: admin-dashboard-page.png Graphic file (type png)
+<use admin-dashboard-page.png>
+Package pdftex.def Info: admin-dashboard-page.png  used on input line 425.
+(pdftex.def)             Requested size: 291.78174pt x 171.36139pt.
+<principal-dashboard-page.png, id=227, 371.13657pt x 382.42876pt>
+File: principal-dashboard-page.png Graphic file (type png)
+<use principal-dashboard-page.png>
+Package pdftex.def Info: principal-dashboard-page.png  used on input line 432.
+(pdftex.def)             Requested size: 291.78174pt x 300.66238pt.
+<sectionalhead-staff managemnet page.png, id=228, 660.96938pt x 283.81032pt>
+File: sectionalhead-staff managemnet page.png Graphic file (type png)
+<use sectionalhead-staff managemnet page.png>
+Package pdftex.def Info: sectionalhead-staff managemnet page.png  used on input
+ line 439.
+(pdftex.def)             Requested size: 291.78174pt x 125.28833pt.
+<sectionalhead-time table management-page.png, id=229, 1017.04968pt x 342.5297p
+t>
+File: sectionalhead-time table management-page.png Graphic file (type png)
+<use sectionalhead-time table management-page.png>
+Package pdftex.def Info: sectionalhead-time table management-page.png  used on 
+input line 446.
+(pdftex.def)             Requested size: 291.78174pt x 98.26483pt.
+<teacher -dashboard-page.png, id=230, 1011.78pt x 494.59781pt>
+File: teacher -dashboard-page.png Graphic file (type png)
+<use teacher -dashboard-page.png>
+Package pdftex.def Info: teacher -dashboard-page.png  used on input line 453.
+(pdftex.def)             Requested size: 291.78174pt x 142.63725pt.
+<teacher-assesements-page.png, id=231, 1001.99344pt x 436.63126pt>
+File: teacher-assesements-page.png Graphic file (type png)
+<use teacher-assesements-page.png>
+Package pdftex.def Info: teacher-assesements-page.png  used on input line 460.
+(pdftex.def)             Requested size: 291.78174pt x 127.14615pt.
+<teacher-attendance-page.png, id=232, 1000.48781pt x 477.28313pt>
+File: teacher-attendance-page.png Graphic file (type png)
+<use teacher-attendance-page.png>
+Package pdftex.def Info: teacher-attendance-page.png  used on input line 467.
+(pdftex.def)             Requested size: 291.78174pt x 139.19508pt.
+<teacher-exams-page.png, id=233, 1002.74625pt x 487.06969pt>
+File: teacher-exams-page.png Graphic file (type png)
+<use teacher-exams-page.png>
+Package pdftex.def Info: teacher-exams-page.png  used on input line 474.
+(pdftex.def)             Requested size: 291.78174pt x 141.72966pt.
+<teacher-submission-management-page.png, id=234, 575.90157pt x 266.49562pt>
+File: teacher-submission-management-page.png Graphic file (type png)
+<use teacher-submission-management-page.png>
+Package pdftex.def Info: teacher-submission-management-page.png  used on input 
+line 481.
+(pdftex.def)             Requested size: 291.78174pt x 135.02449pt.
 [5
 
-] [6 <docs/report/latex/use-case-diagram.png (PNG copy)>] [7 <docs/report/latex
-/class-diagram.png>] [8 <docs/report/latex/er-diagram.png> <docs/report/latex/a
-ttendance-sequence.png (PNG copy)>] [9 <docs/report/latex/exam-sequence.png (PN
-G copy)> <docs/report/latex/assessment-sequence.png (PNG copy)>] [10 <docs/repo
-rt/latex/teacher-sequence.png (PNG copy)>] [11 <docs/report/latex/admin-user-ma
-nagment-sequence.png>] [12 <docs/report/latex/administrator-report-management-s
-equence.png>] [13 <docs/report/latex/principal-broadcast-sequence.png>]
-[14 <docs/report/latex/sectional-head-staff-management-sequence.png>] [15 <docs
-/report/latex/student-assesment-management-sequence.png>] [16 <docs/report/late
-x/authentication-flow-sequence.png> <docs/report/latex/communication-flow-seque
-nce.png>] [17 <docs/report/latex/exam-management-sequence.png>] [18 <docs/repor
-t/latex/attendance-management-sequence.png> <docs/report/latex/authentication-s
-equence.png (PNG copy)>] [19 <docs/report/latex/generate-monthly-report-dminist
-rator-sequence.png> <docs/report/latex/login-page.png>] [20 <docs/report/latex/
-profile-management.png>] [21 <docs/report/latex/sectional-head-staff-management
-.png>] [22 <docs/report/latex/student-assessment-page.png> <docs/report/latex/s
-tudent-dashboard-page.png> <docs/report/latex/student-exams-page.png>] [23 <doc
-s/report/latex/student-profile-page.png> <docs/report/latex/student-results-pag
-e.png>]
+] [6 <./use-case-diagram.png (PNG copy)>] [7 <./class-diagram.png>] [8 <./er-di
+agram.png> <./attendance-sequence.png (PNG copy)>] [9 <./exam-sequence.png (PNG
+ copy)> <./assessment-sequence.png (PNG copy)>] [10 <./teacher-sequence.png (PN
+G copy)>] [11 <./admin-user-managment-sequence.png>] [12 <./administrator-repor
+t-management-sequence.png>] [13 <./principal-broadcast-sequence.png>]
+[14 <./sectional-head-staff-management-sequence.png>] [15 <./student-assesment-
+management-sequence.png>] [16 <./authentication-flow-sequence.png> <./communica
+tion-flow-sequence.png>] [17 <./exam-management-sequence.png>] [18 <./attendanc
+e-management-sequence.png> <./authentication-sequence.png (PNG copy)>] [19 <./g
+enerate-monthly-report-dministrator-sequence.png> <./login-page.png>] [20 <./pr
+ofile-management.png>] [21 <./sectional-head-staff-management.png>] [22 <./stud
+ent-assessment-page.png> <./student-dashboard-page.png> <./student-exams-page.p
+ng>] [23 <./student-profile-page.png> <./student-results-page.png> <./admin-das
+hboard-page.png>] [24 <./principal-dashboard-page.png> <./sectionalhead-staff m
+anagemnet page.png> <./sectionalhead-time table management-page.png>] [25 <./te
+acher -dashboard-page.png> <./teacher-assesements-page.png> <./teacher-attendan
+ce-page.png> <./teacher-exams-page.png>] [26 <./teacher-submission-management-p
+age.png>]
 Chapter 5.
-[24
+[27
 
-] [25
+] [28
 
 ]
 Appendix A.
-[26
+[29
 
-] (docs/report/latex/final_report.aux)
+] (./final_report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -823,20 +870,19 @@ Package rerunfilecheck Info: File `final_report.out' has not changed.
 (rerunfilecheck)             Checksum: A63D7B85A1174A55E09CE4E0C2DD6A00;4410.
  ) 
 Here is how much of TeX's memory you used:
- 13516 strings out of 476182
- 213221 string characters out of 5795596
- 1937975 words of memory out of 5000000
- 35243 multiletter control sequences out of 15000+600000
+ 13599 strings out of 476182
+ 215800 string characters out of 5795596
+ 1940975 words of memory out of 5000000
+ 35315 multiletter control sequences out of 15000+600000
  591860 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,11n,79p,574b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,556b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on docs/report/latex/final_report.pdf (32 pages, 2361058 bytes).
-
+Output written on final_report.pdf (35 pages, 2613356 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 313 compressed objects within 4 object streams
- 94 named destinations out of 1000 (max. 500000)
- 368 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 444 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 413 words of extra memory for PDF output out of 10000 (max. 10000000)
 
