@@ -173,7 +173,7 @@ We would like to express our sincere gratitude to our project guide, Dr. Thisara
 The digital revolution has transformed virtually every sector of society, yet many educational institutions, particularly government schools, continue to operate using traditional manual systems. This technological gap not only impacts administrative efficiency but also affects the quality of education and student engagement. In an era where students are increasingly tech-savvy and parents expect real-time updates about their children's progress, the need for a comprehensive digital solution has become paramount.
 
 \section{Project Context}
-This School Management System project emerges from a critical need to modernize educational institution operations in government schools. The initiative was conceived after extensive consultation with educators, administrators, and education technology experts, who identified significant opportunities for improving educational outcomes through digital transformation.
+This School Management System project emerges from a critical need to modernize educational institution operations, specifically targeting provincial schools such as Susamayawardhana College in Colombo 08. This school, which educates students from primary grades through to Advanced Level (A/L), represents a common scenario in the local education landscape where a comprehensive digital solution can make a significant impact. The initiative was conceived after extensive consultation with educators, administrators, and education technology experts, who identified significant opportunities for improving educational outcomes through digital transformation in such environments.
 
 \section{Project Objectives}
 \begin{itemize}
@@ -193,7 +193,7 @@ The project encompasses a complete overhaul of school management processes, from
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Methodology}
 \section{Introduction}
-The methodology adopted for this project follows a structured software development lifecycle, including requirements gathering, system analysis, design, implementation, and testing. Data collection techniques included interviews, questionnaires, and document reviews with stakeholders.
+The methodology adopted for this project follows a structured software development lifecycle, encompassing requirements gathering, system analysis, design, implementation, and testing. To ensure the solution was tailored to the specific needs of Susamayawardhana College, a variety of data collection techniques were employed. These included structured interviews with the school principal and administrative staff, questionnaires distributed to teachers to understand their daily challenges, and a thorough review of existing administrative documents, such as student registration forms and attendance logs. This multi-faceted approach ensured a holistic understanding of the operational environment.
 
 \section{Development Approach}
 A phased development approach was used:
@@ -211,13 +211,13 @@ This chapter outlined the methodology and development approach used to ensure th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Analysis}
 \section{Current Environment Assessment}
-Government schools often operate with limited resources and manual processes, leading to inefficiencies and data management challenges. The current environment was assessed through stakeholder interviews and process mapping.
+Susamayawardhana College, a provincial school in Colombo 08, operates with limited resources and relies heavily on manual processes, leading to significant inefficiencies and data management challenges. As a school that accommodates students from primary to Advanced Level (A/L), the administrative workload is substantial. The current environment was assessed through stakeholder interviews and process mapping, revealing a need for a digital system to manage student records, academic performance, and parent-teacher communication effectively.
 
 \section{Feasibility Study}
-A feasibility study was conducted to evaluate technical, operational, and economic viability. The results indicated strong potential for improvement through digital transformation.
+A feasibility study was conducted to evaluate the technical, operational, and economic viability of implementing a school management system at Susamayawardhana College. The results indicated strong potential for improvement through digital transformation, despite the school's resource constraints.
 
 \section{Problem Statement}
-Teachers spend considerable time on administrative tasks that could be automated, while parents struggle to stay informed about their children's progress. The lack of standardized processes and difficulty in tracking student performance data are key issues.
+At Susamayawardhana College, teachers spend a considerable amount of time on manual administrative tasks, such as marking attendance on paper registers, calculating term-end results, and preparing student reports. This administrative burden detracts from their primary focus on teaching and student development. Meanwhile, parents and guardians struggle to stay informed about their children's academic progress and attendance, often having to wait for parent-teacher meetings for updates. The lack of standardized digital processes results in data inconsistencies and makes it difficult to track long-term student performance data, hindering effective educational planning and intervention.
 
 \section{Chapter Summary}
 This chapter analyzed the current system, identified limitations, and established the need for a comprehensive school management solution.
@@ -430,16 +430,80 @@ The modular design ensures future scalability and adaptability to changing educa
 \appendix
 \chapter{Appendices}
 \section{Project Schedule}
-% Include project timeline table or Gantt chart here
+The project was executed over a period of six months, following the schedule outlined below.
+
+\begin{longtable}{p{0.2\textwidth} p{0.6\textwidth} p{0.2\textwidth}}
+    \caption{Project Execution Timeline}\\
+    \toprule
+    \textbf{Phase} & \textbf{Key Activities} & \textbf{Duration} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{3}{c}%
+    {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+    \toprule
+    \textbf{Phase} & \textbf{Key Activities} & \textbf{Duration} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{3}{r}{{Continued on next page}} \\
+    \midrule
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    Phase 1: Planning \& Analysis & Requirements gathering, feasibility study, project planning, initial stakeholder meetings. & 4 Weeks \\
+    \midrule
+    Phase 2: System Design & System architecture design, database schema design, UI/UX wireframing, technology stack finalization. & 4 Weeks \\
+    \midrule
+    Phase 3: Core Development & Development of user authentication, profile management, and core academic modules. & 8 Weeks \\
+    \midrule
+    Phase 4: Feature Implementation & Development of attendance, assessment, and communication features. & 6 Weeks \\
+    \midrule
+    Phase 5: Testing \& Deployment & Unit testing, integration testing, user acceptance testing (UAT), and initial deployment. & 4 Weeks \\
+    \midrule
+    Phase 6: Documentation \& Handover & Final report writing, user manual creation, and project handover. & 2 Weeks \\
+\end{longtable}
 
 \section{Questionnaires and Interview Questions}
-% Placeholder for data collection instruments
+\subsection{For School Administration}
+\begin{itemize}
+    \item What are the biggest challenges in managing student data currently?
+    \item How is communication with parents currently handled?
+    \item What are the key reports required by the Ministry of Education?
+\end{itemize}
+
+\subsection{For Teachers}
+\begin{itemize}
+    \item How much time do you spend on administrative tasks daily?
+    \item What features in a digital system would be most helpful to you?
+    \item How do you currently track student attendance and performance?
+\end{itemize}
 
 \section{Meeting Minutes and Log Sheets}
-% Placeholder for meeting documentation
+\subsection{Sample Meeting Minutes}
+\textbf{Date:} 2024-08-07
+
+\textbf{Attendees:} Project Team, School Vice Principal Seelarathana Thero
+
+\textbf{Agenda:}
+\begin{enumerate}
+    \item Gether Client requirements
+    \item Discussion about the current plan limitations and changes
+\end{enumerate}
+
+\textbf{Decisions:}
+\begin{itemize}
+    \item Changed the teacher permisisons to manage and access student functions to test from student side.
+    \item Discussed how to gather user data like fingerprint data and attendance.
+\end{itemize}
 
 \section{Reviewed Documents}
-% Placeholder for reviewed documents
+The following documents from Susamayawardhana College were reviewed during the analysis phase:
+\begin{itemize}
+    \item Student Admission Application Form
+    \item Manual Attendance Register for Grade 10
+    \item Term Test Report Card Template
+    \item Staff Leave Application Form
+\end{itemize}
 
 \section{Permission Letter}
 
