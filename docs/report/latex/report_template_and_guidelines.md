@@ -75,7 +75,7 @@ The project is structured along the following timeline:
     * [cite_start]Introduction[cite: 90].
     * [cite_start]Interface Design: Each interface must have a number, name, and description[cite: 91, 92, 93].
     * [cite_start]Database Design: Each table should be detailed with a table number, name, primary key, optional foreign keys, and a description[cite: 94, 95, 96].
-    * [cite_start]Report Layout Design: Each layout requires a number, name, and description[cite: 97, 98, 99].
+    * [cite_start]Report Layout Design: Each layout requires a number, name, and description[cite: 97, 98, 99].`
 
 * [cite_start]**Chapter 5: Conclusion** [cite: 100]
     * [cite_start]This chapter should summarize the project's achievements and weaknesses[cite: 101].
