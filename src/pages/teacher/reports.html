@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Reports - School Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="text-center mb-4">
+            <img src="../../assets/images/default-avatar.png" alt="Teacher" class="profile-image mb-2">
+            <h6 class="mb-0">Reports Center</h6>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="manage-assessments.html"><i class="fas fa-tasks me-2"></i>Assessments</a></li>
+            <li class="nav-item"><a class="nav-link" href="manage-exams.html"><i class="fas fa-file-alt me-2"></i>Exams</a></li>
+            <li class="nav-item"><a class="nav-link" href="attendance.html"><i class="fas fa-calendar-check me-2"></i>Attendance</a></li>
+            <li class="nav-item"><a class="nav-link" href="grades.html"><i class="fas fa-chart-line me-2"></i>Grades</a></li>
+            <li class="nav-item"><a class="nav-link" href="students.html"><i class="fas fa-user-graduate me-2"></i>Students</a></li>
+            <li class="nav-item"><a class="nav-link" href="performance-report.html"><i class="fas fa-chart-bar me-2"></i>Performance</a></li>
+            <li class="nav-item"><a class="nav-link" href="enrollment-report.html"><i class="fas fa-users me-2"></i>Enrollment</a></li>
+            <li class="nav-item"><a class="nav-link active" href="reports.html"><i class="fas fa-folder-open me-2"></i>Reports</a></li>
+            <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user-circle me-2"></i>Profile</a></li>
+            <li class="nav-item mt-auto"><a class="nav-link text-danger" href="../../index.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">Generate Reports</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary btn-sm activity-log-trigger" title="Activity Log"><i class="fas fa-list"></i></button>
+                    <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge bg-danger text-white">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-xl-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0"><i class="fas fa-user-check text-primary me-2"></i>Attendance Report</h5>
+                            <span class="badge bg-primary">Daily / Range</span>
+                        </div>
+                        <div class="card-body small">
+                            <p class="mb-3 text-muted">Generate class or student attendance summaries with absence & low attendance highlights.</p>
+                            <ul class="mb-3 ps-3">
+                                <li>Daily or date range</li>
+                                <li>Per class / aggregated</li>
+                                <li>Flag students below threshold</li>
+                            </ul>
+                            <button class="btn btn-primary w-100" data-report="attendance" onclick="ReportCenter.openConfig('attendance')"><i class="fas fa-cogs me-2"></i>Configure & Generate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0"><i class="fas fa-chart-line text-success me-2"></i>Performance Report</h5>
+                            <span class="badge bg-success">Scores</span>
+                        </div>
+                        <div class="card-body small">
+                            <p class="mb-3 text-muted">Analyze assessment averages, pass rates, and trends for selected subjects and classes.</p>
+                            <ul class="mb-3 ps-3">
+                                <li>Subject & class filters</li>
+                                <li>Average & pass rate metrics</li>
+                                <li>Trend analysis</li>
+                            </ul>
+                            <button class="btn btn-success w-100" data-report="performance" onclick="ReportCenter.openConfig('performance')"><i class="fas fa-cogs me-2"></i>Configure & Generate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0"><i class="fas fa-users text-warning me-2"></i>Enrollment Report</h5>
+                            <span class="badge bg-warning text-dark">Population</span>
+                        </div>
+                        <div class="card-body small">
+                            <p class="mb-3 text-muted">Track class sizes, status changes and net movements across the selected window.</p>
+                            <ul class="mb-3 ps-3">
+                                <li>Term / Year / Custom range</li>
+                                <li>Status breakdown</li>
+                                <li>Net movement</li>
+                            </ul>
+                            <button class="btn btn-warning w-100" data-report="enrollment" onclick="ReportCenter.openConfig('enrollment')"><i class="fas fa-cogs me-2"></i>Configure & Generate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0"><i class="fas fa-history me-2 text-secondary"></i>Recent Generated Reports (Session)</h5>
+                            <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn"><i class="fas fa-trash me-1"></i>Clear</button>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0" id="reportHistoryTable">
+                                    <thead class="table-light">
+                                        <tr><th>Type</th><th>Filters</th><th>Format</th><th>Generated</th><th>Status</th><th>Action</th></tr>
+                                    </thead>
+                                    <tbody><tr><td colspan="6" class="text-center text-muted py-3">No reports generated yet.</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Placeholder for dynamic modals -->
+    <div id="dynamicModalHost"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/ui-utils.js"></script>
+    <script src="../../assets/js/teacher-reports.js"></script>
+    <script>UIUtils.log('Teacher reports center loaded','report');</script>
+</body>
+</html>
