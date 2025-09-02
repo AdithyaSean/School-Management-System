@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sectional Head - Staff Management</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
         h1 { text-align: center; margin-bottom: 32px; }
@@ -28,15 +29,14 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="mb-0">Sectional Head - Staff Management</h1>
             <div class="d-flex gap-2">
-                <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative"><i class="fas fa-bell"></i><span class="notification-badge bg-danger text-white">2</span></button>
-                <button class="btn btn-outline-secondary btn-sm activity-log-trigger"><i class="fas fa-list"></i></button>
+                <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative" title="Notifications"><i class="fas fa-bell"></i><span class="notification-badge bg-danger text-white">2</span></button>
+                <button class="btn btn-outline-secondary btn-sm activity-log-trigger" title="Activity Log"><i class="fas fa-list"></i></button>
+                <a href="../../index.html" class="btn btn-sm btn-outline-secondary">Logout</a>
             </div>
         </div>
         <div class="actions">
-            <button id="showAddFormBtn">Add Staff Member</button>
-            <button type="submit" class="btn btn btn-primary">Create</button>
-            <button type="submit" class="btn btn btn-primary">Update</button>
-            <button type="submit" class="btn btn btn-primary">Delete</button>
+            <button id="showAddFormBtn" class="btn btn-primary">Add Staff Member</button>
+            <button type="button" class="btn btn-outline-secondary" disabled title="Prototype only">Bulk Update (N/A)</button>
         </div>
     <div id="addForm" class="form-section hidden">
       <h2>Add Staff Member</h2>

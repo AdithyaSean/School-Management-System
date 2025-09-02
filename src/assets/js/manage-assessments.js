@@ -146,12 +146,13 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.show();
     };
 
-    window.deleteAssessment = function(assessmentId) {
-        if (confirm('Are you sure you want to delete this assessment? This action cannot be undone.')) {
-            // In production, this would make an API call
-            const row = document.querySelector(`[onclick="deleteAssessment(${assessmentId})"]`).closest('tr');
-            row.remove();
-            showToast('Assessment deleted successfully', 'success');
+    window.deleteAssessment = async function(assessmentId) {
+        const ok = await UIUtils.confirm({title:'Delete Assessment', body:'Delete this assessment? This cannot be undone.'});
+        if (ok) {
+            const row = document.querySelector(`[onclick="deleteAssessment(${assessmentId})"]`)?.closest('tr');
+            if (row) row.remove();
+            UIUtils.showToast('Assessment deleted','danger');
+            UIUtils.log('Deleted assessment '+assessmentId,'assessment');
         }
     };
 
