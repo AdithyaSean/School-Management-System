@@ -10,7 +10,7 @@ SCOPE: The statuses below reflect only the clickable prototype (static/front-end
 - [~] Partial: UI element(s) exist but the flow is incomplete or only a placeholder link/button.
 - [ ] Missing: No corresponding screen / interactive element yet.
 
-High-level prototype summary: Dashboards for roles and most CRUD-style management UIs are present with static/sample data. Several flows (student info management, messaging, notifications panel, recorrection, enrollment reports) are still missing. "Includes" / "Extends" relationships are loosely implied through buttons or modals; no conditional flow modeling required at this fidelity.
+High-level prototype summary: Dashboards for roles and most CRUD-style management UIs are present with static/sample data. New in this iteration: Teacher student information management screen (CRUD + detail off‑canvas + basic report placeholders) and student result enhancements (recorrection request modal, GPA breakdown + recompute action). Remaining major gaps: messaging/threads UI, global notifications panel, enrollment reports, and exam result editing UI for teachers.
 
 ## Actors
 
@@ -75,25 +75,25 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
   - Description: Students view exam information (shows option to create if empty).
   - Extends: View Exams (UI: `exams.html` + `exams.js` schedule & details modal)
   - Extends: View Exam Results (results & charts via `results.html` + `results.js`)
-    - Extends: Apply for Recorrections (not implemented – no action/UI)
-    - Extends: Calculate GPA (GPA figure shown statically; no calculation logic)
-  - Prototype Notes: Exam schedule, performance charts, and result detail modals exist. Recorrection action & dynamic GPA calc missing.
+    - Extends: Apply for Recorrections (UI modal implemented: reason, file upload, confirm; no backend)
+    - Extends: Calculate GPA (Dynamic recompute trigger + explanation modal; underlying math still mock)
+  - Prototype Notes: Exam schedule, performance charts, result detail modals, recorrection request flow & GPA breakdown modal now present. GPA and recorrection submissions remain in-memory only.
 
 ### Student Information Management (Teachers)
 
-- [ ] **View Student Information**
+- [~] **View Student Information**
   - Actor: Teacher
   - Description: Teachers view student information (shows option to create if empty).
-  - Extends: Create Student Information (no UI)
-    - Includes: Update Student Information (no logic)
-  - Extends: Delete Student Information (no UI)
+  - Extends: Create Student Information (modal form adds to in-memory list)
+    - Includes: Update Student Information (no persistence layer)
+  - Extends: Delete Student Information (UI delete with confirmation)
     - Includes: Update Student Information
-  - Extends: Generate Student Attendance Reports (attendance reports modal exists but class-level, not per student)
+  - Extends: Generate Student Attendance Reports (per‑student placeholder buttons -> inline alert in off‑canvas)
     - Includes: Update Student Information
-  - Extends: Generate Student Performance Reports (teacher performance report page referenced, file present? `performance-report.html` has not been analyzed – assumed placeholder) 
+  - Extends: Generate Student Performance Reports (per‑student placeholder buttons -> inline alert; dedicated performance-report page for teachers still empty)
     - Includes: Update Student Information
-  - Extends: Generate Enrollment Reports (not implemented)
-  - Prototype Notes: No dedicated student list/detail screen; indirect references only.
+  - Extends: Generate Enrollment Reports (not implemented – no UI yet)
+  - Prototype Notes: New `students.html` implements list (list/grid toggle), empty state, CRUD modal, detail off‑canvas (performance & attendance snapshot placeholders) and report placeholders. No backend or persistent storage; enrollment reporting absent.
 
 ### Assessment Management (Teachers)
 
@@ -141,7 +141,7 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
     - Includes: Notify Teachers (not implemented)
   - Extends: Remove Staff Members (UI removal only)
     - Includes: Notify Teachers (not implemented)
-  - Prototype Notes: Staff CRUD forms exist; React snippet (out of scope) should be removed for consistency.
+  - Prototype Notes: Staff CRUD forms exist; stray React snippet removed for consistency.
 
 - [~] **View Sectional Information**
   - Actor: Sectional Head
@@ -216,10 +216,10 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
 
 ### Update Interfaces
 
-- [ ] **Update Student Information**
+- [~] **Update Student Information**
   - Actor: System
   - Description: Updates student records.
-  - Status Notes: No data layer; student info immutable mock values.
+  - Status Notes: CRUD UI now mutates in-memory list (prototype scope) but lacks abstraction/service layer and persistence.
 
 - [ ] **Update Educational Information**
   - Actor: System
@@ -241,17 +241,20 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
   - Description: Alternative logging interface for administrators.
   - Status Notes: Not implemented.
 
-## Prototype Gaps & Next UI Steps
+## Prototype Gaps & Next UI Steps (Updated)
 
-1. Add missing screens: student info list/detail, messaging/inbox, notifications panel, recorrection request flow, enrollment/attendance report variants, GPA breakdown modal.
-2. Connect navigation between related flows (e.g., assessments -> submissions, staff -> timetables) with consistent sidebar or breadcrumb patterns.
-3. Standardize layout (some pages use full dashboard sidebars, others standalone centered containers).
-4. Remove stray React code block inside `staff-management.html` to maintain a single tech style.
-5. Provide placeholder modals/components for unrepresented actions (recorrection, edit exam results, notifications list, per‑student performance breakdown).
-6. Clean up duplicate IDs and redundant buttons (principal & admin dashboards) to reflect distinct actions.
-7. Add confirmation dialogs for destructive actions (delete exam/assessment/staff/user) to clarify intended UX.
-8. Introduce empty-state components (e.g., “No assessments yet – Create one”) across list views.
-9. Add simple iconography or badges to visualize status changes (e.g., graded vs pending submissions).
-10. Optional polish: mock charts/tables for system monitor reports; activity feed placeholder for future logging UI.
+1. Add messaging/inbox UI (threads list, message view, compose) and integrate from bell/quick actions.
+2. Implement global notifications panel (dropdown or off‑canvas) listing recent events; unify bell behavior across pages.
+3. Add exam result editing / score entry UI for teachers (inline table or modal) and tie into existing results placeholders.
+4. Create enrollment reports & class-level attendance/performance analytics pages (currently absent).
+5. Flesh out teacher `performance-report.html` (empty) with filters, charts, per‑student breakdown linking back to `students.html` off‑canvas.
+6. Standardize layout: convert standalone principal/admin/sectional pages to shared sidebar shell (or vice versa) for consistency.
+7. Consolidate destructive action confirmations into reusable modal (currently some use `confirm()` dialogs, others none).
+8. Introduce empty-state components across all list views still lacking them (e.g., exams, assessments manage pages when arrays become empty).
+9. Add status iconography/badges for submissions (graded, pending, late) and staff statuses; unify color semantics.
+10. Enhance system monitor placeholder reports with basic mock charts/tables & add activity/log feed placeholder for future audit/logging.
+11. (Stretch) Centralize toast/notification utility to a single script to avoid duplicated markup creation patterns.
+
+Change Log (current iteration): Added student management screen (teacher role), recorrection request modal, GPA breakdown & recompute UI, removed React snippet from staff management, upgraded status of related use cases to partial where appropriate.
 
 Progress list will be updated as prototype screens evolve.
