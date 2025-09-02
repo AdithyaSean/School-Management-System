@@ -1,6 +1,7 @@
 // Shared UI utilities: toasts, confirmation modal, notification center, status badges (prototype only)
 window.UIUtils = (function() {
     const exports = {};
+    const activityEvents = [];
 
     function ensureToastContainer() {
         let container = document.getElementById('toastContainer');
@@ -118,6 +119,67 @@ window.UIUtils = (function() {
         return `<span class="badge bg-${cls} text-uppercase">${status}</span>`;
     };
 
-    document.addEventListener('DOMContentLoaded', () => exports.initNotificationCenter());
+    // --- Activity / Audit Log (prototype only) ---
+    exports.initActivityLog = function() {
+        if (document.getElementById('activityLogOffcanvas')) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'offcanvas offcanvas-end';
+        wrap.id = 'activityLogOffcanvas';
+        wrap.innerHTML = `
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Activity Log</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column">
+                <div class="d-flex gap-2 mb-2">
+                    <select id="activityFilter" class="form-select form-select-sm" style="max-width:160px">
+                        <option value="">All</option>
+                        <option value="auth">Auth</option>
+                        <option value="user">User</option>
+                        <option value="assessment">Assessment</option>
+                        <option value="exam">Exam</option>
+                        <option value="attendance">Attendance</option>
+                        <option value="notification">Notification</option>
+                    </select>
+                    <button class="btn btn-sm btn-outline-secondary" id="clearActivityLog">Clear</button>
+                </div>
+                <div id="activityLogList" class="list-group small flex-grow-1 overflow-auto border rounded"></div>
+                <div class="mt-2 text-muted small">Prototype log only – no persistence.</div>
+            </div>`;
+        document.body.appendChild(wrap);
+        document.querySelectorAll('.activity-log-trigger').forEach(btn => {
+            btn.addEventListener('click', () => new bootstrap.Offcanvas(wrap).toggle());
+        });
+        wrap.querySelector('#activityFilter').addEventListener('change', () => exports.renderActivity());
+        wrap.querySelector('#clearActivityLog').addEventListener('click', () => { activityEvents.length = 0; exports.renderActivity(); });
+        exports.renderActivity();
+    };
+
+    exports.log = function(message, category='general') {
+        activityEvents.push({ id: Date.now()+Math.random(), message, category, ts: new Date() });
+        if (activityEvents.length > 500) activityEvents.shift();
+        exports.renderActivity();
+    };
+
+    exports.renderActivity = function() {
+        const list = document.getElementById('activityLogList');
+        if (!list) return;
+        const filter = document.getElementById('activityFilter')?.value || '';
+        list.innerHTML = '';
+        const filtered = activityEvents.slice().reverse().filter(e => !filter || e.category === filter);
+        if (!filtered.length) { list.innerHTML = '<div class="p-3 text-center text-muted">No activity</div>'; return; }
+        filtered.forEach(e => {
+            const item = document.createElement('div');
+            item.className = 'list-group-item';
+            item.innerHTML = `<div class="d-flex justify-content-between"><span><span class="badge bg-secondary me-2 text-uppercase">${e.category}</span>${e.message}</span><small class="text-muted">${e.ts.toLocaleTimeString()}</small></div>`;
+            list.appendChild(item);
+        });
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        exports.initNotificationCenter();
+        exports.initActivityLog();
+        exports.log('UI initialized','general');
+    });
     return exports;
 })();

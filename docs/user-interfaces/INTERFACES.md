@@ -10,7 +10,7 @@ SCOPE: The statuses below reflect only the clickable prototype (static/front-end
 - [~] Partial: UI element(s) exist but the flow is incomplete or only a placeholder link/button.
 - [ ] Missing: No corresponding screen / interactive element yet.
 
-High-level prototype summary: Dashboards for roles and most CRUD-style management UIs are present with static/sample data. New in this iteration: Messaging inbox (threads, compose, filters), global notifications off‑canvas + centralized toast/confirm utilities, exam score editing modal (bulk save, mark absent, publish), performance reports page (filters, charts, per‑student breakdown), student result enhancements (recorrection request modal, GPA breakdown + recompute action), student attendance analytics page (filters, daily + summary views, export, detail modal) and teacher gradebook (filters, inline edit modal, weighting settings, analytics charts, CSV export). Remaining major gaps: enrollment reports pages, unified layout refactor, richer system monitor visualizations, notification triggers for role-specific events, and applying status badge helper uniformly.
+High-level prototype summary: Dashboards for all roles and most CRUD-style management UIs are present with static/sample data. Implemented features include: messaging inbox (threads, compose, filters), global notifications off‑canvas + centralized toast/confirm utilities, exam score editing modal (bulk save, mark absent, publish), performance reports (teacher & admin) with filters/charts/per‑student breakdown, student results enhancements (recorrection request modal, GPA breakdown + recompute action), student attendance analytics (filters, summary/detail modal, export), teacher gradebook (filters, inline edit modal, weighting settings, analytics charts, CSV export), teacher enrollment report (class totals & movements), enhanced admin system monitor (mock charts/progress), and global activity log (audit) off‑canvas + logging helper. Remaining major gaps: non‑student profile pages, full status badge adoption, consistent empty states, role‑scoped notification dispatch, centralized in‑memory service layer, and deeper cross‑link navigation.
 
 ## Actors
 
@@ -99,8 +99,8 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
     - Includes: Update Student Information
   - Extends: Generate Student Performance Reports (per‑student placeholder buttons -> inline alert; dedicated performance-report page for teachers still empty)
     - Includes: Update Student Information
-  - Extends: Generate Enrollment Reports (not implemented – no UI yet)
-  - Prototype Notes: New `students.html` implements list (list/grid toggle), empty state, CRUD modal, detail off‑canvas (performance & attendance snapshot placeholders) and report placeholders. No backend or persistent storage; enrollment reporting absent.
+  - Extends: Generate Enrollment Reports (separate enrollment report page present – partial linkage)
+  - Prototype Notes: `students.html` implements list (list/grid toggle), empty state, CRUD modal, detail off‑canvas. Enrollment metrics now available via `enrollment-report.html`; not yet context-linked (e.g., per-class quick jump) and still in-memory only.
 
 ### Assessment Management (Teachers)
 
@@ -214,20 +214,20 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
   - Description: System notifies users of updates.
   - Status Notes: Off‑canvas notification center with mock events & badge clearing implemented; still no persistence or subscription model.
 
-- [ ] **Notify Teachers**
+- [~] **Notify Teachers**
   - Actor: System
   - Description: System notifies teachers of changes (e.g., staff or time table updates).
-  - Status Notes: Not implemented.
+  - Status Notes: Generic notification center + logging exist; staff CRUD logging can evolve into role-targeted pushes (not filtered yet).
 
-- [ ] **Notify Sectional Heads**
+- [~] **Notify Sectional Heads**
   - Actor: System
   - Description: System notifies sectional heads.
-  - Status Notes: Not implemented.
+  - Status Notes: Infrastructure (off‑canvas, logging) present; no distinct trigger paths yet.
 
-- [ ] **Notify Principals**
+- [~] **Notify Principals**
   - Actor: System
   - Description: System notifies principals of reports.
-  - Status Notes: Not implemented.
+  - Status Notes: Report generation & announcements now log events; targeted audience filtering not yet implemented.
 
 ### Update Interfaces
 
@@ -236,43 +236,43 @@ High-level prototype summary: Dashboards for roles and most CRUD-style managemen
   - Description: Updates student records.
   - Status Notes: CRUD UI now mutates in-memory list (prototype scope) but lacks abstraction/service layer and persistence.
 
-- [ ] **Update Educational Information**
+- [~] **Update Educational Information**
   - Actor: System
   - Description: Updates educational content and assessments.
-  - Status Notes: Teacher assessment & submission UIs mutate only in-memory lists; no system-level update abstraction.
+  - Status Notes: Assessment/submission UIs allow create/edit/delete (in-memory). Missing: shared service abstraction, audit categorization, cross-page reuse.
 
 - [~] **Update Exam Information**
   - Actor: System
   - Description: Updates exam data.
   - Status Notes: Scheduling + editing + score update modal mutate in‑memory view; lacks abstraction/persistence & notification triggers.
 
-- [ ] **Update User Log**
+- [~] **Update User Log**
   - Actor: System
   - Description: Logs user activities.
-  - Status Notes: No logging implemented.
+  - Status Notes: Activity off‑canvas log records CRUD/report/announcement events; session-only, basic category filter only.
 
-- [ ] **Update User Logs**
+- [~] **Update User Logs**
   - Actor: System
   - Description: Alternative logging interface for administrators.
-  - Status Notes: Not implemented.
+  - Status Notes: Shares same activity log; lacks admin-specific filters/export UI.
 
 ## Prototype Gaps & Next UI Steps (Updated)
 
 1. (DONE) Messaging/inbox UI (threads, compose, filters) integrated via quick action.
 2. (DONE) Global notifications off‑canvas (mock data + add/clear actions).
 3. (DONE) Exam result editing / score entry modal (bulk save, finalize, mark absent) for teachers.
-4. Create enrollment reports & class-level attendance/performance analytics pages (currently absent). (Student personal attendance done.)
+4. (DONE) Create enrollment reports & class-level attendance/performance analytics pages (teacher `enrollment-report.html`, admin performance/system report refactor).
 5. (DONE) Teacher `performance-report.html` with filters, charts, per‑student breakdown & detail modal.
-6. Standardize layout: convert principal/admin/sectional pages to shared sidebar shell for consistency.
+6. (PARTIAL) Standardize layout: principal/admin/sectional head now sidebar shell; student legacy pages still to refactor.
 7. (DONE) Reusable confirmation modal utility added (`UIUtils.confirm`); migrate remaining native confirm dialogs.
-8. Introduce empty-state components for all lists (some still missing: assessments manage, staff management when cleared, notifications after clear already handled).
-9. Apply standardized status badges across all role pages using `UIUtils.statusBadge` (utility ready, not fully applied).
-10. Enhance system monitor report outputs with mock charts/tables & activity/log feed placeholder.
+8. (PARTIAL) Introduce empty-state components for all lists (still missing: manage assessments, staff when cleared, some admin tables).
+9. (PARTIAL) Apply standardized status badges across all role pages using `UIUtils.statusBadge` (need retrofit on older pages like students, assessments table).
+10. (DONE) Enhance system monitor report outputs with mock charts/tables & activity/log feed placeholder.
 11. (DONE) Centralized toast/notification utility (`ui-utils.js`).
-12. Add enrollment report pages & integrate into navigation (teacher/admin views).
-13. Integrate notification center trigger icons consistently across all role dashboards.
-14. Add lightweight logging/audit feed placeholder to demonstrate Update User Log / Update User Logs progression.
+12. (DONE) Add enrollment report pages & integrate into navigation (teacher `enrollment-report.html`, admin performance report unified).
+13. (PARTIAL) Integrate notification center trigger icons consistently across all role dashboards (added for admin, principal, sectional head; add to select teacher/student pages).
+14. (DONE) Add lightweight logging/audit feed placeholder (global activity log off‑canvas + `UIUtils.log`).
 
-Change Log (current iteration): Added messaging inbox, notification off‑canvas, centralized UI utilities (toast + confirm + status badges scaffold), exam score editing modal, performance reports page (filters, charts, breakdown), student attendance page (filters, summary, detail, export), teacher gradebook (filters, edit modal, weighting, analytics, export), updated documentation statuses accordingly.
+Change Log (current iteration): Added messaging inbox, notification off‑canvas, centralized UI utilities (toast + confirm + status badges scaffold), exam score editing modal, performance reports page (filters, charts, breakdown), student attendance page (filters, summary, detail, export), teacher gradebook (filters, edit modal, weighting, analytics, export). New in latest pass: unified admin performance report layout, enrollment report page, activity/audit log off‑canvas + logging helper, richer system monitor report visual placeholders, confirmation modal adoption in admin user deletion, notification & logging interfaces advanced from missing to partial.
 
 Progress list will be updated as prototype screens evolve.

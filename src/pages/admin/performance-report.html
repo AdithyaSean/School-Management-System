@@ -3,78 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Performance Report</title>
-    <link rel="stylesheet" href="../../assets/css/performance-report.css">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f6fb; margin: 0; }
-        .container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 32px; }
-        h1 { text-align: center; color: #2d3a4b; }
-        form { margin-bottom: 32px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
-        label { font-weight: 500; margin-right: 8px; }
-        select, input[type="text"] { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
-        button { background: #2d7ff9; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-size: 1rem; }
-        button:hover { background: #1a5dcc; }
-        table { width: 100%; border-collapse: collapse; margin-top: 24px; }
-        th, td { padding: 12px; border-bottom: 1px solid #e0e0e0; text-align: center; }
-        th { background: #f0f4fa; color: #2d3a4b; }
-        .no-data { text-align: center; color: #888; margin-top: 32px; }
-    </style>
+    <title>Admin Performance Reports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Performance Report</h1>
-        <form id="reportForm">
-            <label for="studentName">Student Name:</label>
-            <input type="text" id="studentName" name="studentName" placeholder="Enter student name">
-            <label for="class">Class:</label>
-            <select id="class" name="class">
-                <option value="">Select class</option>
-                <option value="Grade 6">Grade 6</option>
-                <option value="Grade 7">Grade 7</option>
-                <option value="Grade 8">Grade 8</option>
-                <option value="Grade 9">Grade 9</option>
-                <option value="Grade 10">Grade 10</option>
-            </select>
-            <label for="term">Term:</label>
-            <select id="term" name="term">
-                <option value="">Select term</option>
-                <option value="Term 1">Term 1</option>
-                <option value="Term 2">Term 2</option>
-                <option value="Term 3">Term 3</option>
-            </select>
-            <button type="submit">Generate Report</button>
-        </form>
-        <div id="reportResult">
-            <div class="no-data">No report generated yet.</div>
+    <nav class="sidebar">
+        <div class="text-center mb-4">
+            <img src="../../assets/images/default-avatar.png" class="profile-image mb-2" alt="Admin">
+            <h6 class="mb-0">Administrator</h6>
         </div>
-    </div>
-    <script src="../../assets/js/performance-report.js"></script>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="admin-dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link active" href="performance-report.html"><i class="fas fa-chart-line me-2"></i>Reports</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Performance Reports</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary btn-sm" id="exportBtn"><i class="fas fa-download me-1"></i>Export</button>
+                    <button class="btn btn-primary btn-sm" id="recomputeBtn"><i class="fas fa-sync me-1"></i>Recompute</button>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header bg-white">
+                    <div class="row g-2 align-items-end">
+                        <div class="col-md-3"><label class="form-label">Class</label><select class="form-select form-select-sm" id="classFilter"><option value="">All</option><option>Grade 10A</option><option>Grade 11B</option><option>Grade 9C</option></select></div>
+                        <div class="col-md-3"><label class="form-label">Metric</label><select class="form-select form-select-sm" id="metricFilter"><option value="avg">Average Score</option><option value="pass">Pass Rate</option><option value="trend">Trend</option></select></div>
+                        <div class="col-md-3"><label class="form-label">View</label><select class="form-select form-select-sm" id="viewMode"><option value="chart">Charts</option><option value="table">Table</option></select></div>
+                        <div class="col-md-3 d-flex gap-2"><button class="btn btn-sm btn-outline-primary flex-grow-1" id="applyFiltersBtn">Apply</button><button class="btn btn-sm btn-outline-secondary flex-grow-1" id="resetFiltersBtn">Reset</button></div>
+                    </div>
+                </div>
+                <div class="card-body" id="reportBody">
+                    <div id="chartWrapper">
+                        <div class="row g-4">
+                            <div class="col-md-6"><canvas id="classChart" height="210"></canvas></div>
+                            <div class="col-md-6"><canvas id="distChart" height="210"></canvas></div>
+                        </div>
+                    </div>
+                    <div class="table-responsive d-none" id="tableWrapper">
+                        <table class="table table-sm" id="breakdownTable"><thead><tr><th>Student</th><th>Class</th><th>Average</th><th>Pass Rate</th><th>Trend</th></tr></thead><tbody></tbody></table>
+                        <div id="emptyMsg" class="text-center text-muted py-4 d-none">No data.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../assets/js/ui-utils.js"></script>
     <script>
-        // Demo JS for showing a sample report
-        document.getElementById('reportForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('studentName').value.trim();
-            const classVal = document.getElementById('class').value;
-            const term = document.getElementById('term').value;
-            if (!name || !classVal || !term) {
-                document.getElementById('reportResult').innerHTML = '<div class="no-data">Please fill all fields to generate the report.</div>';
-                return;
-            }
-            // Example data
-            const subjects = [
-                { subject: 'Mathematics', marks: 85, grade: 'A' },
-                { subject: 'Science', marks: 78, grade: 'B+' },
-                { subject: 'English', marks: 92, grade: 'A+' },
-                { subject: 'History', marks: 74, grade: 'B' },
-                { subject: 'ICT', marks: 88, grade: 'A' }
-            ];
-            let table = `<h2>Report for ${name} (${classVal}, ${term})</h2><table><tr><th>Subject</th><th>Marks</th><th>Grade</th></tr>`;
-            subjects.forEach(s => {
-                table += `<tr><td>${s.subject}</td><td>${s.marks}</td><td>${s.grade}</td></tr>`;
-            });
-            table += '</table>';
-            document.getElementById('reportResult').innerHTML = table;
-        });
+        const sampleStudents = [
+            {name:'Alice', cls:'Grade 10A', avg:78, pass:90, trend:[70,75,80,78]},
+            {name:'Bob', cls:'Grade 10A', avg:65, pass:70, trend:[60,62,64,65]},
+            {name:'Charlie', cls:'Grade 11B', avg:88, pass:95, trend:[82,85,87,88]},
+            {name:'Diana', cls:'Grade 9C', avg:72, pass:85, trend:[68,70,71,72]},
+            {name:'Evan', cls:'Grade 11B', avg:91, pass:98, trend:[86,88,90,91]}
+        ];
+        let classChart, distChart;
+        function trendArrow(s){const t=s.trend;const diff=t[t.length-1]-t[0];return diff>0?`<span class='text-success'><i class="fas fa-arrow-up"></i> +${diff}</span>`:diff<0?`<span class='text-danger'><i class="fas fa-arrow-down"></i> ${diff}</span>`:'<span class="text-muted">0</span>';}
+        function renderCharts(filtered){const labels=filtered.map(s=>s.name);const avgs=filtered.map(s=>s.avg);if(classChart)classChart.destroy();classChart=new Chart(classChart?classChart.ctx:document.getElementById('classChart'),{type:'bar',data:{labels,datasets:[{label:'Average Score',data:avgs,backgroundColor:'rgba(54,162,235,.6)'}]},options:{scales:{y:{beginAtZero:true,max:100}}}});if(distChart)distChart.destroy();const buckets={'>85':0,'70-85':0,'<70':0};avgs.forEach(a=>{if(a>85)buckets['>85']++;else if(a>=70)buckets['70-85']++;else buckets['<70']++;});distChart=new Chart(distChart?distChart.ctx:document.getElementById('distChart'),{type:'doughnut',data:{labels:Object.keys(buckets),datasets:[{data:Object.values(buckets),backgroundColor:['#198754','#0d6efd','#dc3545']} ]}});}
+        function renderTable(filtered){const tbody=document.querySelector('#breakdownTable tbody');tbody.innerHTML='';if(!filtered.length){document.getElementById('emptyMsg').classList.remove('d-none');return;}document.getElementById('emptyMsg').classList.add('d-none');filtered.forEach(s=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${s.name}</td><td>${s.cls}</td><td>${s.avg}%</td><td>${s.pass}%</td><td>${trendArrow(s)}</td>`;tbody.appendChild(tr);});}
+        function applyFilters(){const cls=document.getElementById('classFilter').value;const filtered=sampleStudents.filter(s=>!cls||s.cls===cls);if(document.getElementById('viewMode').value==='chart'){document.getElementById('chartWrapper').classList.remove('d-none');document.getElementById('tableWrapper').classList.add('d-none');renderCharts(filtered);}else{document.getElementById('chartWrapper').classList.add('d-none');document.getElementById('tableWrapper').classList.remove('d-none');renderTable(filtered);}UIUtils.showToast('Report updated','primary',1500);}
+        document.getElementById('applyFiltersBtn').addEventListener('click',applyFilters);
+        document.getElementById('resetFiltersBtn').addEventListener('click',()=>{classFilter.value='';applyFilters();});
+        document.getElementById('viewMode').addEventListener('change',applyFilters);
+        document.getElementById('recomputeBtn').addEventListener('click',()=>{UIUtils.showToast('Recomputing...','warning');setTimeout(()=>{UIUtils.showToast('Complete','success');UIUtils.log('Admin recomputed performance metrics','report');applyFilters();},1000);});
+        document.getElementById('exportBtn').addEventListener('click',()=>{UIUtils.showToast('Exporting (mock)','info');UIUtils.log('Exported admin performance report','report');});
+        applyFilters();
     </script>
 </body>
 </html>

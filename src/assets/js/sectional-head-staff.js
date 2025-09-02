@@ -50,10 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFormMsg.textContent = '';
     };
 
-    window.removeStaff = function(id) {
-        if (confirm('Are you sure you want to remove this staff member?')) {
+    window.removeStaff = async function(id) {
+        const staff = staffList.find(s=>s.id===id);
+        const ok = await UIUtils.confirm({title:'Remove Staff', body:`Remove <strong>${staff?.name||'staff'}</strong> from list?`});
+        if (ok) {
             staffList = staffList.filter(s => s.id !== id);
             renderStaffTable();
+            UIUtils.showToast('Staff removed','danger');
+            UIUtils.log('Removed staff '+(staff?.name||id),'user');
         }
     };
 
@@ -80,12 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
             addFormMsg.className = 'error';
             return;
         }
-        staffList.push({ id: nextId++, name, email, subject, role });
+    staffList.push({ id: nextId++, name, email, subject, role });
         renderStaffTable();
         addFormMsg.textContent = 'Staff member added successfully!';
         addFormMsg.className = 'success';
         this.reset();
         setTimeout(() => { addForm.classList.add('hidden'); }, 800);
+    UIUtils.showToast('Staff added','success');
+    UIUtils.log('Added staff '+name,'user');
     });
 
     document.getElementById('staffUpdateForm').addEventListener('submit', function(e) {
@@ -110,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
             updateFormMsg.textContent = 'Staff member updated successfully!';
             updateFormMsg.className = 'success';
             setTimeout(() => { updateForm.classList.add('hidden'); }, 800);
+            UIUtils.showToast('Staff updated','primary');
+            UIUtils.log('Updated staff '+name,'user');
         }
     });
 

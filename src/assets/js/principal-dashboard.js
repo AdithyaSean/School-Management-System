@@ -42,10 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         const today = new Date().toISOString().slice(0, 10);
-        announcements.unshift({ title, message, audience, date: today });
-        renderAnnouncements();
-        announcementFormMsg.textContent = 'Announcement broadcasted!';
-        announcementFormMsg.className = 'success';
+    announcements.unshift({ title, message, audience, date: today });
+    renderAnnouncements();
+    announcementFormMsg.textContent = 'Announcement broadcasted!';
+    announcementFormMsg.className = 'success';
+    UIUtils.showToast('Announcement sent','success');
+    UIUtils.log('Broadcast announcement: '+title,'notification');
         this.reset();
         setTimeout(() => { announcementFormMsg.textContent = ''; }, 1200);
     });
