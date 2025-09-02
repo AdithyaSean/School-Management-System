@@ -29,12 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
             tr.innerHTML = `
                 <td>${user.username}</td>
                 <td>${user.email}</td>
-                <td>${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</td>
+                <td>${UIUtils.statusBadge(user.role)}</td>
                 <td>
                     <button class="btn btn-sm btn-warning me-1" onclick="editUser(${user.id})">Edit</button>
                     <button class="btn btn-sm btn-danger" onclick="removeUser(${user.id})">Delete</button>
-                </td>
-            `;
+                </td>`;
             userTableBody.appendChild(tr);
         });
     }

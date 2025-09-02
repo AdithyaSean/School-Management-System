@@ -42,12 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         const today = new Date().toISOString().slice(0, 10);
-    announcements.unshift({ title, message, audience, date: today });
-    renderAnnouncements();
-    announcementFormMsg.textContent = 'Announcement broadcasted!';
-    announcementFormMsg.className = 'success';
-    UIUtils.showToast('Announcement sent','success');
-    UIUtils.log('Broadcast announcement: '+title,'notification');
+        announcements.unshift({ title, message, audience, date: today });
+        renderAnnouncements();
+        announcementFormMsg.textContent = 'Announcement broadcasted!';
+        announcementFormMsg.className = 'success';
+        // Map audience text to roles list for prototype filtering
+        let audRoles = ['student','teacher','admin','principal','sectional-head'];
+        const lower = audience.toLowerCase();
+        if (lower.includes('student')) audRoles=['student'];
+        else if (lower.includes('teacher')) audRoles=['teacher'];
+        else if (lower.includes('sectional')) audRoles=['sectional-head'];
+        else if (lower.includes('principal')) audRoles=['principal'];
+        else if (lower.includes('admin')) audRoles=['admin'];
+        UIUtils.pushNotification(`${title}: ${message.substring(0,60)}${message.length>60?'…':''}`,'primary','now',{audience:audRoles, category:'notification'});
+        UIUtils.showToast('Announcement sent','success');
+        UIUtils.log('Broadcast announcement: '+title,'notification');
         this.reset();
         setTimeout(() => { announcementFormMsg.textContent = ''; }, 1200);
     });

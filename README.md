@@ -61,6 +61,19 @@ The system is built on a modular architecture to ensure a clear separation of co
 
 Detailed documentation for each module and feature is available in the `/docs` directory.
 
+## Prototype Enhancements (September 2025)
+
+Front-end prototype now includes a centralized in-memory DataService (see `src/assets/js/ui-utils.js`) providing:
+
+- Role-scoped notification store (audience arrays per notification) with filtering & keyword search.
+- Unified activity log (pagination, category + text filters, CSV export, accessible off-canvas structure).
+- Pub/Sub hooks: `UIUtils.DataService.on('notification' | 'activity', callback)` for reactive components.
+- Extended status badge utility to cover roles & states (`UIUtils.statusBadge`).
+
+Principals broadcasting announcements now generate targeted notifications (audience-constrained) and feed into the notification center. Admin user management table uses consistent badge styling. Activity log categories expanded (system, message, profile, report, notification, etc.).
+
+Note: All data remains session-scoped and non-persistent; API integration would replace DataService with real endpoints.
+
 ## Authors
 
 -   E M A S B E K A N A Y A K A
