@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - School Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="text-center mb-4">
+            <img src="../../assets/images/default-avatar.png" alt="Student" class="profile-image mb-2">
+            <h6 class="mb-0">John Doe</h6>
+            <small>Grade 10A</small>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-home me-2"></i> Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="assessments.html"><i class="fas fa-tasks me-2"></i> Assessments</a></li>
+            <li class="nav-item"><a class="nav-link" href="exams.html"><i class="fas fa-file-alt me-2"></i> Exams</a></li>
+            <li class="nav-item"><a class="nav-link" href="results.html"><i class="fas fa-chart-bar me-2"></i> Results</a></li>
+            <li class="nav-item"><a class="nav-link active" href="attendance.html"><i class="fas fa-calendar-check me-2"></i> Attendance</a></li>
+            <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+            <li class="nav-item mt-auto"><a class="nav-link text-danger" href="../../index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>My Attendance</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary" id="downloadAttendance"><i class="fas fa-download me-2"></i>Download</button>
+                    <button class="btn btn-primary" id="attendanceHelp"><i class="fas fa-question-circle me-2"></i>Help</button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h6 class="text-muted">Overall Attendance</h6><p class="display-6 mb-0" id="overallPct">--%</p><small class="text-muted">Academic Year</small></div></div></div>
+                <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h6 class="text-muted">This Month</h6><p class="display-6 mb-0" id="monthPct">--%</p><small class="text-muted" id="monthLabel"></small></div></div></div>
+                <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h6 class="text-muted">Absences</h6><p class="display-6 mb-0" id="absenceCount">0</p><small class="text-muted">Recorded</small></div></div></div>
+                <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h6 class="text-muted">Late Arrivals</h6><p class="display-6 mb-0" id="lateCount">0</p><small class="text-muted">Recorded</small></div></div></div>
+            </div>
+
+            <!-- Filters -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label">Month</label>
+                            <select class="form-select" id="monthSelect"></select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select" id="subjectFilter">
+                                <option value="">All Subjects</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Science">Science</option>
+                                <option value="English">English</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">All</option>
+                                <option value="Present">Present</option>
+                                <option value="Absent">Absent</option>
+                                <option value="Late">Late</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 d-grid">
+                            <button class="btn btn-secondary" id="resetFilters"><i class="fas fa-undo me-2"></i>Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Table -->
+            <div class="card mb-4" id="attendanceCard">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Daily Records</h5>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button class="btn btn-outline-secondary active" id="viewTableBtn"><i class="fas fa-table"></i></button>
+                        <button class="btn btn-outline-secondary" id="viewSummaryBtn"><i class="fas fa-chart-bar"></i></button>
+                    </div>
+                </div>
+                <div class="card-body" id="attendanceBody">
+                    <div class="table-responsive" id="attendanceTableWrapper"></div>
+                    <div class="d-none" id="attendanceSummaryWrapper">
+                        <div class="row" id="summaryProgress"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State Template -->
+            <template id="emptyStateTemplate">
+                <div class="text-center text-muted py-5">
+                    <i class="fas fa-calendar-times fa-3x mb-3"></i>
+                    <p class="mb-1">No attendance records found for the selected filters.</p>
+                    <small>Try changing the filters above.</small>
+                </div>
+            </template>
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div class="modal fade" id="attendanceDetailModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Attendance Detail</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body" id="attendanceDetailBody"></div>
+                <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/ui-utils.js"></script>
+    <script src="../../assets/js/student-attendance.js"></script>
+</body>
+</html>

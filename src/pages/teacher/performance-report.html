@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Performance Reports - Teacher</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+	<nav class="sidebar">
+		<div class="text-center mb-4">
+			<img src="../../assets/images/default-avatar.png" alt="Teacher" class="profile-image mb-2">
+			<h6 class="mb-0">Reports</h6>
+		</div>
+		<ul class="nav flex-column">
+			<li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+			<li class="nav-item"><a class="nav-link" href="manage-assessments.html"><i class="fas fa-tasks me-2"></i>Assessments</a></li>
+			<li class="nav-item"><a class="nav-link" href="manage-exams.html"><i class="fas fa-file-alt me-2"></i>Exams</a></li>
+			<li class="nav-item"><a class="nav-link" href="students.html"><i class="fas fa-user-graduate me-2"></i>Students</a></li>
+			<li class="nav-item"><a class="nav-link active" href="performance-report.html"><i class="fas fa-chart-line me-2"></i>Performance</a></li>
+		</ul>
+	</nav>
+	<main class="main-content">
+		<div class="container-fluid">
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h2>Performance Reports</h2>
+				<div class="d-flex gap-2">
+					<button class="btn btn-outline-secondary btn-sm" id="exportBtn"><i class="fas fa-download me-1"></i>Export</button>
+					<button class="btn btn-primary btn-sm" id="recomputeBtn"><i class="fas fa-sync me-1"></i>Recompute Metrics</button>
+				</div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-header bg-white">
+					<div class="row g-2 align-items-end">
+						<div class="col-md-3">
+							<label class="form-label">Class</label>
+							<select class="form-select form-select-sm" id="classFilter"><option value="">All</option><option>Grade 10A</option><option>Grade 11B</option><option>Grade 9C</option></select>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label">Subject</label>
+							<select class="form-select form-select-sm" id="subjectFilter"><option value="">All</option><option>Mathematics</option><option>Science</option><option>English</option></select>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label">Metric</label>
+							<select class="form-select form-select-sm" id="metricFilter"><option value="avg">Average Score</option><option value="pass">Pass Rate</option><option value="trend">Trend</option></select>
+						</div>
+						<div class="col-md-3 d-flex gap-2">
+							<button class="btn btn-sm btn-outline-primary flex-grow-1" id="applyFiltersBtn">Apply</button>
+							<button class="btn btn-sm btn-outline-secondary flex-grow-1" id="resetFiltersBtn">Reset</button>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="row g-4">
+						<div class="col-md-6">
+							<canvas id="classPerformanceChart" height="210"></canvas>
+						</div>
+						<div class="col-md-6">
+							<canvas id="distributionChart" height="210"></canvas>
+						</div>
+						<div class="col-12">
+							<div class="table-responsive">
+								<table class="table table-sm" id="studentBreakdownTable">
+									<thead><tr><th>Student</th><th>Class</th><th>Average</th><th>Pass Rate</th><th>Trend</th><th>Reports</th></tr></thead>
+									<tbody></tbody>
+								</table>
+							</div>
+							<div id="breakdownEmpty" class="text-center text-muted py-4 d-none">No data for selection.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+	<script src="../../assets/js/ui-utils.js"></script>
+	<script>
+		const sampleStudents = [
+			{name:'Alice', cls:'Grade 10A', avg:78, pass:90, trend:[70,75,80,78]},
+			{name:'Bob', cls:'Grade 10A', avg:65, pass:70, trend:[60,62,64,65]},
+			{name:'Charlie', cls:'Grade 11B', avg:88, pass:95, trend:[82,85,87,88]},
+			{name:'Diana', cls:'Grade 9C', avg:72, pass:85, trend:[68,70,71,72]},
+			{name:'Evan', cls:'Grade 11B', avg:91, pass:98, trend:[86,88,90,91]}
+		];
+		let perfChart, distChart;
+		function renderCharts(filtered) {
+			const ctx1=document.getElementById('classPerformanceChart');
+			const ctx2=document.getElementById('distributionChart');
+			const labels = filtered.map(s=>s.name);
+			const avgs = filtered.map(s=>s.avg);
+			if (perfChart) perfChart.destroy();
+			perfChart = new Chart(ctx1,{type:'bar',data:{labels,datasets:[{label:'Average Score',data:avgs,backgroundColor:'rgba(54,162,235,.6)'}]},options:{responsive:true,scales:{y:{beginAtZero:true,max:100}}}});
+			if (distChart) distChart.destroy();
+			const buckets = { '>85':0,'70-85':0,'<70':0};
+			avgs.forEach(a=>{ if (a>85) buckets['>85']++; else if (a>=70) buckets['70-85']++; else buckets['<70']++; });
+			distChart = new Chart(ctx2,{type:'doughnut',data:{labels:Object.keys(buckets),datasets:[{data:Object.values(buckets),backgroundColor:['#198754','#0d6efd','#dc3545']} ]}});
+		}
+		function renderTable(filtered) {
+			const tbody=document.querySelector('#studentBreakdownTable tbody');
+			tbody.innerHTML='';
+			if (!filtered.length) { document.getElementById('breakdownEmpty').classList.remove('d-none'); return; }
+			document.getElementById('breakdownEmpty').classList.add('d-none');
+			filtered.forEach(s=>{
+				const tr=document.createElement('tr');
+				tr.innerHTML=`<td>${s.name}</td><td>${s.cls}</td><td>${s.avg}%</td><td>${s.pass}%</td><td>${trendArrow(s)}</td><td><button class='btn btn-sm btn-outline-primary' onclick='openStudentPerf("${s.name}")'>Detail</button></td>`;
+				tbody.appendChild(tr);
+			});
+		}
+		function trendArrow(s) { const t=s.trend; const diff=t[t.length-1]-t[0]; return diff>0?`<span class='text-success'><i class=\"fas fa-arrow-up\"></i> +${diff}</span>`:diff<0?`<span class='text-danger'><i class=\"fas fa-arrow-down\"></i> ${diff}</span>`:'<span class="text-muted">0</span>'; }
+		function applyFilters() {
+			const cls=document.getElementById('classFilter').value; // subject ignored (mock)
+			const filtered = sampleStudents.filter(s=> !cls || s.cls===cls);
+			renderCharts(filtered); renderTable(filtered); UIUtils.showToast('Metrics updated','primary',1500);
+		}
+		function recompute() { UIUtils.showToast('Recomputing...', 'warning'); setTimeout(()=>{ UIUtils.showToast('Recompute complete','success'); applyFilters(); },1200); }
+		function exportReport() { UIUtils.showToast('Exporting (mock)...','info'); }
+		window.openStudentPerf = function(name) {
+			const s = sampleStudents.find(x=>x.name===name); if (!s) return;
+			const modal=document.createElement('div'); modal.className='modal fade';
+			modal.innerHTML=`<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>${name} Performance</h5><button class='btn-close' data-bs-dismiss='modal'></button></div><div class='modal-body'><p><strong>Class:</strong> ${s.cls}</p><p><strong>Average:</strong> ${s.avg}%</p><canvas id='studentTrendCanvas' height='140'></canvas></div><div class='modal-footer'><button class='btn btn-secondary' data-bs-dismiss='modal'>Close</button></div></div></div>`;
+			document.body.appendChild(modal); const m=new bootstrap.Modal(modal); m.show(); modal.addEventListener('hidden.bs.modal',()=>modal.remove());
+			setTimeout(()=>{ new Chart(document.getElementById('studentTrendCanvas'),{type:'line',data:{labels:['T1','T2','T3','T4'],datasets:[{label:'Score',data:s.trend,borderColor:'#0d6efd'}]}}); },200);
+		};
+		document.getElementById('applyFiltersBtn').addEventListener('click', applyFilters);
+		document.getElementById('resetFiltersBtn').addEventListener('click', ()=>{document.getElementById('classFilter').value='';document.getElementById('subjectFilter').value='';applyFilters();});
+		document.getElementById('recomputeBtn').addEventListener('click', recompute);
+		document.getElementById('exportBtn').addEventListener('click', exportReport);
+		applyFilters();
+	</script>
+</body>
+</html>
