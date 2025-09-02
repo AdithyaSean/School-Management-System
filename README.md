@@ -61,10 +61,6 @@ The system is built on a modular architecture to ensure a clear separation of co
 
 Detailed documentation for each module and feature is available in the `/docs` directory.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Authors
 
 -   E M A S B E K A N A Y A K A
