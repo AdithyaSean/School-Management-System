@@ -12,6 +12,8 @@ SCOPE: The statuses below reflect only the clickable prototype (static/front-end
 
 High-level prototype summary: All role dashboards now share a consistent layout (sidebar, header actions, notification + activity log buttons, logout confirmation) via `layout-standardize.js`. Most CRUD and reporting UIs are present with static/sample data: messaging inbox (threads, compose, filters), global notifications off‑canvas + centralized toast/confirm utilities, exam score editing modal (bulk save, mark absent, publish), performance reports (teacher & admin) with filters/charts/per‑student breakdown, student results enhancements (recorrection request modal, GPA breakdown + recompute action), student attendance analytics (filters, summary/detail modal, export), teacher gradebook (filters, inline edit modal, weighting settings, analytics charts, CSV export), teacher enrollment report (class totals & movements), enhanced admin system monitor (mock charts / tables / progress cards), and global activity log off‑canvas + logging helper. Secondary pages (student assessments/exams, teacher manage assessments) now also include standardized notification & activity log controls, empty‑state markers, and logging calls.
 
+Recent UI alignment (Sept 2025): Admin, Principal, and Sectional Head dashboards refactored to match Student/Teacher layout patterns. Added unified header actions (notification bell, activity log, role menu dropdown), responsive table wrapper (`.table-fluid-wrapper`), standardized form panels (`.form-section`), announcement list styling, and improved accessibility focus outlines. Minor CSS utilities introduced (`.hidden`, `.page-header-actions`, metric card helpers) without altering existing interactions.
+
 Remaining major prototype gaps (UI only – backend intentionally absent):
 1. Deeper cross‑link navigation (contextual deep links between lists, reports, and detail modals still minimal) – partial heuristics added for notification deep links.
 2. Additional status badge retrofit for any yet untouched legacy static tables (most core tables updated). 
@@ -284,6 +286,8 @@ Remaining major prototype gaps (UI only – backend intentionally absent):
 17. (PARTIAL) Basic deep-link heuristics for notifications (further cross‑page context links pending).
 
 Unified Change Log (recent highlights):
+• Standardized admin, principal, sectional head dashboards (header actions, profile dropdown, responsive tables, form-section & announcement styling).
+• Added accessibility focus outlines and utility classes (`.hidden`, `.table-fluid-wrapper`, `.page-header-actions`).
 • Added centralized DataService with role-scoped notifications & pub/sub.
 • Upgraded notification center (audience filter, search, deep-link heuristics).
 • Enhanced activity log (pagination, search, CSV export, expanded categories, accessibility labels).

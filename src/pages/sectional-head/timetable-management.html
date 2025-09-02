@@ -1,49 +1,66 @@
-<!-- Sectional Head - Timetable Management UI (CRUD) -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sectional Head - Timetable Management</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <style>
-        .section-list, .timetable-list { list-style: none; padding: 0; }
-        .section-list li, .timetable-list li { cursor: pointer; padding: 8px; border-bottom: 1px solid #eee; }
-        .section-list li.selected { background: #e0f7fa; }
-        .crud-btn { margin-left: 8px; }
-        .timetable-form { margin: 12px 0; }
-        .timetable-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        .timetable-table th, .timetable-table td { padding: 8px; border: 1px solid #ddd; }
-        .timetable-table th { background: #f0f0f0; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Sections</h2>
-        <ul id="sectionList" class="section-list"></ul>
-
-        <div id="sectionDetails" style="display:none;">
-            <h3 id="sectionName"></h3>
-            <button id="showCreateForm">Create Timetable</button>
-            <form id="timetableForm" class="timetable-form" style="display:none;">
-                <input type="hidden" id="timetableId">
-                <input type="text" id="timetableName" placeholder="Timetable Name" required>
-                <button type="submit" id="saveBtn">Save</button>
-                <button type="button" id="cancelBtn">Cancel</button>
-            </form>
-            <table id="timetableTable" class="timetable-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Timetable Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="timetableTableBody"></tbody>
-            </table>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sectional Head - Timetable Management</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="../../assets/css/style.css"></head><body>
+<nav class="sidebar">
+    <div class="text-center mb-4"><img src="../../assets/images/default-avatar.png" class="profile-image mb-2" alt="Sectional Head"><h6 class="mb-0">Sectional Head</h6></div>
+    <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="staff-management.html"><i class="fas fa-users me-2"></i>Staff Management</a></li>
+        <li class="nav-item"><a class="nav-link active" href="timetable-management.html"><i class="fas fa-calendar-alt me-2"></i>Time Tables</a></li>
+    </ul>
+</nav>
+<main class="main-content"><div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h2 class="mb-0">Timetable Management</h2>
+        <div class="page-header-actions">
+            <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative me-2"><i class="fas fa-bell"></i><span class="notification-badge bg-danger text-white">2</span></button>
+            <button class="btn btn-outline-secondary btn-sm activity-log-trigger me-2" title="Activity Log"><i class="fas fa-list"></i></button>
+            <div class="dropdown d-inline-block"><button class="btn btn-link text-dark p-0" data-bs-toggle="dropdown" aria-label="Sectional head menu"><i class="fas fa-user-shield fs-5"></i></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item text-danger logout-link" href="../../index.html">Logout</a></li></ul></div>
         </div>
     </div>
-    <script>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center"><h5 class="mb-0">Sections</h5><span class="badge bg-primary" id="sectionCount">0</span></div>
+                <div class="card-body p-0">
+                    <ul id="sectionList" class="list-group list-group-flush small"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card h-100" id="sectionDetails" style="display:none;">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0" id="sectionName"></h5>
+                    <div class="d-flex gap-2">
+                        <button id="showCreateForm" class="btn btn-sm btn-primary"><i class="fas fa-plus me-1"></i>Create Timetable</button>
+                        <button class="btn btn-sm btn-outline-secondary" disabled title="Prototype">Import (N/A)</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form id="timetableForm" class="row g-2 align-items-end mb-3" style="display:none;">
+                        <input type="hidden" id="timetableId">
+                        <div class="col-md-8">
+                            <label class="form-label small">Timetable Name</label>
+                            <input type="text" id="timetableName" class="form-control form-control-sm" placeholder="e.g. Grade 10A - Term 1" required>
+                        </div>
+                        <div class="col-md-4 d-flex gap-2">
+                            <button type="submit" id="saveBtn" class="btn btn-success btn-sm flex-grow-1">Save</button>
+                            <button type="button" id="cancelBtn" class="btn btn-secondary btn-sm">Cancel</button>
+                        </div>
+                    </form>
+                    <div class="table-fluid-wrapper">
+                        <table id="timetableTable" class="table table-sm table-striped align-middle mb-0" data-empty-state="No timetables yet. Use 'Create Timetable' to add one.">
+                            <thead class="table-light"><tr><th style="width:60px">#</th><th>Name</th><th style="width:140px">Actions</th></tr></thead>
+                            <tbody id="timetableTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/ui-utils.js"></script>
+<script src="../../assets/js/layout-standardize.js"></script>
+<script>
         // Mock data for demonstration
         let sections = [
             { id: 1, name: 'Section A' },
@@ -73,11 +90,12 @@
             sectionList.innerHTML = '';
             sections.forEach(section => {
                 const li = document.createElement('li');
-                li.textContent = section.name;
-                li.className = section.id === selectedSectionId ? 'selected' : '';
-                li.onclick = () => selectSection(section.id);
+                li.className = 'list-group-item d-flex justify-content-between align-items-center cursor-pointer'+(section.id===selectedSectionId?' active':'');
+                li.innerHTML = `<span>${section.name}</span><span class='badge bg-secondary'>${(timetables[section.id]||[]).length}</span>`;
+                li.addEventListener('click',()=>selectSection(section.id));
                 sectionList.appendChild(li);
             });
+            document.getElementById('sectionCount').textContent = sections.length;
         }
 
         function selectSection(id) {
@@ -90,16 +108,16 @@
 
         function renderTimetables() {
             timetableTableBody.innerHTML = '';
-            (timetables[selectedSectionId] || []).forEach((tt, idx) => {
+            const list = (timetables[selectedSectionId] || []);
+            if (!list.length) {
+                // empty state handled by layout-standardize (attribute)
+            }
+            list.forEach((tt, idx) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${idx + 1}</td>
-                    <td>${tt.name}</td>
-                    <td>
-                        <button class='crud-btn' onclick='showEditFormFromTable(${tt.id})'>Update</button>
-                        <button class='crud-btn' onclick='deleteTimetableFromTable(${tt.id})'>Delete</button>
-                    </td>
-                `;
+                tr.innerHTML = `<td>${idx+1}</td><td>${tt.name}</td><td><div class='btn-group btn-group-sm'>
+                  <button class='btn btn-outline-primary' onclick='showEditFormFromTable(${tt.id})'><i class="fas fa-edit"></i></button>
+                  <button class='btn btn-outline-danger' onclick='deleteTimetableFromTable(${tt.id})'><i class="fas fa-trash"></i></button>
+                </div></td>`;
                 timetableTableBody.appendChild(tr);
             });
         }
@@ -140,9 +158,13 @@
             timetableForm.style.display = 'none';
         };
 
-        function deleteTimetable(id) {
+        async function deleteTimetable(id) {
+            const ok = await UIUtils.confirm({title:'Delete Timetable', body:'Delete this timetable?'});
+            if (!ok) return;
             timetables[selectedSectionId] = timetables[selectedSectionId].filter(tt => tt.id !== id);
             renderTimetables();
+            UIUtils.showToast('Timetable deleted','danger',1500);
+            UIUtils.log('Deleted timetable','system');
         }
 
         // For table action buttons
@@ -156,6 +178,6 @@
 
         // Initial render
         renderSections();
+        UIUtils.log('Timetable management loaded','system');
     </script>
-</body>
-</html>
+</body></html>

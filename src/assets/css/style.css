@@ -12,6 +12,57 @@ body {
     background-color: #f8f9fa;
 }
 
+/* Utility visibility */
+.hidden { display: none !important; }
+
+/* Layout helpers */
+.page-header-actions > * { margin-left: .5rem; }
+.page-header-actions { display:flex; align-items:center; }
+
+/* Form sections (prototype admin/principal) */
+.form-section, .announcement-list {
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius: .75rem;
+    padding:1.25rem 1.25rem 1rem;
+    margin-top:1.5rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.05);
+}
+.form-section h2, .announcement-list h2 { font-size:1.1rem; margin-bottom:1rem; }
+.form-section form label { display:block; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; margin-top:.75rem; margin-bottom:.25rem; font-weight:600; color:#555; }
+.form-section form input[type=text],
+.form-section form input[type=email],
+.form-section form select,
+.form-section form textarea { width:100%; border:1px solid #ced4da; border-radius:.5rem; padding:.55rem .75rem; font-size:.9rem; }
+.form-section form textarea { resize:vertical; }
+.form-section form button { margin-top:1rem; }
+.form-section small, .form-section .help-text { color:#6c757d; }
+
+/* Report box styling */
+.report-box { background:#fff; border:1px solid #e5e7eb; border-radius:.75rem; padding:1rem 1.25rem; margin-top:1rem; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+.report-box h4 { font-size:1rem; margin-bottom:.5rem; }
+
+/* Table wrapper */
+.table-fluid-wrapper { overflow-x:auto; width:100%; }
+table.table thead th { white-space:nowrap; }
+table.table td, table.table th { vertical-align:middle; }
+
+/* Announcement list */
+.announcement-list-item { border:1px solid #e5e7eb; border-radius:.5rem; padding:.75rem 1rem; background:#fff; margin-bottom:.75rem; }
+.announcement-list-item h6 { margin:0 0 .25rem; font-size:.9rem; }
+.announcement-list-item small { color:#6c757d; }
+
+/* Offcanvas fine‑tuning */
+.offcanvas .list-group-item { border-left:0; border-right:0; }
+
+/* Compact cards for role dashboards */
+.metric-card { position:relative; overflow:hidden; }
+.metric-card .metric-value { font-size:2rem; font-weight:600; line-height:1; }
+.metric-trend { position:absolute; top:0; right:0; font-size:.65rem; padding:.25rem .5rem; border-bottom-left-radius:.5rem; background:rgba(255,255,255,.25); backdrop-filter:blur(4px); color:#fff; }
+
+/* Improve focus outlines for accessibility */
+button:focus, .nav-link:focus, a:focus, input:focus, select:focus, textarea:focus { outline:2px solid rgba(13,110,253,.4); outline-offset:2px; }
+
 /* Dashboard Layout */
 .sidebar {
     width: var(--sidebar-width);

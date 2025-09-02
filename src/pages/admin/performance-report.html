@@ -21,11 +21,21 @@
     </nav>
     <main class="main-content">
         <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Performance Reports</h2>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-outline-secondary btn-sm" id="exportBtn"><i class="fas fa-download me-1"></i>Export</button>
-                    <button class="btn btn-primary btn-sm" id="recomputeBtn"><i class="fas fa-sync me-1"></i>Recompute</button>
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                <h2 class="mb-0">Performance Reports</h2>
+                <div class="page-header-actions">
+                    <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative me-2" title="Notifications"><i class="fas fa-bell"></i><span class="notification-badge bg-danger text-white">3</span></button>
+                    <button class="btn btn-outline-secondary btn-sm activity-log-trigger me-2" title="Activity Log"><i class="fas fa-list"></i></button>
+                    <button class="btn btn-outline-secondary btn-sm me-2" id="exportBtn"><i class="fas fa-download me-1"></i>Export</button>
+                    <button class="btn btn-primary btn-sm me-2" id="recomputeBtn"><i class="fas fa-sync me-1"></i>Recompute</button>
+                    <div class="dropdown d-inline-block">
+                        <button class="btn btn-link text-dark p-0" data-bs-toggle="dropdown" aria-label="Admin menu"><i class="fas fa-user-cog fs-5"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger logout-link" href="../../index.html">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="card mb-4">
@@ -55,6 +65,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../assets/js/ui-utils.js"></script>
+    <script src="../../assets/js/layout-standardize.js"></script>
     <script>
         const sampleStudents = [
             {name:'Alice', cls:'Grade 10A', avg:78, pass:90, trend:[70,75,80,78]},
