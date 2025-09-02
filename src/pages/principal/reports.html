@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Principal Reports</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="../../assets/css/style.css"></head><body>
+<nav class="sidebar">
+  <div class="text-center mb-4"><img src="../../assets/images/default-avatar.png" alt="Principal" class="profile-image mb-2"><h6 class="mb-0">Principal</h6></div>
+  <ul class="nav flex-column">
+    <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+    <li class="nav-item"><a class="nav-link active" href="reports.html"><i class="fas fa-chart-line me-2"></i>Reports</a></li>
+    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user-tie me-2"></i>Profile</a></li>
+    <li class="nav-item mt-auto"><a class="nav-link text-danger logout-link" href="../../index.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+  </ul>
+</nav>
+<main class="main-content"><div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <h2 class="mb-0">School Performance Reports</h2>
+    <div class="page-header-actions">
+      <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative me-2"><i class="fas fa-bell"></i><span class="notification-badge bg-danger text-white">2</span></button>
+      <button class="btn btn-outline-secondary btn-sm activity-log-trigger me-2" title="Activity Log"><i class="fas fa-list"></i></button>
+      <button class="btn btn-sm btn-outline-secondary me-2" id="exportPrincipalReports"><i class="fas fa-download me-1"></i>Export</button>
+      <button class="btn btn-sm btn-primary" id="refreshReports"><i class="fas fa-rotate me-1"></i>Refresh</button>
+    </div>
+  </div>
+  <div class="card mb-4">
+    <div class="card-header bg-white">
+      <div class="row g-2 align-items-end small">
+        <div class="col-md-2"><label class="form-label">Term</label><select id="termFilter" class="form-select form-select-sm"><option value="2025-T1">2025 T1</option><option value="2025-T2">2025 T2</option><option value="2024-T3">2024 T3</option></select></div>
+        <div class="col-md-2"><label class="form-label">View</label><select id="viewMode" class="form-select form-select-sm"><option value="overview">Overview</option><option value="academic">Academic</option><option value="attendance">Attendance</option><option value="discipline">Discipline</option></select></div>
+        <div class="col-md-3"><label class="form-label">Class</label><select id="classFilter" class="form-select form-select-sm"><option value="">All Classes</option><option>Grade 10A</option><option>Grade 11B</option><option>Grade 9C</option></select></div>
+        <div class="col-md-3"><label class="form-label">Metric</label><select id="metricFilter" class="form-select form-select-sm"><option value="avg">Average Score</option><option value="pass">Pass Rate</option><option value="attendance">Attendance %</option><option value="issues">Discipline Issues</option></select></div>
+        <div class="col-md-2 d-flex gap-2"><button class="btn btn-sm btn-outline-primary flex-grow-1" id="applyFilters">Apply</button><button class="btn btn-sm btn-outline-secondary flex-grow-1" id="resetFilters">Reset</button></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div id="kpiRow" class="row g-3 mb-3"></div>
+      <div class="row g-4" id="chartRow">
+        <div class="col-lg-6"><div class="card dashboard-card h-100"><div class="card-header bg-white d-flex justify-content-between align-items-center"><h6 class="mb-0">Trend</h6><span class="badge bg-primary" id="trendLabel">Scores</span></div><div class="card-body"><canvas id="trendChart" height="160"></canvas></div></div></div>
+        <div class="col-lg-6"><div class="card dashboard-card h-100"><div class="card-header bg-white d-flex justify-content-between align-items-center"><h6 class="mb-0">Distribution</h6><span class="badge bg-secondary" id="distLabel">Grades</span></div><div class="card-body"><canvas id="distChart" height="160"></canvas></div></div></div>
+        <div class="col-12"><div class="card dashboard-card"><div class="card-header bg-white d-flex justify-content-between align-items-center"><h6 class="mb-0">Class Breakdown</h6><button class="btn btn-sm btn-outline-primary" id="toggleTable">Table View</button></div><div class="card-body"><div class="table-responsive d-none" id="breakdownWrap"><table class="table table-sm" id="breakdownTable"><thead><tr><th>Class</th><th>Avg Score</th><th>Pass Rate</th><th>Attendance</th><th>Discipline Issues</th></tr></thead><tbody></tbody></table></div><div id="breakdownPlaceholder" class="text-muted small">Use filters then Apply to load detailed breakdown.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../../assets/js/ui-utils.js"></script>
+<script src="../../assets/js/layout-standardize.js"></script>
+<script>
+const sampleClassData = [
+  { cls:'Grade 10A', avg:78, pass:92, attendance:94, issues:2, trend:[70,74,76,78] },
+  { cls:'Grade 11B', avg:83, pass:95, attendance:91, issues:1, trend:[77,80,82,83] },
+  { cls:'Grade 9C', avg:71, pass:84, attendance:89, issues:5, trend:[65,67,69,71] }
+];
+let trendChart, distChart;
+function kpiCard(title,value,sub,context='primary'){return `<div class="col-sm-6 col-md-3"><div class="card metric-card text-center border-0 shadow-sm h-100"><div class="card-body"><div class="metric-trend">${context}</div><h6 class="text-muted text-uppercase small mb-1">${title}</h6><div class="metric-value">${value}</div><small class="text-muted">${sub}</small></div></div></div>`;}
+function renderKPIs(filtered){const total=filtered.length||1;const avgScore=(filtered.reduce((a,c)=>a+c.avg,0)/total).toFixed(1);const avgPass=(filtered.reduce((a,c)=>a+c.pass,0)/total).toFixed(1);const avgAttend=(filtered.reduce((a,c)=>a+c.attendance,0)/total).toFixed(1);const issues=filtered.reduce((a,c)=>a+c.issues,0);kpiRow.innerHTML = kpiCard('Avg Score',avgScore,'% across classes')+kpiCard('Pass Rate',avgPass+'%','Term aggregate','success')+kpiCard('Attendance',avgAttend+'%','Average presence','info')+kpiCard('Discipline',issues,'Total issues','danger');}
+function buildTrend(filtered){const labels=['W1','W2','W3','W4'];const datasets=filtered.map(c=>({label:c.cls,data:c.trend,borderWidth:2,fill:false}));if(trendChart) trendChart.destroy();trendChart=new Chart(document.getElementById('trendChart'),{type:'line',data:{labels,datasets},options:{responsive:true,interaction:{mode:'index',intersect:false},scales:{y:{beginAtZero:true,max:100}}}});}
+function buildDistribution(filtered){const buckets={'>85':0,'70-85':0,'<70':0};filtered.forEach(c=>{if(c.avg>85)buckets['>85']++;else if(c.avg>=70)buckets['70-85']++;else buckets['<70']++;});if(distChart) distChart.destroy();distChart=new Chart(document.getElementById('distChart'),{type:'doughnut',data:{labels:Object.keys(buckets),datasets:[{data:Object.values(buckets),backgroundColor:['#198754','#0d6efd','#dc3545']}]}});}
+function buildTable(filtered){const tb=document.querySelector('#breakdownTable tbody');tb.innerHTML='';filtered.forEach(c=>{tb.innerHTML+=`<tr><td>${c.cls}</td><td>${c.avg}</td><td>${c.pass}%</td><td>${c.attendance}%</td><td>${c.issues}</td></tr>`;});}
+function applyFilters(){const cls=classFilter.value;let filtered=sampleClassData.filter(c=>!cls||c.cls===cls);renderKPIs(filtered);buildTrend(filtered);buildDistribution(filtered);buildTable(filtered);breakdownPlaceholder.classList.add('d-none');UIUtils.showToast('Reports updated','primary',1200);UIUtils.log('Principal refreshed reports','report');}
+applyFilters();
+applyFiltersBtnListeners();
+function applyFiltersBtnListeners(){document.getElementById('applyFilters')?.addEventListener('click',applyFilters);document.getElementById('resetFilters')?.addEventListener('click',()=>{classFilter.value='';applyFilters();});document.getElementById('refreshReports')?.addEventListener('click',()=>{UIUtils.showToast('Refreshing...','warning');setTimeout(applyFilters,600);});document.getElementById('exportPrincipalReports')?.addEventListener('click',()=>{const rows=sampleClassData.map(c=>`${c.cls},${c.avg},${c.pass},${c.attendance},${c.issues}`);const csv='class,avg,pass,attendance,issues\n'+rows.join('\n');const blob=new Blob([csv],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='principal-reports.csv';a.click();URL.revokeObjectURL(a.href);UIUtils.showToast('Exported (mock)','info');UIUtils.log('Exported principal reports','report');});document.getElementById('toggleTable')?.addEventListener('click',()=>{breakdownWrap.classList.toggle('d-none');});}
+</script>
+</body></html>

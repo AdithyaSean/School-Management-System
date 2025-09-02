@@ -188,6 +188,14 @@ Remaining major prototype gaps (UI only – backend intentionally absent):
     - Extends: Notify Sectional Heads (not implemented)
   - Prototype Notes: Form & list present; update/cancel buttons visually duplicate without differentiated behavior.
 
+- [x] **View School Performance Reports**
+  - Actor: Principal
+  - Description: Principal reviews cross-class performance, attendance, and discipline summaries (KPIs, trend, distribution, class breakdown).
+  - Extends: Generate Academic Performance Overview (mock charts + KPI cards)
+    - Includes: Export Reports (CSV mock)
+    - Includes: Refresh Data (in‑memory regenerate)
+  - Prototype Notes: New `reports.html` (principal) with filters (term, view, class, metric), KPI cards, line & doughnut charts (Chart.js), breakdown table toggle, export & refresh actions, integrated logging & notifications.
+
 ### Administrator Features
 
 - [x] **View User Information**
@@ -294,5 +302,7 @@ Unified Change Log (recent highlights):
 • Extended status badges to include roles & system states; applied to admin user table.
 • Principal announcements now generate targeted notifications.
 • Maintained standardized layout + utilities across dashboards.
+• Added Principal Reports page (`principal/reports.html`) with KPI cards, filters, charts, class breakdown, export & refresh actions.
+• Unified sidebars across Admin, Principal, Sectional Head pages (consistent link order: Dashboard, Reports (where applicable), Profile (where applicable), Logout) and standardized logout confirmation.
 
 Progress list will be updated as prototype screens evolve.
