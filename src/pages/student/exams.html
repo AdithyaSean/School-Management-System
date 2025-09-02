@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li class="nav-item mt-auto">
-                <a class="nav-link text-danger" href="../../index.html">
+                <a class="nav-link text-danger logout-link" href="../../index.html">
                     <i class="fas fa-sign-out-alt me-2"></i> Logout
                 </a>
             </li>
@@ -61,7 +61,12 @@
             <!-- Header -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Exams</h2>
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 align-items-center">
+                    <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge bg-danger text-white">2</span>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm activity-log-trigger" title="Activity Log"><i class="fas fa-list"></i></button>
                     <button class="btn btn-outline-primary" onclick="viewResults()">
                         <i class="fas fa-chart-line me-2"></i>View Results History
                     </button>
@@ -118,7 +123,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" data-empty-state="No upcoming exams scheduled.">
                             <thead>
                                 <tr>
                                     <th>Subject</th>
@@ -196,7 +201,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" data-empty-state="No recent results.">
                             <thead>
                                 <tr>
                                     <th>Subject</th>
@@ -248,7 +253,10 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom JS -->
+    <script src="../../assets/js/ui-utils.js"></script>
+    <script src="../../assets/js/layout-standardize.js"></script>
     <script src="../../assets/js/dashboard.js"></script>
     <script src="../../assets/js/exams.js"></script>
+    <script>UIUtils.log('Student exams page loaded','exam');</script>
 </body>
 </html>

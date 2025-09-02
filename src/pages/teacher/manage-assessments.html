@@ -47,7 +47,7 @@
                 </a>
             </li>
             <li class="nav-item mt-auto">
-                <a class="nav-link text-danger" href="../../index.html">
+                <a class="nav-link text-danger logout-link" href="../../index.html">
                     <i class="fas fa-sign-out-alt me-2"></i> Logout
                 </a>
             </li>
@@ -60,9 +60,16 @@
             <!-- Header -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Manage Assessments</h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAssessmentModal">
+                <div class="d-flex gap-2 align-items-center">
+                    <button class="btn btn-outline-secondary btn-sm notification-trigger position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge bg-danger text-white">4</span>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm activity-log-trigger" title="Activity Log"><i class="fas fa-list"></i></button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAssessmentModal">
                     <i class="fas fa-plus me-2"></i>Create Assessment
-                </button>
+                    </button>
+                </div>
             </div>
 
             <!-- Assessment Filters -->
@@ -111,7 +118,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" data-empty-state="No assessments yet. Create the first assessment to begin.">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -271,7 +278,10 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
+    <script src="../../assets/js/ui-utils.js"></script>
+    <script src="../../assets/js/layout-standardize.js"></script>
     <script src="../../assets/js/dashboard.js"></script>
     <script src="../../assets/js/manage-assessments.js"></script>
+    <script>UIUtils.log('Teacher manage assessments loaded','assessment');</script>
 </body>
 </html>
